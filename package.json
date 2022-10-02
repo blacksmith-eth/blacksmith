@@ -20,6 +20,7 @@
     "wagmi": "^0.6.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.1.1",
     "@types/node": "^18.8.0",
