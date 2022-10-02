@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
     "@rainbow-me/rainbowkit": "^0.7.0",
     "ethers": "^5.0.0",
     "next": "^12.1.6",
