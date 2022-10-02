@@ -5,7 +5,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title></title>
+        <title>Blacksmith</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
