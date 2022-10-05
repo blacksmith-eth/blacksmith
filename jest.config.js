@@ -4,7 +4,6 @@ const createJestConfig = nextJest({
   dir: "./",
 });
 
-// Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
 const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
