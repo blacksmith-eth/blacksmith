@@ -1,3 +1,4 @@
+import { Contracts } from "components/contracts";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -40,6 +41,7 @@ const Home: NextPage = () => {
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
         <aside className="bg-white border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
           <h2>contracts</h2>
+          <Contracts />
         </aside>
         <section className="flex flex-col flex-grow">
           <section className="bg-white p-2 flex-grow overflow-y-auto overscroll-none">

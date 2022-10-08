@@ -1,11 +1,19 @@
 import { render, RenderOptions } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ReactElement } from "react";
+import { SWRConfig } from "swr";
+
+function customRender(ui: ReactElement, options?: RenderOptions) {
+  return render(
+    <SWRConfig value={{ provider: () => new Map() }}>{ui}</SWRConfig>,
+    options
+  );
+}
 
 function userRender(ui: ReactElement, options?: RenderOptions) {
   return {
     user: userEvent.setup(),
-    ...render(ui, options),
+    ...customRender(ui, options),
   };
 }
 
