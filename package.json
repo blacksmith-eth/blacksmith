@@ -24,6 +24,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
