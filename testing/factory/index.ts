@@ -1,7 +1,7 @@
 import { Address, ContractDetails } from "core/types";
 import { faker } from "@faker-js/faker";
 
-const buildAddress = () =>
+export const buildAddress = () =>
   faker.datatype.hexadecimal({ length: 40 }) as Address;
 
 const buildContractDetails = (): ContractDetails => ({

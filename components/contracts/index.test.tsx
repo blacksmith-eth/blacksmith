@@ -1,12 +1,20 @@
 import { server } from "mocks/server";
 import { rest } from "msw";
+import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildContractDetailsList } from "testing/factory";
 import { Contracts } from ".";
 
+const renderContracts = (
+  props: Partial<ComponentProps<typeof Contracts>> = {}
+) => {
+  const setActiveContract = jest.fn();
+  return render(<Contracts setActiveContract={setActiveContract} {...props} />);
+};
+
 describe("Contracts", () => {
   it("renders a loading message", () => {
-    render(<Contracts />);
+    renderContracts();
     expect(screen.getByText("loading...")).toBeInTheDocument();
   });
 
@@ -16,7 +24,7 @@ describe("Contracts", () => {
         return res(ctx.status(500));
       })
     );
-    render(<Contracts />);
+    renderContracts();
     expect(await screen.findByText("error")).toBeInTheDocument();
   });
 
@@ -26,7 +34,7 @@ describe("Contracts", () => {
         return res(ctx.json([]));
       })
     );
-    render(<Contracts />);
+    renderContracts();
     expect(await screen.findByText("no contracts")).toBeInTheDocument();
   });
 
@@ -37,8 +45,33 @@ describe("Contracts", () => {
         return res(ctx.json(contracts));
       })
     );
-    render(<Contracts />);
+    renderContracts();
+    expect(
+      await screen.findByRole("button", { name: contracts[0].name })
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByRole("button", { name: contracts[1].name })
+    ).toBeInTheDocument();
+  });
+
+  it("calls setActiveContract when a contract is clicked", async () => {
+    const setActiveContract = jest.fn();
+    const contracts = buildContractDetailsList(2);
+    server.use(
+      rest.get("/api/contracts", (_req, res, ctx) => {
+        return res(ctx.json(contracts));
+      })
+    );
+    const { user } = renderContracts({ setActiveContract });
+
     expect(await screen.findByText(contracts[0].name)).toBeInTheDocument();
     expect(await screen.findByText(contracts[1].name)).toBeInTheDocument();
+    expect(setActiveContract).not.toHaveBeenCalled();
+
+    await user.click(
+      await screen.findByRole("button", { name: contracts[0].name })
+    );
+
+    expect(setActiveContract).toHaveBeenCalledWith(contracts[0].address);
   });
 });

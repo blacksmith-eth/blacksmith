@@ -1,7 +1,11 @@
+import Contract from "components/contract";
 import { Contracts } from "components/contracts";
+import { Address } from "core/types";
+import { ethers } from "ethers";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 
 const Wallet = ({ open }: { open: boolean }) => {
   if (!open) return <></>;
@@ -22,6 +26,9 @@ const Drawer = ({ open }: { open: boolean }) => {
 };
 
 const Home: NextPage = () => {
+  const [activeContract, setActiveContract] = useState<Address>(
+    ethers.constants.AddressZero
+  );
   const { state: isWalletOpen, toggle: toggleWallet } = useToggle(false);
   const { state: isDrawerOpen, toggle: toggleDrawer } = useToggle(false);
 
@@ -41,11 +48,12 @@ const Home: NextPage = () => {
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
         <aside className="bg-white border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
           <h2>contracts</h2>
-          <Contracts />
+          <Contracts setActiveContract={setActiveContract} />
         </aside>
         <section className="flex flex-col flex-grow">
           <section className="bg-white p-2 flex-grow overflow-y-auto overscroll-none">
             <h2>contract</h2>
+            <Contract address={activeContract} />
           </section>
           <section className="bg-white border-t sticky bottom-0 p-2">
             <button onClick={toggleDrawer}>{drawerButtonText}</button>

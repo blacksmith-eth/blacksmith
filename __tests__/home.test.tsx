@@ -1,5 +1,8 @@
 import { render, screen } from "testing";
 import Home from "pages/index";
+import { server } from "mocks/server";
+import { rest } from "msw";
+import { buildContractDetailsList } from "testing/factory";
 
 describe("Home", () => {
   it("should render without crashing", () => {
@@ -71,5 +74,26 @@ describe("Home", () => {
     expect(
       screen.queryByRole("heading", { level: 2, name: "drawer" })
     ).not.toBeInTheDocument();
+  });
+
+  it("should render the selected contract when clicked", async () => {
+    const contracts = buildContractDetailsList(2);
+    server.use(
+      rest.get("/api/contracts", (_req, res, ctx) => {
+        return res(ctx.json(contracts));
+      })
+    );
+
+    const { user } = render(<Home />);
+
+    const contractButton = await screen.findByRole("button", {
+      name: contracts[0].name,
+    });
+
+    user.click(contractButton);
+
+    expect(
+      await screen.findByRole("heading", { level: 3, name: contracts[0].name })
+    ).toBeInTheDocument();
   });
 });
