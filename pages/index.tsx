@@ -1,3 +1,4 @@
+import Connect from "components/connect";
 import Contract from "components/contract";
 import { Contracts } from "components/contracts";
 import { Address } from "core/types";
@@ -43,7 +44,10 @@ const Home: NextPage = () => {
       </Head>
       <header className="bg-white border-b sticky top-0 p-2 flex justify-between">
         <h1>blacksmith</h1>
-        <button onClick={toggleWallet}>{walletButtonText}</button>
+        <section className="flex gap-1">
+          <Connect />
+          <button onClick={toggleWallet}>{walletButtonText}</button>
+        </section>
       </header>
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
         <aside className="bg-white border-b md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
