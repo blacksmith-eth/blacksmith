@@ -1,5 +1,10 @@
-import { Address } from "core/types";
+import Functions from "components/functions";
+import { Abi, AbiDefinedFunction, Address } from "core/types";
 import { useContracts } from "hooks";
+
+const filterDefinedFunctions = (abi: Abi): AbiDefinedFunction[] => {
+  return abi.filter(({ type }) => type === "function") as AbiDefinedFunction[];
+};
 
 const Contract = ({ address }: { address: Address }) => {
   const { contracts, isLoading, isError } = useContracts();
@@ -13,7 +18,8 @@ const Contract = ({ address }: { address: Address }) => {
 
   return (
     <section>
-      <h3>{contract.name}</h3>
+      <h3 className="font-bold text-2xl">{contract.name}</h3>
+      <Functions functions={filterDefinedFunctions(contract.abi)} />
     </section>
   );
 };

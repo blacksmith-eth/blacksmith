@@ -1,4 +1,12 @@
-import type { Abi, Address } from "abitype";
+import type { Abi, AbiParameter, AbiStateMutability, Address } from "abitype";
+
+export type AbiDefinedFunction = {
+  inputs: readonly AbiParameter[];
+  name: string;
+  outputs: readonly AbiParameter[];
+  stateMutability: AbiStateMutability;
+  type: "function";
+};
 
 export type ContractDetails = {
   abi: Abi;
