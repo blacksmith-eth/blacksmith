@@ -1,17 +1,22 @@
-import { AbiDefinedFunction } from "core/types";
+import { AbiDefinedFunction, Address } from "core/types";
 import Nonpayable from "./nonpayable";
 import Payable from "./payable";
 import Pure from "./pure";
 import View from "./view";
 
-const Function = ({ func }: { func: AbiDefinedFunction }) => {
+type FunctionProps = {
+  address: Address;
+  func: AbiDefinedFunction;
+};
+
+const Function = ({ address, func }: FunctionProps) => {
   switch (func.stateMutability) {
     case "pure":
-      return <Pure func={func} />;
+      return <Pure address={address} func={func} />;
     case "view":
-      return <View func={func} />;
+      return <View address={address} func={func} />;
     case "nonpayable":
-      return <Nonpayable func={func} />;
+      return <Nonpayable address={address} func={func} />;
     case "payable":
       return <Payable func={func} />;
   }

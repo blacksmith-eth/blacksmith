@@ -10,7 +10,29 @@ import {
   buildContractDetails,
   buildContractDetailsList,
 } from "testing/factory";
+import {
+  useContractRead,
+  useContractWrite,
+  usePrepareContractWrite,
+} from "wagmi";
 import Contract from ".";
+
+jest.mock("wagmi");
+
+const useContractReadMock = useContractRead as jest.Mock<any>;
+
+useContractReadMock.mockReturnValue({
+  data: undefined,
+  isLoading: false,
+  isError: false,
+  refetch: jest.fn(),
+});
+
+const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;
+usePrepareContractWriteMock.mockReturnValue({ config: {} });
+
+const useContractWriteMock = useContractWrite as jest.Mock<any>;
+useContractWriteMock.mockReturnValue({ write: jest.fn() });
 
 describe("Contract", () => {
   it("renders a loading message", () => {
