@@ -18,7 +18,7 @@ const Function = ({ address, func }: FunctionProps) => {
     case "nonpayable":
       return <Nonpayable address={address} func={func} />;
     case "payable":
-      return <Payable func={func} />;
+      return <Payable address={address} func={func} />;
   }
 };
 
