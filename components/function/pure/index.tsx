@@ -12,8 +12,8 @@ type PureProps = {
 
 const Pure = ({ address, func }: PureProps) => {
   const { data, isLoading, isError, refetch } = useContractRead({
-    addressOrName: address,
-    contractInterface: [func],
+    address,
+    abi: [func],
     functionName: func.name,
     watch: true,
   });

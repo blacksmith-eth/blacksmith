@@ -12,8 +12,8 @@ type ViewProps = {
 
 const View = ({ address, func }: ViewProps) => {
   const { data, isLoading, isError, refetch } = useContractRead({
-    addressOrName: address,
-    contractInterface: [func],
+    address,
+    abi: [func],
     functionName: func.name,
     watch: true,
   });

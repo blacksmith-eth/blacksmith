@@ -11,8 +11,8 @@ type PayableProps = {
 
 const Payable = ({ address, func }: PayableProps) => {
   const { config } = usePrepareContractWrite({
-    addressOrName: address,
-    contractInterface: [func],
+    address,
+    abi: [func],
     functionName: func.name,
   });
   const { write, isLoading } = useContractWrite(config);
