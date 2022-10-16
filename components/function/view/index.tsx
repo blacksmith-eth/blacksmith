@@ -17,6 +17,7 @@ const View = ({ address, func }: ViewProps) => {
     functionName: func.name,
     watch: true,
   });
+
   return (
     <li key={func.name}>
       <Signature func={func} />
