@@ -1,3 +1,9 @@
+# Blacksmith
+
+Blacksmith generates a simple frontend for interacting with smart contracts.
+
+This tool is specifically intended to be used with [Foundry](https://getfoundry.sh/).
+
 ## Getting Started
 
 First, run the development server:
