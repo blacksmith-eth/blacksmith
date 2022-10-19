@@ -1656,12 +1656,12 @@
   resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.5.0.tgz#c921183ae518bb484299c2dc81f2acefd91c3dbe"
   integrity sha512-W58f2Rzz5lLmk0jbhgStVlZl5wEiPB1Ur3fRvUaBM+MrifZ3qskmFq/CiH//fEYeG5Dh9vF1qRviMMH46cX9Nw==
 
-"@wagmi/core@^0.6.3":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.6.3.tgz#2649894072840801f9c04204fcde46f9e1e90281"
-  integrity sha512-tvhYsGR4/Sgo4/E9iIuNJosPy/UZnjcylNdwk2CdXxjpf8vVbeQDsYa4Ue/We2RZlpFMt7CpPLVCVU8BKduOug==
+"@wagmi/core@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.6.4.tgz#ff2059a8a1ad2a9a9e6b4324a70af8e8aeb3f3c1"
+  integrity sha512-ihb/U5B69FO4YtPgAuCgTonniCVysLjr8mzNNOWoLjwUOhNEpCdntA8S9Qii4Tj/XcwIKOApOMw9jgc52L5k3A==
   dependencies:
-    abitype "^0.1.6"
+    abitype "^0.1.7"
     eventemitter3 "^4.0.7"
     zustand "^4.1.1"
 
@@ -1878,11 +1878,6 @@ abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
   integrity sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==
-
-abitype@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.1.6.tgz#10d3a83ad6416ec45954e379795535c2beb01437"
-  integrity sha512-cdOzP4mi5pH/N3o5ly8wlw7HIqdFJVkS0RSw5p7BTvwB1gFXOqPlQJ/ZKTSCsGqd8EITJcpNuZ2h7hPX2mKECA==
 
 abitype@^0.1.7:
   version "0.1.7"
@@ -6749,18 +6744,18 @@ w3c-xmlserializer@^3.0.0:
   dependencies:
     xml-name-validator "^4.0.0"
 
-wagmi@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.7.3.tgz#6cc62f8115aafcf00696354009ae61fdcae6531b"
-  integrity sha512-2HWgshtByBPZ3/Px8rTKtY3K6uZPwC8kW5mPtZnFllQuHGDBPwPi1/zKWLz5yY/02/9JaGrUVlggCcIysIVq2Q==
+wagmi@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.7.5.tgz#b38ce836957c68449a55ae0f5e32f0410769a618"
+  integrity sha512-/HRzvunyd68Dt7QKiAsmbf7rO3rOmvr81/yNpig1pkUyadAgOhFop+4PMr6QoxgN0eJRSNOhpM4GgQxr0FTG/Q==
   dependencies:
     "@coinbase/wallet-sdk" "^3.5.3"
     "@tanstack/query-sync-storage-persister" "^4.10.1"
     "@tanstack/react-query" "^4.10.1"
     "@tanstack/react-query-persist-client" "^4.10.1"
-    "@wagmi/core" "^0.6.3"
+    "@wagmi/core" "^0.6.4"
     "@walletconnect/ethereum-provider" "^1.8.0"
-    abitype "^0.1.6"
+    abitype "^0.1.7"
     use-sync-external-store "^1.2.0"
 
 walker@^1.0.8:
