@@ -12,7 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
-    "@rainbow-me/rainbowkit": "^0.7.1",
+    "@rainbow-me/rainbowkit": "^0.7.2",
     "ethers": "^5.7.2",
     "lodash": "^4.17.21",
     "lowdb": "^4.0.0",

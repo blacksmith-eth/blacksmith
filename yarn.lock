@@ -1187,10 +1187,10 @@
   resolved "https://registry.yarnpkg.com/@pedrouid/environment/-/environment-1.0.1.tgz#858f0f8a057340e0b250398b75ead77d6f4342ec"
   integrity sha512-HaW78NszGzRZd9SeoI3JD11JqY+lubnaOx7Pewj5pfjqWXOEATpeKIFb9Z4t2WBUK2iryiXX3lzWwmYWgUL0Ug==
 
-"@rainbow-me/rainbowkit@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.7.1.tgz#edf38dd512c1345624ab54b8ea5ac7d4aba444d0"
-  integrity sha512-8Q8uZ3ElrIjXhIiumc6s+8KlYzaN5HDTnpC5CjhnYcWkid7ZuKEzb/1uiNARmt0LTm0y7VGdOHRT74UBksxD0A==
+"@rainbow-me/rainbowkit@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.7.2.tgz#f509674dbb54af1f1c2cb5648fe1c48d76e5582a"
+  integrity sha512-E1M1lyw8ajwFve9G2ZyR47+UfI5xO73AHn7HaqI8lUAPkbhViLJ+A5yA+VzKQk98JWiRsO4Afd9UycrfSu5RRQ==
   dependencies:
     "@vanilla-extract/css" "1.9.1"
     "@vanilla-extract/dynamic" "2.0.2"
