@@ -1,4 +1,4 @@
-import { Connector, Chain } from "wagmi";
+import { Connector, Chain, Address } from "wagmi";
 import {
   BlacksmithWalletOptions,
   BlacksmithWalletProvider,
@@ -55,7 +55,7 @@ export class BlacksmithConnector extends Connector<
     provider.removeListener("disconnect", this.onDisconnect);
   }
 
-  async getAccount() {
+  async getAccount(): Promise<Address> {
     const provider = await this.getProvider();
     const account = await provider.getAccount();
     return account;
@@ -85,7 +85,7 @@ export class BlacksmithConnector extends Connector<
     }
   }
 
-  protected onAccountsChanged = (accounts: string[]) => {
+  protected onAccountsChanged = (accounts: Address[]) => {
     this.emit("change", { account: accounts[0] });
   };
 

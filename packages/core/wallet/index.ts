@@ -1,4 +1,5 @@
 import { providers } from "ethers";
+import { Address } from "wagmi";
 
 export type BlacksmithWalletOptions =
   | ConstructorParameters<typeof providers.JsonRpcProvider>
@@ -13,8 +14,8 @@ export class BlacksmithWalletProvider extends providers.JsonRpcProvider {
     super(options[0], options[1]);
   }
 
-  async getAccount() {
-    const accounts = await this.listAccounts();
+  async getAccount(): Promise<Address> {
+    const accounts = (await this.listAccounts()) as Address[];
     return accounts[this.#accountIndex];
   }
 
