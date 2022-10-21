@@ -22,7 +22,7 @@ export const buildAbiError = (): AbiError => ({
 });
 
 export const buildAddress = () =>
-  faker.datatype.hexadecimal({ length: 40 }) as Address;
+  faker.datatype.hexadecimal({ length: 40, case: "lower" }) as Address;
 
 export const buildContractDetails = (
   overrides: Partial<ContractDetails> = {}
