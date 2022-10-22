@@ -15,7 +15,7 @@
     "@rainbow-me/rainbowkit": "^0.7.3",
     "ethers": "^5.7.2",
     "lodash": "^4.17.21",
-    "lowdb": "^4.0.0",
+    "lowdb": "^5.0.2",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
