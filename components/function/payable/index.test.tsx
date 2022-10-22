@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { render, screen } from "testing";
+import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedFunction,
   buildAddress,
@@ -26,6 +26,8 @@ const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
 };
 
 describe("Nonpayable", () => {
+  beforeEach(jest.clearAllMocks);
+
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 
@@ -72,5 +74,31 @@ describe("Nonpayable", () => {
     renderPayable();
 
     expect(screen.getByRole("button", { name: "send" })).toBeDisabled();
+  });
+
+  it("should prepare contract write with provided arguments", async () => {
+    const address = buildAddress();
+    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+
+    const { user } = renderPayable({ address, func });
+
+    const firstInput = screen.getByLabelText(
+      `${func.inputs[0].name} :: ${func.inputs[0].type}`
+    );
+    await user.type(firstInput, "first");
+
+    const secondInput = screen.getByLabelText(
+      `${func.inputs[1].name} :: ${func.inputs[1].type}`
+    );
+    await user.type(secondInput, "second");
+
+    await waitFor(() => {
+      expect(usePrepareContractWriteMock).toHaveBeenCalledWith({
+        abi: [func],
+        address,
+        args: ["first", "second"],
+        functionName: func.name,
+      });
+    });
   });
 });

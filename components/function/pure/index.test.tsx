@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { render, screen } from "testing";
+import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedFunction,
   buildAddress,
@@ -29,6 +29,8 @@ const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
 };
 
 describe("Pure", () => {
+  beforeEach(jest.clearAllMocks);
+
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 
@@ -104,5 +106,32 @@ describe("Pure", () => {
     renderPure();
 
     expect(screen.getByText("error")).toBeInTheDocument();
+  });
+
+  it("should call contract read with provided arguments", async () => {
+    const address = buildAddress();
+    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+
+    const { user } = renderPure({ address, func });
+
+    const firstInput = screen.getByLabelText(
+      `${func.inputs[0].name} :: ${func.inputs[0].type}`
+    );
+    await user.type(firstInput, "first");
+
+    const secondInput = screen.getByLabelText(
+      `${func.inputs[1].name} :: ${func.inputs[1].type}`
+    );
+    await user.type(secondInput, "second");
+
+    await waitFor(() => {
+      expect(useContractReadMock).toHaveBeenCalledWith({
+        abi: [func],
+        address,
+        args: ["first", "second"],
+        functionName: func.name,
+        watch: true,
+      });
+    });
   });
 });
