@@ -5036,10 +5036,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lowdb@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-5.0.2.tgz#ac698f8c0a116a54f2875adcca89f9d23f195b2b"
-  integrity sha512-e9/k7OtLZR4St1EJXz0ljS4ZnOpzU0ZgE88m4W2tRsND7GOnNie9NK4q7BDnxQ654II4H8gKyDSitk9OyIozhg==
+lowdb@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-5.0.3.tgz#aa01ef44c81e0f74122ae784c642948157fb44b8"
+  integrity sha512-26qk7jgHbLGytYoZOf7/hgcvksYkRpXSnCJTSbnXApDExMkOw/vjWyjDBba4HYbuZN23MIf4Dc8q99QIgzQthA==
   dependencies:
     steno "^3.0.0"
 
