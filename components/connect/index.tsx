@@ -47,7 +47,7 @@ const Connect = () => {
               return (
                 <div className="flex gap-2">
                   <button onClick={openChainModal} type="button">
-                    {chain.name}
+                    {chain.name === "Chain 31337" ? "Localhost" : chain.name}
                   </button>
                   <button onClick={openAccountModal} type="button">
                     {account.displayName}
