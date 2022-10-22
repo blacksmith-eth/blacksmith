@@ -130,7 +130,7 @@ describe("Contract", () => {
 
     render(<Contract address={contract.address} />);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         screen.queryByText(event.name, { exact: false })
       ).not.toBeInTheDocument();
