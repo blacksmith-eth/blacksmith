@@ -51,13 +51,15 @@ export const buildAbiDefinedFunction = (
 export const buildAbiDefinedFunctionList = (n: number): AbiDefinedFunction[] =>
   times(n, () => buildAbiDefinedFunction());
 
-const buildInput = (): AbiParameter => ({
+export const buildInput = (
+  overrides: Partial<AbiParameter> = {}
+): AbiParameter => ({
   name: capitalize(faker.helpers.unique(faker.word.noun)),
-  type: faker.helpers.arrayElement(["uint256", "address", "string"]),
+  type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
 });
 
 export const buildInputList = (n: number): AbiParameter[] =>
-  times(n, buildInput);
+  times(n, () => buildInput());
 
 const buildOutput = (): AbiParameter => ({
   name: capitalize(faker.helpers.unique(faker.word.noun)),

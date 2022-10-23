@@ -1,8 +1,10 @@
+import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedFunction,
   buildAddress,
+  buildInput,
   buildInputList,
 } from "testing/factory";
 import { useContractRead } from "wagmi";
@@ -129,6 +131,35 @@ describe("View", () => {
         abi: [func],
         address,
         args: ["first", "second"],
+        functionName: func.name,
+        watch: true,
+      });
+    });
+  });
+
+  it("should call contract read with formmated arguments", async () => {
+    const address = buildAddress();
+    const input1 = buildInput({ type: "uint256" });
+    const input2 = buildInput({ type: "uint256" });
+    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
+
+    const { user } = renderView({ address, func });
+
+    const firstInput = screen.getByLabelText(
+      `${func.inputs[0].name} :: ${func.inputs[0].type}`
+    );
+    await user.type(firstInput, "1");
+
+    const secondInput = screen.getByLabelText(
+      `${func.inputs[1].name} :: ${func.inputs[1].type}`
+    );
+    await user.type(secondInput, "2");
+
+    await waitFor(() => {
+      expect(useContractReadMock).toHaveBeenCalledWith({
+        abi: [func],
+        address,
+        args: [BigNumber.from("1"), BigNumber.from("2")],
         functionName: func.name,
         watch: true,
       });

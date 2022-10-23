@@ -12,12 +12,12 @@ type ViewProps = {
 };
 
 const View = ({ address, func }: ViewProps) => {
-  const { args, updateArg } = useArgs(func);
+  const { args, formattedArgs, updateArg } = useArgs(func);
   const { data, isLoading, isError, refetch } = useContractRead({
     address,
     abi: [func],
     functionName: func.name,
-    args,
+    args: formattedArgs,
     watch: true,
   });
 

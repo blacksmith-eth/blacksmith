@@ -1,8 +1,10 @@
+import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedFunction,
   buildAddress,
+  buildInput,
   buildInputList,
 } from "testing/factory";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
@@ -97,6 +99,34 @@ describe("Nonpayable", () => {
         abi: [func],
         address,
         args: ["first", "second"],
+        functionName: func.name,
+      });
+    });
+  });
+
+  it("should prepare contract write with formmated arguments", async () => {
+    const address = buildAddress();
+    const input1 = buildInput({ type: "uint256" });
+    const input2 = buildInput({ type: "uint256" });
+    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
+
+    const { user } = renderPayable({ address, func });
+
+    const firstInput = screen.getByLabelText(
+      `${func.inputs[0].name} :: ${func.inputs[0].type}`
+    );
+    await user.type(firstInput, "1");
+
+    const secondInput = screen.getByLabelText(
+      `${func.inputs[1].name} :: ${func.inputs[1].type}`
+    );
+    await user.type(secondInput, "2");
+
+    await waitFor(() => {
+      expect(usePrepareContractWriteMock).toHaveBeenCalledWith({
+        abi: [func],
+        address,
+        args: [BigNumber.from("1"), BigNumber.from("2")],
         functionName: func.name,
       });
     });
