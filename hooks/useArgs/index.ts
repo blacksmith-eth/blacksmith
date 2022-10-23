@@ -23,20 +23,20 @@ const formatArgsByType = (type: string, arg: string): any => {
 };
 
 export const useArgs = (func: AbiDefinedFunction) => {
-  const [args, setArgs] = useState<string[]>(
+  const [values, setValues] = useState<string[]>(
     Array.from({ length: func.inputs.length }, () => "")
   );
 
-  const updateArg = (index: number, value: string) => {
-    const newArgs = [...args];
-    newArgs[index] = value;
-    setArgs(newArgs);
+  const updateValue = (index: number, value: string) => {
+    const newValues = [...values];
+    newValues[index] = value;
+    setValues(newValues);
   };
 
-  const formattedArgs = args.map((arg, index) => {
+  const args = values.map((value, index) => {
     const { type } = func.inputs[index];
-    return formatArgsByType(type, arg);
+    return formatArgsByType(type, value);
   });
 
-  return { args, formattedArgs, updateArg };
+  return { args, values, updateValue };
 };

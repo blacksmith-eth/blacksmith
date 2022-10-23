@@ -12,12 +12,12 @@ type PureProps = {
 };
 
 const Pure = ({ address, func }: PureProps) => {
-  const { args, formattedArgs, updateArg } = useArgs(func);
+  const { args, values, updateValue } = useArgs(func);
   const { data, isLoading, isError, refetch } = useContractRead({
     address,
     abi: [func],
     functionName: func.name,
-    args: formattedArgs,
+    args,
     watch: true,
   });
 
@@ -27,8 +27,8 @@ const Pure = ({ address, func }: PureProps) => {
       <Inputs
         name={func.name}
         inputs={func.inputs}
-        args={args}
-        updateArg={updateArg}
+        values={values}
+        updateValue={updateValue}
       />
       <Container>
         <button onClick={() => refetch()}>read</button>

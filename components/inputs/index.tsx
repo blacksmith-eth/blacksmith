@@ -1,16 +1,16 @@
 import { AbiParameter } from "core/types";
 
 type InputsProps = {
-  args: string[];
-  updateArg: (index: number, value: string) => void;
+  values: string[];
+  updateValue: (index: number, value: string) => void;
   name: string;
   inputs: readonly AbiParameter[];
 };
 
-const Inputs = ({ args, name, inputs, updateArg }: InputsProps) => {
+const Inputs = ({ name, inputs, values, updateValue }: InputsProps) => {
   const handleChange =
     (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      updateArg(index, event.target.value);
+      updateValue(index, event.target.value);
     };
   return (
     <ul>
@@ -23,7 +23,7 @@ const Inputs = ({ args, name, inputs, updateArg }: InputsProps) => {
             id={`${name}-${input.name}`}
             type="text"
             className="border"
-            value={args[index]}
+            value={values[index]}
             onChange={handleChange(index)}
           />
         </li>

@@ -11,12 +11,12 @@ type PayableProps = {
 };
 
 const Payable = ({ address, func }: PayableProps) => {
-  const { args, formattedArgs, updateArg } = useArgs(func);
+  const { args, values, updateValue } = useArgs(func);
   const { config } = usePrepareContractWrite({
     address,
     abi: [func],
     functionName: func.name,
-    args: formattedArgs,
+    args,
   });
   const { write, isLoading } = useContractWrite(config);
 
@@ -26,8 +26,8 @@ const Payable = ({ address, func }: PayableProps) => {
       <Inputs
         name={func.name}
         inputs={func.inputs}
-        args={args}
-        updateArg={updateArg}
+        values={values}
+        updateValue={updateValue}
       />
       <Container>
         <button

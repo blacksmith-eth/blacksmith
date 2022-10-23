@@ -11,11 +11,11 @@ import {
 import { useArgs } from ".";
 
 describe("useArgs", () => {
-  it("should return args", () => {
+  it("should return values", () => {
     const func = buildAbiDefinedFunction({ inputs: [] });
     const { result } = renderHook(() => useArgs(func));
 
-    expect(result.current.args).toEqual([]);
+    expect(result.current.values).toEqual([]);
   });
 
   it("should initialize each input with an empty string", () => {
@@ -23,7 +23,7 @@ describe("useArgs", () => {
     const func = buildAbiDefinedFunction({ inputs });
     const { result } = renderHook(() => useArgs(func));
 
-    expect(result.current.args).toEqual(["", ""]);
+    expect(result.current.values).toEqual(["", ""]);
   });
 
   it("should update the speficied arg", () => {
@@ -34,10 +34,10 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(func));
 
     act(() => {
-      result.current.updateArg(1, value);
+      result.current.updateValue(1, value);
     });
 
-    expect(result.current.args).toEqual(["", value]);
+    expect(result.current.values).toEqual(["", value]);
   });
 
   it("should return formatted big number args", () => {
@@ -47,10 +47,10 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(func));
 
     act(() => {
-      result.current.updateArg(0, value);
+      result.current.updateValue(0, value);
     });
 
-    expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
+    expect(result.current.args).toEqual([BigNumber.from(value)]);
   });
 
   it("should return provided value when big number conversion throws", () => {
@@ -60,10 +60,10 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(func));
 
     act(() => {
-      result.current.updateArg(0, value);
+      result.current.updateValue(0, value);
     });
 
-    expect(result.current.formattedArgs).toEqual([value]);
+    expect(result.current.args).toEqual([value]);
   });
 
   it("should return formatted args for string array", () => {
@@ -73,10 +73,10 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(func));
 
     act(() => {
-      result.current.updateArg(0, value);
+      result.current.updateValue(0, value);
     });
 
-    expect(result.current.formattedArgs).toEqual([["foo", "bar", "baz"]]);
+    expect(result.current.args).toEqual([["foo", "bar", "baz"]]);
   });
 
   it("should return formatted args for address array", () => {
@@ -87,10 +87,10 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(func));
 
     act(() => {
-      result.current.updateArg(0, value);
+      result.current.updateValue(0, value);
     });
 
-    expect(result.current.formattedArgs).toEqual([addresses]);
+    expect(result.current.args).toEqual([addresses]);
   });
 
   it("should return formatted args for uint256[]", () => {
@@ -100,10 +100,10 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(func));
 
     act(() => {
-      result.current.updateArg(0, values);
+      result.current.updateValue(0, values);
     });
 
-    expect(result.current.formattedArgs).toEqual([
+    expect(result.current.args).toEqual([
       [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
     ]);
   });

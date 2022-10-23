@@ -8,8 +8,8 @@ const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
     <Inputs
       name={props.name || ""}
       inputs={props.inputs || []}
-      args={props.args || []}
-      updateArg={props.updateArg || jest.fn()}
+      values={props.values || []}
+      updateValue={props.updateValue || jest.fn()}
     />
   );
 };
@@ -28,23 +28,23 @@ describe("Inputs", () => {
     ).toBeInTheDocument();
   });
 
-  it("should render the provided args", () => {
+  it("should render the provided values", () => {
     const inputs = buildInputList(2);
-    const args = ["arg1", "arg2"];
+    const values = ["value1", "value2"];
 
-    renderInputs({ inputs, args });
+    renderInputs({ inputs, values });
 
-    expect(screen.getByDisplayValue(args[0])).toBeInTheDocument();
-    expect(screen.getByDisplayValue(args[1])).toBeInTheDocument();
+    expect(screen.getByDisplayValue(values[0])).toBeInTheDocument();
+    expect(screen.getByDisplayValue(values[1])).toBeInTheDocument();
   });
 
-  it("should call updateArg when an input changes", async () => {
+  it("should call updateValue when an input changes", async () => {
     const value = "a";
     const inputs = buildInputList(2);
-    const args = ["", ""];
-    const updateArg = jest.fn();
+    const values = ["", ""];
+    const updateValue = jest.fn();
 
-    const { user } = renderInputs({ inputs, args, updateArg });
+    const { user } = renderInputs({ inputs, values, updateValue });
 
     const input1 = screen.getByLabelText(
       `${inputs[0].name} :: ${inputs[0].type}`
@@ -53,7 +53,7 @@ describe("Inputs", () => {
     await user.type(input1, value);
 
     await waitFor(() => {
-      expect(updateArg).toHaveBeenCalledWith(0, value);
+      expect(updateValue).toHaveBeenCalledWith(0, value);
     });
   });
 });

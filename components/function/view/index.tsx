@@ -12,12 +12,12 @@ type ViewProps = {
 };
 
 const View = ({ address, func }: ViewProps) => {
-  const { args, formattedArgs, updateArg } = useArgs(func);
+  const { args, values, updateValue } = useArgs(func);
   const { data, isLoading, isError, refetch } = useContractRead({
     address,
     abi: [func],
     functionName: func.name,
-    args: formattedArgs,
+    args,
     watch: true,
   });
 
@@ -27,8 +27,8 @@ const View = ({ address, func }: ViewProps) => {
       <Inputs
         name={func.name}
         inputs={func.inputs}
-        args={args}
-        updateArg={updateArg}
+        values={values}
+        updateValue={updateValue}
       />
       <Container>
         <button onClick={() => refetch()}>read</button>
