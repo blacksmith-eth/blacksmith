@@ -5,7 +5,7 @@ import { useState } from "react";
 const tryBigNumberConversion = (value: string): BigNumber | string => {
   try {
     return BigNumber.from(value);
-  } catch (_error) {
+  } catch {
     return value;
   }
 };
