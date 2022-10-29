@@ -10,7 +10,7 @@ export const Contracts = ({ setActiveContract }: ContractsProps) => {
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error</div>;
-  if (!contracts || contracts.length === 0) return <div>no contracts</div>;
+  if (!contracts || contracts.length === 0) return <div>No contracts</div>;
   return (
     <ul>
       {contracts.map((contract: ContractDetails) => (

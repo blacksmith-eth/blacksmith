@@ -63,7 +63,7 @@ describe("Contract", () => {
 
     render(<Contract address={address} />);
 
-    expect(await screen.findByText("no contracts")).toBeInTheDocument();
+    expect(await screen.findByText("No contracts")).toBeInTheDocument();
   });
 
   it("renders a selected contract", async () => {

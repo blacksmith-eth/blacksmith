@@ -35,7 +35,7 @@ describe("Contracts", () => {
       })
     );
     renderContracts();
-    expect(await screen.findByText("no contracts")).toBeInTheDocument();
+    expect(await screen.findByText("No contracts")).toBeInTheDocument();
   });
 
   it("renders a list of contracts", async () => {

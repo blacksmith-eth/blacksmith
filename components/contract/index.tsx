@@ -11,7 +11,7 @@ const Contract = ({ address }: { address: Address }) => {
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error</div>;
-  if (!contracts || contracts.length === 0) return <div>no contracts</div>;
+  if (!contracts || contracts.length === 0) return <div>No contracts</div>;
 
   const contract = contracts.find((contract) => contract.address === address);
   if (!contract) return <div>Selected contract not found.</div>;
