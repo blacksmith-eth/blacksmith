@@ -43,7 +43,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="bg-white border-b sticky top-0 p-2 flex justify-between">
-        <h1>Blacksmith</h1>
+        <h1 className="font-bold">Blacksmith</h1>
         <section className="flex gap-1">
           <Connect />
           <button onClick={toggleWallet}>{walletButtonText}</button>
@@ -51,12 +51,12 @@ const Home: NextPage = () => {
       </header>
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
         <aside className="bg-white border-b md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
-          <h2>Contracts</h2>
+          <h2 className="font-bold">Contracts</h2>
           <Contracts setActiveContract={setActiveContract} />
         </aside>
         <section className="flex flex-col flex-grow">
           <section className="bg-white p-2 flex-grow overflow-y-auto overscroll-none">
-            <h2>Contract</h2>
+            <h2 className="font-bold">Contract</h2>
             <Contract address={activeContract} />
           </section>
           <section className="bg-white border-t sticky bottom-0 p-2">
