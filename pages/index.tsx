@@ -1,3 +1,4 @@
+import { WalletIcon } from "@heroicons/react/24/outline";
 import Connect from "components/connect";
 import Contract from "components/contract";
 import { Contracts } from "components/contracts";
@@ -46,7 +47,10 @@ const Home: NextPage = () => {
         <h1 className="font-bold">Blacksmith</h1>
         <section className="flex gap-1">
           <Connect />
-          <button onClick={toggleWallet}>{walletButtonText}</button>
+          <button onClick={toggleWallet}>
+            <WalletIcon className="w-6 h-6" />
+            <span className="sr-only">{walletButtonText}</span>
+          </button>
         </section>
       </header>
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
