@@ -43,7 +43,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="bg-white border-b sticky top-0 p-2 flex justify-between">
-        <h1>blacksmith</h1>
+        <h1>Blacksmith</h1>
         <section className="flex gap-1">
           <Connect />
           <button onClick={toggleWallet}>{walletButtonText}</button>

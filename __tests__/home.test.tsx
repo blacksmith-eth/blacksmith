@@ -14,7 +14,7 @@ describe("Home", () => {
 
     const heading = screen.getByRole("heading", {
       level: 1,
-      name: "blacksmith",
+      name: "Blacksmith",
     });
 
     expect(heading).toBeInTheDocument();
