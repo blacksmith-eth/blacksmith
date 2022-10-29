@@ -14,7 +14,7 @@ const Contract = ({ address }: { address: Address }) => {
   if (!contracts || contracts.length === 0) return <div>no contracts</div>;
 
   const contract = contracts.find((contract) => contract.address === address);
-  if (!contract) return <div>selected contract not found</div>;
+  if (!contract) return <div>Selected contract not found.</div>;
 
   return (
     <section>

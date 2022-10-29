@@ -93,7 +93,7 @@ describe("Contract", () => {
     render(<Contract address={address} />);
 
     expect(
-      await screen.findByText("selected contract not found")
+      await screen.findByText("Selected contract not found.")
     ).toBeInTheDocument();
   });
 
