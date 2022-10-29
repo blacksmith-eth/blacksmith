@@ -54,7 +54,9 @@ export const buildAbiDefinedFunctionList = (n: number): AbiDefinedFunction[] =>
 export const buildInput = (
   overrides: Partial<AbiParameter> = {}
 ): AbiParameter => ({
-  name: capitalize(faker.helpers.unique(faker.word.noun)),
+  name: overrides.hasOwnProperty("name")
+    ? overrides.name!
+    : capitalize(faker.helpers.unique(faker.word.noun)),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
 });
 

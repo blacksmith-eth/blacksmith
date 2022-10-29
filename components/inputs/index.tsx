@@ -14,20 +14,23 @@ const Inputs = ({ name, inputs, values, updateValue }: InputsProps) => {
     };
   return (
     <ul>
-      {inputs.map((input, index) => (
-        <li key={input.name} className="flex flex-col">
-          <label htmlFor={`${name}-${input.name}`}>
-            {input.name} :: {input.type}
-          </label>
-          <input
-            id={`${name}-${input.name}`}
-            type="text"
-            className="border"
-            value={values[index]}
-            onChange={handleChange(index)}
-          />
-        </li>
-      ))}
+      {inputs.map((input, index) => {
+        const inputName = input.name || "keyOrIndex";
+        return (
+          <li key={`${inputName}-${index}`} className="flex flex-col">
+            <label htmlFor={`${name}-${inputName}`}>
+              {inputName} :: {input.type}
+            </label>
+            <input
+              id={`${name}-${inputName}`}
+              type="text"
+              className="border"
+              value={values[index]}
+              onChange={handleChange(index)}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 };

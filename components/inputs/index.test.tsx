@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
-import { buildInputList } from "testing/factory";
+import { buildInput, buildInputList } from "testing/factory";
 import Inputs from ".";
 
 const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
@@ -55,5 +55,15 @@ describe("Inputs", () => {
     await waitFor(() => {
       expect(updateValue).toHaveBeenCalledWith(0, value);
     });
+  });
+
+  it("should render a fallback name if the input name is not provided", () => {
+    const input = buildInput({ name: "" });
+
+    renderInputs({ inputs: [input] });
+
+    expect(
+      screen.getByLabelText(`keyOrIndex :: ${input.type}`)
+    ).toBeInTheDocument();
   });
 });
