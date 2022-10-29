@@ -39,7 +39,7 @@ describe("Functions", () => {
   it("should render no functions message when no functions are provided", () => {
     renderFunctions({ functions: [] });
 
-    expect(screen.getByText("no functions")).toBeInTheDocument();
+    expect(screen.getByText("No defined functions.")).toBeInTheDocument();
   });
 
   it("should render functions", () => {

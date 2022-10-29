@@ -7,7 +7,7 @@ type FunctionsProps = {
 };
 
 const Functions = ({ address, functions }: FunctionsProps) => {
-  if (functions.length === 0) return <div>no functions</div>;
+  if (functions.length === 0) return <div>No defined functions.</div>;
   return (
     <ul className="flex flex-col gap-2">
       {functions.map((func) => (
