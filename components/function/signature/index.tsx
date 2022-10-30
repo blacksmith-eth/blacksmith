@@ -14,11 +14,13 @@ const Signature = ({ func }: SignatureProps) => {
   const returnType = getReturnType(func.outputs);
 
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-2">
       <h4 className="font-bold">
         {func.name} &#8594; {returnType}
       </h4>
-      <span>{func.stateMutability}</span>
+      <span className="text-sm border rounded px-2 py-0.5">
+        {func.stateMutability}
+      </span>
     </div>
   );
 };
