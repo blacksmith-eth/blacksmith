@@ -19,6 +19,7 @@ const Contract = ({ address }: { address: Address }) => {
   return (
     <section>
       <h3 className="font-bold text-2xl">{contract.name}</h3>
+      <h4>{contract.address}</h4>
       <Functions
         address={contract.address}
         functions={filterDefinedFunctions(contract.abi)}

@@ -97,6 +97,21 @@ describe("Contract", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders the contract address", async () => {
+    const contract = buildContractDetails();
+    server.use(
+      rest.get("/api/contracts", (_req, res, ctx) => {
+        return res(ctx.json([contract]));
+      })
+    );
+
+    render(<Contract address={contract.address} />);
+
+    expect(
+      await screen.findByRole("heading", { level: 4, name: contract.address })
+    ).toBeInTheDocument();
+  });
+
   it("renders a list of defined functions", async () => {
     const definedFunctions = buildAbiDefinedFunctionList(2);
     const contract = buildContractDetails({ abi: [...definedFunctions] });
