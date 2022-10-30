@@ -27,7 +27,7 @@ const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
   );
 };
 
-describe("Nonpayable", () => {
+describe("Payable", () => {
   beforeEach(jest.clearAllMocks);
 
   it("should render function name", () => {
