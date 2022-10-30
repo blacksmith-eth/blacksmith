@@ -22,7 +22,7 @@ const getReturnType = (
 ): string => {
   if (outputs.length === 0) return "void";
   if (outputs.length === 1) return getType(outputs[0]);
-  return `(${outputs.map((output) => getType(output)).join(", ")})`;
+  return `[${outputs.map((output) => getType(output)).join(", ")}]`;
 };
 
 const Signature = ({ func }: SignatureProps) => {

@@ -40,7 +40,7 @@ describe("Signature", () => {
     expect(
       screen.getByRole("heading", {
         level: 4,
-        name: `${func.name} → (${outputs[0].type}, ${outputs[1].type})`,
+        name: `${func.name} → [${outputs[0].type}, ${outputs[1].type}]`,
       })
     ).toBeInTheDocument();
   });
@@ -71,7 +71,7 @@ describe("Signature", () => {
     expect(
       screen.getByRole("heading", {
         level: 4,
-        name: `${func.name} → ((${components[0].type}, ${components[1].type}), ${outputs[1].type}, ${outputs[2].type})`,
+        name: `${func.name} → [(${components[0].type}, ${components[1].type}), ${outputs[1].type}, ${outputs[2].type}]`,
       })
     ).toBeInTheDocument();
   });
