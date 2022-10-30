@@ -100,6 +100,9 @@ describe("Payable", () => {
         address,
         args: ["first", "second"],
         functionName: func.name,
+        overrides: {
+          value: BigNumber.from(0),
+        },
       });
     });
   });
@@ -111,6 +114,9 @@ describe("Payable", () => {
     const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
 
     const { user } = renderPayable({ address, func });
+
+    const valueInput = screen.getByLabelText("value :: uint256");
+    await user.type(valueInput, "1");
 
     const firstInput = screen.getByLabelText(
       `${func.inputs[0].name} :: ${func.inputs[0].type}`
@@ -128,6 +134,9 @@ describe("Payable", () => {
         address,
         args: [BigNumber.from("1"), BigNumber.from("2")],
         functionName: func.name,
+        overrides: {
+          value: BigNumber.from("1"),
+        },
       });
     });
   });
