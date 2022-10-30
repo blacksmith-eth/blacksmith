@@ -1,3 +1,4 @@
+import Button from "components/button";
 import Inputs from "components/inputs";
 import { AbiDefinedFunction, Address } from "core/types";
 import { useArgs } from "hooks";
@@ -30,7 +31,7 @@ const Payable = ({ address, func }: PayableProps) => {
         updateValue={updateValue}
       />
       <Container>
-        <button
+        <Button
           type="button"
           disabled={isLoading || !write}
           onClick={() => {
@@ -38,7 +39,7 @@ const Payable = ({ address, func }: PayableProps) => {
           }}
         >
           send
-        </button>
+        </Button>
       </Container>
     </li>
   );

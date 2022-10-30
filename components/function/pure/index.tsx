@@ -1,3 +1,4 @@
+import Button from "components/button";
 import Inputs from "components/inputs";
 import { AbiDefinedFunction, Address } from "core/types";
 import { useArgs } from "hooks";
@@ -31,7 +32,7 @@ const Pure = ({ address, func }: PureProps) => {
         updateValue={updateValue}
       />
       <Container>
-        <button onClick={() => refetch()}>read</button>
+        <Button onClick={() => refetch()}>read</Button>
         <Output data={data} isLoading={isLoading} isError={isError} />
       </Container>
     </li>
