@@ -1,3 +1,4 @@
+import { Listbox } from "@headlessui/react";
 import Button from "components/button";
 import Inputs from "components/inputs";
 import { AbiDefinedFunction, Address } from "core/types";
@@ -13,7 +14,8 @@ type PayableProps = {
 
 const Payable = ({ address, func }: PayableProps) => {
   const { args, values, updateValue } = useArgs(func);
-  const { value, formattedValue, handleValueChange } = useEther();
+  const { value, formattedValue, handleValueChange, unit, units, setUnit } =
+    useEther();
   const { config } = usePrepareContractWrite({
     address,
     abi: [func],
@@ -30,13 +32,36 @@ const Payable = ({ address, func }: PayableProps) => {
       <Signature func={func} />
       <section className="flex flex-col">
         <label htmlFor={`${func.name}-value`}>value :: uint256</label>
-        <input
-          id={`${func.name}-value`}
-          value={value}
-          onChange={handleValueChange}
-          type="text"
-          className="border"
-        />
+        <div className="flex gap-1">
+          <input
+            id={`${func.name}-value`}
+            value={value}
+            onChange={handleValueChange}
+            type="text"
+            className="border flex-1"
+          />
+          <Listbox value={unit} onChange={setUnit}>
+            <Listbox.Label className="sr-only">unit</Listbox.Label>
+            <div className="relative text-right">
+              <Listbox.Button className="border w-full px-2">
+                {unit}
+              </Listbox.Button>
+              <Listbox.Options className="border absolute mt-1 right-0 focus:outline-none">
+                {units.map((unit) => (
+                  <Listbox.Option
+                    key={unit}
+                    value={unit}
+                    className={({ active }) =>
+                      `${active ? "bg-black text-white" : ""} px-2`
+                    }
+                  >
+                    {unit}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </div>
+          </Listbox>
+        </div>
       </section>
       <Inputs
         name={func.name}

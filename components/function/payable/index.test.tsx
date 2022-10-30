@@ -140,4 +140,32 @@ describe("Payable", () => {
       });
     });
   });
+
+  it("should prepare contract with formatted value based on the selected unit", async () => {
+    const address = buildAddress();
+    const func = buildAbiDefinedFunction();
+
+    const { user } = renderPayable({ address, func });
+
+    const valueInput = screen.getByLabelText("value :: uint256");
+    await user.type(valueInput, "1");
+
+    const unitSelect = screen.getByLabelText("unit");
+    await user.click(unitSelect);
+
+    const listbox = screen.getByRole("listbox");
+    await user.selectOptions(listbox, "ether");
+
+    await waitFor(() => {
+      expect(usePrepareContractWriteMock).toHaveBeenCalledWith({
+        abi: [func],
+        address,
+        args: [],
+        functionName: func.name,
+        overrides: {
+          value: BigNumber.from("1000000000000000000"),
+        },
+      });
+    });
+  });
 });
