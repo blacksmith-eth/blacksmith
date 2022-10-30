@@ -56,7 +56,10 @@ const Home: NextPage = () => {
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
         <aside className="bg-white border-b md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
           <h2 className="font-bold">Contracts</h2>
-          <Contracts setActiveContract={setActiveContract} />
+          <Contracts
+            activeContract={activeContract}
+            setActiveContract={setActiveContract}
+          />
         </aside>
         <section className="flex flex-col flex-grow">
           <section className="bg-white p-2 flex-grow overflow-y-auto overscroll-none">

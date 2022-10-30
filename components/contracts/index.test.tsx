@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { ComponentProps } from "react";
@@ -8,8 +9,15 @@ import { Contracts } from ".";
 const renderContracts = (
   props: Partial<ComponentProps<typeof Contracts>> = {}
 ) => {
+  const activeContract = ethers.constants.AddressZero;
   const setActiveContract = jest.fn();
-  return render(<Contracts setActiveContract={setActiveContract} {...props} />);
+  return render(
+    <Contracts
+      activeContract={activeContract}
+      setActiveContract={setActiveContract}
+      {...props}
+    />
+  );
 };
 
 describe("Contracts", () => {

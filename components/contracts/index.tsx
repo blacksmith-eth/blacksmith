@@ -2,10 +2,14 @@ import { Address, ContractDetails } from "core/types";
 import { useContracts } from "hooks";
 
 type ContractsProps = {
+  activeContract: Address;
   setActiveContract(address: Address): void;
 };
 
-export const Contracts = ({ setActiveContract }: ContractsProps) => {
+export const Contracts = ({
+  activeContract,
+  setActiveContract,
+}: ContractsProps) => {
   const { contracts, isLoading, isError } = useContracts();
 
   if (isLoading) return <div>loading...</div>;
@@ -15,7 +19,12 @@ export const Contracts = ({ setActiveContract }: ContractsProps) => {
     <ul>
       {contracts.map((contract: ContractDetails) => (
         <li key={contract.address}>
-          <button onClick={() => setActiveContract(contract.address)}>
+          <button
+            onClick={() => setActiveContract(contract.address)}
+            className={`${
+              contract.address === activeContract ? "font-semibold" : ""
+            }`}
+          >
             {contract.name}
           </button>
         </li>
