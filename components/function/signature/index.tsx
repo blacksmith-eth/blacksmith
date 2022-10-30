@@ -4,14 +4,31 @@ type SignatureProps = {
   func: AbiDefinedFunction;
 };
 
-const getReturnType = (outputs: readonly AbiParameter[]) => {
+type AbiParameterWithComponents = AbiParameter & {
+  components?: AbiParameter[];
+};
+
+const getType = (output: AbiParameterWithComponents): string => {
+  if (output.type === "tuple") {
+    return `(${output.components
+      ?.map((component) => getType(component as AbiParameterWithComponents))
+      .join(", ")})`;
+  }
+  return output.type;
+};
+
+const getReturnType = (
+  outputs: readonly AbiParameterWithComponents[]
+): string => {
   if (outputs.length === 0) return "void";
-  if (outputs.length === 1) return outputs[0].type;
-  return `(${outputs.map((output) => output.type).join(", ")})`;
+  if (outputs.length === 1) return getType(outputs[0]);
+  return `(${outputs.map((output) => getType(output)).join(", ")})`;
 };
 
 const Signature = ({ func }: SignatureProps) => {
-  const returnType = getReturnType(func.outputs);
+  const returnType = getReturnType(
+    func.outputs as AbiParameterWithComponents[]
+  );
 
   return (
     <div className="flex items-center gap-2">

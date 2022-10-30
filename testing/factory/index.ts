@@ -63,10 +63,17 @@ export const buildInput = (
 export const buildInputList = (n: number): AbiParameter[] =>
   times(n, () => buildInput());
 
-const buildOutput = (): AbiParameter => ({
-  name: capitalize(faker.helpers.unique(faker.word.noun)),
-  type: faker.helpers.arrayElement(["uint256", "address", "string"]),
+export const buildOutput = (
+  overrides: Partial<AbiParameter> & {
+    components?: readonly AbiParameter[];
+  } = {}
+): AbiParameter => ({
+  name: overrides.name || capitalize(faker.helpers.unique(faker.word.noun)),
+  type:
+    overrides.type ||
+    faker.helpers.arrayElement(["uint256", "address", "string"]),
+  components: overrides.components || undefined,
 });
 
 export const buildOutputList = (n: number): AbiParameter[] =>
-  times(n, buildOutput);
+  times(n, () => buildOutput());
