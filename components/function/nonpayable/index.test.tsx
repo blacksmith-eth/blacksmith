@@ -106,7 +106,7 @@ describe("Nonpayable", () => {
     });
   });
 
-  it("should prepare contract write with formmated arguments", async () => {
+  it("should prepare contract write with formatted arguments", async () => {
     const address = buildAddress();
     const input1 = buildInput({ type: "uint256" });
     const input2 = buildInput({ type: "uint256" });

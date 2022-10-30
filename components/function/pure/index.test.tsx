@@ -137,7 +137,7 @@ describe("Pure", () => {
     });
   });
 
-  it("should call contract read with formmated arguments", async () => {
+  it("should call contract read with formatted arguments", async () => {
     const address = buildAddress();
     const input1 = buildInput({ type: "uint256" });
     const input2 = buildInput({ type: "uint256" });
