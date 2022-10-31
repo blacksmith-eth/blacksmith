@@ -16,13 +16,14 @@ const Inputs = ({ name, inputs, values, updateValue }: InputsProps) => {
     <ul>
       {inputs.map((input, index) => {
         const inputName = input.name || "keyOrIndex";
+        const id = `${name}-${inputName}-${index}`;
         return (
           <li key={`${inputName}-${index}`} className="flex flex-col">
-            <label htmlFor={`${name}-${inputName}`}>
+            <label htmlFor={id}>
               {inputName} :: {input.type}
             </label>
             <input
-              id={`${name}-${inputName}`}
+              id={id}
               type="text"
               className="border"
               value={values[index]}

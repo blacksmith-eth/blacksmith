@@ -57,13 +57,18 @@ describe("Inputs", () => {
     });
   });
 
-  it("should render a fallback name if the input name is not provided", () => {
-    const input = buildInput({ name: "" });
+  it("should render fallback names if the input names are not provided", () => {
+    const input1 = buildInput({ name: "", type: "address" });
+    const input2 = buildInput({ name: "", type: "uint256" });
 
-    renderInputs({ inputs: [input] });
+    renderInputs({ inputs: [input1, input2] });
 
     expect(
-      screen.getByLabelText(`keyOrIndex :: ${input.type}`)
+      screen.getByLabelText(`keyOrIndex :: ${input1.type}`)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(`keyOrIndex :: ${input2.type}`)
     ).toBeInTheDocument();
   });
 });
