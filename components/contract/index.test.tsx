@@ -53,7 +53,7 @@ describe("Contract", () => {
     expect(await screen.findByText("error")).toBeInTheDocument();
   });
 
-  it("renders a no contracts message", async () => {
+  it("renders the no contracts page", async () => {
     const address = buildAddress();
     server.use(
       rest.get("/api/contracts", (_req, res, ctx) => {
@@ -64,6 +64,9 @@ describe("Contract", () => {
     render(<Contract address={address} />);
 
     expect(await screen.findByText("No contracts")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Getting Started" })
+    ).toBeInTheDocument();
   });
 
   it("renders a selected contract", async () => {
@@ -81,7 +84,7 @@ describe("Contract", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders a selected contract not found message", async () => {
+  it("renders the selected contract not found page", async () => {
     const contract = buildContractDetailsList(2);
     const address = buildAddress();
     server.use(
@@ -94,6 +97,9 @@ describe("Contract", () => {
 
     expect(
       await screen.findByText("Selected contract not found.")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Getting Started" })
     ).toBeInTheDocument();
   });
 
