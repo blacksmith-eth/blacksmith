@@ -3,6 +3,7 @@ import {
   AbiError,
   AbiEvent,
   AbiParameter,
+  AbiParameterWithComponents,
   Address,
   ContractDetails,
 } from "core/types";
@@ -52,21 +53,20 @@ export const buildAbiDefinedFunctionList = (n: number): AbiDefinedFunction[] =>
   times(n, () => buildAbiDefinedFunction());
 
 export const buildInput = (
-  overrides: Partial<AbiParameter> = {}
+  overrides: Partial<AbiParameterWithComponents> = {}
 ): AbiParameter => ({
   name: overrides.hasOwnProperty("name")
     ? overrides.name!
     : capitalize(faker.helpers.unique(faker.word.noun)),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
+  components: overrides.components || undefined,
 });
 
 export const buildInputList = (n: number): AbiParameter[] =>
   times(n, () => buildInput());
 
 export const buildOutput = (
-  overrides: Partial<AbiParameter> & {
-    components?: readonly AbiParameter[];
-  } = {}
+  overrides: Partial<AbiParameterWithComponents> = {}
 ): AbiParameter => ({
   name: overrides.name || capitalize(faker.helpers.unique(faker.word.noun)),
   type:

@@ -8,6 +8,10 @@ export type AbiDefinedFunction = {
   type: "function";
 };
 
+export type AbiParameterWithComponents = AbiParameter & {
+  components?: AbiParameterWithComponents[];
+};
+
 export type ContractDetails = {
   abi: Abi;
   address: Address;

@@ -1,11 +1,7 @@
-import { AbiDefinedFunction, AbiParameter } from "core/types";
+import { AbiDefinedFunction, AbiParameterWithComponents } from "core/types";
 
 type SignatureProps = {
   func: AbiDefinedFunction;
-};
-
-type AbiParameterWithComponents = AbiParameter & {
-  components?: AbiParameter[];
 };
 
 const getType = (output: AbiParameterWithComponents): string => {
