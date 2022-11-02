@@ -26,6 +26,10 @@ const Payable = ({ address, func }: PayableProps) => {
     },
   });
   const { write, isLoading } = useContractWrite(config);
+  const isDisabled = isLoading || !write;
+  const handleClick = () => {
+    write?.();
+  };
 
   return (
     <li key={func.name}>
@@ -70,13 +74,7 @@ const Payable = ({ address, func }: PayableProps) => {
         updateValue={updateValue}
       />
       <Container>
-        <Button
-          type="button"
-          disabled={isLoading || !write}
-          onClick={() => {
-            write?.();
-          }}
-        >
+        <Button type="button" disabled={isDisabled} onClick={handleClick}>
           send
         </Button>
       </Container>

@@ -20,6 +20,10 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
     args,
   });
   const { write, isLoading } = useContractWrite(config);
+  const isDisabled = isLoading || !write;
+  const handleClick = () => {
+    write?.();
+  };
 
   return (
     <li key={func.name}>
@@ -31,13 +35,7 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
         updateValue={updateValue}
       />
       <Container>
-        <Button
-          type="button"
-          disabled={isLoading || !write}
-          onClick={() => {
-            write?.();
-          }}
-        >
+        <Button type="button" disabled={isDisabled} onClick={handleClick}>
           write
         </Button>
       </Container>
