@@ -1,4 +1,4 @@
-import { AbiParameter } from "core/types";
+import { AbiParameter, Arg } from "core/types";
 import { BigNumber } from "ethers";
 import { useState } from "react";
 
@@ -23,19 +23,22 @@ const formatArgsByType = (type: string, arg: string): any => {
 };
 
 export const useArgs = (inputs: readonly AbiParameter[]) => {
-  const [values, setValues] = useState<string[]>(
-    Array.from({ length: inputs.length }, () => "")
-  );
+  const initialArgs = inputs.map((input) => ({
+    name: input.name,
+    type: input.type,
+    value: "",
+  }));
+  const [values, setValues] = useState<readonly Arg[]>(initialArgs);
 
   const updateValue = (index: number, value: string) => {
-    const newValues = [...values];
-    newValues[index] = value;
-    setValues(newValues);
+    const updatedValues = values.map((arg, i) =>
+      i === index ? { ...arg, value } : arg
+    );
+    setValues(updatedValues);
   };
 
-  const args = values.map((value, index) => {
-    const { type } = inputs[index];
-    return formatArgsByType(type, value);
+  const args = values.map((arg) => {
+    return formatArgsByType(arg.type, arg.value);
   });
 
   return { args, values, updateValue };

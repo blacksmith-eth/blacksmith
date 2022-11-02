@@ -5,6 +5,7 @@ import {
   AbiParameter,
   AbiParameterWithComponents,
   Address,
+  Arg,
   ContractDetails,
 } from "core/types";
 import { faker } from "@faker-js/faker";
@@ -33,6 +34,14 @@ export const buildContractDetails = (
   name: overrides.name || capitalize(faker.helpers.unique(faker.word.noun)),
   version: overrides.version || "1.0.0",
 });
+
+export const buildArg = (overrides: Partial<Arg> = {}): Arg => ({
+  name: faker.helpers.unique(faker.word.noun),
+  type: faker.helpers.arrayElement(["string, address"]),
+  value: overrides.hasOwnProperty("value") ? overrides.value! : "",
+});
+
+export const buildArgList = (n: number): Arg[] => times(n, () => buildArg());
 
 export const buildContractDetailsList = (n: number): ContractDetails[] =>
   times(n, () => buildContractDetails());

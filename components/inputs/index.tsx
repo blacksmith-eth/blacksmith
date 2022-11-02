@@ -1,7 +1,7 @@
-import { AbiParameter } from "core/types";
+import { AbiParameter, Arg } from "core/types";
 
 type InputsProps = {
-  values: string[];
+  values: Arg[];
   updateValue: (index: number, value: string) => void;
   name: string;
   inputs: readonly AbiParameter[];
@@ -26,7 +26,7 @@ const Inputs = ({ name, inputs, values, updateValue }: InputsProps) => {
               id={id}
               type="text"
               className="border"
-              value={values[index]}
+              value={values[index].value}
               onChange={handleChange(index)}
             />
           </li>

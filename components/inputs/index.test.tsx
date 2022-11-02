@@ -1,6 +1,11 @@
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
-import { buildInput, buildInputList } from "testing/factory";
+import {
+  buildArg,
+  buildArgList,
+  buildInput,
+  buildInputList,
+} from "testing/factory";
 import Inputs from ".";
 
 const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
@@ -17,8 +22,9 @@ const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
 describe("Inputs", () => {
   it("should render inputs", () => {
     const inputs = buildInputList(2);
+    const values = buildArgList(2);
 
-    renderInputs({ inputs });
+    renderInputs({ inputs, values });
 
     expect(
       screen.getByLabelText(`${inputs[0].name} :: ${inputs[0].type}`)
@@ -30,18 +36,18 @@ describe("Inputs", () => {
 
   it("should render the provided values", () => {
     const inputs = buildInputList(2);
-    const values = ["value1", "value2"];
+    const values = [buildArg({ value: "foo" }), buildArg({ value: "bar" })];
 
     renderInputs({ inputs, values });
 
-    expect(screen.getByDisplayValue(values[0])).toBeInTheDocument();
-    expect(screen.getByDisplayValue(values[1])).toBeInTheDocument();
+    expect(screen.getByDisplayValue(values[0].value)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(values[1].value)).toBeInTheDocument();
   });
 
   it("should call updateValue when an input changes", async () => {
     const value = "a";
     const inputs = buildInputList(2);
-    const values = ["", ""];
+    const values = buildArgList(2);
     const updateValue = jest.fn();
 
     const { user } = renderInputs({ inputs, values, updateValue });
@@ -60,8 +66,9 @@ describe("Inputs", () => {
   it("should render fallback names if the input names are not provided", () => {
     const input1 = buildInput({ name: "", type: "address" });
     const input2 = buildInput({ name: "", type: "uint256" });
+    const values = buildArgList(2);
 
-    renderInputs({ inputs: [input1, input2] });
+    renderInputs({ inputs: [input1, input2], values });
 
     expect(
       screen.getByLabelText(`keyOrIndex :: ${input1.type}`)

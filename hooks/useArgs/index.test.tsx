@@ -17,7 +17,10 @@ describe("useArgs", () => {
     const inputs = buildInputList(2);
     const { result } = renderHook(() => useArgs(inputs));
 
-    expect(result.current.values).toEqual(["", ""]);
+    expect(result.current.values).toEqual([
+      { name: inputs[0].name, type: inputs[0].type, value: "" },
+      { name: inputs[1].name, type: inputs[1].type, value: "" },
+    ]);
   });
 
   it("should update the speficied arg", () => {
@@ -31,7 +34,10 @@ describe("useArgs", () => {
       result.current.updateValue(1, value);
     });
 
-    expect(result.current.values).toEqual(["", value]);
+    expect(result.current.values).toEqual([
+      { name: input1.name, type: input1.type, value: "" },
+      { name: input2.name, type: input2.type, value },
+    ]);
   });
 
   it("should return formatted big number args", () => {
