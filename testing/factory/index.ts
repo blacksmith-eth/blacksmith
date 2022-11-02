@@ -49,7 +49,7 @@ export const buildContractDetailsList = (n: number): ContractDetails[] =>
 export const buildAbiDefinedFunction = (
   overrides: Partial<AbiDefinedFunction> = {}
 ): AbiDefinedFunction => ({
-  name: overrides.name || capitalize(faker.helpers.unique(faker.word.noun)),
+  name: overrides.name || faker.helpers.unique(faker.word.noun),
   type: "function",
   inputs: overrides.inputs || [],
   outputs: overrides.outputs || [],
@@ -66,7 +66,7 @@ export const buildInput = (
 ): AbiParameter => ({
   name: overrides.hasOwnProperty("name")
     ? overrides.name!
-    : capitalize(faker.helpers.unique(faker.word.noun)),
+    : faker.helpers.unique(faker.word.noun),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
   components: overrides.components || undefined,
 });
@@ -77,7 +77,7 @@ export const buildInputList = (n: number): AbiParameter[] =>
 export const buildOutput = (
   overrides: Partial<AbiParameterWithComponents> = {}
 ): AbiParameter => ({
-  name: overrides.name || capitalize(faker.helpers.unique(faker.word.noun)),
+  name: overrides.name || faker.helpers.unique(faker.word.noun),
   type:
     overrides.type ||
     faker.helpers.arrayElement(["uint256", "address", "string"]),
