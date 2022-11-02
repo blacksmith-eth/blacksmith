@@ -13,12 +13,12 @@ type PureProps = {
 };
 
 const Pure = ({ address, func }: PureProps) => {
-  const { args, values, updateValue } = useArgs(func.inputs);
+  const { args, formattedArgs, updateValue } = useArgs(func.inputs);
   const { data, isLoading, isError, refetch } = useContractRead({
     address,
     abi: [func],
     functionName: func.name,
-    args,
+    args: formattedArgs,
     watch: true,
   });
 
@@ -28,7 +28,7 @@ const Pure = ({ address, func }: PureProps) => {
       <Inputs
         name={func.name}
         inputs={func.inputs}
-        values={values}
+        args={args}
         updateValue={updateValue}
       />
       <Container>

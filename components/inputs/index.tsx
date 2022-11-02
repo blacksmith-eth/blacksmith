@@ -1,13 +1,13 @@
 import { AbiParameter, Arg } from "core/types";
 
 type InputsProps = {
-  values: Arg[];
+  args: readonly Arg[];
   updateValue: (index: number, value: string) => void;
   name: string;
   inputs: readonly AbiParameter[];
 };
 
-const Inputs = ({ name, inputs, values, updateValue }: InputsProps) => {
+const Inputs = ({ name, inputs, args, updateValue }: InputsProps) => {
   const handleChange =
     (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
       updateValue(index, event.target.value);
@@ -26,7 +26,7 @@ const Inputs = ({ name, inputs, values, updateValue }: InputsProps) => {
               id={id}
               type="text"
               className="border"
-              value={values[index].value}
+              value={args[index].value}
               onChange={handleChange(index)}
             />
           </li>

@@ -32,16 +32,16 @@ export const useArgs = (inputs: readonly AbiParameter[]) => {
     type: input.type,
     value: "",
   }));
-  const [values, setValues] = useState<readonly Arg[]>(initialArgs);
+  const [args, setArgs] = useState<readonly Arg[]>(initialArgs);
 
   const updateValue = (index: number, value: string) => {
-    const updatedValues = values.map((arg, i) =>
+    const updatedValues = args.map((arg, i) =>
       i === index ? { ...arg, value } : arg
     );
-    setValues(updatedValues);
+    setArgs(updatedValues);
   };
 
-  const args = values.map(formatArgsByType);
+  const formattedArgs = args.map(formatArgsByType);
 
-  return { args, values, updateValue };
+  return { args, formattedArgs, updateValue };
 };

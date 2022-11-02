@@ -13,14 +13,14 @@ type PayableProps = {
 };
 
 const Payable = ({ address, func }: PayableProps) => {
-  const { args, values, updateValue } = useArgs(func.inputs);
+  const { args, formattedArgs, updateValue } = useArgs(func.inputs);
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();
   const { config } = usePrepareContractWrite({
     address,
     abi: [func],
     functionName: func.name,
-    args,
+    args: formattedArgs,
     overrides: {
       value: formattedValue,
     },
@@ -70,7 +70,7 @@ const Payable = ({ address, func }: PayableProps) => {
       <Inputs
         name={func.name}
         inputs={func.inputs}
-        values={values}
+        args={args}
         updateValue={updateValue}
       />
       <Container>

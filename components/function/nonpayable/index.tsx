@@ -12,12 +12,12 @@ type NonpayableProps = {
 };
 
 const Nonpayable = ({ address, func }: NonpayableProps) => {
-  const { args, values, updateValue } = useArgs(func.inputs);
+  const { args, formattedArgs, updateValue } = useArgs(func.inputs);
   const { config } = usePrepareContractWrite({
     address,
     abi: [func],
     functionName: func.name,
-    args,
+    args: formattedArgs,
   });
   const { write, isLoading } = useContractWrite(config);
   const isDisabled = isLoading || !write;
@@ -31,7 +31,7 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
       <Inputs
         name={func.name}
         inputs={func.inputs}
-        values={values}
+        args={args}
         updateValue={updateValue}
       />
       <Container>

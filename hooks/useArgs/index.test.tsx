@@ -6,18 +6,18 @@ import { buildAddress, buildInput, buildInputList } from "testing/factory";
 import { useArgs } from ".";
 
 describe("useArgs", () => {
-  it("should return values", () => {
+  it("should return args", () => {
     const inputs = buildInputList(0);
     const { result } = renderHook(() => useArgs(inputs));
 
-    expect(result.current.values).toEqual([]);
+    expect(result.current.args).toEqual([]);
   });
 
   it("should initialize each input with an empty string", () => {
     const inputs = buildInputList(2);
     const { result } = renderHook(() => useArgs(inputs));
 
-    expect(result.current.values).toEqual([
+    expect(result.current.args).toEqual([
       { name: inputs[0].name, type: inputs[0].type, value: "" },
       { name: inputs[1].name, type: inputs[1].type, value: "" },
     ]);
@@ -34,7 +34,7 @@ describe("useArgs", () => {
       result.current.updateValue(1, value);
     });
 
-    expect(result.current.values).toEqual([
+    expect(result.current.args).toEqual([
       { name: input1.name, type: input1.type, value: "" },
       { name: input2.name, type: input2.type, value },
     ]);
@@ -49,7 +49,7 @@ describe("useArgs", () => {
       result.current.updateValue(0, value);
     });
 
-    expect(result.current.args).toEqual([BigNumber.from(value)]);
+    expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
   });
 
   it("should return provided value when big number conversion throws", () => {
@@ -61,7 +61,7 @@ describe("useArgs", () => {
       result.current.updateValue(0, value);
     });
 
-    expect(result.current.args).toEqual([value]);
+    expect(result.current.formattedArgs).toEqual([value]);
   });
 
   it("should return formatted args for string array", () => {
@@ -73,7 +73,7 @@ describe("useArgs", () => {
       result.current.updateValue(0, value);
     });
 
-    expect(result.current.args).toEqual([["foo", "bar", "baz"]]);
+    expect(result.current.formattedArgs).toEqual([["foo", "bar", "baz"]]);
   });
 
   it("should return formatted args for address array", () => {
@@ -86,7 +86,7 @@ describe("useArgs", () => {
       result.current.updateValue(0, value);
     });
 
-    expect(result.current.args).toEqual([addresses]);
+    expect(result.current.formattedArgs).toEqual([addresses]);
   });
 
   it("should return formatted args for uint256[]", () => {
@@ -98,7 +98,7 @@ describe("useArgs", () => {
       result.current.updateValue(0, values);
     });
 
-    expect(result.current.args).toEqual([
+    expect(result.current.formattedArgs).toEqual([
       [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
     ]);
   });
