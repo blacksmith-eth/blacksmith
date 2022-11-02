@@ -13,7 +13,7 @@ type ViewProps = {
 };
 
 const View = ({ address, func }: ViewProps) => {
-  const { args, values, updateValue } = useArgs(func);
+  const { args, values, updateValue } = useArgs(func.inputs);
   const { data, isLoading, isError, refetch } = useContractRead({
     address,
     abi: [func],

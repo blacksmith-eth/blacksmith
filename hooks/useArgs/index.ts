@@ -1,4 +1,4 @@
-import { AbiDefinedFunction } from "core/types";
+import { AbiParameter } from "core/types";
 import { BigNumber } from "ethers";
 import { useState } from "react";
 
@@ -22,9 +22,9 @@ const formatArgsByType = (type: string, arg: string): any => {
   return arg;
 };
 
-export const useArgs = (func: AbiDefinedFunction) => {
+export const useArgs = (inputs: readonly AbiParameter[]) => {
   const [values, setValues] = useState<string[]>(
-    Array.from({ length: func.inputs.length }, () => "")
+    Array.from({ length: inputs.length }, () => "")
   );
 
   const updateValue = (index: number, value: string) => {
@@ -34,7 +34,7 @@ export const useArgs = (func: AbiDefinedFunction) => {
   };
 
   const args = values.map((value, index) => {
-    const { type } = func.inputs[index];
+    const { type } = inputs[index];
     return formatArgsByType(type, value);
   });
 

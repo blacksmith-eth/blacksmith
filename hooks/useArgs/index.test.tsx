@@ -2,26 +2,20 @@ import { faker } from "@faker-js/faker";
 import { BigNumber } from "ethers";
 import { times } from "lodash";
 import { act, renderHook } from "testing";
-import {
-  buildAbiDefinedFunction,
-  buildAddress,
-  buildInput,
-  buildInputList,
-} from "testing/factory";
+import { buildAddress, buildInput, buildInputList } from "testing/factory";
 import { useArgs } from ".";
 
 describe("useArgs", () => {
   it("should return values", () => {
-    const func = buildAbiDefinedFunction({ inputs: [] });
-    const { result } = renderHook(() => useArgs(func));
+    const inputs = buildInputList(0);
+    const { result } = renderHook(() => useArgs(inputs));
 
     expect(result.current.values).toEqual([]);
   });
 
   it("should initialize each input with an empty string", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
-    const { result } = renderHook(() => useArgs(func));
+    const { result } = renderHook(() => useArgs(inputs));
 
     expect(result.current.values).toEqual(["", ""]);
   });
@@ -30,8 +24,8 @@ describe("useArgs", () => {
     const value = "foo";
     const input1 = buildInput({ type: "string" });
     const input2 = buildInput({ type: "string" });
-    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
-    const { result } = renderHook(() => useArgs(func));
+    const inputs = [input1, input2];
+    const { result } = renderHook(() => useArgs(inputs));
 
     act(() => {
       result.current.updateValue(1, value);
@@ -43,8 +37,7 @@ describe("useArgs", () => {
   it("should return formatted big number args", () => {
     const value = "1";
     const input = buildInput({ type: "uint256" });
-    const func = buildAbiDefinedFunction({ inputs: [input] });
-    const { result } = renderHook(() => useArgs(func));
+    const { result } = renderHook(() => useArgs([input]));
 
     act(() => {
       result.current.updateValue(0, value);
@@ -56,8 +49,7 @@ describe("useArgs", () => {
   it("should return provided value when big number conversion throws", () => {
     const value = faker.random.word();
     const input = buildInput({ type: "uint256" });
-    const func = buildAbiDefinedFunction({ inputs: [input] });
-    const { result } = renderHook(() => useArgs(func));
+    const { result } = renderHook(() => useArgs([input]));
 
     act(() => {
       result.current.updateValue(0, value);
@@ -69,8 +61,7 @@ describe("useArgs", () => {
   it("should return formatted args for string array", () => {
     const value = "foo, bar, baz";
     const input = buildInput({ type: "string[]" });
-    const func = buildAbiDefinedFunction({ inputs: [input] });
-    const { result } = renderHook(() => useArgs(func));
+    const { result } = renderHook(() => useArgs([input]));
 
     act(() => {
       result.current.updateValue(0, value);
@@ -83,8 +74,7 @@ describe("useArgs", () => {
     const addresses = times(3, () => buildAddress());
     const value = addresses.join(", ");
     const input = buildInput({ type: "address[]" });
-    const func = buildAbiDefinedFunction({ inputs: [input] });
-    const { result } = renderHook(() => useArgs(func));
+    const { result } = renderHook(() => useArgs([input]));
 
     act(() => {
       result.current.updateValue(0, value);
@@ -96,8 +86,7 @@ describe("useArgs", () => {
   it("should return formatted args for uint256[]", () => {
     const values = "1, 2, 3";
     const input = buildInput({ type: "uint256[]" });
-    const func = buildAbiDefinedFunction({ inputs: [input] });
-    const { result } = renderHook(() => useArgs(func));
+    const { result } = renderHook(() => useArgs([input]));
 
     act(() => {
       result.current.updateValue(0, values);
