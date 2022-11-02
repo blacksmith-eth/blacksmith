@@ -36,8 +36,10 @@ export const buildContractDetails = (
 });
 
 export const buildArg = (overrides: Partial<Arg> = {}): Arg => ({
-  name: faker.helpers.unique(faker.word.noun),
-  type: faker.helpers.arrayElement(["string", "address"]),
+  name: overrides.hasOwnProperty("name")
+    ? overrides.name!
+    : faker.helpers.unique(faker.word.noun),
+  type: overrides.type || faker.helpers.arrayElement(["string", "address"]),
   value: overrides.hasOwnProperty("value") ? overrides.value! : "",
 });
 

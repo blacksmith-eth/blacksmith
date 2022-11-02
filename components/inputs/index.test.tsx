@@ -12,7 +12,6 @@ const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
   return render(
     <Inputs
       name={props.name || ""}
-      inputs={props.inputs || []}
       args={props.args || []}
       updateValue={props.updateValue || jest.fn()}
     />
@@ -21,24 +20,22 @@ const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
 
 describe("Inputs", () => {
   it("should render inputs", () => {
-    const inputs = buildInputList(2);
     const args = buildArgList(2);
 
-    renderInputs({ inputs, args });
+    renderInputs({ args });
 
     expect(
-      screen.getByLabelText(`${inputs[0].name} :: ${inputs[0].type}`)
+      screen.getByLabelText(`${args[0].name} :: ${args[0].type}`)
     ).toBeInTheDocument();
     expect(
-      screen.getByLabelText(`${inputs[1].name} :: ${inputs[1].type}`)
+      screen.getByLabelText(`${args[1].name} :: ${args[1].type}`)
     ).toBeInTheDocument();
   });
 
   it("should render the provided args", () => {
-    const inputs = buildInputList(2);
     const args = [buildArg({ value: "foo" }), buildArg({ value: "bar" })];
 
-    renderInputs({ inputs, args });
+    renderInputs({ args });
 
     expect(screen.getByDisplayValue(args[0].value)).toBeInTheDocument();
     expect(screen.getByDisplayValue(args[1].value)).toBeInTheDocument();
@@ -46,15 +43,12 @@ describe("Inputs", () => {
 
   it("should call updateValue when an input changes", async () => {
     const value = "a";
-    const inputs = buildInputList(2);
     const args = buildArgList(2);
     const updateValue = jest.fn();
 
-    const { user } = renderInputs({ inputs, args, updateValue });
+    const { user } = renderInputs({ args, updateValue });
 
-    const input1 = screen.getByLabelText(
-      `${inputs[0].name} :: ${inputs[0].type}`
-    );
+    const input1 = screen.getByLabelText(`${args[0].name} :: ${args[0].type}`);
 
     await user.type(input1, value);
 
@@ -64,18 +58,17 @@ describe("Inputs", () => {
   });
 
   it("should render fallback names if the input names are not provided", () => {
-    const input1 = buildInput({ name: "", type: "address" });
-    const input2 = buildInput({ name: "", type: "uint256" });
-    const args = buildArgList(2);
+    const arg1 = buildArg({ name: "", type: "string" });
+    const arg2 = buildArg({ name: "", type: "address" });
 
-    renderInputs({ inputs: [input1, input2], args });
+    renderInputs({ args: [arg1, arg2] });
 
     expect(
-      screen.getByLabelText(`keyOrIndex :: ${input1.type}`)
+      screen.getByLabelText(`keyOrIndex :: ${arg1.type}`)
     ).toBeInTheDocument();
 
     expect(
-      screen.getByLabelText(`keyOrIndex :: ${input2.type}`)
+      screen.getByLabelText(`keyOrIndex :: ${arg2.type}`)
     ).toBeInTheDocument();
   });
 });

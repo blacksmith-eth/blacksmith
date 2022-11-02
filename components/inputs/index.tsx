@@ -1,32 +1,31 @@
-import { AbiParameter, Arg } from "core/types";
+import { Arg } from "core/types";
 
 type InputsProps = {
   args: readonly Arg[];
   updateValue: (index: number, value: string) => void;
   name: string;
-  inputs: readonly AbiParameter[];
 };
 
-const Inputs = ({ name, inputs, args, updateValue }: InputsProps) => {
+const Inputs = ({ name, args, updateValue }: InputsProps) => {
   const handleChange =
     (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
       updateValue(index, event.target.value);
     };
   return (
     <ul>
-      {inputs.map((input, index) => {
-        const inputName = input.name || "keyOrIndex";
+      {args.map((arg, index) => {
+        const inputName = arg.name || "keyOrIndex";
         const id = `${name}-${inputName}-${index}`;
         return (
           <li key={`${inputName}-${index}`} className="flex flex-col">
             <label htmlFor={id}>
-              {inputName} :: {input.type}
+              {inputName} :: {arg.type}
             </label>
             <input
               id={id}
               type="text"
               className="border"
-              value={args[index].value}
+              value={arg.value}
               onChange={handleChange(index)}
             />
           </li>
