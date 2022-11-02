@@ -10,16 +10,20 @@ const tryBigNumberConversion = (value: string): BigNumber | string => {
   }
 };
 
-const formatArgsByType = (type: string, arg: string): any => {
-  if (type.slice(-2) === "[]") {
-    return arg
-      .split(",")
-      .map((value) => formatArgsByType(type.slice(0, -2), value.trim()));
+const formatArgsByType = (arg: Arg): any => {
+  if (arg.type.slice(-2) === "[]") {
+    return arg.value.split(",").map((value) =>
+      formatArgsByType({
+        ...arg,
+        type: arg.type.slice(0, -2),
+        value: value.trim(),
+      })
+    );
   }
-  if (type === "uint256") {
-    return tryBigNumberConversion(arg);
+  if (arg.type === "uint256") {
+    return tryBigNumberConversion(arg.value);
   }
-  return arg;
+  return arg.value;
 };
 
 export const useArgs = (inputs: readonly AbiParameter[]) => {
@@ -37,9 +41,7 @@ export const useArgs = (inputs: readonly AbiParameter[]) => {
     setValues(updatedValues);
   };
 
-  const args = values.map((arg) => {
-    return formatArgsByType(arg.type, arg.value);
-  });
+  const args = values.map(formatArgsByType);
 
   return { args, values, updateValue };
 };
