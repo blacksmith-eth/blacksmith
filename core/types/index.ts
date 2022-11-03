@@ -3,7 +3,7 @@ import type { Abi, AbiParameter, AbiStateMutability, Address } from "abitype";
 export type Arg = {
   name: string;
   type: string;
-  value: string;
+  value: Arg[] | string;
 };
 
 export type AbiDefinedFunction = {

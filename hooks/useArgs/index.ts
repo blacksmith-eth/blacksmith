@@ -1,6 +1,6 @@
-import { AbiParameter, Arg } from "core/types";
+import { AbiParameterWithComponents, Arg } from "core/types";
 import { BigNumber } from "ethers";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const tryBigNumberConversion = (value: string): BigNumber | string => {
   try {
@@ -10,7 +10,20 @@ const tryBigNumberConversion = (value: string): BigNumber | string => {
   }
 };
 
+const formatArgs = (args: Arg[]): any => {
+  return args.reduce(
+    (acc, arg) => ({
+      ...acc,
+      [arg.name]: formatArgsByType(arg),
+    }),
+    {}
+  );
+};
+
 const formatArgsByType = (arg: Arg): any => {
+  if (typeof arg.value !== "string") {
+    return formatArgs(arg.value);
+  }
   if (arg.type.slice(-2) === "[]") {
     return arg.value.split(",").map((value) =>
       formatArgsByType({
@@ -26,20 +39,47 @@ const formatArgsByType = (arg: Arg): any => {
   return arg.value;
 };
 
-export const useArgs = (inputs: readonly AbiParameter[]) => {
-  const initialArgs = inputs.map((input) => ({
+const buildArg = (input: AbiParameterWithComponents): Arg => {
+  return {
     name: input.name,
     type: input.type,
-    value: "",
-  }));
+    value: input.components ? input.components.map(buildArg) : "",
+  };
+};
+
+export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
+  const initialArgs = inputs.map(buildArg);
   const [args, setArgs] = useState<readonly Arg[]>(initialArgs);
 
-  const updateValue = (index: number, value: string) => {
-    const updatedValues = args.map((arg, i) =>
-      i === index ? { ...arg, value } : arg
-    );
-    setArgs(updatedValues);
-  };
+  const updater = useCallback(
+    (arg: Arg, value: string, keys: number[]): Arg => {
+      if (typeof arg.value === "string") {
+        return {
+          ...arg,
+          value,
+        };
+      }
+      const [key, ...rest] = keys;
+      return {
+        ...arg,
+        value: arg.value.map((arg, index) =>
+          index === key ? updater(arg, value, rest) : arg
+        ),
+      };
+    },
+    []
+  );
+
+  const updateValue = useCallback(
+    (keys: number[], value: string) => {
+      const [key, ...rest] = keys;
+      const updatedValues = args.map((arg, i) =>
+        i === key ? updater(arg, value, rest) : arg
+      );
+      setArgs(updatedValues);
+    },
+    [args, updater]
+  );
 
   const formattedArgs = args.map(formatArgsByType);
 

@@ -64,17 +64,32 @@ export const buildAbiDefinedFunctionList = (n: number): AbiDefinedFunction[] =>
   times(n, () => buildAbiDefinedFunction());
 
 export const buildInput = (
-  overrides: Partial<AbiParameterWithComponents> = {}
+  overrides: Partial<AbiParameter> = {}
 ): AbiParameter => ({
   name: overrides.hasOwnProperty("name")
     ? overrides.name!
     : faker.helpers.unique(faker.word.noun),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
-  components: overrides.components || undefined,
 });
 
 export const buildInputList = (n: number): AbiParameter[] =>
   times(n, () => buildInput());
+
+export const buildInputWithComponents = (
+  overrides: Partial<AbiParameterWithComponents> = {}
+): AbiParameterWithComponents => ({
+  name: overrides.hasOwnProperty("name")
+    ? overrides.name!
+    : faker.helpers.unique(faker.word.noun),
+  type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
+  components: overrides.components || [
+    buildInput() as AbiParameterWithComponents,
+  ],
+});
+
+export const buildInputWithComponentsList = (
+  n: number
+): AbiParameterWithComponents[] => times(n, () => buildInputWithComponents());
 
 export const buildOutput = (
   overrides: Partial<AbiParameterWithComponents> = {}
