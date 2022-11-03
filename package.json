@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.3",
+    "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@rainbow-me/rainbowkit": "^0.7.4",
     "ethers": "^5.7.2",
