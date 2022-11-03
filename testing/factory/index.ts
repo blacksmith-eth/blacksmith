@@ -10,6 +10,7 @@ import {
 } from "core/types";
 import { faker } from "@faker-js/faker";
 import { capitalize, times } from "lodash";
+import { Result } from "ethers/lib/utils";
 
 export const buildAbiEvent = (): AbiEvent => ({
   type: "event",
@@ -103,3 +104,5 @@ export const buildOutput = (
 
 export const buildOutputList = (n: number): AbiParameter[] =>
   times(n, () => buildOutput());
+
+export const buildResult = (value: any): Result => value as Result;
