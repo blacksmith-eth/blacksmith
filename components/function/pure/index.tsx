@@ -25,12 +25,7 @@ const Pure = ({ address, func }: PureProps) => {
   return (
     <li key={func.name}>
       <Signature func={func} />
-      <Inputs
-        name={func.name}
-        inputs={func.inputs}
-        args={args}
-        updateValue={updateValue}
-      />
+      <Inputs name={func.name} args={args} updateValue={updateValue} />
       <Container>
         <Button onClick={() => refetch()}>read</Button>
         <Output data={data} isLoading={isLoading} isError={isError} />

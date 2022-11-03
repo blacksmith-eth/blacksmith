@@ -28,12 +28,7 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
   return (
     <li key={func.name}>
       <Signature func={func} />
-      <Inputs
-        name={func.name}
-        inputs={func.inputs}
-        args={args}
-        updateValue={updateValue}
-      />
+      <Inputs name={func.name} args={args} updateValue={updateValue} />
       <Container>
         <Button type="button" disabled={isDisabled} onClick={handleClick}>
           write

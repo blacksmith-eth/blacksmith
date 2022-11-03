@@ -67,12 +67,7 @@ const Payable = ({ address, func }: PayableProps) => {
           </Listbox>
         </div>
       </section>
-      <Inputs
-        name={func.name}
-        inputs={func.inputs}
-        args={args}
-        updateValue={updateValue}
-      />
+      <Inputs name={func.name} args={args} updateValue={updateValue} />
       <Container>
         <Button type="button" disabled={isDisabled} onClick={handleClick}>
           send
