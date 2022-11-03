@@ -1,7 +1,11 @@
 import { Listbox } from "@headlessui/react";
 import Button from "components/button";
 import Inputs from "components/inputs";
-import { AbiDefinedFunction, Address } from "core/types";
+import {
+  AbiDefinedFunction,
+  AbiParameterWithComponents,
+  Address,
+} from "core/types";
 import { useArgs, useEther } from "hooks";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import Container from "../container";
@@ -13,7 +17,9 @@ type PayableProps = {
 };
 
 const Payable = ({ address, func }: PayableProps) => {
-  const { args, formattedArgs, updateValue } = useArgs(func.inputs);
+  const { args, formattedArgs, updateValue } = useArgs(
+    func.inputs as AbiParameterWithComponents[]
+  );
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();
   const { config } = usePrepareContractWrite({

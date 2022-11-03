@@ -1,6 +1,10 @@
 import Button from "components/button";
 import Inputs from "components/inputs";
-import { AbiDefinedFunction, Address } from "core/types";
+import {
+  AbiDefinedFunction,
+  AbiParameterWithComponents,
+  Address,
+} from "core/types";
 import { useArgs } from "hooks";
 import { useContractRead } from "wagmi";
 import Container from "../container";
@@ -13,7 +17,9 @@ type PureProps = {
 };
 
 const Pure = ({ address, func }: PureProps) => {
-  const { args, formattedArgs, updateValue } = useArgs(func.inputs);
+  const { args, formattedArgs, updateValue } = useArgs(
+    func.inputs as AbiParameterWithComponents[]
+  );
   const { data, isLoading, isError, refetch } = useContractRead({
     address,
     abi: [func],
