@@ -62,7 +62,7 @@ const Home: NextPage = () => {
           />
         </aside>
         <section className="flex flex-col flex-grow">
-          <section className="bg-white p-2 flex-grow overflow-y-auto overscroll-none">
+          <section className="bg-white p-2 flex-grow overflow-y-auto md:overscroll-none">
             <h2 className="font-bold">Contract</h2>
             <Contract address={activeContract} />
           </section>
