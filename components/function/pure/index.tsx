@@ -29,7 +29,7 @@ const Pure = ({ address, func }: PureProps) => {
   });
 
   return (
-    <li key={func.name}>
+    <li key={func.name} className="flex flex-col gap-1">
       <Signature func={func} />
       <Inputs name={func.name} args={args} updateValue={updateValue} />
       <Container>

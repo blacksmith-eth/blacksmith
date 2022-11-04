@@ -39,7 +39,7 @@ const Payable = ({ address, func }: PayableProps) => {
   };
 
   return (
-    <li key={func.name}>
+    <li key={func.name} className="flex flex-col gap-1">
       <Signature func={func} />
       <section className="flex flex-col">
         <div className="flex gap-1">
