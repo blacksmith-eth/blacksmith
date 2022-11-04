@@ -48,9 +48,7 @@ describe("Pure", () => {
     renderPure({ func });
 
     func.inputs.forEach((input) => {
-      expect(
-        screen.getByLabelText(`${input.name} :: ${input.type}`)
-      ).toBeInTheDocument();
+      expect(screen.getByLabelText(input.name)).toBeInTheDocument();
     });
   });
 
@@ -116,14 +114,10 @@ describe("Pure", () => {
 
     const { user } = renderPure({ address, func });
 
-    const firstInput = screen.getByLabelText(
-      `${func.inputs[0].name} :: ${func.inputs[0].type}`
-    );
+    const firstInput = screen.getByLabelText(func.inputs[0].name);
     await user.type(firstInput, "first");
 
-    const secondInput = screen.getByLabelText(
-      `${func.inputs[1].name} :: ${func.inputs[1].type}`
-    );
+    const secondInput = screen.getByLabelText(func.inputs[1].name);
     await user.type(secondInput, "second");
 
     await waitFor(() => {
@@ -145,14 +139,10 @@ describe("Pure", () => {
 
     const { user } = renderPure({ address, func });
 
-    const firstInput = screen.getByLabelText(
-      `${func.inputs[0].name} :: ${func.inputs[0].type}`
-    );
+    const firstInput = screen.getByLabelText(func.inputs[0].name);
     await user.type(firstInput, "1");
 
-    const secondInput = screen.getByLabelText(
-      `${func.inputs[1].name} :: ${func.inputs[1].type}`
-    );
+    const secondInput = screen.getByLabelText(func.inputs[1].name);
     await user.type(secondInput, "2");
 
     await waitFor(() => {

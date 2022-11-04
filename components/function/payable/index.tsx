@@ -1,5 +1,6 @@
 import { Listbox } from "@headlessui/react";
 import Button from "components/button";
+import Field from "components/field";
 import Inputs from "components/inputs";
 import {
   AbiDefinedFunction,
@@ -41,22 +42,21 @@ const Payable = ({ address, func }: PayableProps) => {
     <li key={func.name}>
       <Signature func={func} />
       <section className="flex flex-col">
-        <label htmlFor={`${func.name}-value`}>value :: uint256</label>
         <div className="flex gap-1">
-          <input
+          <Field
             id={`${func.name}-value`}
+            inputName="value"
             value={value}
-            onChange={handleValueChange}
-            type="text"
-            className="border flex-1"
+            type="uint256"
+            handleChange={handleValueChange}
           />
           <Listbox value={unit} onChange={setUnit}>
             <Listbox.Label className="sr-only">unit</Listbox.Label>
             <div className="relative text-right">
-              <Listbox.Button className="border w-full px-2">
+              <Listbox.Button className="border h-full w-full px-2 text-sm">
                 {unit}
               </Listbox.Button>
-              <Listbox.Options className="border absolute mt-1 right-0 focus:outline-none">
+              <Listbox.Options className="bg-white border absolute mt-1 right-0 focus:outline-none">
                 {units.map((unit) => (
                   <Listbox.Option
                     key={unit}

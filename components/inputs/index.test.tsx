@@ -19,12 +19,16 @@ describe("Inputs", () => {
 
     renderInputs({ args });
 
-    expect(
-      screen.getByLabelText(`${args[0].name} :: ${args[0].type}`)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText(`${args[1].name} :: ${args[1].type}`)
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText(args[0].name)).toBeInTheDocument();
+    expect(screen.getByLabelText(args[1].name)).toBeInTheDocument();
+  });
+
+  it("should render the type of the input", () => {
+    const arg = buildArg();
+
+    renderInputs({ args: [arg] });
+
+    expect(screen.getByText(arg.type)).toBeInTheDocument();
   });
 
   it("should render the provided args", () => {
@@ -45,7 +49,7 @@ describe("Inputs", () => {
 
     const { user } = renderInputs({ args, updateValue });
 
-    const input1 = screen.getByLabelText(`${args[0].name} :: ${args[0].type}`);
+    const input1 = screen.getByLabelText(args[0].name);
 
     await user.type(input1, value);
 
@@ -63,12 +67,8 @@ describe("Inputs", () => {
 
     const { user } = renderInputs({ args: [arg], updateValue });
 
-    const input1 = screen.getByLabelText(
-      `${component1.name} :: ${component1.type}`
-    );
-    const input2 = screen.getByLabelText(
-      `${component2.name} :: ${component2.type}`
-    );
+    const input1 = screen.getByLabelText(component1.name);
+    const input2 = screen.getByLabelText(component2.name);
 
     await user.type(input1, value);
 
@@ -89,12 +89,7 @@ describe("Inputs", () => {
 
     renderInputs({ args: [arg1, arg2] });
 
-    expect(
-      screen.getByLabelText(`keyOrIndex :: ${arg1.type}`)
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByLabelText(`keyOrIndex :: ${arg2.type}`)
-    ).toBeInTheDocument();
+    const inputs = screen.getAllByLabelText("keyOrIndex");
+    expect(inputs.length).toBe(2);
   });
 });

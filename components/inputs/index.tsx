@@ -1,3 +1,4 @@
+import Field from "components/field";
 import { Arg } from "core/types";
 
 type InputsProps = {
@@ -9,7 +10,7 @@ type InputsProps = {
 
 const Inputs = ({ name, args, updateValue, keys = [] }: InputsProps) => {
   return (
-    <ul>
+    <ul className="flex flex-col gap-2">
       {args.map((arg, index) => {
         const inputName = arg.name || "keyOrIndex";
         const id = `${name}-${inputName}-${index}`;
@@ -32,18 +33,14 @@ const Inputs = ({ name, args, updateValue, keys = [] }: InputsProps) => {
         };
 
         return (
-          <li key={`${inputName}-${index}`} className="flex flex-col">
-            <label htmlFor={id}>
-              {inputName} :: {arg.type}
-            </label>
-            <input
-              id={id}
-              type="text"
-              className="border"
-              value={arg.value}
-              onChange={handleChange}
-            />
-          </li>
+          <Field
+            key={id}
+            inputName={inputName}
+            value={arg.value}
+            type={arg.type}
+            id={id}
+            handleChange={handleChange}
+          />
         );
       })}
     </ul>
