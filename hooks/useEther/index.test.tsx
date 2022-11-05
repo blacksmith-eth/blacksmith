@@ -31,7 +31,7 @@ describe("useEther", () => {
 
     act(() => {
       result.current.handleValueChange({
-        target: { value: faker.random.word() },
+        target: { value: faker.random.alpha() },
       } as ChangeEvent<HTMLInputElement>);
     });
 
