@@ -1,4 +1,7 @@
-type FieldProps = {
+type FieldProps = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> & {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   id: string;
   inputName: string;
@@ -6,7 +9,14 @@ type FieldProps = {
   value: string;
 };
 
-const Field = ({ inputName, value, type, id, handleChange }: FieldProps) => {
+const Field = ({
+  inputName,
+  value,
+  type,
+  id,
+  handleChange,
+  ...rest
+}: FieldProps) => {
   return (
     <li className="flex flex-grow items-center">
       <span className="border border-r-0 px-1 py-1.5 text-sm">{type}</span>
@@ -18,6 +28,7 @@ const Field = ({ inputName, value, type, id, handleChange }: FieldProps) => {
           placeholder=" "
           value={value}
           onChange={handleChange}
+          {...rest}
         />
         <label
           htmlFor={id}

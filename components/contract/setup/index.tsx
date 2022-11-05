@@ -1,3 +1,4 @@
+import Field from "components/field";
 import { useState } from "react";
 
 const Setup = () => {
@@ -72,62 +73,51 @@ const Setup = () => {
         <span className="italic">path</span> and{" "}
         <span className="italic">contract name</span> fields.
       </p>
-      <form onSubmit={preventDefault} onBlur={() => setFocusedInput("")}>
-        <div className="flex flex-col">
-          <label htmlFor="path">path</label>
-          <input
-            id="path"
-            type="text"
-            className="border"
-            value={path}
-            onChange={handlePathChange}
-            onFocus={() => setFocusedInput("path")}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="contractName">contract name</label>
-          <input
-            id="contractName"
-            type="text"
-            className="border"
-            value={contractName}
-            onChange={handleContractNameChange}
-            onFocus={() => setFocusedInput("contractName")}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="deployerAddress">deployer address</label>
-          <input
-            id="deployerAddress"
-            type="text"
-            className="border"
-            value={deployerAddress}
-            onChange={handleAddressChange}
-            onFocus={() => setFocusedInput("deployerAddress")}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="rpcUrl">rpc url</label>
-          <input
-            id="rpcUrl"
-            type="text"
-            className="border"
-            value={rpcUrl}
-            onChange={handleRpcUrlChange}
-            onFocus={() => setFocusedInput("rpcUrl")}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="verifierUrl">verifier url</label>
-          <input
-            id="verifierUrl"
-            type="text"
-            className="border"
-            value={verifierUrl}
-            onChange={handleVerifierUrlChange}
-            onFocus={() => setFocusedInput("verifierUrl")}
-          />
-        </div>
+      <form
+        onSubmit={preventDefault}
+        onBlur={() => setFocusedInput("")}
+        className="flex flex-col gap-2"
+      >
+        <Field
+          id="path"
+          inputName="path"
+          type="string"
+          value={path}
+          handleChange={handlePathChange}
+          onFocus={() => setFocusedInput("path")}
+        />
+        <Field
+          id="contractName"
+          inputName="contract name"
+          type="string"
+          value={contractName}
+          handleChange={handleContractNameChange}
+          onFocus={() => setFocusedInput("contractName")}
+        />
+        <Field
+          id="deployerAddress"
+          inputName="deployer address"
+          type="address"
+          value={deployerAddress}
+          handleChange={handleAddressChange}
+          onFocus={() => setFocusedInput("deployerAddress")}
+        />
+        <Field
+          id="rpcUrl"
+          inputName="rpc url"
+          type="string"
+          value={rpcUrl}
+          handleChange={handleRpcUrlChange}
+          onFocus={() => setFocusedInput("rpcUrl")}
+        />
+        <Field
+          id="verifierUrl"
+          inputName="verifier url"
+          type="string"
+          value={verifierUrl}
+          handleChange={handleVerifierUrlChange}
+          onFocus={() => setFocusedInput("verifierUrl")}
+        />
       </form>
       <div>
         <div>
