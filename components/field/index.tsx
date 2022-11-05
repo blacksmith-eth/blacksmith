@@ -8,13 +8,13 @@ type FieldProps = {
 
 const Field = ({ inputName, value, type, id, handleChange }: FieldProps) => {
   return (
-    <li className="flex items-center">
+    <li className="flex flex-grow items-center">
       <span className="border border-r-0 px-1 py-1.5 text-sm">{type}</span>
-      <div className="relative">
+      <div className="relative w-full">
         <input
           id={id}
           type="text"
-          className="border px-1 py-1 flex flex-grow peer focus:outline-none"
+          className="border px-1 py-1 w-full peer focus:outline-none"
           placeholder=" "
           value={value}
           onChange={handleChange}
