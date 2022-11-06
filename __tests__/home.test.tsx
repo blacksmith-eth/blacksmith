@@ -3,7 +3,11 @@ import Home from "pages/index";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { buildContractDetailsList } from "testing/factory";
-import { useBalance } from "wagmi";
+import {
+  useBalance,
+  usePrepareSendTransaction,
+  useSendTransaction,
+} from "wagmi";
 
 jest.mock("wagmi");
 
@@ -13,6 +17,19 @@ useBalanceMock.mockReturnValue({
   data: undefined,
   isLoading: false,
   isError: false,
+});
+
+const usePrepareSendTransactionMock =
+  usePrepareSendTransaction as jest.Mock<any>;
+
+usePrepareSendTransactionMock.mockReturnValue({
+  config: {},
+});
+
+const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
+
+useSendTransactionMock.mockReturnValue({
+  sendTransaction: jest.fn(),
 });
 
 describe("Home", () => {
