@@ -2,6 +2,7 @@ import { WalletIcon } from "@heroicons/react/24/outline";
 import Connect from "components/connect";
 import Contract from "components/contract";
 import { Contracts } from "components/contracts";
+import Drawer from "components/drawer";
 import Wallet from "components/wallet";
 import { Address } from "core/types";
 import { ethers } from "ethers";
@@ -9,15 +10,6 @@ import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-
-const Drawer = ({ open }: { open: boolean }) => {
-  if (!open) return <></>;
-  return (
-    <section className="h-52 overflow-y-auto overscroll-none">
-      <h2>drawer</h2>
-    </section>
-  );
-};
 
 const Home: NextPage = () => {
   const [activeContract, setActiveContract] = useState<Address>(
