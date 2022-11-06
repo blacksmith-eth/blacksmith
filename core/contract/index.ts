@@ -1,5 +1,5 @@
 import { db } from "core/database";
-import type { ContractDetails } from "core/types";
+import type { Address, ContractDetails } from "core/types";
 
 const insert = async (data: ContractDetails) => {
   await db.read();
@@ -13,9 +13,16 @@ const findAll = async () => {
   return Object.values(db.data?.contracts || {});
 };
 
+const remove = async (address: Address) => {
+  await db.read();
+  delete db.data?.contracts[address];
+  return db.write();
+};
+
 const contract = {
   insert,
   findAll,
+  remove,
 };
 
 export default contract;

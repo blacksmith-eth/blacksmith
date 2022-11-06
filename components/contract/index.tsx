@@ -1,6 +1,7 @@
 import Functions from "components/functions";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
 import { useContracts } from "hooks";
+import Manager from "./manager";
 import Setup from "./setup";
 
 const filterDefinedFunctions = (abi: Abi): AbiDefinedFunction[] => {
@@ -26,6 +27,7 @@ const Contract = ({ address }: { address: Address }) => {
       <>
         <div>Selected contract not found.</div>
         <Setup />
+        <Manager />
       </>
     );
 
