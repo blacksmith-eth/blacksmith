@@ -18,8 +18,8 @@ const Field = ({
   ...rest
 }: FieldProps) => {
   return (
-    <li className="flex flex-grow items-center">
-      <span className="bg-slate-100 border border-slate-300 border-r-0 px-1 py-1.5 text-sm">
+    <li className="flex items-center">
+      <span className="min-w-fit bg-slate-100 border border-slate-300 border-r-0 px-1 py-1.5 text-sm">
         {type}
       </span>
       <div className="relative w-full">
