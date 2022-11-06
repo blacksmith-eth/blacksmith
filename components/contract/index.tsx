@@ -1,3 +1,4 @@
+import { Square2StackIcon } from "@heroicons/react/24/outline";
 import Functions from "components/functions";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
 import { useContracts } from "hooks";
@@ -31,10 +32,20 @@ const Contract = ({ address }: { address: Address }) => {
       </>
     );
 
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(contract.address);
+  };
+
   return (
     <section>
       <h3 className="font-bold text-2xl">{contract.name}</h3>
-      <h4>{contract.address}</h4>
+      <h4 className="inline">{contract.address}</h4>
+      <button
+        className="inline mx-1 text-slate-600 focus:outline-none hover:text-slate-800 focus:text-slate-800 active:text-slate-900"
+        onClick={handleCopyAddress}
+      >
+        <Square2StackIcon className="h-4 w-4" />
+      </button>
       <Functions
         address={contract.address}
         functions={filterDefinedFunctions(contract.abi)}
