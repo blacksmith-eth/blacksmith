@@ -20,6 +20,7 @@ const Contract = ({ address }: { address: Address }) => {
       <>
         <div>No contracts</div>
         <Setup />
+        <Manager />
       </>
     );
 
