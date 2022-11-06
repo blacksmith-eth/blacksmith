@@ -2,6 +2,7 @@ import { Square2StackIcon } from "@heroicons/react/24/outline";
 import Balance from "components/balance";
 import Functions from "components/functions";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
+import { ethers } from "ethers";
 import { useContracts } from "hooks";
 import Manager from "./manager";
 import Setup from "./setup";
@@ -19,6 +20,14 @@ const Contract = ({ address }: { address: Address }) => {
     return (
       <>
         <div>No contracts</div>
+        <Setup />
+        <Manager />
+      </>
+    );
+
+  if (address === ethers.constants.AddressZero)
+    return (
+      <>
         <Setup />
         <Manager />
       </>

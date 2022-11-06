@@ -37,6 +37,9 @@ const Home: NextPage = () => {
   const walletButtonText = isWalletOpen ? "close wallet" : "open wallet";
   const drawerButtonText = isDrawerOpen ? "close drawer" : "open drawer";
 
+  const resetActiveContract = () =>
+    setActiveContract(ethers.constants.AddressZero);
+
   return (
     <section className="min-h-screen max-h-screen flex flex-col overflow-hidden">
       <Head>
@@ -44,7 +47,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="bg-white border-b sticky top-0 p-2 flex justify-between">
-        <h1 className="font-bold">Blacksmith</h1>
+        <h1 className="font-bold">
+          <button onClick={resetActiveContract}>Blacksmith</button>
+        </h1>
         <section className="flex gap-1">
           <Connect />
           <button onClick={toggleWallet}>
