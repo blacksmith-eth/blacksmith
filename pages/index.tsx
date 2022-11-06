@@ -2,21 +2,13 @@ import { WalletIcon } from "@heroicons/react/24/outline";
 import Connect from "components/connect";
 import Contract from "components/contract";
 import { Contracts } from "components/contracts";
+import Wallet from "components/wallet";
 import { Address } from "core/types";
 import { ethers } from "ethers";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-
-const Wallet = ({ open }: { open: boolean }) => {
-  if (!open) return <></>;
-  return (
-    <aside className="z-30 bg-white border-l p-2 fixed right-0 h-full w-full lg:w-96 overflow-y-auto overscroll-none">
-      <h2>wallet</h2>
-    </aside>
-  );
-};
 
 const Drawer = ({ open }: { open: boolean }) => {
   if (!open) return <></>;
