@@ -11,6 +11,7 @@ import {
   buildContractDetailsList,
 } from "testing/factory";
 import {
+  useBalance,
   useContractRead,
   useContractWrite,
   usePrepareContractWrite,
@@ -26,6 +27,14 @@ useContractReadMock.mockReturnValue({
   isLoading: false,
   isError: false,
   refetch: jest.fn(),
+});
+
+const useBalanceMock = useBalance as jest.Mock<any>;
+
+useBalanceMock.mockReturnValue({
+  data: undefined,
+  isLoading: false,
+  isError: false,
 });
 
 const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;

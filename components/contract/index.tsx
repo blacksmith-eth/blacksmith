@@ -1,4 +1,5 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
+import Balance from "components/balance";
 import Functions from "components/functions";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
 import { useContracts } from "hooks";
@@ -46,6 +47,7 @@ const Contract = ({ address }: { address: Address }) => {
       >
         <Square2StackIcon className="h-4 w-4" />
       </button>
+      <Balance address={contract.address} />
       <Functions
         address={contract.address}
         functions={filterDefinedFunctions(contract.abi)}

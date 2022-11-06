@@ -3,6 +3,17 @@ import Home from "pages/index";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { buildContractDetailsList } from "testing/factory";
+import { useBalance } from "wagmi";
+
+jest.mock("wagmi");
+
+const useBalanceMock = useBalance as jest.Mock<any>;
+
+useBalanceMock.mockReturnValue({
+  data: undefined,
+  isLoading: false,
+  isError: false,
+});
 
 describe("Home", () => {
   it("should render without crashing", () => {
