@@ -5,7 +5,10 @@ type ButtonProps = PropsWithChildren<{}> &
 
 const Button = ({ children, ...props }: ButtonProps) => {
   return (
-    <button className="border px-2 py-0.5 text-sm" {...props}>
+    <button
+      className="border px-2 py-0.5 text-sm disabled:cursor-not-allowed"
+      {...props}
+    >
       {children}
     </button>
   );
