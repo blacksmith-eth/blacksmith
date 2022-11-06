@@ -1,4 +1,8 @@
-const Wallet = ({ open }: { open: boolean }) => {
+type WalletProps = {
+  open: boolean;
+};
+
+const Wallet = ({ open }: WalletProps) => {
   if (!open) return <></>;
   return (
     <aside className="z-30 bg-white border-l p-2 fixed right-0 h-full w-full lg:w-96 overflow-y-auto overscroll-none">
