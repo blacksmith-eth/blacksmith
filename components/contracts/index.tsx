@@ -6,10 +6,7 @@ type ContractsProps = {
   setActiveContract(address: Address): void;
 };
 
-export const Contracts = ({
-  activeContract,
-  setActiveContract,
-}: ContractsProps) => {
+const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
   const { contracts, isLoading, isError } = useContracts();
 
   if (isLoading) return <div>loading...</div>;
@@ -32,3 +29,5 @@ export const Contracts = ({
     </ul>
   );
 };
+
+export default Contracts;

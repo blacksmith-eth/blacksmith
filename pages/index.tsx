@@ -1,7 +1,7 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
 import Connect from "components/connect";
 import Contract from "components/contract";
-import { Contracts } from "components/contracts";
+import Contracts from "components/contracts";
 import Drawer from "components/drawer";
 import Wallet from "components/wallet";
 import { Address } from "core/types";
