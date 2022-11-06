@@ -71,7 +71,7 @@ const Home: NextPage = () => {
             <h2 className="font-bold">Contract</h2>
             <Contract address={activeContract} />
           </section>
-          <section className="bg-white border-t sticky bottom-0 p-2">
+          <section className="z-20 bg-white border-t sticky bottom-0 p-2">
             <button onClick={toggleDrawer}>{drawerButtonText}</button>
             <Drawer open={isDrawerOpen} />
           </section>
