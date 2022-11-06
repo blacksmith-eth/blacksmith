@@ -107,6 +107,7 @@ describe("Contract", () => {
     expect(
       await screen.findByText("Selected contract not found.")
     ).toBeInTheDocument();
+    expect(await screen.findByText(address)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { level: 3, name: "Getting Started" })
     ).toBeInTheDocument();

@@ -27,7 +27,11 @@ const Contract = ({ address }: { address: Address }) => {
   if (!contract)
     return (
       <>
-        <div>Selected contract not found.</div>
+        <div>
+          Selected contract{" "}
+          <span className="font-mono bg-slate-100 px-1 rounded">{address}</span>{" "}
+          not found.
+        </div>
         <Setup />
         <Manager />
       </>
