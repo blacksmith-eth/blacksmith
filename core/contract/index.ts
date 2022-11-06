@@ -19,10 +19,18 @@ const remove = async (address: Address) => {
   return db.write();
 };
 
+const removeAll = async () => {
+  await db.read();
+  db.data ||= { contracts: {} };
+  db.data.contracts = {};
+  return db.write();
+};
+
 const contract = {
   insert,
   findAll,
   remove,
+  removeAll,
 };
 
 export default contract;

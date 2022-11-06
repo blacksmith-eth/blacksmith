@@ -17,6 +17,12 @@ const Manager = () => {
     }).then(() => mutate("/api/contracts"));
   };
 
+  const handleRemoveAll = () => {
+    fetch(`/api/contracts`, {
+      method: "DELETE",
+    }).then(() => mutate("/api/contracts"));
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <h3 className="font-bold text-2xl">Contract Management</h3>
@@ -32,6 +38,14 @@ const Manager = () => {
         className="self-start flex items-center gap-1 border px-1.5 py-0.5 rounded"
       >
         <span className="text-sm">remove</span>
+        <ArchiveBoxXMarkIcon className="h-4 w-4" />
+      </button>
+      <h4 className="font-bold">Danger Zone</h4>
+      <button
+        onClick={handleRemoveAll}
+        className="self-start flex items-center gap-1 border px-1.5 py-0.5 rounded"
+      >
+        <span className="text-sm">remove all</span>
         <ArchiveBoxXMarkIcon className="h-4 w-4" />
       </button>
     </div>
