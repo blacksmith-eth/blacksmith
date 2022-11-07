@@ -59,12 +59,12 @@ const Account = () => {
         <Listbox value={address} onChange={setAddress}>
           <Listbox.Label className="sr-only">account</Listbox.Label>
           <div className="relative text-right select-none text-sm">
-            <Listbox.Button className="text-left border h-full w-full px-2 py-1">
+            <Listbox.Button className="text-left border border-slate-300 h-full w-full px-2 py-1">
               {formatAddress(address)}
               {balance &&
                 ` | ${formatValue(balance.formatted)} ${balance.symbol}`}
             </Listbox.Button>
-            <Listbox.Options className="text-left w-full bg-white border absolute mt-1 right-0 focus:outline-none">
+            <Listbox.Options className="text-left w-full bg-white border border-slate-300 absolute mt-1 right-0 focus:outline-none">
               {accounts.map((address) => (
                 <Option key={address} address={address}>
                   {formatAddress(address)}
