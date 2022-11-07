@@ -30,13 +30,13 @@ const Home: NextPage = () => {
         <title>Blacksmith</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="bg-white border-b sticky top-0 p-2 flex justify-between">
+      <header className="bg-white border-b sticky top-0 p-2 flex items-center justify-between">
         <h1 className="font-bold">
           <button onClick={resetActiveContract}>Blacksmith</button>
         </h1>
-        <section className="flex gap-1">
+        <section className="flex items-center gap-1">
           <Connect />
-          <button onClick={toggleWallet}>
+          <button onClick={toggleWallet} className="text-slate-800">
             <WalletIcon className="w-6 h-6" />
             <span className="sr-only">{walletButtonText}</span>
           </button>

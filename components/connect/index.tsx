@@ -45,11 +45,19 @@ const Connect = () => {
                 );
               }
               return (
-                <div className="flex gap-2">
-                  <button onClick={openChainModal} type="button">
+                <div className="flex rounded border border-slate-300 divide-x divide-slate-300 divide-solid">
+                  <button
+                    onClick={openChainModal}
+                    type="button"
+                    className="bg-slate-100 rounded-l px-2 py-0.5"
+                  >
                     {chain.name === "Chain 31337" ? "Localhost" : chain.name}
                   </button>
-                  <button onClick={openAccountModal} type="button">
+                  <button
+                    onClick={openAccountModal}
+                    type="button"
+                    className="px-2 py-0.5"
+                  >
                     {account.displayName}
                   </button>
                 </div>
