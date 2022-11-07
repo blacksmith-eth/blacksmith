@@ -67,7 +67,7 @@ describe("Home", () => {
     await user.click(openWalletButton);
 
     expect(
-      screen.getByRole("heading", { level: 2, name: "wallet" })
+      screen.getByRole("heading", { level: 2, name: "Transfer" })
     ).toBeInTheDocument();
 
     const closeWalletButton = screen.getByRole("button", {
@@ -79,7 +79,7 @@ describe("Home", () => {
     await user.click(closeWalletButton);
 
     expect(
-      screen.queryByRole("heading", { level: 2, name: "wallet" })
+      screen.queryByRole("heading", { level: 2, name: "Transfer" })
     ).not.toBeInTheDocument();
   });
 

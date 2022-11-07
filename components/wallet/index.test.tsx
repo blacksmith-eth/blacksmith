@@ -50,14 +50,16 @@ describe("Wallet", () => {
   it("should render transfer if open is true", () => {
     renderWallet({ open: true });
 
-    expect(screen.getByText("Transfer")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Transfer" })
+    ).toBeInTheDocument();
   });
 
   it("should render the change account if open is true", () => {
     renderWallet({ open: true });
 
     expect(
-      screen.getByRole("heading", { name: "Change Account" })
+      screen.getByRole("heading", { level: 2, name: "Change Account" })
     ).toBeInTheDocument();
   });
 });

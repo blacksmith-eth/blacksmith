@@ -54,7 +54,7 @@ const Account = () => {
 
   return (
     <div>
-      <h3 className="font-bold">Change Account</h3>
+      <h2 className="font-bold">Change Account</h2>
       <section className="flex flex-col gap-2 font-mono">
         <Listbox value={address} onChange={setAddress}>
           <Listbox.Label className="sr-only">account</Listbox.Label>
