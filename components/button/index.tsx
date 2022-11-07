@@ -6,7 +6,7 @@ type ButtonProps = PropsWithChildren<{}> &
 const Button = ({ children, ...props }: ButtonProps) => {
   return (
     <button
-      className="self-start border px-2 py-0.5 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+      className="self-start border border-slate-300 px-2 py-0.5 text-sm disabled:cursor-not-allowed disabled:opacity-50"
       {...props}
     >
       {children}
