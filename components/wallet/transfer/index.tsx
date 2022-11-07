@@ -26,7 +26,7 @@ const Transfer = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       <h2 className="font-bold">Transfer</h2>
       <section className="flex flex-col gap-2">
         <Field

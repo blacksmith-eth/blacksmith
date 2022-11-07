@@ -53,7 +53,7 @@ const Account = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       <h2 className="font-bold">Change Account</h2>
       <section className="flex flex-col gap-2 font-mono">
         <Listbox value={address} onChange={setAddress}>
