@@ -154,4 +154,22 @@ describe("BlacksmithConnector", () => {
       );
     }
   );
+
+  it("#listAccounts should return the accounts from the provider", async () => {
+    const accounts = ["0x0000000000000000000000000000000000000001"];
+    const provider = new BlacksmithWalletProvider();
+    provider.listAccounts = jest.fn().mockResolvedValue(accounts);
+    const connector = new BlacksmithConnector({ provider });
+    const result = await connector.listAccounts();
+    expect(result).toBe(accounts);
+  });
+
+  it("#changeAccount should call the provider changeAccount", async () => {
+    const account = "0x0000000000000000000000000000000000000001";
+    const provider = new BlacksmithWalletProvider();
+    provider.changeAccount = jest.fn();
+    const connector = new BlacksmithConnector({ provider });
+    await connector.changeAccount(account);
+    expect(provider.changeAccount).toHaveBeenCalledWith(account);
+  });
 });

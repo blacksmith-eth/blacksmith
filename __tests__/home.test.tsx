@@ -2,8 +2,9 @@ import { render, screen } from "testing";
 import Home from "pages/index";
 import { server } from "mocks/server";
 import { rest } from "msw";
-import { buildContractDetailsList } from "testing/factory";
+import { buildAddress, buildContractDetailsList } from "testing/factory";
 import {
+  useAccount,
   useBalance,
   usePrepareSendTransaction,
   useSendTransaction,
@@ -30,6 +31,12 @@ const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
 
 useSendTransactionMock.mockReturnValue({
   sendTransaction: jest.fn(),
+});
+
+const useAccountMock = useAccount as jest.Mock<any>;
+
+useAccountMock.mockReturnValue({
+  address: buildAddress(),
 });
 
 describe("Home", () => {

@@ -2,7 +2,12 @@ import { faker } from "@faker-js/faker";
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
-import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
+import {
+  useAccount,
+  useBalance,
+  usePrepareSendTransaction,
+  useSendTransaction,
+} from "wagmi";
 import Wallet from ".";
 
 jest.mock("wagmi");
@@ -18,6 +23,18 @@ const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
 
 useSendTransactionMock.mockReturnValue({
   sendTransaction: jest.fn(),
+});
+
+const useAccountMock = useAccount as jest.Mock<any>;
+
+useAccountMock.mockReturnValue({
+  address: buildAddress(),
+});
+
+const useBalanceMock = useBalance as jest.Mock<any>;
+
+useBalanceMock.mockReturnValue({
+  data: undefined,
 });
 
 const renderWallet = (props: Partial<ComponentProps<typeof Wallet>> = {}) => {
@@ -84,5 +101,13 @@ describe("Wallet", () => {
     const transferButton = screen.getByRole("button", { name: "send" });
 
     expect(transferButton).toBeDisabled();
+  });
+
+  it("should render the change account section", () => {
+    renderWallet({ open: true });
+
+    expect(
+      screen.getByRole("heading", { name: "Change Account" })
+    ).toBeInTheDocument();
   });
 });

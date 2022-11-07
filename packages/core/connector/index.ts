@@ -85,6 +85,16 @@ export class BlacksmithConnector extends Connector<
     }
   }
 
+  async changeAccount(indexOrAddress: number | string) {
+    const provider = await this.getProvider();
+    await provider.changeAccount(indexOrAddress);
+  }
+
+  async listAccounts() {
+    const provider = await this.getProvider();
+    return provider.listAccounts();
+  }
+
   protected onAccountsChanged = (accounts: Address[]) => {
     this.emit("change", { account: accounts[0] });
   };
