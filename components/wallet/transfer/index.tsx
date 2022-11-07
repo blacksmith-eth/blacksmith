@@ -47,10 +47,10 @@ const Transfer = () => {
           <Listbox value={unit} onChange={setUnit}>
             <Listbox.Label className="sr-only">unit</Listbox.Label>
             <div className="relative text-right select-none">
-              <Listbox.Button className="border h-full w-full px-2 text-sm">
+              <Listbox.Button className="border border-slate-300 h-full w-full px-2 text-sm">
                 {unit}
               </Listbox.Button>
-              <Listbox.Options className="bg-white border absolute mt-1 right-0 focus:outline-none">
+              <Listbox.Options className="bg-white border border-slate-300 absolute mt-1 right-0 focus:outline-none">
                 {units.map((unit) => (
                   <Listbox.Option
                     key={unit}
