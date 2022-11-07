@@ -53,7 +53,7 @@ describe("Wallet", () => {
     expect(screen.getByText("Transfer")).toBeInTheDocument();
   });
 
-  it("should render the change account section", () => {
+  it("should render the change account if open is true", () => {
     renderWallet({ open: true });
 
     expect(
