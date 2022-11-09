@@ -29,7 +29,7 @@ const View = ({ address, func }: ViewProps) => {
   });
 
   return (
-    <li key={func.name} className="flex flex-col gap-1">
+    <li key={func.name} className="flex flex-col gap-2">
       <Signature func={func} />
       <Inputs name={func.name} args={args} updateValue={updateValue} />
       <Container>
