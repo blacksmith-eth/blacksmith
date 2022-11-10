@@ -9,6 +9,7 @@ type InputsProps = {
 };
 
 const Inputs = ({ name, args, updateValue, keys = [] }: InputsProps) => {
+  if (args.length === 0) return <></>;
   return (
     <ul className="flex flex-col gap-2">
       {args.map((arg, index) => {
