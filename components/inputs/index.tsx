@@ -17,7 +17,7 @@ const Inputs = ({ name, args, updateValue, keys = [] }: InputsProps) => {
         const id = `${name}-${inputName}-${index}`;
         if (Array.isArray(arg.value)) {
           return (
-            <fieldset key={id} className="border p-2">
+            <fieldset key={id} className="border border-black p-2">
               <legend>{arg.name}</legend>
               <Inputs
                 name={arg.name}
