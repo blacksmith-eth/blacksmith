@@ -19,14 +19,14 @@ const Field = ({
 }: FieldProps) => {
   return (
     <li className="flex flex-grow items-center">
-      <span className="min-w-fit bg-slate-100 border border-slate-300 border-r-0 px-1 py-1.5 text-sm">
+      <span className="min-w-fit bg-black text-white border border-black border-r-0 px-1 py-1.5 text-sm">
         {type}
       </span>
       <div className="relative w-full">
         <input
           id={id}
           type="text"
-          className="border border-slate-300 px-1 py-1 w-full peer focus:outline-none"
+          className="bg-white border border-black px-1 py-1 w-full peer focus:outline-none"
           placeholder=" "
           value={value}
           onChange={handleChange}
