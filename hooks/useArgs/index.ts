@@ -41,7 +41,7 @@ const formatArgsByType = (arg: Arg): any => {
 
 const buildArg = (input: AbiParameterWithComponents): Arg => {
   return {
-    name: input.name,
+    name: input.name || input.type,
     type: input.type,
     value: input.components ? input.components.map(buildArg) : "",
   };

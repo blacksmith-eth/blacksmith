@@ -194,4 +194,13 @@ describe("useArgs", () => {
       },
     ]);
   });
+
+  it("should return fallback input name of input type ", () => {
+    const input = buildInput({ name: "" });
+    const { result } = renderHook(() =>
+      useArgs([input] as AbiParameterWithComponents[])
+    );
+
+    expect(result.current.args[0].name).toEqual(input.type);
+  });
 });

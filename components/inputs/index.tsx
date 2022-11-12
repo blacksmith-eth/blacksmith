@@ -13,8 +13,7 @@ const Inputs = ({ name, args, updateValue, keys = [] }: InputsProps) => {
   return (
     <ul className="flex flex-col gap-2">
       {args.map((arg, index) => {
-        const inputName = arg.name || "keyOrIndex";
-        const id = `${name}-${inputName}-${index}`;
+        const id = `${name}-${arg.name}-${index}`;
         if (Array.isArray(arg.value)) {
           return (
             <fieldset key={id} className="border border-black p-2">
@@ -36,7 +35,7 @@ const Inputs = ({ name, args, updateValue, keys = [] }: InputsProps) => {
         return (
           <Field
             key={id}
-            inputName={inputName}
+            inputName={arg.name}
             value={arg.value}
             type={arg.type}
             id={id}

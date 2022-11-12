@@ -82,14 +82,4 @@ describe("Inputs", () => {
       expect(updateValue).toHaveBeenCalledWith([0, 1], value);
     });
   });
-
-  it("should render fallback names if the input names are not provided", () => {
-    const arg1 = buildArg({ name: "", type: "string" });
-    const arg2 = buildArg({ name: "", type: "address" });
-
-    renderInputs({ args: [arg1, arg2] });
-
-    const inputs = screen.getAllByLabelText("keyOrIndex");
-    expect(inputs.length).toBe(2);
-  });
 });
