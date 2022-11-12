@@ -25,25 +25,25 @@ const Home: NextPage = () => {
     setActiveContract(ethers.constants.AddressZero);
 
   return (
-    <section className="min-h-screen max-h-screen flex flex-col overflow-hidden">
+    <section className="text-black min-h-screen max-h-screen flex flex-col overflow-hidden">
       <Head>
         <title>Blacksmith</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="bg-white border-b sticky top-0 p-2 flex items-center justify-between">
+      <header className="bg-white border-b border-black sticky top-0 p-2 flex items-center justify-between">
         <h1 className="font-bold">
           <button onClick={resetActiveContract}>Blacksmith</button>
         </h1>
         <section className="flex items-center gap-1">
           <Connect />
-          <button onClick={toggleWallet} className="text-slate-800">
+          <button onClick={toggleWallet} className="text-black">
             <WalletIcon className="w-6 h-6" />
             <span className="sr-only">{walletButtonText}</span>
           </button>
         </section>
       </header>
       <main className="bg-white flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
-        <aside className="bg-white border-b md:border-b-0 md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
+        <aside className="bg-white border-b border-black md:border-b-0 md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none">
           <h2 className="font-bold">Contracts</h2>
           <Contracts
             activeContract={activeContract}
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
             <h2 className="font-bold">Contract</h2>
             <Contract address={activeContract} />
           </section>
-          <section className="z-20 bg-white border-t sticky bottom-0 p-2">
+          <section className="z-20 bg-white border-t border-black sticky bottom-0 p-2">
             <button onClick={toggleDrawer}>{drawerButtonText}</button>
             <Drawer open={isDrawerOpen} />
           </section>
