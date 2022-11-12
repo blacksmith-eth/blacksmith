@@ -128,7 +128,7 @@ const Setup = () => {
             onFocus={() => setFocusedInput("verifierUrl")}
           />
         </form>
-        <div className="flex items-start justify-between overflow-x-scroll font-mono text-sm p-4 bg-slate-100 rounded">
+        <div className="flex items-start justify-between overflow-x-scroll font-mono text-sm p-4 bg-slate-100 rounded border border-slate-200">
           <div>
             <div>
               {`forge create `}
