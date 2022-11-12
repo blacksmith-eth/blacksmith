@@ -31,7 +31,7 @@ const Signature = ({ func }: SignatureProps) => {
       <h4 className="font-bold">
         {func.name} &#8594; {returnType}
       </h4>
-      <span className="text-sm border rounded px-2 py-0.5">
+      <span className="text-xs font-medium border border-black rounded px-1 py-0.5">
         {func.stateMutability}
       </span>
     </div>
