@@ -54,10 +54,7 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
   const updater = useCallback(
     (arg: Arg, value: string, keys: number[]): Arg => {
       if (typeof arg.value === "string") {
-        return {
-          ...arg,
-          value,
-        };
+        return { ...arg, value };
       }
       const [key, ...rest] = keys;
       return {
