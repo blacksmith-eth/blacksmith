@@ -11,6 +11,7 @@ const renderField = (props: Partial<ComponentProps<typeof Field>> = {}) => {
       inputName={props.inputName || "inputName"}
       type={props.type || "type"}
       value={props.value || ""}
+      disabled={props.disabled || false}
     />
   );
 };
@@ -35,6 +36,13 @@ describe("Field", () => {
     renderField({ value });
 
     expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+  });
+
+  it("should render a disabled input", () => {
+    const inputName = faker.random.word();
+    renderField({ inputName, disabled: true });
+
+    expect(screen.getByLabelText(inputName)).toBeDisabled();
   });
 
   it("should call the handleChange function when the input value changes", async () => {

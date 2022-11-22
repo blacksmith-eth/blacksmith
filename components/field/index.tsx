@@ -11,6 +11,7 @@ type FieldProps = React.DetailedHTMLProps<
 
 const Field = ({
   inputName,
+  disabled,
   value,
   type,
   id,
@@ -18,7 +19,9 @@ const Field = ({
   ...rest
 }: FieldProps) => {
   return (
-    <li className="flex flex-grow items-center">
+    <li
+      className={`flex flex-grow items-center ${disabled ? "opacity-50" : ""}`}
+    >
       <span className="min-w-fit bg-black text-white border border-black border-r-0 px-1 py-1.5 text-sm">
         {type}
       </span>
@@ -28,6 +31,7 @@ const Field = ({
           type="text"
           className="bg-white border border-black px-1 py-1 w-full peer focus:outline-none"
           placeholder=" "
+          disabled={disabled}
           value={value}
           onChange={handleChange}
           {...rest}
