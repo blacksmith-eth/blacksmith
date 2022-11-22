@@ -11,7 +11,11 @@ const Functions = ({ address, functions }: FunctionsProps) => {
   return (
     <ul className="flex flex-col gap-4">
       {functions.map((func) => (
-        <Function key={func.name} address={address} func={func} />
+        <Function
+          key={`${address}-${func.name}`}
+          address={address}
+          func={func}
+        />
       ))}
     </ul>
   );
