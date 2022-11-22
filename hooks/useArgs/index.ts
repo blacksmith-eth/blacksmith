@@ -30,6 +30,9 @@ const formatArgsByType = (arg: Arg): any => {
   if (arg.type === "uint256" && typeof arg.value === "string") {
     return tryBigNumberConversion(arg.value);
   }
+  if (arg.type === "bool") {
+    return arg.value === "true";
+  }
   return arg.value;
 };
 

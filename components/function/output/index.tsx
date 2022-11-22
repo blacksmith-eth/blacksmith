@@ -7,7 +7,7 @@ type OutputProps = {
 };
 
 const formatData = (data: Result | undefined): string => {
-  if (!data) return "";
+  if (data === undefined || data === null) return "";
   if (typeof data === "string") return data;
   if (Array.isArray(data)) return `(${data.map(formatData).join(", ")})`;
   return data.toString();

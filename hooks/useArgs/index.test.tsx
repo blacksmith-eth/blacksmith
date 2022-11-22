@@ -190,6 +190,34 @@ describe("useArgs", () => {
     expect(result.current.formattedArgs).toEqual([value]);
   });
 
+  it("should return formatted args for false boolean", () => {
+    const value = "false";
+    const input = buildInput({ type: "bool" });
+    const { result } = renderHook(() =>
+      useArgs([input] as AbiParameterWithComponents[])
+    );
+
+    act(() => {
+      result.current.updateValue([0], value);
+    });
+
+    expect(result.current.formattedArgs).toEqual([false]);
+  });
+
+  it("should return formatted args for true boolean", () => {
+    const value = "true";
+    const input = buildInput({ type: "bool" });
+    const { result } = renderHook(() =>
+      useArgs([input] as AbiParameterWithComponents[])
+    );
+
+    act(() => {
+      result.current.updateValue([0], value);
+    });
+
+    expect(result.current.formattedArgs).toEqual([true]);
+  });
+
   it("should return formatted args for string array", () => {
     const strings = ["foo", "bar", "baz"];
     const input = buildInput({ type: "string[]" });

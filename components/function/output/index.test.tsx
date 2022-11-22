@@ -21,6 +21,13 @@ describe("Output", () => {
     expect(screen.getByText("test")).toBeInTheDocument();
   });
 
+  it("should render false boolean", () => {
+    const data = buildResult("false");
+    renderOutput({ data });
+
+    expect(screen.getByText("false")).toBeInTheDocument();
+  });
+
   it("should render array data", () => {
     const data = buildResult(["test", "test2"]);
     renderOutput({ data });
