@@ -36,31 +36,39 @@ const formatArgsByType = (arg: Arg): any => {
   return arg.value;
 };
 
-const buildArg = (input: AbiParameterWithComponents): Arg => {
-  return {
-    name: input.name || input.type,
-    type: input.type,
-    value:
-      input.type.slice(-2) === "[]"
-        ? []
-        : input.components
-        ? input.components.map(buildArg)
-        : "",
-    childArg:
-      input.type.slice(-2) === "[]"
-        ? input.components
-          ? buildArg({
-              name: input.type.slice(0, -2),
-              type: input.type.slice(0, -2),
-              components: input.components,
-            })
-          : buildArg({
-              type: input.type.slice(0, -2),
-              name: input.type.slice(0, -2),
-            })
-        : undefined,
-  };
+const buildValues = (input: AbiParameterWithComponents): Arg[] | string => {
+  if (input.type.slice(-2) === "[]") {
+    return [];
+  }
+  if (input.components) {
+    return input.components.map(buildArg);
+  }
+  return "";
 };
+
+const buildChildArg = (input: AbiParameterWithComponents): Arg | undefined => {
+  if (input.type.slice(-2) === "[]") {
+    const slicedType = input.type.slice(0, -2);
+    return input.components
+      ? buildArg({
+          name: slicedType,
+          type: slicedType,
+          components: input.components,
+        })
+      : buildArg({
+          type: slicedType,
+          name: slicedType,
+        });
+  }
+  return undefined;
+};
+
+const buildArg = (input: AbiParameterWithComponents): Arg => ({
+  name: input.name || input.type,
+  type: input.type,
+  value: buildValues(input),
+  childArg: buildChildArg(input),
+});
 
 export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
   const initialArgs = inputs.map(buildArg);
