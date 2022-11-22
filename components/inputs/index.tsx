@@ -63,7 +63,20 @@ const Inputs = ({
         if (Array.isArray(arg.value) && arg.type === "tuple") {
           return (
             <div key={id} className="flex gap-1">
-              {!preview && child ? <Button>-</Button> : <></>}
+              {!preview && child ? (
+                <Button
+                  onClick={() => {
+                    updateValue(
+                      keys,
+                      args.filter((_, i) => i !== index)
+                    );
+                  }}
+                >
+                  -
+                </Button>
+              ) : (
+                <></>
+              )}
               <fieldset className="flex-1 border border-black p-2 -mt-2">
                 <legend className="text-sm">{arg.name}</legend>
                 <Inputs
@@ -84,7 +97,20 @@ const Inputs = ({
 
         return (
           <div className="flex gap-1" key={id}>
-            {!preview && child ? <Button>-</Button> : <></>}
+            {!preview && child ? (
+              <Button
+                onClick={() => {
+                  updateValue(
+                    keys,
+                    args.filter((_, i) => i !== index)
+                  );
+                }}
+              >
+                -
+              </Button>
+            ) : (
+              <></>
+            )}
             <Field
               disabled={preview}
               inputName={arg.name}
