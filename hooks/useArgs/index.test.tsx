@@ -5,6 +5,7 @@ import { times } from "lodash";
 import { act, renderHook } from "testing";
 import {
   buildAddress,
+  buildArg,
   buildInput,
   buildInputList,
   buildInputWithComponents,
@@ -51,6 +52,63 @@ describe("useArgs", () => {
             value: "",
           },
         ],
+      },
+    ]);
+  });
+
+  it("should initialize inputs for array types", () => {
+    const input = buildInput({
+      type: "uint256[]",
+    }) as AbiParameterWithComponents;
+    const { result } = renderHook(() => useArgs([input]));
+
+    expect(result.current.args).toEqual([
+      {
+        name: input.name,
+        type: input.type,
+        value: [],
+        childArg: {
+          name: input.type.slice(0, -2),
+          type: input.type.slice(0, -2),
+          value: "",
+          childArg: undefined,
+        },
+      },
+    ]);
+  });
+
+  it("should initialize inputs for array of tuple types", () => {
+    const input = buildInputWithComponents({
+      components: buildInputList(2) as AbiParameterWithComponents[],
+      type: "tuple[]",
+    });
+
+    const { result } = renderHook(() => useArgs([input]));
+
+    expect(result.current.args).toEqual([
+      {
+        name: input.name,
+        type: input.type,
+        value: [],
+        childArg: {
+          name: input.type.slice(0, -2),
+          type: input.type.slice(0, -2),
+          value: [
+            {
+              name: input.components![0].name,
+              type: input.components![0].type,
+              value: "",
+              childArg: undefined,
+            },
+            {
+              name: input.components![1].name,
+              type: input.components![1].type,
+              value: "",
+              childArg: undefined,
+            },
+          ],
+          childArg: undefined,
+        },
       },
     ]);
   });
@@ -133,36 +191,49 @@ describe("useArgs", () => {
   });
 
   it("should return formatted args for string array", () => {
-    const value = "foo, bar, baz";
+    const strings = ["foo", "bar", "baz"];
     const input = buildInput({ type: "string[]" });
+    const values = [
+      buildArg({ type: "string", value: strings[0] }),
+      buildArg({ type: "string", value: strings[1] }),
+      buildArg({ type: "string", value: strings[2] }),
+    ];
     const { result } = renderHook(() =>
       useArgs([input] as AbiParameterWithComponents[])
     );
 
     act(() => {
-      result.current.updateValue([0], value);
+      result.current.updateValue([0], values);
     });
 
-    expect(result.current.formattedArgs).toEqual([["foo", "bar", "baz"]]);
+    expect(result.current.formattedArgs).toEqual([strings]);
   });
 
   it("should return formatted args for address array", () => {
     const addresses = times(3, () => buildAddress());
-    const value = addresses.join(", ");
+    const values = [
+      buildArg({ type: "address", value: addresses[0] }),
+      buildArg({ type: "address", value: addresses[1] }),
+      buildArg({ type: "address", value: addresses[2] }),
+    ];
     const input = buildInput({ type: "address[]" });
     const { result } = renderHook(() =>
       useArgs([input] as AbiParameterWithComponents[])
     );
 
     act(() => {
-      result.current.updateValue([0], value);
+      result.current.updateValue([0], values);
     });
 
     expect(result.current.formattedArgs).toEqual([addresses]);
   });
 
   it("should return formatted args for uint256[]", () => {
-    const values = "1, 2, 3";
+    const values = [
+      buildArg({ name: "uint256", type: "uint256", value: "1" }),
+      buildArg({ name: "uint256", type: "uint256", value: "2" }),
+      buildArg({ name: "uint256", type: "uint256", value: "3" }),
+    ];
     const input = buildInput({ type: "uint256[]" });
     const { result } = renderHook(() =>
       useArgs([input] as AbiParameterWithComponents[])

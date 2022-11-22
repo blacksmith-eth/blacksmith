@@ -4,6 +4,7 @@ export type Arg = {
   name: string;
   type: string;
   value: Arg[] | string;
+  childArg: Arg | undefined;
 };
 
 export type AbiDefinedFunction = {

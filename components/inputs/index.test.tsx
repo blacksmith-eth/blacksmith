@@ -62,7 +62,7 @@ describe("Inputs", () => {
     const value = "a";
     const component1 = buildArg({ name: "foo" });
     const component2 = buildArg({ name: "bar" });
-    const arg = buildArg({ value: [component1, component2] });
+    const arg = buildArg({ value: [component1, component2], type: "tuple" });
     const updateValue = jest.fn();
 
     const { user } = renderInputs({ args: [arg], updateValue });
