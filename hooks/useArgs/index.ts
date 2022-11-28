@@ -1,5 +1,6 @@
 import { AbiParameterWithComponents, Arg } from "core/types";
 import { BigNumber } from "ethers";
+import { times } from "lodash";
 import { useCallback, useState } from "react";
 
 const tryBigNumberConversion = (value: string): BigNumber | string => {
@@ -36,9 +37,30 @@ const formatArgsByType = (arg: Arg): any => {
   return arg.value;
 };
 
+const extractType = (
+  type: string
+): { baseType: string; arrayType: number | "none" | "infinite" } => {
+  const arrayType = type.match(/\[([0-9]*)\]$/);
+  if (arrayType) {
+    const baseType = type.slice(0, arrayType.index);
+    return {
+      baseType,
+      arrayType: arrayType[1] === "" ? "infinite" : parseInt(arrayType[1]),
+    };
+  }
+  return {
+    baseType: type,
+    arrayType: "none",
+  };
+};
+
 const buildValues = (input: AbiParameterWithComponents): Arg[] | string => {
-  if (input.type.slice(-2) === "[]") {
+  const { baseType, arrayType } = extractType(input.type);
+  if (arrayType === "infinite") {
     return [];
+  }
+  if (typeof arrayType === "number") {
+    return times(arrayType, () => buildArg({ name: baseType, type: baseType }));
   }
   if (input.components) {
     return input.components.map(buildArg);
@@ -47,20 +69,28 @@ const buildValues = (input: AbiParameterWithComponents): Arg[] | string => {
 };
 
 const buildChildArg = (input: AbiParameterWithComponents): Arg | undefined => {
-  if (input.type.slice(-2) === "[]") {
-    const slicedType = input.type.slice(0, -2);
+  const { baseType, arrayType } = extractType(input.type);
+  if (typeof arrayType === "number") {
+    return undefined;
+  }
+  if (arrayType === "infinite") {
     return input.components
       ? buildArg({
-          name: slicedType,
-          type: slicedType,
+          name: baseType,
+          type: baseType,
           components: input.components,
         })
       : buildArg({
-          type: slicedType,
-          name: slicedType,
+          type: baseType,
+          name: baseType,
         });
   }
   return undefined;
+};
+
+const buildIsInfinite = (input: AbiParameterWithComponents): boolean => {
+  const { arrayType } = extractType(input.type);
+  return arrayType === "infinite";
 };
 
 const buildArg = (input: AbiParameterWithComponents): Arg => ({
@@ -68,6 +98,7 @@ const buildArg = (input: AbiParameterWithComponents): Arg => ({
   type: input.type,
   value: buildValues(input),
   childArg: buildChildArg(input),
+  isInfinite: buildIsInfinite(input),
 });
 
 export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {

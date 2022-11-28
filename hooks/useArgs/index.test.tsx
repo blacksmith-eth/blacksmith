@@ -25,8 +25,8 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs(inputs));
 
     expect(result.current.args).toEqual([
-      { name: inputs[0].name, type: inputs[0].type, value: "" },
-      { name: inputs[1].name, type: inputs[1].type, value: "" },
+      buildArg({ name: inputs[0].name, type: inputs[0].type, value: "" }),
+      buildArg({ name: inputs[1].name, type: inputs[1].type, value: "" }),
     ]);
   });
 
@@ -37,22 +37,22 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs([input]));
 
     expect(result.current.args).toEqual([
-      {
+      buildArg({
         name: input.name,
         type: input.type,
         value: [
-          {
+          buildArg({
             name: input.components![0].name,
             type: input.components![0].type,
             value: "",
-          },
-          {
+          }),
+          buildArg({
             name: input.components![1].name,
             type: input.components![1].type,
             value: "",
-          },
+          }),
         ],
-      },
+      }),
     ]);
   });
 
@@ -63,17 +63,17 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs([input]));
 
     expect(result.current.args).toEqual([
-      {
+      buildArg({
         name: input.name,
         type: input.type,
         value: [],
-        childArg: {
+        isInfinite: true,
+        childArg: buildArg({
           name: input.type.slice(0, -2),
           type: input.type.slice(0, -2),
           value: "",
-          childArg: undefined,
-        },
-      },
+        }),
+      }),
     ]);
   });
 
@@ -86,30 +86,138 @@ describe("useArgs", () => {
     const { result } = renderHook(() => useArgs([input]));
 
     expect(result.current.args).toEqual([
+      buildArg({
+        name: input.name,
+        type: input.type,
+        value: [],
+        isInfinite: true,
+        childArg: buildArg({
+          name: input.type.slice(0, -2),
+          type: input.type.slice(0, -2),
+          value: [
+            buildArg({
+              name: input.components![0].name,
+              type: input.components![0].type,
+              value: "",
+            }),
+            buildArg({
+              name: input.components![1].name,
+              type: input.components![1].type,
+              value: "",
+            }),
+          ],
+        }),
+      }),
+    ]);
+  });
+
+  it("should initialize inputs for fixed size array types", () => {
+    const input = buildInput({
+      type: "uint256[2]",
+    }) as AbiParameterWithComponents;
+    const { result } = renderHook(() => useArgs([input]));
+
+    const childValue = buildArg({
+      name: input.type.slice(0, -3),
+      type: input.type.slice(0, -3),
+      value: "",
+    });
+
+    expect(result.current.args).toEqual([
+      buildArg({
+        name: input.name,
+        type: input.type,
+        value: [childValue, childValue],
+      }),
+    ]);
+  });
+
+  it("should initialize inputs for multidimensional fixed size array types", () => {
+    const input = buildInput({
+      type: "uint256[1][2]",
+    }) as AbiParameterWithComponents;
+
+    const { result } = renderHook(() => useArgs([input]));
+
+    const firstDimensionType = input.type.slice(0, -3);
+    const secondDimensionType = firstDimensionType.slice(0, -3);
+    const childValue = buildArg({
+      name: firstDimensionType,
+      type: firstDimensionType,
+      value: [
+        buildArg({
+          name: secondDimensionType,
+          type: secondDimensionType,
+          value: "",
+        }),
+      ],
+    });
+
+    expect(result.current.args).toEqual([
+      buildArg({
+        name: input.name,
+        type: input.type,
+        value: [childValue, childValue],
+      }),
+    ]);
+  });
+
+  it("should initialize inputs for multidimensional fixed and dynamic size array types", () => {
+    const input = buildInput({
+      type: "uint256[2][]",
+    }) as AbiParameterWithComponents;
+
+    const { result } = renderHook(() => useArgs([input]));
+
+    const firstDimensionType = input.type.slice(0, -2);
+    const secondDimensionType = firstDimensionType.slice(0, -3);
+    const childValue = buildArg({
+      name: secondDimensionType,
+      type: secondDimensionType,
+      value: "",
+    });
+    expect(result.current.args).toEqual([
       {
         name: input.name,
         type: input.type,
         value: [],
-        childArg: {
-          name: input.type.slice(0, -2),
-          type: input.type.slice(0, -2),
-          value: [
-            {
-              name: input.components![0].name,
-              type: input.components![0].type,
-              value: "",
-              childArg: undefined,
-            },
-            {
-              name: input.components![1].name,
-              type: input.components![1].type,
-              value: "",
-              childArg: undefined,
-            },
-          ],
-          childArg: undefined,
-        },
+        isInfinite: true,
+        childArg: buildArg({
+          name: firstDimensionType,
+          type: firstDimensionType,
+          value: [childValue, childValue],
+        }),
       },
+    ]);
+  });
+
+  it("should initialize inputs for multidimensional dynamic and fixed size array types", () => {
+    const input = buildInput({
+      type: "uint256[][2]",
+    }) as AbiParameterWithComponents;
+    const { result } = renderHook(() => useArgs([input]));
+
+    const firstDimensionType = input.type.slice(0, -3);
+    const secondDimensionType = firstDimensionType.slice(0, -2);
+    const childValue = buildArg({
+      name: firstDimensionType,
+      type: firstDimensionType,
+      value: [],
+      isInfinite: true,
+      childArg: buildArg({
+        name: secondDimensionType,
+        type: secondDimensionType,
+        value: "",
+        childArg: undefined,
+      }),
+    });
+
+    expect(result.current.args).toEqual([
+      buildArg({
+        name: input.name,
+        type: input.type,
+        value: [childValue, childValue],
+      }),
     ]);
   });
 
@@ -125,8 +233,8 @@ describe("useArgs", () => {
     });
 
     expect(result.current.args).toEqual([
-      { name: input1.name, type: input1.type, value: "" },
-      { name: input2.name, type: input2.type, value },
+      buildArg({ name: input1.name, type: input1.type, value: "" }),
+      buildArg({ name: input2.name, type: input2.type, value: "foo" }),
     ]);
   });
 
@@ -143,22 +251,22 @@ describe("useArgs", () => {
     });
 
     expect(result.current.args).toEqual([
-      {
+      buildArg({
         name: input.name,
         type: input.type,
         value: [
-          {
+          buildArg({
             name: input.components![0].name,
             type: input.components![0].type,
             value: "",
-          },
-          {
+          }),
+          buildArg({
             name: input.components![1].name,
             type: input.components![1].type,
             value,
-          },
+          }),
         ],
-      },
+      }),
     ]);
   });
 

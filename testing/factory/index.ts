@@ -42,6 +42,10 @@ export const buildArg = (overrides: Partial<Arg> = {}): Arg => ({
     : faker.helpers.unique(faker.word.noun),
   type: overrides.type || faker.helpers.arrayElement(["string", "address"]),
   value: overrides.hasOwnProperty("value") ? overrides.value! : "",
+  isInfinite: overrides.isInfinite || false,
+  childArg: overrides.hasOwnProperty("childArg")
+    ? overrides.childArg
+    : undefined,
 });
 
 export const buildArgList = (n: number): Arg[] => times(n, () => buildArg());

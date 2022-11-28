@@ -24,7 +24,7 @@ const Inputs = ({
     <ul className="flex flex-1 flex-col gap-2">
       {args.map((arg, index) => {
         const id = `${name}-${arg.name}-${index}`;
-        if (arg.type.slice(-2) === "[]") {
+        if (arg.isInfinite) {
           return (
             <fieldset key={id} className="border border-black p-2 -mt-2">
               <legend className="text-sm">{arg.name}</legend>
@@ -34,7 +34,7 @@ const Inputs = ({
                   args={arg.value as Arg[]}
                   updateValue={updateValue}
                   keys={[...keys, index]}
-                  child={true}
+                  child={!!arg.childArg}
                 />
                 <div className="flex gap-1">
                   <Button
@@ -60,7 +60,7 @@ const Inputs = ({
             </fieldset>
           );
         }
-        if (Array.isArray(arg.value) && arg.type === "tuple") {
+        if (Array.isArray(arg.value)) {
           return (
             <div key={id} className="flex gap-1">
               {!preview && child ? (

@@ -5,6 +5,7 @@ export type Arg = {
   type: string;
   value: Arg[] | string;
   childArg: Arg | undefined;
+  isInfinite: boolean;
 };
 
 export type AbiDefinedFunction = {
