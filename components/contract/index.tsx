@@ -16,16 +16,11 @@ const Contract = ({ address }: { address: Address }) => {
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error</div>;
-  if (!contracts || contracts.length === 0)
-    return (
-      <>
-        <div>No contracts</div>
-        <Setup />
-        <Manager />
-      </>
-    );
-
-  if (address === ethers.constants.AddressZero)
+  if (
+    !contracts ||
+    contracts.length === 0 ||
+    address === ethers.constants.AddressZero
+  )
     return (
       <>
         <Setup />
