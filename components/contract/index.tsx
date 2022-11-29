@@ -54,7 +54,7 @@ const Contract = ({ address }: { address: Address }) => {
       <h3 className="font-bold text-2xl">{contract.name}</h3>
       <h4 className="inline">{contract.address}</h4>
       <button
-        className="inline mx-1 text-black focus:outline-none"
+        className="inline mx-1 text-black dark:text-white focus:outline-none"
         onClick={handleCopyAddress}
       >
         <Square2StackIcon className="h-4 w-4" />
