@@ -20,7 +20,7 @@ const Pure = ({ address, func }: PureProps) => {
   const { args, formattedArgs, updateValue } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
-  const { data, isLoading, isError, refetch } = useContractRead({
+  const { data, isLoading, isError, error, refetch } = useContractRead({
     address,
     abi: [func],
     functionName: func.name,
@@ -34,7 +34,12 @@ const Pure = ({ address, func }: PureProps) => {
       <Inputs name={func.name} args={args} updateValue={updateValue} />
       <Container>
         <Button onClick={() => refetch()}>read</Button>
-        <Output data={data} isLoading={isLoading} isError={isError} />
+        <Output
+          data={data}
+          isLoading={isLoading}
+          isError={isError}
+          error={error}
+        />
       </Container>
     </li>
   );

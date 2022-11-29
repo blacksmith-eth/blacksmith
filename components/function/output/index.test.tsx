@@ -10,6 +10,7 @@ const renderOutput = (props: Partial<ComponentProps<typeof Output>> = {}) =>
       data={props.data || undefined}
       isLoading={props.isLoading || false}
       isError={props.isError || false}
+      error={props.error || null}
     />
   );
 
@@ -58,6 +59,12 @@ describe("Output", () => {
   it("should render error", () => {
     renderOutput({ isError: true });
 
-    expect(screen.getByText("error")).toBeInTheDocument();
+    expect(screen.getByText("Error")).toBeInTheDocument();
+  });
+
+  it("should render error message", () => {
+    renderOutput({ isError: true, error: new Error("foo") });
+
+    expect(screen.getByText("Error: foo")).toBeInTheDocument();
   });
 });

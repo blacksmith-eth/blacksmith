@@ -105,7 +105,7 @@ describe("Pure", () => {
 
     renderPure();
 
-    expect(screen.getByText("error")).toBeInTheDocument();
+    expect(screen.getByText("Error")).toBeInTheDocument();
   });
 
   it("should call contract read with provided arguments", async () => {
