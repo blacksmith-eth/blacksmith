@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     setActiveContract(ethers.constants.AddressZero);
 
   return (
-    <section className="text-black min-h-screen max-h-screen flex flex-col overflow-hidden">
+    <section className="text-black min-h-screen max-h-screen flex flex-col overflow-hidden selection:bg-black">
       <Head>
         <title>Blacksmith</title>
         <link rel="icon" href="/favicon.ico" />
