@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { AbiParameterWithComponents } from "core/types";
 import { BigNumber } from "ethers";
 import { times } from "lodash";
-import { act, renderHook } from "testing";
+import { act, renderHook, waitFor } from "testing";
 import {
   buildAddress,
   buildArg,
@@ -13,6 +13,14 @@ import {
 import { useArgs } from ".";
 
 describe("useArgs", () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   it("should return args", () => {
     const inputs = buildInputList(0) as AbiParameterWithComponents[];
     const { result } = renderHook(() => useArgs(inputs));
@@ -270,7 +278,7 @@ describe("useArgs", () => {
     ]);
   });
 
-  it("should return formatted big number args", () => {
+  it("should return formatted big number args", async () => {
     const value = "1";
     const input = buildInput({ type: "uint256" });
     const { result } = renderHook(() =>
@@ -281,10 +289,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
+    });
   });
 
-  it("should return provided value when big number conversion throws", () => {
+  it("should return provided value when big number conversion throws", async () => {
     const value = faker.random.word();
     const input = buildInput({ type: "uint256" });
     const { result } = renderHook(() =>
@@ -295,10 +305,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    expect(result.current.formattedArgs).toEqual([value]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([value]);
+    });
   });
 
-  it("should return formatted args for false boolean", () => {
+  it("should return formatted args for false boolean", async () => {
     const value = "false";
     const input = buildInput({ type: "bool" });
     const { result } = renderHook(() =>
@@ -309,10 +321,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    expect(result.current.formattedArgs).toEqual([false]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([false]);
+    });
   });
 
-  it("should return formatted args for true boolean", () => {
+  it("should return formatted args for true boolean", async () => {
     const value = "true";
     const input = buildInput({ type: "bool" });
     const { result } = renderHook(() =>
@@ -323,10 +337,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    expect(result.current.formattedArgs).toEqual([true]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([true]);
+    });
   });
 
-  it("should return formatted args for string array", () => {
+  it("should return formatted args for string array", async () => {
     const strings = ["foo", "bar", "baz"];
     const input = buildInput({ type: "string[]" });
     const values = [
@@ -342,10 +358,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    expect(result.current.formattedArgs).toEqual([strings]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([strings]);
+    });
   });
 
-  it("should return formatted args for address array", () => {
+  it("should return formatted args for address array", async () => {
     const addresses = times(3, () => buildAddress());
     const values = [
       buildArg({ type: "address", value: addresses[0] }),
@@ -361,10 +379,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    expect(result.current.formattedArgs).toEqual([addresses]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([addresses]);
+    });
   });
 
-  it("should return formatted args for uint256[]", () => {
+  it("should return formatted args for uint256[]", async () => {
     const values = [
       buildArg({ name: "uint256", type: "uint256", value: "1" }),
       buildArg({ name: "uint256", type: "uint256", value: "2" }),
@@ -379,12 +399,14 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    expect(result.current.formattedArgs).toEqual([
-      [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
-    ]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([
+        [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
+      ]);
+    });
   });
 
-  it("should return formatted args for tuple", () => {
+  it("should return formatted args for tuple", async () => {
     const value = "foo";
     const components = buildInputList(2) as AbiParameterWithComponents[];
     const input = buildInputWithComponents({ type: "tuple", components });
@@ -394,12 +416,14 @@ describe("useArgs", () => {
       result.current.updateValue([0, 1], value);
     });
 
-    expect(result.current.formattedArgs).toEqual([
-      {
-        [input.components![0].name]: "",
-        [input.components![1].name]: value,
-      },
-    ]);
+    await waitFor(() => {
+      expect(result.current.formattedArgs).toEqual([
+        {
+          [input.components![0].name]: "",
+          [input.components![1].name]: value,
+        },
+      ]);
+    });
   });
 
   it("should return fallback input name of input type ", () => {

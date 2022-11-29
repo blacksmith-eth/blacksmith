@@ -1,5 +1,6 @@
 import { AbiParameterWithComponents, Arg } from "core/types";
 import { BigNumber } from "ethers";
+import { useDebounce } from "hooks";
 import { times } from "lodash";
 import { useCallback, useState } from "react";
 
@@ -104,6 +105,7 @@ const buildArg = (input: AbiParameterWithComponents): Arg => ({
 export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
   const initialArgs = inputs.map(buildArg);
   const [args, setArgs] = useState<readonly Arg[]>(initialArgs);
+  const debouncedArgs = useDebounce(args, 500);
 
   const updater = useCallback(
     (arg: Arg, value: string | Arg[], keys: number[]): Arg => {
@@ -135,7 +137,7 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
     [args, updater]
   );
 
-  const formattedArgs = args.map(formatArgsByType);
+  const formattedArgs = debouncedArgs.map(formatArgsByType);
 
   return { args, formattedArgs, updateValue };
 };
