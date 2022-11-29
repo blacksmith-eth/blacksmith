@@ -62,8 +62,14 @@ describe("Output", () => {
     expect(screen.getByText("Error")).toBeInTheDocument();
   });
 
+  it("should render error without reason", () => {
+    renderOutput({ isError: true, error: {} });
+
+    expect(screen.getByText("Error")).toBeInTheDocument();
+  });
+
   it("should render error message", () => {
-    renderOutput({ isError: true, error: new Error("foo") });
+    renderOutput({ isError: true, error: { reason: "foo" } });
 
     expect(screen.getByText("Error: foo")).toBeInTheDocument();
   });

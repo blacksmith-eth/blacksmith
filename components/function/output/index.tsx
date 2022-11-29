@@ -4,7 +4,7 @@ type OutputProps = {
   data: Result | undefined;
   isLoading: boolean;
   isError: boolean;
-  error: Error | null;
+  error: any | null;
 };
 
 const formatData = (data: Result | undefined): string => {
@@ -16,7 +16,10 @@ const formatData = (data: Result | undefined): string => {
 
 const Output = ({ data, isLoading, isError, error }: OutputProps) => {
   if (isLoading) return <span>loading...</span>;
-  if (isError) return <span>{error ? error.toString() : "Error"}</span>;
+  if (isError)
+    return (
+      <span>{error && error.reason ? `Error: ${error.reason}` : "Error"}</span>
+    );
   return <span>{formatData(data)}</span>;
 };
 
