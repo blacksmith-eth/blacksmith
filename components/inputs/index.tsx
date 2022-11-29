@@ -26,7 +26,10 @@ const Inputs = ({
         const id = `${name}-${arg.name}-${index}`;
         if (arg.isInfinite) {
           return (
-            <fieldset key={id} className="border border-black p-2 -mt-2">
+            <fieldset
+              key={id}
+              className="border border-black dark:border-white p-2 -mt-2"
+            >
               <legend className="text-sm">{arg.name}</legend>
               <div className="flex flex-col gap-2">
                 <Inputs
@@ -77,7 +80,7 @@ const Inputs = ({
               ) : (
                 <></>
               )}
-              <fieldset className="flex-1 border border-black p-2 -mt-2">
+              <fieldset className="flex-1 border border-black dark:border-white p-2 -mt-2">
                 <legend className="text-sm">{arg.name}</legend>
                 <Inputs
                   name={arg.name}

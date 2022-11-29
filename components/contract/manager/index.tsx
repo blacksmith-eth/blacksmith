@@ -82,14 +82,14 @@ const Manager = () => {
         <div className="flex flex-row gap-2">
           <button
             onClick={handleImport}
-            className="self-start flex items-center gap-1 border border-black px-1.5 py-0.5 rounded"
+            className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
           >
             <span className="text-sm">import</span>
             <PlusSmallIcon className="w-4 h-4" />
           </button>
           <button
             onClick={handleRemove}
-            className="self-start flex items-center gap-1 border border-black px-1.5 py-0.5 rounded"
+            className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
           >
             <span className="text-sm">remove</span>
             <ArchiveBoxXMarkIcon className="h-4 w-4" />
@@ -98,7 +98,7 @@ const Manager = () => {
         <h4 className="font-bold">Danger Zone</h4>
         <button
           onClick={handleRemoveAll}
-          className="self-start flex items-center gap-1 border border-black px-1.5 py-0.5 rounded"
+          className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
         >
           <span className="text-sm">remove all</span>
           <ArchiveBoxXMarkIcon className="h-4 w-4" />

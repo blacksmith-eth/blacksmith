@@ -34,7 +34,9 @@ const Contract = ({ address }: { address: Address }) => {
       <>
         <div>
           Selected contract{" "}
-          <span className="font-mono bg-slate-100 px-1 rounded">{address}</span>{" "}
+          <span className="font-mono bg-slate-100 dark:bg-black px-1 rounded">
+            {address}
+          </span>{" "}
           not found.
         </div>
         <Setup />

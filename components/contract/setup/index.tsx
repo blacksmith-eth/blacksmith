@@ -128,7 +128,7 @@ const Setup = () => {
             onFocus={() => setFocusedInput("verifierUrl")}
           />
         </form>
-        <div className="flex items-start justify-between overflow-x-scroll font-mono text-sm p-4 bg-slate-100 rounded border border-slate-200">
+        <div className="flex items-start justify-between overflow-x-scroll font-mono text-sm p-4 text-black dark:text-black bg-slate-100 dark:bg-slate-100 rounded border border-slate-200 dark:border-slate-200">
           <div>
             <div>
               {`forge create `}
@@ -181,7 +181,7 @@ const Setup = () => {
             <div>{`--etherscan-api-key blacksmith`}</div>
           </div>
           <button
-            className="text-black focus:outline-none border border-black rounded p-2"
+            className="text-black dark:text-white focus:outline-none border border-black dark:border-white rounded p-2"
             onClick={handleCopyCommand}
           >
             <span className="sr-only">Copy</span>

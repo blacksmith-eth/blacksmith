@@ -35,7 +35,7 @@ const Connect = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className="border border-black px-2 py-0.5"
+                    className="border border-black dark:border-white px-2 py-0.5"
                   >
                     connect wallet
                   </button>
@@ -46,25 +46,25 @@ const Connect = () => {
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="border border-black px-2 py-0.5"
+                    className="border border-black dark:border-white px-2 py-0.5"
                   >
                     wrong network
                   </button>
                 );
               }
               return (
-                <div className="flex rounded border border-black divide-x divide-black divide-solid">
+                <div className="flex rounded border border-black dark:border-white divide-x divide-black dark:divide-white divide-solid">
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="bg-black text-white rounded-l-sm px-2 py-0.5"
+                    className="bg-black dark:bg-white text-white dark:text-black rounded-l-sm px-2 py-0.5"
                   >
                     {chain.name === "Chain 31337" ? "Localhost" : chain.name}
                   </button>
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="px-2 py-0.5 text-black"
+                    className="px-2 py-0.5 text-black dark:text-white"
                   >
                     {account.displayName}
                   </button>
