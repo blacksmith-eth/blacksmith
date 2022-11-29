@@ -2,7 +2,6 @@ import { WalletIcon } from "@heroicons/react/24/outline";
 import Connect from "components/connect";
 import Contract from "components/contract";
 import Contracts from "components/contracts";
-import Drawer from "components/drawer";
 import Wallet from "components/wallet";
 import { Address } from "core/types";
 import { ethers } from "ethers";
@@ -16,10 +15,7 @@ const Home: NextPage = () => {
     ethers.constants.AddressZero
   );
   const { state: isWalletOpen, toggle: toggleWallet } = useToggle(false);
-  const { state: isDrawerOpen, toggle: toggleDrawer } = useToggle(false);
-
   const walletButtonText = isWalletOpen ? "close wallet" : "open wallet";
-  const drawerButtonText = isDrawerOpen ? "close drawer" : "open drawer";
 
   const resetActiveContract = () =>
     setActiveContract(ethers.constants.AddressZero);
@@ -54,10 +50,6 @@ const Home: NextPage = () => {
           <section className="bg-white p-2 flex-grow overflow-y-auto md:overscroll-none">
             <h2 className="font-bold">Contract</h2>
             <Contract address={activeContract} />
-          </section>
-          <section className="z-20 bg-white border-t border-black sticky bottom-0 p-2">
-            <button onClick={toggleDrawer}>{drawerButtonText}</button>
-            <Drawer open={isDrawerOpen} />
           </section>
         </section>
         <Wallet open={isWalletOpen} />
