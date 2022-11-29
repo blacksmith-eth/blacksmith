@@ -12,7 +12,7 @@ const Balance = ({ address }: BalanceProps) => {
   });
 
   if (isLoading) return <div>loading...</div>;
-  if (isError) return <div>error</div>;
+  if (isError) return <div>Error retrieving balance</div>;
   return (
     <div>
       {data?.formatted} {data?.symbol}

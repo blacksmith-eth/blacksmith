@@ -36,7 +36,7 @@ describe("Balance", () => {
 
     renderBalance();
 
-    expect(screen.getByText("error")).toBeInTheDocument();
+    expect(screen.getByText("Error retrieving balance")).toBeInTheDocument();
   });
 
   it("should render the formatted balance and symbol", () => {
