@@ -11,6 +11,13 @@ const filterDefinedFunctions = (abi: Abi): AbiDefinedFunction[] => {
   return abi.filter(({ type }) => type === "function") as AbiDefinedFunction[];
 };
 
+const Introduction = () => (
+  <div className="flex flex-col gap-4">
+    <Setup />
+    <Manager />
+  </div>
+);
+
 const Contract = ({ address }: { address: Address }) => {
   const { contracts, isLoading, isError } = useContracts();
 
@@ -21,12 +28,7 @@ const Contract = ({ address }: { address: Address }) => {
     contracts.length === 0 ||
     address === ethers.constants.AddressZero
   )
-    return (
-      <>
-        <Setup />
-        <Manager />
-      </>
-    );
+    return <Introduction />;
 
   const contract = contracts.find((contract) => contract.address === address);
   if (!contract)
@@ -39,8 +41,7 @@ const Contract = ({ address }: { address: Address }) => {
           </span>{" "}
           not found.
         </div>
-        <Setup />
-        <Manager />
+        <Introduction />
       </>
     );
 
