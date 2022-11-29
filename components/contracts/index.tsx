@@ -13,7 +13,7 @@ const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
   if (isError) return <div>error</div>;
   if (!contracts || contracts.length === 0) return <div>No contracts</div>;
   return (
-    <ul>
+    <ul className="flex-grow">
       {contracts.map((contract: ContractDetails) => (
         <li key={contract.address}>
           <button

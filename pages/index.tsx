@@ -39,12 +39,34 @@ const Home: NextPage = () => {
         </section>
       </header>
       <main className="bg-white dark:bg-black flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
-        <aside className="bg-white dark:bg-black border-b border-black dark:border-white md:border-b-0 md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none min-w-fit">
+        <aside className="flex flex-col bg-white dark:bg-black border-b border-black dark:border-white md:border-b-0 md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none min-w-fit">
           <h2 className="font-bold">Contracts</h2>
           <Contracts
             activeContract={activeContract}
             setActiveContract={setActiveContract}
           />
+          <section className="text-sm">
+            <span>
+              Created by{" "}
+              <a className="underline" href="https://twitter.com/0xholypanda">
+                0xholypanda
+              </a>
+            </span>
+            <span> | </span>
+            <a
+              className="underline"
+              href="https://github.com/blacksmith-eth/blacksmith"
+            >
+              star on github
+            </a>
+            <span> | </span>
+            <a
+              className="underline"
+              href="https://github.com/blacksmith-eth/blacksmith/issues/new"
+            >
+              report an issue
+            </a>
+          </section>
         </aside>
         <section className="flex flex-col flex-grow">
           <section className="bg-white dark:bg-black p-2 flex-grow overflow-y-auto md:overscroll-none">
