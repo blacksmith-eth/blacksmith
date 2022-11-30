@@ -16,7 +16,10 @@ type ExternalLinkProps = DetailedHTMLProps<
 >;
 
 const ExternalLink = (props: ExternalLinkProps) => (
-  <a {...props} className="underline">
+  <a
+    {...props}
+    className="underline focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
+  >
     {props.children}
   </a>
 );
