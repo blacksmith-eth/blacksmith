@@ -3,8 +3,22 @@ import {
   PlusSmallIcon,
 } from "@heroicons/react/24/outline";
 import Field from "components/field";
-import { useState } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from "react";
 import { useSWRConfig } from "swr";
+
+type IconButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
+
+const IconButton = (props: IconButtonProps) => (
+  <button
+    {...props}
+    className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
+  >
+    {props.children}
+  </button>
+);
 
 const Manager = () => {
   const [address, setAddress] = useState("");
@@ -80,29 +94,20 @@ const Manager = () => {
           handleChange={handleEtherscanApiKeyChange}
         />
         <div className="flex flex-row gap-2">
-          <button
-            onClick={handleImport}
-            className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
-          >
+          <IconButton onClick={handleImport}>
             <span className="text-sm">import</span>
             <PlusSmallIcon className="w-4 h-4" />
-          </button>
-          <button
-            onClick={handleRemove}
-            className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
-          >
+          </IconButton>
+          <IconButton onClick={handleRemove}>
             <span className="text-sm">remove</span>
             <ArchiveBoxXMarkIcon className="h-4 w-4" />
-          </button>
+          </IconButton>
         </div>
         <h4 className="font-bold">Danger Zone</h4>
-        <button
-          onClick={handleRemoveAll}
-          className="self-start flex items-center gap-1 border border-black dark:border-white px-1.5 py-0.5 rounded"
-        >
+        <IconButton onClick={handleRemoveAll}>
           <span className="text-sm">remove all</span>
           <ArchiveBoxXMarkIcon className="h-4 w-4" />
-        </button>
+        </IconButton>
       </div>
     </div>
   );
