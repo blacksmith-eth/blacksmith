@@ -9,9 +9,10 @@ type ContractsProps = {
 const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
   const { contracts, isLoading, isError } = useContracts();
 
-  if (isLoading) return <div>loading...</div>;
-  if (isError) return <div>error</div>;
-  if (!contracts || contracts.length === 0) return <div>No contracts</div>;
+  if (isLoading) return <div className="flex-grow">loading...</div>;
+  if (isError) return <div className="flex-grow">error</div>;
+  if (!contracts || contracts.length === 0)
+    return <div className="flex-grow">No contracts</div>;
   return (
     <ul className="flex-grow">
       {contracts.map((contract: ContractDetails) => (
