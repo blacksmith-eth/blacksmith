@@ -2,6 +2,7 @@ import {
   ArchiveBoxXMarkIcon,
   PlusSmallIcon,
 } from "@heroicons/react/24/outline";
+import Anchor from "components/anchor";
 import Field from "components/field";
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from "react";
 import { useSWRConfig } from "swr";
@@ -70,12 +71,9 @@ const Manager = () => {
           <p>
             You can interact with imported contracts by starting an instance of
             Anvil that{" "}
-            <a
-              href="https://book.getfoundry.sh/tutorials/forking-mainnet-with-cast-anvil"
-              className="underline"
-            >
+            <Anchor href="https://book.getfoundry.sh/tutorials/forking-mainnet-with-cast-anvil">
               forks mainnet
-            </a>
+            </Anchor>
             .
           </p>
         </div>

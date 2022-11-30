@@ -1,4 +1,5 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
+import Anchor from "components/anchor";
 import Field from "components/field";
 import { useState } from "react";
 
@@ -57,22 +58,16 @@ const Setup = () => {
           <p>
             To get started, you will need to deploy a contract to a local
             testnet node like{" "}
-            <a
-              href="https://github.com/foundry-rs/foundry/tree/master/anvil"
-              className="underline"
-            >
+            <Anchor href="https://github.com/foundry-rs/foundry/tree/master/anvil">
               Anvil
-            </a>
+            </Anchor>
             .
           </p>
           <p>
             You can use the form below to generate the necessary{" "}
-            <a
-              href="https://github.com/foundry-rs/foundry/tree/master/forge"
-              className="underline"
-            >
+            <Anchor href="https://github.com/foundry-rs/foundry/tree/master/forge">
               Forge
-            </a>{" "}
+            </Anchor>{" "}
             command to deploy your contract to the local testnet and see it
             appear in Blacksmith.
           </p>
