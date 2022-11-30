@@ -5,6 +5,7 @@ import {
   RainbowKitProvider,
   connectorsForWallets,
 } from "@rainbow-me/rainbowkit";
+import { ThemeProvider } from "next-themes";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "packages/wallets";
@@ -30,17 +31,19 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        appInfo={{
-          appName: "Blacksmith",
-          learnMoreUrl: "https://github.com/blacksmith-eth/blacksmith",
-        }}
-        chains={chains}
-      >
-        <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ThemeProvider attribute="class" disableTransitionOnChange={true}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider
+          appInfo={{
+            appName: "Blacksmith",
+            learnMoreUrl: "https://github.com/blacksmith-eth/blacksmith",
+          }}
+          chains={chains}
+        >
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ThemeProvider>
   );
 }
 

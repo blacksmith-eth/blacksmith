@@ -3,6 +3,7 @@ import Anchor from "components/anchor";
 import Connect from "components/connect";
 import Contract from "components/contract";
 import Contracts from "components/contracts";
+import Switch from "components/switch";
 import Wallet from "components/wallet";
 import { Address } from "core/types";
 import { ethers } from "ethers";
@@ -54,21 +55,24 @@ const Home: NextPage = () => {
             activeContract={activeContract}
             setActiveContract={setActiveContract}
           />
-          <section className="text-sm">
-            <span>
-              Created by{" "}
-              <Anchor href="https://twitter.com/0xholypanda">
-                0xholypanda
+          <section className="flex flex-col">
+            <Switch />
+            <div className="text-sm px-1.5">
+              <span>
+                Created by{" "}
+                <Anchor href="https://twitter.com/0xholypanda">
+                  0xholypanda
+                </Anchor>
+              </span>
+              <span> | </span>
+              <Anchor href="https://github.com/blacksmith-eth/blacksmith">
+                star on github
               </Anchor>
-            </span>
-            <span> | </span>
-            <Anchor href="https://github.com/blacksmith-eth/blacksmith">
-              star on github
-            </Anchor>
-            <span> | </span>
-            <Anchor href="https://github.com/blacksmith-eth/blacksmith/issues/new">
-              report an issue
-            </Anchor>
+              <span> | </span>
+              <Anchor href="https://github.com/blacksmith-eth/blacksmith/issues/new">
+                report an issue
+              </Anchor>
+            </div>
           </section>
         </aside>
         <section className="flex flex-col flex-grow">
