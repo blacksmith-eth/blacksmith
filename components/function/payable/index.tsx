@@ -53,7 +53,7 @@ const Payable = ({ address, func }: PayableProps) => {
           <Listbox value={unit} onChange={setUnit}>
             <Listbox.Label className="sr-only">unit</Listbox.Label>
             <div className="relative text-right select-none">
-              <Listbox.Button className="border border-black dark:border-white h-full w-full px-2 text-sm">
+              <Listbox.Button className="border border-black dark:border-white h-full w-full px-2 text-sm hover:bg-black hover:text-white focus:bg-black focus:text-white dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black focus:outline-none">
                 {unit}
               </Listbox.Button>
               <Listbox.Options className="bg-white dark:bg-black border border-black dark:border-white absolute mt-1 right-0 focus:outline-none">
