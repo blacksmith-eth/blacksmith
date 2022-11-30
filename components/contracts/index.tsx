@@ -18,7 +18,7 @@ const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
         <li key={contract.address}>
           <button
             onClick={() => setActiveContract(contract.address)}
-            className={`${
+            className={`focus:underline focus:outline-none ${
               contract.address === activeContract ? "font-semibold" : ""
             }`}
           >
