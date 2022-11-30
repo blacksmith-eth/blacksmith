@@ -1,4 +1,5 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
+import Anchor from "components/anchor";
 import Connect from "components/connect";
 import Contract from "components/contract";
 import Contracts from "components/contracts";
@@ -8,21 +9,7 @@ import { ethers } from "ethers";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { AnchorHTMLAttributes, DetailedHTMLProps, useState } from "react";
-
-type ExternalLinkProps = DetailedHTMLProps<
-  AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
->;
-
-const ExternalLink = (props: ExternalLinkProps) => (
-  <a
-    {...props}
-    className="underline focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
-  >
-    {props.children}
-  </a>
-);
+import { useState } from "react";
 
 const Home: NextPage = () => {
   const [activeContract, setActiveContract] = useState<Address>(
@@ -62,18 +49,18 @@ const Home: NextPage = () => {
           <section className="text-sm">
             <span>
               Created by{" "}
-              <ExternalLink href="https://twitter.com/0xholypanda">
+              <Anchor href="https://twitter.com/0xholypanda">
                 0xholypanda
-              </ExternalLink>
+              </Anchor>
             </span>
             <span> | </span>
-            <ExternalLink href="https://github.com/blacksmith-eth/blacksmith">
+            <Anchor href="https://github.com/blacksmith-eth/blacksmith">
               star on github
-            </ExternalLink>
+            </Anchor>
             <span> | </span>
-            <ExternalLink href="https://github.com/blacksmith-eth/blacksmith/issues/new">
+            <Anchor href="https://github.com/blacksmith-eth/blacksmith/issues/new">
               report an issue
-            </ExternalLink>
+            </Anchor>
           </section>
         </aside>
         <section className="flex flex-col flex-grow">
