@@ -176,7 +176,7 @@ const Setup = () => {
             <div>{`--etherscan-api-key blacksmith`}</div>
           </div>
           <button
-            className="text-black dark:text-black focus:outline-none border border-black dark:border-black rounded p-2"
+            className="text-black focus:outline-none border border-black rounded p-2 focus:bg-black focus:text-white"
             onClick={handleCopyCommand}
           >
             <span className="sr-only">Copy</span>
