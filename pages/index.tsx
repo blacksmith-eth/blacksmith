@@ -8,7 +8,18 @@ import { ethers } from "ethers";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { AnchorHTMLAttributes, DetailedHTMLProps, useState } from "react";
+
+type ExternalLinkProps = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+>;
+
+const ExternalLink = (props: ExternalLinkProps) => (
+  <a {...props} className="underline">
+    {props.children}
+  </a>
+);
 
 const Home: NextPage = () => {
   const [activeContract, setActiveContract] = useState<Address>(
@@ -48,24 +59,18 @@ const Home: NextPage = () => {
           <section className="text-sm">
             <span>
               Created by{" "}
-              <a className="underline" href="https://twitter.com/0xholypanda">
+              <ExternalLink href="https://twitter.com/0xholypanda">
                 0xholypanda
-              </a>
+              </ExternalLink>
             </span>
             <span> | </span>
-            <a
-              className="underline"
-              href="https://github.com/blacksmith-eth/blacksmith"
-            >
+            <ExternalLink href="https://github.com/blacksmith-eth/blacksmith">
               star on github
-            </a>
+            </ExternalLink>
             <span> | </span>
-            <a
-              className="underline"
-              href="https://github.com/blacksmith-eth/blacksmith/issues/new"
-            >
+            <ExternalLink href="https://github.com/blacksmith-eth/blacksmith/issues/new">
               report an issue
-            </a>
+            </ExternalLink>
           </section>
         </aside>
         <section className="flex flex-col flex-grow">
