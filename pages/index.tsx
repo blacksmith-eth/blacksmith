@@ -38,7 +38,10 @@ const Home: NextPage = () => {
         </h1>
         <section className="flex items-center gap-1">
           <Connect />
-          <button onClick={toggleWallet} className="text-black dark:text-white">
+          <button
+            onClick={toggleWallet}
+            className="p-0.5 text-black dark:text-white rounded-sm focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
+          >
             <WalletIcon className="w-6 h-6" />
             <span className="sr-only">{walletButtonText}</span>
           </button>
