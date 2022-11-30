@@ -29,7 +29,12 @@ const Home: NextPage = () => {
       </Head>
       <header className="bg-white dark:bg-black border-b border-black dark:border-white sticky top-0 p-2 flex items-center justify-between">
         <h1 className="font-bold">
-          <button onClick={resetActiveContract}>Blacksmith</button>
+          <button
+            onClick={resetActiveContract}
+            className="focus:underline focus:outline-none"
+          >
+            Blacksmith
+          </button>
         </h1>
         <section className="flex items-center gap-1">
           <Connect />
