@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import {
   RainbowKitProvider,
   connectorsForWallets,
+  lightTheme,
 } from "@rainbow-me/rainbowkit";
 import { ThemeProvider } from "next-themes";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
@@ -39,6 +40,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             learnMoreUrl: "https://github.com/blacksmith-eth/blacksmith",
           }}
           chains={chains}
+          theme={lightTheme({
+            accentColor: "#262a33",
+            accentColorForeground: "#ebddd1",
+            borderRadius: "small",
+          })}
         >
           <Component {...pageProps} />
         </RainbowKitProvider>
