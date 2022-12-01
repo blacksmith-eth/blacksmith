@@ -10,6 +10,7 @@ import {
 import { useArgs, useEther } from "hooks";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import Container from "../container";
+import Output from "../output";
 import Signature from "../signature";
 
 type PayableProps = {
@@ -32,7 +33,7 @@ const Payable = ({ address, func }: PayableProps) => {
       value: formattedValue,
     },
   });
-  const { write, isLoading } = useContractWrite(config);
+  const { data, write, isLoading, isError, error } = useContractWrite(config);
   const isDisabled = isLoading || !write;
   const handleClick = () => {
     write?.();
@@ -82,6 +83,12 @@ const Payable = ({ address, func }: PayableProps) => {
         <Button type="button" disabled={isDisabled} onClick={handleClick}>
           send
         </Button>
+        <Output
+          data={data ? data.hash : undefined}
+          isLoading={isLoading}
+          isError={isError}
+          error={error}
+        />
       </Container>
     </li>
   );

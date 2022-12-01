@@ -6,6 +6,7 @@ import {
   buildAddress,
   buildInput,
   buildInputList,
+  buildTransactionHash,
 } from "testing/factory";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import Payable from ".";
@@ -157,5 +158,15 @@ describe("Payable", () => {
         },
       });
     });
+  });
+
+  it("should render data hash when defined", () => {
+    const hash = buildTransactionHash();
+
+    useContractWriteMock.mockReturnValue({ data: { hash } });
+
+    renderPayable();
+
+    expect(screen.getByText(hash)).toBeInTheDocument();
   });
 });
