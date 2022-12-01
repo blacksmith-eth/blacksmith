@@ -8,6 +8,7 @@ import {
 import { useArgs } from "hooks";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import Container from "../container";
+import Output from "../output";
 import Signature from "../signature";
 
 type NonpayableProps = {
@@ -25,7 +26,7 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
     functionName: func.name,
     args: formattedArgs,
   });
-  const { write, isLoading } = useContractWrite(config);
+  const { data, write, isLoading, isError, error } = useContractWrite(config);
   const isDisabled = isLoading || !write;
   const handleClick = () => {
     write?.();
@@ -39,6 +40,12 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
         <Button type="button" disabled={isDisabled} onClick={handleClick}>
           write
         </Button>
+        <Output
+          data={data ? data.hash : undefined}
+          isLoading={isLoading}
+          isError={isError}
+          error={error}
+        />
       </Container>
     </li>
   );

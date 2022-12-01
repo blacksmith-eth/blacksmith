@@ -6,6 +6,7 @@ import {
   buildAddress,
   buildInput,
   buildInputList,
+  buildTransactionHash,
 } from "testing/factory";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import Nonpayable from ".";
@@ -122,5 +123,14 @@ describe("Nonpayable", () => {
         functionName: func.name,
       });
     });
+  });
+
+  it("should render data hash when defined", () => {
+    const hash = buildTransactionHash();
+    useContractWriteMock.mockReturnValue({ data: { hash } });
+
+    renderNonpayable();
+
+    expect(screen.getByText(hash)).toBeInTheDocument();
   });
 });

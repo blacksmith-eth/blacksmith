@@ -110,3 +110,6 @@ export const buildOutputList = (n: number): AbiParameter[] =>
   times(n, () => buildOutput());
 
 export const buildResult = (value: any): Result => value as Result;
+
+export const buildTransactionHash = () =>
+  faker.datatype.hexadecimal({ length: 64, case: "lower" });
