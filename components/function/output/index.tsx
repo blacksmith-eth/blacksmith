@@ -1,13 +1,11 @@
-import { Result } from "ethers/lib/utils";
-
 type OutputProps = {
-  data: Result | undefined;
+  data: any | undefined;
   isLoading: boolean;
   isError: boolean;
   error: any | null;
 };
 
-const formatData = (data: Result | undefined): string => {
+const formatData = (data: any | undefined): string => {
   if (data === undefined || data === null) return "";
   if (typeof data === "string") return data;
   if (Array.isArray(data)) return `(${data.map(formatData).join(", ")})`;
