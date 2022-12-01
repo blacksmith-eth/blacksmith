@@ -5,6 +5,7 @@ import {
   RainbowKitProvider,
   connectorsForWallets,
   lightTheme,
+  darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { ThemeProvider } from "next-themes";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
@@ -40,11 +41,18 @@ function MyApp({ Component, pageProps }: AppProps) {
             learnMoreUrl: "https://github.com/blacksmith-eth/blacksmith",
           }}
           chains={chains}
-          theme={lightTheme({
-            accentColor: "#262a33",
-            accentColorForeground: "#ebddd1",
-            borderRadius: "small",
-          })}
+          theme={{
+            darkMode: darkTheme({
+              accentColor: "#ebddd1",
+              accentColorForeground: "#262a33",
+              borderRadius: "small",
+            }),
+            lightMode: lightTheme({
+              accentColor: "#262a33",
+              accentColorForeground: "#ebddd1",
+              borderRadius: "small",
+            }),
+          }}
         >
           <Component {...pageProps} />
         </RainbowKitProvider>
