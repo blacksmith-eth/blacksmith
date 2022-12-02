@@ -8,6 +8,7 @@ const renderOutput = (props: Partial<ComponentProps<typeof Output>> = {}) =>
   render(
     <Output
       data={props.data || undefined}
+      isTouched={props.isTouched || false}
       isLoading={props.isLoading || false}
       isError={props.isError || false}
       error={props.error || null}
@@ -56,20 +57,26 @@ describe("Output", () => {
     expect(screen.getByText("loading...")).toBeInTheDocument();
   });
 
-  it("should render error", () => {
-    renderOutput({ isError: true });
+  it("should not render error when not touched ", () => {
+    renderOutput({ isTouched: false, isError: true });
+
+    expect(screen.queryByText("Error")).not.toBeInTheDocument();
+  });
+
+  it("should render error when touched ", () => {
+    renderOutput({ isTouched: true, isError: true });
 
     expect(screen.getByText("Error")).toBeInTheDocument();
   });
 
   it("should render error without reason", () => {
-    renderOutput({ isError: true, error: {} });
+    renderOutput({ isTouched: true, isError: true, error: {} });
 
     expect(screen.getByText("Error")).toBeInTheDocument();
   });
 
   it("should render error message", () => {
-    renderOutput({ isError: true, error: { reason: "foo" } });
+    renderOutput({ isTouched: true, isError: true, error: { reason: "foo" } });
 
     expect(screen.getByText("Error: foo")).toBeInTheDocument();
   });

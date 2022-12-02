@@ -185,7 +185,7 @@ describe("useArgs", () => {
       value: "",
     });
     expect(result.current.args).toEqual([
-      {
+      buildArg({
         name: input.name,
         type: input.type,
         value: [],
@@ -195,7 +195,7 @@ describe("useArgs", () => {
           type: firstDimensionType,
           value: [childValue, childValue],
         }),
-      },
+      }),
     ]);
   });
 
@@ -242,7 +242,12 @@ describe("useArgs", () => {
 
     expect(result.current.args).toEqual([
       buildArg({ name: input1.name, type: input1.type, value: "" }),
-      buildArg({ name: input2.name, type: input2.type, value: "foo" }),
+      buildArg({
+        name: input2.name,
+        type: input2.type,
+        value: "foo",
+        isTouched: true,
+      }),
     ]);
   });
 
@@ -262,6 +267,7 @@ describe("useArgs", () => {
       buildArg({
         name: input.name,
         type: input.type,
+        isTouched: true,
         value: [
           buildArg({
             name: input.components![0].name,
@@ -272,6 +278,7 @@ describe("useArgs", () => {
             name: input.components![1].name,
             type: input.components![1].type,
             value,
+            isTouched: true,
           }),
         ],
       }),
@@ -433,5 +440,42 @@ describe("useArgs", () => {
     );
 
     expect(result.current.args[0].name).toEqual(input.type);
+  });
+
+  it("should return isTouched of false when input has not been touched", () => {
+    const input = buildInput();
+    const { result } = renderHook(() =>
+      useArgs([input] as AbiParameterWithComponents[])
+    );
+
+    expect(result.current.isTouched).toEqual(false);
+  });
+
+  it("should return isTouched of true when input is touched", async () => {
+    const input = buildInput();
+    const { result } = renderHook(() =>
+      useArgs([input] as AbiParameterWithComponents[])
+    );
+
+    act(() => {
+      result.current.updateValue([0], faker.random.word());
+    });
+
+    await waitFor(() => {
+      expect(result.current.isTouched).toEqual(true);
+    });
+  });
+
+  it("should return isTouched of false when at least one input is not touched", async () => {
+    const inputs = buildInputList(2) as AbiParameterWithComponents[];
+    const { result } = renderHook(() => useArgs(inputs));
+
+    act(() => {
+      result.current.updateValue([0], faker.random.word());
+    });
+
+    await waitFor(() => {
+      expect(result.current.isTouched).toEqual(false);
+    });
   });
 });

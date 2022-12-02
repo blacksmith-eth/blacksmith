@@ -17,7 +17,7 @@ type PureProps = {
 };
 
 const Pure = ({ address, func }: PureProps) => {
-  const { args, formattedArgs, updateValue } = useArgs(
+  const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
   const { data, isLoading, isError, error, refetch } = useContractRead({
@@ -36,6 +36,7 @@ const Pure = ({ address, func }: PureProps) => {
         <Button onClick={() => refetch()}>read</Button>
         <Output
           data={data}
+          isTouched={isTouched}
           isLoading={isLoading}
           isError={isError}
           error={error}

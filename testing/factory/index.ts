@@ -43,6 +43,7 @@ export const buildArg = (overrides: Partial<Arg> = {}): Arg => ({
   type: overrides.type || faker.helpers.arrayElement(["string", "address"]),
   value: overrides.hasOwnProperty("value") ? overrides.value! : "",
   isInfinite: overrides.isInfinite || false,
+  isTouched: overrides.isTouched || false,
   childArg: overrides.hasOwnProperty("childArg")
     ? overrides.childArg
     : undefined,

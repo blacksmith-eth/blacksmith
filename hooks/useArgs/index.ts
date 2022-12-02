@@ -100,7 +100,16 @@ const buildArg = (input: AbiParameterWithComponents): Arg => ({
   value: buildValues(input),
   childArg: buildChildArg(input),
   isInfinite: buildIsInfinite(input),
+  isTouched: false,
 });
+
+const calculateTouched = (args: Arg[]): boolean =>
+  args.reduce((acc, arg) => {
+    if (typeof arg.value === "string") {
+      return acc && arg.isTouched;
+    }
+    return acc && calculateTouched(arg.value);
+  }, true);
 
 export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
   const initialArgs = inputs.map(buildArg);
@@ -110,7 +119,7 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
   const updater = useCallback(
     (arg: Arg, value: string | Arg[], keys: number[]): Arg => {
       if (typeof arg.value === "string") {
-        return { ...arg, value };
+        return { ...arg, isTouched: true, value };
       }
       const [key, ...rest] = keys;
       if (key === undefined) {
@@ -118,6 +127,7 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
       }
       return {
         ...arg,
+        isTouched: true,
         value: arg.value.map((arg, index) =>
           index === key ? updater(arg, value, rest) : arg
         ),
@@ -139,5 +149,7 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
 
   const formattedArgs = debouncedArgs.map(formatArgsByType);
 
-  return { args, formattedArgs, updateValue };
+  const isTouched = calculateTouched(debouncedArgs);
+
+  return { args, formattedArgs, updateValue, isTouched };
 };

@@ -6,6 +6,7 @@ export type Arg = {
   value: Arg[] | string;
   childArg: Arg | undefined;
   isInfinite: boolean;
+  isTouched: boolean;
 };
 
 export type AbiDefinedFunction = {

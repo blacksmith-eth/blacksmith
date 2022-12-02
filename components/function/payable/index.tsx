@@ -19,7 +19,7 @@ type PayableProps = {
 };
 
 const Payable = ({ address, func }: PayableProps) => {
-  const { args, formattedArgs, updateValue } = useArgs(
+  const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
@@ -85,6 +85,7 @@ const Payable = ({ address, func }: PayableProps) => {
         </Button>
         <Output
           data={data ? data.hash : undefined}
+          isTouched={isTouched}
           isLoading={isLoading}
           isError={isError}
           error={error}

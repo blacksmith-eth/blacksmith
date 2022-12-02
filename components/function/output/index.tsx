@@ -1,5 +1,6 @@
 type OutputProps = {
   data: any | undefined;
+  isTouched: boolean;
   isLoading: boolean;
   isError: boolean;
   error: any | null;
@@ -12,9 +13,15 @@ const formatData = (data: any | undefined): string => {
   return data.toString();
 };
 
-const Output = ({ data, isLoading, isError, error }: OutputProps) => {
+const Output = ({
+  data,
+  isTouched,
+  isLoading,
+  isError,
+  error,
+}: OutputProps) => {
   if (isLoading) return <span>loading...</span>;
-  if (isError)
+  if (isError && isTouched)
     return (
       <span>{error && error.reason ? `Error: ${error.reason}` : "Error"}</span>
     );

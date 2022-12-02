@@ -17,7 +17,7 @@ type NonpayableProps = {
 };
 
 const Nonpayable = ({ address, func }: NonpayableProps) => {
-  const { args, formattedArgs, updateValue } = useArgs(
+  const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
   const { config } = usePrepareContractWrite({
@@ -42,6 +42,7 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
         </Button>
         <Output
           data={data ? data.hash : undefined}
+          isTouched={isTouched}
           isLoading={isLoading}
           isError={isError}
           error={error}
