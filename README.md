@@ -66,3 +66,7 @@ In the "Contract Management" section enter the contract address for Dai `0x6b175
 Select the Dai contract in the contracts sidebar and begin interacting!
 
 Example: Try entering `0xad0135af20fa82e106607257143d0060a7eb5cbf` into the `balanceOf` function.
+
+## Hardhat
+
+If you're working with Hardhat check out [🏗 scaffold-eth](https://github.com/scaffold-eth/scaffold-eth)!
