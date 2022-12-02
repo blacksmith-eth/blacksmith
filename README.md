@@ -22,20 +22,20 @@ yarn
 yarn dev
 ```
 
-In a second terminal window create a foundry project in a separate directory.
+In a second terminal window start a local testnet node.
+
+```bash
+anvil
+```
+
+In a third terminal window create a foundry project in a separate directory.
 
 ```bash
 forge init example
 cd example
 ```
 
-In a third terminal window start a local testnet node.
-
-```bash
-anvil
-```
-
-In a fourth terminal window deploy the counter contract to your local testnet node.
+From the foundry directory deploy the counter contract to your local testnet node.
 
 ```bash
 forge create src/Counter.sol:Counter --verify --unlocked \
