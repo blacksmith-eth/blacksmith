@@ -7,9 +7,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const ETHERSCAN_API_KEY = req.body.key;
     return fetch(
-      `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${req.query.address}&apikey=${ETHERSCAN_API_KEY}`,
+      `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${req.query.address}`,
       {
         headers: {
           "Content-Type": "application/json",

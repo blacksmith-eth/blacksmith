@@ -23,23 +23,15 @@ const IconButton = (props: IconButtonProps) => (
 
 const Manager = () => {
   const [address, setAddress] = useState("");
-  const [etherscanApiKey, setEtherscanApiKey] = useState("");
   const { mutate } = useSWRConfig();
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
   };
 
-  const handleEtherscanApiKeyChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEtherscanApiKey(event.target.value);
-  };
-
   const handleImport = () => {
     fetch(`/api/contracts/${address}`, {
       method: "POST",
-      body: JSON.stringify({ key: etherscanApiKey }),
     }).then(() => mutate("/api/contracts"));
   };
 
@@ -62,11 +54,11 @@ const Manager = () => {
         <div>
           <p>
             You can remove any contract from Blacksmith that you have imported
-            or verified without an Etherscan API key.
+            or verified.
           </p>
           <p>
             You can import verified contracts from Etherscan by providing a
-            contract address and an Etherscan API key.
+            contract address (rate limited to one import every 5 seconds).
           </p>
           <p>
             You can interact with imported contracts by starting an instance of
@@ -83,13 +75,6 @@ const Manager = () => {
           type="address"
           id="address"
           handleChange={handleAddressChange}
-        />
-        <Field
-          inputName="etherscan api key"
-          value={etherscanApiKey}
-          type="string"
-          id="etherscan-api-key"
-          handleChange={handleEtherscanApiKeyChange}
         />
         <div className="flex flex-row gap-2">
           <IconButton onClick={handleImport}>
