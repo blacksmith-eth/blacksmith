@@ -18,6 +18,7 @@ Start the Blacksmith application.
 
 ```bash
 cd blacksmith
+yarn
 yarn dev
 ```
 
