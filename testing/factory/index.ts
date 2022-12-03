@@ -93,10 +93,6 @@ export const buildInputWithComponents = (
   ],
 });
 
-export const buildInputWithComponentsList = (
-  n: number
-): AbiParameterWithComponents[] => times(n, () => buildInputWithComponents());
-
 export const buildOutput = (
   overrides: Partial<AbiParameterWithComponents> = {}
 ): AbiParameter => ({
