@@ -1,3 +1,4 @@
+import { AbiParameterWithComponents } from "core/types";
 import { render, screen } from "testing";
 import {
   buildAbiDefinedFunction,
@@ -46,7 +47,7 @@ describe("Signature", () => {
   });
 
   it("should render a signature for tuple types", () => {
-    const components = buildOutputList(2);
+    const components = buildOutputList(2) as AbiParameterWithComponents[];
     const output = buildOutput({ type: "tuple", components });
     const func = buildAbiDefinedFunction({ outputs: [output] });
 
@@ -61,7 +62,7 @@ describe("Signature", () => {
   });
 
   it("should render a signature with multiple return types (including tuple types)", () => {
-    const components = buildOutputList(2);
+    const components = buildOutputList(2) as AbiParameterWithComponents[];
     const output = buildOutput({ type: "tuple", components });
     const outputs = [output, ...buildOutputList(2)];
     const func = buildAbiDefinedFunction({ outputs });
