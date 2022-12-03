@@ -40,10 +40,6 @@ const Setup = () => {
     setVerifierUrl(event.target.value);
   };
 
-  const preventDefault = (event: React.FormEvent) => {
-    event.preventDefault();
-  };
-
   const focusedClasses = "font-bold underline";
 
   const handleCopyCommand = () => {
@@ -77,7 +73,7 @@ const Setup = () => {
             <span className="italic">contract name</span> fields.
           </p>
         </div>
-        <form onSubmit={preventDefault} onBlur={() => setFocusedInput("")}>
+        <form onBlur={() => setFocusedInput("")}>
           <ul className="flex flex-col gap-2">
             <Field
               id="path"
