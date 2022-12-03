@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "components/button";
 import Inputs from "components/inputs";
 import {
@@ -27,21 +28,25 @@ const View = ({ address, func }: ViewProps) => {
     args: formattedArgs,
     watch: true,
   });
+  const [collapsed, setCollapsed] = React.useState(true)
 
   return (
     <li key={func.name} className="flex flex-col gap-2">
-      <Signature func={func} />
-      <Inputs name={func.name} args={args} updateValue={updateValue} />
-      <Container>
-        <Button onClick={() => refetch()}>read</Button>
-        <Output
-          data={data}
-          isTouched={isTouched}
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-        />
-      </Container>
+      <Signature func={func} collapsed={collapsed} setCollapsed={setCollapsed} />
+
+      { !collapsed && (<>
+        <Inputs name={func.name} args={args} updateValue={updateValue} />
+        <Container>
+          <Button onClick={() => refetch()}>read</Button>
+          <Output
+            data={data}
+            isTouched={isTouched}
+            isLoading={isLoading}
+            isError={isError}
+            error={error}
+          />
+        </Container>
+      </>)}
     </li>
   );
 };

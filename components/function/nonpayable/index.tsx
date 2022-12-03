@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "components/button";
 import Inputs from "components/inputs";
 import {
@@ -31,23 +32,25 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
   const handleClick = () => {
     write?.();
   };
+  const [collapsed, setCollapsed] = React.useState(true)
 
   return (
     <li key={func.name} className="flex flex-col gap-2">
-      <Signature func={func} />
-      <Inputs name={func.name} args={args} updateValue={updateValue} />
-      <Container>
-        <Button type="button" disabled={isDisabled} onClick={handleClick}>
-          write
-        </Button>
-        <Output
-          data={data ? data.hash : undefined}
-          isTouched={isTouched}
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-        />
-      </Container>
+      <Signature func={func} collapsed={collapsed} setCollapsed={setCollapsed} />
+
+      { !collapsed && (<>
+        <Inputs name={func.name} args={args} updateValue={updateValue} />
+        <Container>
+          <Button type="button" disabled={isDisabled} onClick={handleClick}>write</Button>
+          <Output
+              data={data ? data.hash : undefined}
+              isTouched={isTouched}
+              isLoading={isLoading}
+              isError={isError}
+              error={error}
+          />
+        </Container>
+      </>)}
     </li>
   );
 };
