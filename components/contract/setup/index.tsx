@@ -77,51 +77,49 @@ const Setup = () => {
             <span className="italic">contract name</span> fields.
           </p>
         </div>
-        <form
-          onSubmit={preventDefault}
-          onBlur={() => setFocusedInput("")}
-          className="flex flex-col gap-2"
-        >
-          <Field
-            id="path"
-            inputName="path"
-            type="string"
-            value={path}
-            handleChange={handlePathChange}
-            onFocus={() => setFocusedInput("path")}
-          />
-          <Field
-            id="contractName"
-            inputName="contract name"
-            type="string"
-            value={contractName}
-            handleChange={handleContractNameChange}
-            onFocus={() => setFocusedInput("contractName")}
-          />
-          <Field
-            id="deployerAddress"
-            inputName="deployer address"
-            type="address"
-            value={deployerAddress}
-            handleChange={handleAddressChange}
-            onFocus={() => setFocusedInput("deployerAddress")}
-          />
-          <Field
-            id="rpcUrl"
-            inputName="rpc url"
-            type="string"
-            value={rpcUrl}
-            handleChange={handleRpcUrlChange}
-            onFocus={() => setFocusedInput("rpcUrl")}
-          />
-          <Field
-            id="verifierUrl"
-            inputName="verifier url"
-            type="string"
-            value={verifierUrl}
-            handleChange={handleVerifierUrlChange}
-            onFocus={() => setFocusedInput("verifierUrl")}
-          />
+        <form onSubmit={preventDefault} onBlur={() => setFocusedInput("")}>
+          <ul className="flex flex-col gap-2">
+            <Field
+              id="path"
+              inputName="path"
+              type="string"
+              value={path}
+              handleChange={handlePathChange}
+              onFocus={() => setFocusedInput("path")}
+            />
+            <Field
+              id="contractName"
+              inputName="contract name"
+              type="string"
+              value={contractName}
+              handleChange={handleContractNameChange}
+              onFocus={() => setFocusedInput("contractName")}
+            />
+            <Field
+              id="deployerAddress"
+              inputName="deployer address"
+              type="address"
+              value={deployerAddress}
+              handleChange={handleAddressChange}
+              onFocus={() => setFocusedInput("deployerAddress")}
+            />
+            <Field
+              id="rpcUrl"
+              inputName="rpc url"
+              type="string"
+              value={rpcUrl}
+              handleChange={handleRpcUrlChange}
+              onFocus={() => setFocusedInput("rpcUrl")}
+            />
+            <Field
+              id="verifierUrl"
+              inputName="verifier url"
+              type="string"
+              value={verifierUrl}
+              handleChange={handleVerifierUrlChange}
+              onFocus={() => setFocusedInput("verifierUrl")}
+            />
+          </ul>
         </form>
         <div className="flex items-start justify-between font-mono text-sm p-4 text-black dark:text-black bg-slate-100 dark:bg-slate-100 rounded border border-slate-200 dark:border-slate-200">
           <div>
