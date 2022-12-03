@@ -69,13 +69,15 @@ const Manager = () => {
             .
           </p>
         </div>
-        <Field
-          inputName="contract address"
-          value={address}
-          type="address"
-          id="address"
-          handleChange={handleAddressChange}
-        />
+        <ul>
+          <Field
+            inputName="contract address"
+            value={address}
+            type="address"
+            id="address"
+            handleChange={handleAddressChange}
+          />
+        </ul>
         <div className="flex flex-row gap-2">
           <IconButton onClick={handleImport}>
             <span className="text-sm">import</span>
