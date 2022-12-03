@@ -22,6 +22,8 @@ const IconButton = (props: IconButtonProps) => (
 );
 
 const Manager = () => {
+  const [response, setResponse] = useState("");
+  const [deleteAllResponse, setDeleteAllResponse] = useState("");
   const [address, setAddress] = useState("");
   const { mutate } = useSWRConfig();
 
@@ -32,19 +34,28 @@ const Manager = () => {
   const handleImport = () => {
     fetch(`/api/contracts/${address}`, {
       method: "POST",
-    }).then(() => mutate("/api/contracts"));
+    }).then(() => {
+      setResponse("Imported successfully");
+      mutate("/api/contracts");
+    });
   };
 
   const handleRemove = () => {
     fetch(`/api/contracts/${address}`, {
       method: "DELETE",
-    }).then(() => mutate("/api/contracts"));
+    }).then(() => {
+      setResponse("Removed successfully");
+      mutate("/api/contracts");
+    });
   };
 
   const handleRemoveAll = () => {
     fetch(`/api/contracts`, {
       method: "DELETE",
-    }).then(() => mutate("/api/contracts"));
+    }).then(() => {
+      setDeleteAllResponse("Removed all contracts");
+      mutate("/api/contracts");
+    });
   };
 
   return (
@@ -87,12 +98,16 @@ const Manager = () => {
             <span className="text-sm">remove</span>
             <ArchiveBoxXMarkIcon className="h-4 w-4" />
           </IconButton>
+          <span>{response}</span>
         </div>
         <h4 className="font-bold">Danger Zone</h4>
-        <IconButton onClick={handleRemoveAll}>
-          <span className="text-sm">remove all</span>
-          <ArchiveBoxXMarkIcon className="h-4 w-4" />
-        </IconButton>
+        <div className="flex flex-row gap-2">
+          <IconButton onClick={handleRemoveAll}>
+            <span className="text-sm">remove all</span>
+            <ArchiveBoxXMarkIcon className="h-4 w-4" />
+          </IconButton>
+          <span>{deleteAllResponse}</span>
+        </div>
       </div>
     </div>
   );
