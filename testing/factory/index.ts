@@ -82,13 +82,11 @@ export const buildInputList = (n: number): AbiParameter[] =>
   times(n, () => buildInput());
 
 export const buildInputWithComponents = (
-  overrides: Partial<AbiParameterWithComponents> = {}
+  overrides: Partial<AbiParameterWithComponents>
 ): AbiParameterWithComponents => ({
   name: faker.helpers.unique(faker.word.noun),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
-  components: overrides.components || [
-    buildInput() as AbiParameterWithComponents,
-  ],
+  components: overrides.components,
 });
 
 export const buildOutput = (
