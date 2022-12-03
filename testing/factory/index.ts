@@ -84,9 +84,7 @@ export const buildInputList = (n: number): AbiParameter[] =>
 export const buildInputWithComponents = (
   overrides: Partial<AbiParameterWithComponents> = {}
 ): AbiParameterWithComponents => ({
-  name: overrides.hasOwnProperty("name")
-    ? overrides.name!
-    : faker.helpers.unique(faker.word.noun),
+  name: faker.helpers.unique(faker.word.noun),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
   components: overrides.components || [
     buildInput() as AbiParameterWithComponents,
