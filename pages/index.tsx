@@ -27,6 +27,10 @@ const Home: NextPage = () => {
       <Head>
         <title>Blacksmith</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Blacksmith is an adaptive user interface for smart contract interaction."
+        />
       </Head>
       <header className="bg-white dark:bg-black border-b border-black dark:border-white sticky top-0 p-2 flex items-center justify-between">
         <h1 className="font-bold">
