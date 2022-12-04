@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "format": "prettier --check .",
     "lint": "next lint",
     "test": "jest",
     "typecheck": "tsc --noEmit"
