@@ -22,7 +22,7 @@ jobs:
       - name: Run tests
         run: yarn test
 
-  code-quality:
+  linting:
     name: Linting
     runs-on: ubuntu-latest
 
