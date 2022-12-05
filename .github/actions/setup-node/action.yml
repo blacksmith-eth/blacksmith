@@ -1,0 +1,14 @@
+name: "Setup Node"
+description: "Setup Node using yarn, install dependencies, and properly caches environment between re-runs"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version-file: .nvmrc
+
+    - name: Install dependencies
+      if: steps.cached-dependencies.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn install --immutable --ignore-scripts
