@@ -8,6 +8,10 @@ runs:
       with:
         node-version-file: .nvmrc
 
+    - name: Install yarn
+      shell: bash
+      run: npm install -g yarn
+
     - name: Install dependencies
       if: steps.cached-dependencies.outputs.cache-hit != 'true'
       shell: bash
