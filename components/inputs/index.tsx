@@ -49,7 +49,8 @@ const Inputs = ({
                       ] as Arg[]);
                     }}
                   >
-                    +
+                    <span>+</span>
+                    <span className="sr-only">add</span>
                   </Button>
                   <Inputs
                     name={arg.name}
@@ -75,7 +76,8 @@ const Inputs = ({
                     );
                   }}
                 >
-                  -
+                  <span>-</span>
+                  <span className="sr-only">remove</span>
                 </Button>
               ) : (
                 <></>
@@ -109,7 +111,8 @@ const Inputs = ({
                   );
                 }}
               >
-                -
+                <span>-</span>
+                <span className="sr-only">remove</span>
               </Button>
             ) : (
               <></>
