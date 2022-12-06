@@ -19,7 +19,7 @@ const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
         <li key={contract.address}>
           <button
             onClick={() => setActiveContract(contract.address)}
-            className={`focus:underline focus:outline-none ${
+            className={`focus:underline focus:outline-none hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black ${
               contract.address === activeContract ? "font-semibold" : ""
             }`}
           >
