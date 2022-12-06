@@ -9,6 +9,9 @@ const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
       name={props.name || ""}
       args={props.args || []}
       updateValue={props.updateValue || jest.fn()}
+      preview={props.preview}
+      child={props.child}
+      keys={props.keys}
     />
   );
 };
@@ -81,5 +84,65 @@ describe("Inputs", () => {
     await waitFor(() => {
       expect(updateValue).toHaveBeenCalledWith([0, 1], value);
     });
+  });
+
+  it("should call updateValue with added list item when add is clicked", async () => {
+    const arg = buildArg({ isInfinite: true });
+    const updateValue = jest.fn();
+
+    const { user } = renderInputs({ args: [arg], updateValue });
+
+    const addButton = screen.getByRole("button", { name: "+ add" });
+
+    await user.click(addButton);
+
+    expect(updateValue).toHaveBeenCalledWith([0], [arg.childArg]);
+  });
+
+  it("should call updateValue with removed list item when remove is clicked (array value)", async () => {
+    const arg = buildArg({ isInfinite: false, value: [] });
+    const updateValue = jest.fn();
+
+    const { user } = renderInputs({
+      args: [arg],
+      preview: false,
+      child: true,
+      keys: [0],
+      updateValue,
+    });
+
+    const removeButton = screen.getByRole("button", { name: "- remove" });
+
+    await user.click(removeButton);
+
+    expect(updateValue).toHaveBeenCalledWith([0], []);
+  });
+
+  it("should call updateValue with removed list item when remove is clicked (string value)", async () => {
+    const arg = buildArg({ isInfinite: false, value: "" });
+    const updateValue = jest.fn();
+
+    const { user } = renderInputs({
+      args: [arg],
+      preview: false,
+      child: true,
+      keys: [0],
+      updateValue,
+    });
+
+    const removeButton = screen.getByRole("button", { name: "- remove" });
+
+    await user.click(removeButton);
+
+    expect(updateValue).toHaveBeenCalledWith([0], []);
+  });
+
+  it("should render childArg preview for infinite list", async () => {
+    const childArg = buildArg();
+    const arg = buildArg({ isInfinite: true, childArg });
+
+    renderInputs({ args: [arg] });
+
+    expect(screen.getByText(childArg.name)).toBeInTheDocument();
   });
 });
