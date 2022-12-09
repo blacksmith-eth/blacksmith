@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.4",
+    "@headlessui/react": "^1.7.5",
     "@heroicons/react": "^2.0.13",
     "@rainbow-me/rainbowkit": "^0.7.4",
     "ethers": "^5.7.2",
