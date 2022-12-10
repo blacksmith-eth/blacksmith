@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "commitlint": "commitlint --from=65377e2",
     "format": "prettier --check .",
     "lint": "next lint",
     "prepare": "husky install",
