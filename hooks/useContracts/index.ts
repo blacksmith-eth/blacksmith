@@ -8,11 +8,15 @@ const fetchContracts = async (): Promise<ContractDetails[]> => {
 };
 
 export const useContracts = () => {
-  const { data, error } = useSWR("/api/contracts", fetchContracts);
+  const { data, error, mutate, isLoading } = useSWR(
+    "/api/contracts",
+    fetchContracts
+  );
 
   return {
+    isLoading,
+    mutate,
     contracts: data,
-    isLoading: !error && !data,
     isError: !!error,
   };
 };

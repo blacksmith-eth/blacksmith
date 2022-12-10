@@ -4,8 +4,8 @@ import {
 } from "@heroicons/react/24/outline";
 import Anchor from "components/anchor";
 import Field from "components/field";
+import { useContracts } from "hooks";
 import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from "react";
-import { useSWRConfig } from "swr";
 
 type IconButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -25,7 +25,7 @@ const Manager = () => {
   const [response, setResponse] = useState("");
   const [deleteAllResponse, setDeleteAllResponse] = useState("");
   const [address, setAddress] = useState("");
-  const { mutate } = useSWRConfig();
+  const { mutate } = useContracts();
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
@@ -36,7 +36,7 @@ const Manager = () => {
       method: "POST",
     }).then(() => {
       setResponse("Imported successfully");
-      mutate("/api/contracts");
+      mutate();
     });
   };
 
@@ -45,7 +45,7 @@ const Manager = () => {
       method: "DELETE",
     }).then(() => {
       setResponse("Removed successfully");
-      mutate("/api/contracts");
+      mutate();
     });
   };
 
@@ -54,7 +54,7 @@ const Manager = () => {
       method: "DELETE",
     }).then(() => {
       setDeleteAllResponse("Removed all contracts");
-      mutate("/api/contracts");
+      mutate();
     });
   };
 
