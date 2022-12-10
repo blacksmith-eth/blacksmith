@@ -1,0 +1,36 @@
+name: main
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    name: "Continuous Integration"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+    steps:
+      - name: "Clone Repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "Setup Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - name: "Install"
+        run: yarn
+      - name: "Commitlint"
+        run: yarn commitlint
+      - name: "Format"
+        run: yarn format
+      - name: "Lint"
+        run: yarn lint
+      - name: "Typecheck"
+        run: yarn typecheck
+      - name: "Test"
+        run: yarn test
