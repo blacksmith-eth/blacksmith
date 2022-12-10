@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
       - name: "Install"
-        run: yarn
+        run: yarn install --ignore-scripts
       - name: "Commitlint"
         run: yarn commitlint
       - name: "Format"
