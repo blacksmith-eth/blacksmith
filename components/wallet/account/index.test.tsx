@@ -1,4 +1,3 @@
-import { BlacksmithConnector } from "packages/core/connector";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
 import { useAccount, useBalance } from "wagmi";
