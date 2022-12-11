@@ -122,7 +122,7 @@ const Inputs = ({
             <Field
               disabled={preview}
               inputName={arg.name}
-              value={arg.value as string}
+              value={arg.value}
               type={arg.type}
               id={id}
               handleChange={handleChange}
