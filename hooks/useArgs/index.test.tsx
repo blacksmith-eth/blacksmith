@@ -426,8 +426,8 @@ describe("useArgs", () => {
     await waitFor(() => {
       expect(result.current.formattedArgs).toEqual([
         {
-          [input.components![0].name]: "",
-          [input.components![1].name]: value,
+          [input.components![0].name!]: "",
+          [input.components![1].name!]: value,
         },
       ]);
     });
