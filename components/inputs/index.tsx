@@ -23,7 +23,9 @@ const Inputs = ({
   return (
     <ul className="flex flex-1 flex-col gap-2">
       {args.map((arg, index) => {
-        const id = `${name}-${arg.name}-${index}`;
+        const keysString = keys.join("-");
+        const type = preview ? "preview" : "edit";
+        const id = `${name}-${arg.name}-${keysString}-${index}-${type}}`;
         if (arg.isInfinite) {
           return (
             <fieldset
