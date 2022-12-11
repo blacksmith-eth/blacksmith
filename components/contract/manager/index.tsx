@@ -62,24 +62,17 @@ const Manager = () => {
     <div className="flex flex-col">
       <h3 className="font-bold text-2xl">Contract Management</h3>
       <div className="flex flex-col gap-2">
-        <div>
-          <p>
-            You can remove any contract from Blacksmith that you have imported
-            or verified.
-          </p>
-          <p>
-            You can import verified contracts from Etherscan by providing a
-            contract address (rate limited to one import every 5 seconds).
-          </p>
-          <p>
-            You can interact with imported contracts by starting an instance of
-            Anvil that{" "}
-            <Anchor href="https://book.getfoundry.sh/tutorials/forking-mainnet-with-cast-anvil">
-              forks mainnet
-            </Anchor>
-            .
-          </p>
-        </div>
+        <p className="max-w-prose">
+          You can remove any contract from Blacksmith that you have imported or
+          verified. You can import verified contracts from Etherscan by
+          providing a contract address (rate limited to one import every 5
+          seconds). You can interact with imported contracts by starting an
+          instance of Anvil that{" "}
+          <Anchor href="https://book.getfoundry.sh/tutorials/forking-mainnet-with-cast-anvil">
+            forks mainnet
+          </Anchor>
+          .
+        </p>
         <ul>
           <Field
             inputName="contract address"
