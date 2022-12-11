@@ -50,29 +50,21 @@ const Setup = () => {
     <div className="flex flex-col">
       <h3 className="font-bold text-2xl">Getting Started</h3>
       <div className="flex flex-col gap-2">
-        <div>
-          <p>
-            To get started, you will need to deploy a contract to a local
-            testnet node like{" "}
-            <Anchor href="https://github.com/foundry-rs/foundry/tree/master/anvil">
-              Anvil
-            </Anchor>
-            .
-          </p>
-          <p>
-            You can use the form below to generate the necessary{" "}
-            <Anchor href="https://github.com/foundry-rs/foundry/tree/master/forge">
-              Forge
-            </Anchor>{" "}
-            command to deploy your contract to the local testnet and see it
-            appear in Blacksmith.
-          </p>
-          <p>
-            In most cases you will only need to change the{" "}
-            <span className="italic">path</span> and{" "}
-            <span className="italic">contract name</span> fields.
-          </p>
-        </div>
+        <p className="max-w-prose">
+          To get started, you will need to deploy a contract to a local testnet
+          node like{" "}
+          <Anchor href="https://github.com/foundry-rs/foundry/tree/master/anvil">
+            Anvil
+          </Anchor>
+          . You can use the form below to generate the necessary{" "}
+          <Anchor href="https://github.com/foundry-rs/foundry/tree/master/forge">
+            Forge
+          </Anchor>{" "}
+          command to deploy your contract to the local testnet and see it appear
+          in Blacksmith. In most cases you will only need to change the{" "}
+          <span className="italic">path</span> and{" "}
+          <span className="italic">contract name</span> fields.
+        </p>
         <form onBlur={() => setFocusedInput("")}>
           <ul className="flex flex-col gap-2">
             <Field
