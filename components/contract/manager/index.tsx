@@ -34,8 +34,11 @@ const Manager = () => {
   const handleImport = () => {
     fetch(`/api/contracts/${address}`, {
       method: "POST",
-    }).then(() => {
-      setResponse("Imported successfully");
+    }).then((response) => {
+      const responseMessage = response.ok
+        ? "Imported successfully"
+        : "Import failed";
+      setResponse(responseMessage);
       mutate();
     });
   };
