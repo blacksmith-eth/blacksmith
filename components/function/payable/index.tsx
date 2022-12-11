@@ -26,7 +26,7 @@ const Payable = ({ address, func }: PayableProps) => {
     useEther();
   const { config } = usePrepareContractWrite({
     address,
-    abi: [func],
+    abi: [func] as readonly any[],
     functionName: func.name,
     args: formattedArgs,
     overrides: {

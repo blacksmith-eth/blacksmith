@@ -48,7 +48,7 @@ describe("Nonpayable", () => {
     renderNonpayable({ func });
 
     func.inputs.forEach((input) => {
-      expect(screen.getByLabelText(input.name)).toBeInTheDocument();
+      expect(screen.getByLabelText(input.name!)).toBeInTheDocument();
     });
   });
 
@@ -85,10 +85,10 @@ describe("Nonpayable", () => {
 
     const { user } = renderNonpayable({ address, func });
 
-    const firstInput = screen.getByLabelText(func.inputs[0].name);
+    const firstInput = screen.getByLabelText(func.inputs[0].name!);
     await user.type(firstInput, "first");
 
-    const secondInput = screen.getByLabelText(func.inputs[1].name);
+    const secondInput = screen.getByLabelText(func.inputs[1].name!);
     await user.type(secondInput, "second");
 
     await waitFor(() => {
@@ -109,10 +109,10 @@ describe("Nonpayable", () => {
 
     const { user } = renderNonpayable({ address, func });
 
-    const firstInput = screen.getByLabelText(func.inputs[0].name);
+    const firstInput = screen.getByLabelText(func.inputs[0].name!);
     await user.type(firstInput, "1");
 
-    const secondInput = screen.getByLabelText(func.inputs[1].name);
+    const secondInput = screen.getByLabelText(func.inputs[1].name!);
     await user.type(secondInput, "2");
 
     await waitFor(() => {
