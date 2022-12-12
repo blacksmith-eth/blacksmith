@@ -4,6 +4,8 @@ type OutputProps = {
   isLoading: boolean;
   isError: boolean;
   error: any | null;
+  isPrepareError: boolean;
+  prepareError: any | null;
 };
 
 const formatData = (data: any | undefined): string => {
@@ -19,8 +21,18 @@ const Output = ({
   isLoading,
   isError,
   error,
+  isPrepareError,
+  prepareError,
 }: OutputProps) => {
   if (isLoading) return <span>loading...</span>;
+  if (isTouched && isPrepareError)
+    return (
+      <span>
+        {prepareError && prepareError.reason
+          ? `Prepare Error: ${prepareError.reason}`
+          : "Prepare Error"}
+      </span>
+    );
   if (isError && isTouched)
     return (
       <span>{error && error.reason ? `Error: ${error.reason}` : "Error"}</span>

@@ -24,7 +24,11 @@ const Payable = ({ address, func }: PayableProps) => {
   );
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();
-  const { config } = usePrepareContractWrite({
+  const {
+    config,
+    isError: isPrepareError,
+    error: prepareError,
+  } = usePrepareContractWrite({
     address,
     abi: [func] as readonly any[],
     functionName: func.name,
@@ -89,6 +93,8 @@ const Payable = ({ address, func }: PayableProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
+          isPrepareError={isPrepareError}
+          prepareError={prepareError}
         />
       </Container>
     </li>
