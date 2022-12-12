@@ -12,6 +12,8 @@ import { faker } from "@faker-js/faker";
 import { capitalize, times } from "lodash";
 import { Result } from "ethers/lib/utils";
 
+const RESERVED_WORDS = ["value"];
+
 export const buildAbiEvent = (): AbiEvent => ({
   type: "event",
   inputs: [],
@@ -57,7 +59,11 @@ export const buildContractDetailsList = (n: number): ContractDetails[] =>
 export const buildAbiDefinedFunction = (
   overrides: Partial<AbiDefinedFunction> = {}
 ): AbiDefinedFunction => ({
-  name: overrides.name || faker.helpers.unique(faker.word.noun),
+  name:
+    overrides.name ||
+    faker.helpers.unique(faker.word.noun, undefined, {
+      exclude: RESERVED_WORDS,
+    }),
   type: "function",
   inputs: overrides.inputs || [],
   outputs: overrides.outputs || [],
