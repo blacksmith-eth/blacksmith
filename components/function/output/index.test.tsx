@@ -12,6 +12,8 @@ const renderOutput = (props: Partial<ComponentProps<typeof Output>> = {}) =>
       isLoading={props.isLoading || false}
       isError={props.isError || false}
       error={props.error || null}
+      isPrepareError={props.isPrepareError || false}
+      prepareError={props.prepareError || null}
     />
   );
 
@@ -79,5 +81,33 @@ describe("Output", () => {
     renderOutput({ isTouched: true, isError: true, error: { reason: "foo" } });
 
     expect(screen.getByText("Error: foo")).toBeInTheDocument();
+  });
+
+  it("should not render prepare error when not touched ", () => {
+    renderOutput({ isTouched: false, isPrepareError: true });
+
+    expect(screen.queryByText("Prepare Error")).not.toBeInTheDocument();
+  });
+
+  it("should render prepare error when touched ", () => {
+    renderOutput({ isTouched: true, isPrepareError: true });
+
+    expect(screen.getByText("Prepare Error")).toBeInTheDocument();
+  });
+
+  it("should render prepare error without reason", () => {
+    renderOutput({ isTouched: true, isPrepareError: true, prepareError: {} });
+
+    expect(screen.getByText("Prepare Error")).toBeInTheDocument();
+  });
+
+  it("should render prepare error message", () => {
+    renderOutput({
+      isTouched: true,
+      isPrepareError: true,
+      prepareError: { reason: "foo" },
+    });
+
+    expect(screen.getByText("Prepare Error: foo")).toBeInTheDocument();
   });
 });
