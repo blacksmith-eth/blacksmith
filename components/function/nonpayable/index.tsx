@@ -20,7 +20,11 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
-  const { config } = usePrepareContractWrite({
+  const {
+    config,
+    isError: isPrepareError,
+    error: prepareError,
+  } = usePrepareContractWrite({
     address,
     abi: [func] as readonly any[],
     functionName: func.name,
@@ -46,6 +50,8 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
+          isPrepareError={isPrepareError}
+          prepareError={prepareError}
         />
       </Container>
     </li>

@@ -40,6 +40,8 @@ const Pure = ({ address, func }: PureProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
+          isPrepareError={false}
+          prepareError={null}
         />
       </Container>
     </li>
