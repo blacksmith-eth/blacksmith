@@ -12,12 +12,7 @@ import {
   buildContractDetailsList,
 } from "testing/factory";
 import type { Mock } from "vitest";
-import {
-  useBalance,
-  useContractRead,
-  useContractWrite,
-  usePrepareContractWrite,
-} from "wagmi";
+import { useBalance, useContractRead, useContractWrite } from "wagmi";
 import Contract from ".";
 
 vi.mock("wagmi");
@@ -38,9 +33,6 @@ useBalanceMock.mockReturnValue({
   isLoading: false,
   isError: false,
 });
-
-const usePrepareContractWriteMock = usePrepareContractWrite as Mock;
-usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });

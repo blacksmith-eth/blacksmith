@@ -6,7 +6,7 @@ import {
   Address,
 } from "core/types";
 import { useArgs } from "hooks";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite } from "wagmi";
 import Container from "../container";
 import Output from "../output";
 import Signature from "../signature";
@@ -20,17 +20,13 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
-  const {
-    config,
-    isError: isPrepareError,
-    error: prepareError,
-  } = usePrepareContractWrite({
+  const { data, write, isLoading, isError, error } = useContractWrite({
+    mode: "recklesslyUnprepared",
     address,
     abi: [func] as readonly any[],
     functionName: func.name,
     args: formattedArgs,
   });
-  const { data, write, isLoading, isError, error } = useContractWrite(config);
   const isDisabled = isLoading || !write;
   const handleClick = () => {
     write?.();
@@ -50,8 +46,8 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          isPrepareError={isPrepareError}
-          prepareError={prepareError}
+          isPrepareError={false}
+          prepareError={null}
         />
       </Container>
     </li>
