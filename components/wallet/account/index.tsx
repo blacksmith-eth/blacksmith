@@ -4,7 +4,7 @@ import { BlacksmithConnector } from "packages/core/connector";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 
-const formatAddress = (address?: Address | string) => {
+const formatAddress = (address?: Address) => {
   if (!address) return "No active address";
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
@@ -16,10 +16,8 @@ const formatValue = (value: string) => {
 const Option = ({
   address,
   children,
-}: PropsWithChildren<{ address: string }>) => {
-  const { data } = useBalance({
-    addressOrName: address,
-  });
+}: PropsWithChildren<{ address: Address }>) => {
+  const { data } = useBalance({ address });
   return (
     <Listbox.Option
       value={address}
@@ -34,11 +32,9 @@ const Option = ({
 };
 
 const Account = () => {
-  const [accounts, setAccounts] = useState<string[]>([]);
+  const [accounts, setAccounts] = useState<Address[]>([]);
   const { address, connector } = useAccount();
-  const { data: balance } = useBalance({
-    addressOrName: address,
-  });
+  const { data: balance } = useBalance({ address });
 
   useEffect(() => {
     if (connector && connector instanceof BlacksmithConnector) {
