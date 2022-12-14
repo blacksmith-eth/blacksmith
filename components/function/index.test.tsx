@@ -2,11 +2,7 @@ import { AbiStateMutability } from "core/types";
 import { render, screen } from "testing";
 import { buildAbiDefinedFunction, buildAddress } from "testing/factory";
 import type { Mock } from "vitest";
-import {
-  useContractRead,
-  useContractWrite,
-  usePrepareContractWrite,
-} from "wagmi";
+import { useContractRead, useContractWrite } from "wagmi";
 import Function from ".";
 
 vi.mock("wagmi");
@@ -19,9 +15,6 @@ useContractReadMock.mockReturnValue({
   isError: false,
   refetch: vi.fn(),
 });
-
-const usePrepareContractWriteMock = usePrepareContractWrite as Mock;
-usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });

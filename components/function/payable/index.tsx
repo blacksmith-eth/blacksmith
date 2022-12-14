@@ -8,7 +8,7 @@ import {
   Address,
 } from "core/types";
 import { useArgs, useEther } from "hooks";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite } from "wagmi";
 import Container from "../container";
 import Output from "../output";
 import Signature from "../signature";
@@ -24,11 +24,8 @@ const Payable = ({ address, func }: PayableProps) => {
   );
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();
-  const {
-    config,
-    isError: isPrepareError,
-    error: prepareError,
-  } = usePrepareContractWrite({
+  const { data, write, isLoading, isError, error } = useContractWrite({
+    mode: "recklesslyUnprepared",
     address,
     abi: [func] as readonly any[],
     functionName: func.name,
@@ -37,7 +34,6 @@ const Payable = ({ address, func }: PayableProps) => {
       value: formattedValue,
     },
   });
-  const { data, write, isLoading, isError, error } = useContractWrite(config);
   const isDisabled = isLoading || !write;
   const handleClick = () => {
     write?.();
@@ -69,8 +65,8 @@ const Payable = ({ address, func }: PayableProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          isPrepareError={isPrepareError}
-          prepareError={prepareError}
+          isPrepareError={false}
+          prepareError={null}
         />
       </Container>
     </li>
