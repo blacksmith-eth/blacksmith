@@ -286,10 +286,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@coinbase/wallet-sdk@^3.5.3":
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/@coinbase/wallet-sdk/-/wallet-sdk-3.5.3.tgz#ffa657cc16f896e08c3e9ac571ca6a37d1f560fd"
-  integrity sha512-kaGMk9KyiSLPm1+BvCQSc99ku9gn0j+M1+2Beii+4gx/lRVhutlzmn6l+5zTB/n3xri25iTr+SxjMZLlMfW8Hg==
+"@coinbase/wallet-sdk@^3.6.0":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@coinbase/wallet-sdk/-/wallet-sdk-3.6.2.tgz#e8633001136e0236a746f6462c0dff2f881db343"
+  integrity sha512-HzxajB+qS+G9//c+th5uJ8KSt+jQ6/U+cgL9Sv89Wx6Mif+Lg5HxGtc6JQcIdHuYk9AFX+nXNSXtTGRdpHkdDg==
   dependencies:
     "@metamask/safe-event-emitter" "2.0.0"
     "@solana/web3.js" "1.52.0"
@@ -1691,14 +1691,20 @@
     magic-string "^0.27.0"
     react-refresh "^0.14.0"
 
-"@wagmi/core@^0.6.12":
-  version "0.6.12"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.6.12.tgz#19d35424840a8c9f5396869e24464e2137ea8fc2"
-  integrity sha512-RYwjfzFlZ8cljrlZ6+monaWKmtVQYALutlrESP/CYklGg+3DAjwv7n95EU5gS7Y9mvZbiLKZxg4XjFB3mVohfA==
+"@wagmi/chains@^0.1.0":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.1.1.tgz#108441cdbc461d0ff1024738db038ce8fb1c3e58"
+  integrity sha512-isHtXKy6acossn6NQsBzgY25CH+m+v/eAjCUv8HAmAAYHxhvo59fWGneiSRK2pCPdjN3VIG5ZcMG4cAaO7qqjQ==
+
+"@wagmi/core@0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.8.2.tgz#cef4ae8db6b44868a891ab9d83df2efe87b9749a"
+  integrity sha512-AQzHbGWfYcFb9VPnKH/61MXNjBHJX1o7M7enK5d4qefqbBkhxBiHBjQH+D1YfA4w0dJgriRZo9FsHJj8X2jjDA==
   dependencies:
-    abitype "^0.1.7"
+    "@wagmi/chains" "^0.1.0"
+    abitype "^0.2.5"
     eventemitter3 "^4.0.7"
-    zustand "^4.1.1"
+    zustand "^4.1.4"
 
 "@walletconnect/browser-utils@^1.8.0":
   version "1.8.0"
@@ -1913,11 +1919,6 @@ abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
   integrity sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==
-
-abitype@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.1.7.tgz#8a42b1845629abed715bd4975532aca43e291eda"
-  integrity sha512-mNBIrA8xbkR0PrxXSO/7p3irNhyLKO6S4VfU3YrR37cqpJIq1D63Yg8KlovOZkCVAaQ+lJkGDkOhSpv1QmMXIg==
 
 abitype@^0.2.5:
   version "0.2.5"
@@ -6795,18 +6796,18 @@ w3c-xmlserializer@^4.0.0:
   dependencies:
     xml-name-validator "^4.0.0"
 
-wagmi@^0.7.15:
-  version "0.7.15"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.7.15.tgz#da83c1e22641efb33899e203715f1ae4eb28f9b1"
-  integrity sha512-UGkcgL/bBg880uGEOTmKuWSxe+OtbPv0x1zKrDWi0McwB6o7W1trVVdZ1hCkHemB9HA2BN+svv3ALo9ZG4Xt8Q==
+wagmi@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.9.2.tgz#97f8a93daa7c5dfdc492a4100cccde1465433ee6"
+  integrity sha512-ZHmVXQ0U2650pBf0k168CZJ5pAotqefy5d5P9HpoW4oMaHoQ9+BvUjLcA0L2SEeUUY6L3MYRrOmoHHrcyTsToQ==
   dependencies:
-    "@coinbase/wallet-sdk" "^3.5.3"
+    "@coinbase/wallet-sdk" "^3.6.0"
     "@tanstack/query-sync-storage-persister" "^4.14.5"
     "@tanstack/react-query" "^4.14.5"
     "@tanstack/react-query-persist-client" "^4.14.5"
-    "@wagmi/core" "^0.6.12"
+    "@wagmi/core" "0.8.2"
     "@walletconnect/ethereum-provider" "^1.8.0"
-    abitype "^0.1.7"
+    abitype "^0.2.5"
     use-sync-external-store "^1.2.0"
 
 wcwidth@^1.0.1:
@@ -7109,9 +7110,9 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zustand@^4.1.1:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.1.2.tgz#4912b24741662d8a84ed1cb52198471cb369c4b6"
-  integrity sha512-gcRaKchcxFPbImrBb/BKgujOhHhik9YhVpIeP87ETT7uokEe2Szu7KkuZ9ghjtD+/KKkcrRNktR2AiLXPIbKIQ==
+zustand@^4.1.4:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.1.5.tgz#7402b511f5b23ccb0f9ba6d20ae01ec817e16eb6"
+  integrity sha512-PsdRT8Bvq22Yyh1tvpgdHNE7OAeFKqJXUxtJvj1Ixw2B9O2YZ1M34ImQ+xyZah4wZrR4lENMoDUutKPpyXCQ/Q==
   dependencies:
     use-sync-external-store "1.2.0"
