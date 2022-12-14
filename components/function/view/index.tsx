@@ -40,8 +40,6 @@ const View = ({ address, func }: ViewProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          isPrepareError={false}
-          prepareError={null}
         />
       </Container>
     </li>

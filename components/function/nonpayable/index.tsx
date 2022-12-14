@@ -46,8 +46,6 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          isPrepareError={false}
-          prepareError={null}
         />
       </Container>
     </li>
