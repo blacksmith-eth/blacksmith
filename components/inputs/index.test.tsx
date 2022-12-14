@@ -8,7 +8,7 @@ const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
     <Inputs
       name={props.name || ""}
       args={props.args || []}
-      updateValue={props.updateValue || jest.fn()}
+      updateValue={props.updateValue || vi.fn()}
       preview={props.preview}
       child={props.child}
       keys={props.keys}
@@ -48,7 +48,7 @@ describe("Inputs", () => {
   it("should call updateValue when an input changes", async () => {
     const value = "a";
     const args = buildArgList(2);
-    const updateValue = jest.fn();
+    const updateValue = vi.fn();
 
     const { user } = renderInputs({ args, updateValue });
 
@@ -66,7 +66,7 @@ describe("Inputs", () => {
     const component1 = buildArg({ name: "foo" });
     const component2 = buildArg({ name: "bar" });
     const arg = buildArg({ value: [component1, component2], type: "tuple" });
-    const updateValue = jest.fn();
+    const updateValue = vi.fn();
 
     const { user } = renderInputs({ args: [arg], updateValue });
 
@@ -88,7 +88,7 @@ describe("Inputs", () => {
 
   it("should call updateValue with added list item when add is clicked", async () => {
     const arg = buildArg({ isInfinite: true });
-    const updateValue = jest.fn();
+    const updateValue = vi.fn();
 
     const { user } = renderInputs({ args: [arg], updateValue });
 
@@ -101,7 +101,7 @@ describe("Inputs", () => {
 
   it("should call updateValue with removed list item when remove is clicked (array value)", async () => {
     const arg = buildArg({ isInfinite: false, value: [] });
-    const updateValue = jest.fn();
+    const updateValue = vi.fn();
 
     const { user } = renderInputs({
       args: [arg],
@@ -120,7 +120,7 @@ describe("Inputs", () => {
 
   it("should call updateValue with removed list item when remove is clicked (string value)", async () => {
     const arg = buildArg({ isInfinite: false, value: "" });
-    const updateValue = jest.fn();
+    const updateValue = vi.fn();
 
     const { user } = renderInputs({
       args: [arg],

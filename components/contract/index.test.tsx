@@ -11,6 +11,7 @@ import {
   buildContractDetails,
   buildContractDetailsList,
 } from "testing/factory";
+import type { Mock } from "vitest";
 import {
   useBalance,
   useContractRead,
@@ -19,18 +20,18 @@ import {
 } from "wagmi";
 import Contract from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
-const useContractReadMock = useContractRead as jest.Mock<any>;
+const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
   isLoading: false,
   isError: false,
-  refetch: jest.fn(),
+  refetch: vi.fn(),
 });
 
-const useBalanceMock = useBalance as jest.Mock<any>;
+const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({
   data: undefined,
@@ -38,11 +39,11 @@ useBalanceMock.mockReturnValue({
   isError: false,
 });
 
-const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;
+const usePrepareContractWriteMock = usePrepareContractWrite as Mock;
 usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
-const useContractWriteMock = useContractWrite as jest.Mock<any>;
-useContractWriteMock.mockReturnValue({ write: jest.fn() });
+const useContractWriteMock = useContractWrite as Mock;
+useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 describe("Contract", () => {
   it("renders a loading message", () => {

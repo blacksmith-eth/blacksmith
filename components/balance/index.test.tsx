@@ -1,12 +1,13 @@
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
+import type { Mock } from "vitest";
 import { useBalance } from "wagmi";
 import Balance from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
-const useBalanceMock = useBalance as jest.Mock<any>;
+const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({
   data: undefined,

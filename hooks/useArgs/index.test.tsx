@@ -13,14 +13,6 @@ import {
 import { useArgs } from ".";
 
 describe("useArgs", () => {
-  beforeAll(() => {
-    jest.useFakeTimers();
-  });
-
-  afterAll(() => {
-    jest.useRealTimers();
-  });
-
   it("should return args", () => {
     const inputs = buildInputList(0) as AbiParameterWithComponents[];
     const { result } = renderHook(() => useArgs(inputs));
