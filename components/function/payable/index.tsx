@@ -65,8 +65,6 @@ const Payable = ({ address, func }: PayableProps) => {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          isPrepareError={false}
-          prepareError={null}
         />
       </Container>
     </li>
