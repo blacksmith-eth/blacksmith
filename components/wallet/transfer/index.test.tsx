@@ -4,7 +4,7 @@ import { buildAddress } from "testing/factory";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
 import Transfer from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
 const usePrepareSendTransactionMock =
   usePrepareSendTransaction as jest.Mock<any>;
@@ -16,7 +16,7 @@ usePrepareSendTransactionMock.mockReturnValue({
 const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
 
 useSendTransactionMock.mockReturnValue({
-  sendTransaction: jest.fn(),
+  sendTransaction: vi.fn(),
 });
 
 const renderTransfer = () => {
@@ -25,7 +25,7 @@ const renderTransfer = () => {
 
 describe("Transfer", () => {
   it("should allow user to transfer", async () => {
-    const sendTransactionMock = jest.fn();
+    const sendTransactionMock = vi.fn();
     useSendTransactionMock.mockReturnValue({
       sendTransaction: sendTransactionMock,
     });

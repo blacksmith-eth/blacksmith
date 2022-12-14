@@ -9,7 +9,7 @@ import {
 } from "wagmi";
 import Wallet from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
 const usePrepareSendTransactionMock =
   usePrepareSendTransaction as jest.Mock<any>;
@@ -21,7 +21,7 @@ usePrepareSendTransactionMock.mockReturnValue({
 const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
 
 useSendTransactionMock.mockReturnValue({
-  sendTransaction: jest.fn(),
+  sendTransaction: vi.fn(),
 });
 
 const useAccountMock = useAccount as jest.Mock<any>;

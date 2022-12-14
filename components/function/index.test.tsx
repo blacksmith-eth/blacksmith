@@ -1,6 +1,7 @@
 import { AbiStateMutability } from "core/types";
 import { render, screen } from "testing";
 import { buildAbiDefinedFunction, buildAddress } from "testing/factory";
+import type { Mock } from "vitest";
 import {
   useContractRead,
   useContractWrite,
@@ -8,22 +9,22 @@ import {
 } from "wagmi";
 import Function from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
-const useContractReadMock = useContractRead as jest.Mock<any>;
+const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
   isLoading: false,
   isError: false,
-  refetch: jest.fn(),
+  refetch: vi.fn(),
 });
 
-const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;
+const usePrepareContractWriteMock = usePrepareContractWrite as Mock;
 usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
-const useContractWriteMock = useContractWrite as jest.Mock<any>;
-useContractWriteMock.mockReturnValue({ write: jest.fn() });
+const useContractWriteMock = useContractWrite as Mock;
+useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 describe("Function", () => {
   it.each(["pure", "view", "nonpayable", "payable"] as AbiStateMutability[])(

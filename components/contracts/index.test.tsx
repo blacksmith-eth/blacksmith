@@ -10,7 +10,7 @@ const renderContracts = (
   props: Partial<ComponentProps<typeof Contracts>> = {}
 ) => {
   const activeContract = ethers.constants.AddressZero;
-  const setActiveContract = jest.fn();
+  const setActiveContract = vi.fn();
   return render(
     <Contracts
       activeContract={activeContract}
@@ -63,7 +63,7 @@ describe("Contracts", () => {
   });
 
   it("calls setActiveContract when a contract is clicked", async () => {
-    const setActiveContract = jest.fn();
+    const setActiveContract = vi.fn();
     const contracts = buildContractDetailsList(2);
     server.use(
       rest.get("/api/contracts", (_req, res, ctx) => {
