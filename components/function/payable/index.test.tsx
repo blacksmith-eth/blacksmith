@@ -9,13 +9,10 @@ import {
   buildTransactionHash,
 } from "testing/factory";
 import type { Mock } from "vitest";
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite } from "wagmi";
 import Payable from ".";
 
 vi.mock("wagmi");
-
-const usePrepareContractWriteMock = usePrepareContractWrite as Mock;
-usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
@@ -93,7 +90,8 @@ describe("Payable", () => {
     await user.type(secondInput, "second");
 
     await waitFor(() => {
-      expect(usePrepareContractWriteMock).toHaveBeenCalledWith({
+      expect(useContractWriteMock).toHaveBeenCalledWith({
+        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: ["first", "second"],
@@ -123,7 +121,8 @@ describe("Payable", () => {
     await user.type(secondInput, "2");
 
     await waitFor(() => {
-      expect(usePrepareContractWriteMock).toHaveBeenCalledWith({
+      expect(useContractWriteMock).toHaveBeenCalledWith({
+        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: [BigNumber.from("1"), BigNumber.from("2")],
@@ -151,7 +150,8 @@ describe("Payable", () => {
     await user.selectOptions(listbox, "ether");
 
     await waitFor(() => {
-      expect(usePrepareContractWriteMock).toHaveBeenCalledWith({
+      expect(useContractWriteMock).toHaveBeenCalledWith({
+        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: [],

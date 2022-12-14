@@ -1,10 +1,6 @@
 import { render, screen } from "testing";
 import { buildAbiDefinedFunctionList, buildAddress } from "testing/factory";
-import {
-  useContractRead,
-  useContractWrite,
-  usePrepareContractWrite,
-} from "wagmi";
+import { useContractRead, useContractWrite } from "wagmi";
 import Functions from ".";
 
 vi.mock("wagmi");
@@ -17,9 +13,6 @@ useContractReadMock.mockReturnValue({
   isError: false,
   refetch: vi.fn(),
 });
-
-const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;
-usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
 const useContractWriteMock = useContractWrite as jest.Mock<any>;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
