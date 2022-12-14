@@ -92,7 +92,7 @@ export class BlacksmithConnector extends Connector<
 
   async listAccounts() {
     const provider = await this.getProvider();
-    return provider.listAccounts();
+    return provider.listAccounts() as Promise<Address[]>;
   }
 
   protected onAccountsChanged = (accounts: Address[]) => {

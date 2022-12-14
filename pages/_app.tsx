@@ -8,12 +8,13 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { ThemeProvider } from "next-themes";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { localhost } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "packages/wallets";
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [chain.localhost],
+  [localhost],
   [publicProvider()]
 );
 
