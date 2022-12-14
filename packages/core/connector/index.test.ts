@@ -49,7 +49,7 @@ describe("BlacksmithConnector", () => {
     "#getAccount should return the account from the provider (%s)",
     async (address) => {
       const provider = new BlacksmithWalletProvider();
-      provider.getAccount = jest.fn().mockResolvedValue(address);
+      provider.getAccount = vi.fn().mockResolvedValue(address);
       const connector = new BlacksmithConnector({ provider });
       const account = await connector.getAccount();
       expect(account).toBe(address);
@@ -58,7 +58,7 @@ describe("BlacksmithConnector", () => {
 
   it.each([1, 2])("#getChainId should return the chainId (%i)", async (id) => {
     const provider = new BlacksmithWalletProvider();
-    provider.getNetwork = jest.fn().mockResolvedValue({ chainId: id });
+    provider.getNetwork = vi.fn().mockResolvedValue({ chainId: id });
     const connector = new BlacksmithConnector({ provider });
     const chainId = await connector.getChainId();
     expect(chainId).toBe(id);
@@ -67,7 +67,7 @@ describe("BlacksmithConnector", () => {
   it("#getSigner should return the signer of the active account", async () => {
     const account = "0x0000000000000000000000000000000000000001";
     const provider = new BlacksmithWalletProvider();
-    provider.getSigner = jest.fn().mockResolvedValue(account);
+    provider.getSigner = vi.fn().mockResolvedValue(account);
     const connector = new BlacksmithConnector({ provider });
     const signer = await connector.getSigner();
     expect(signer).toBe(account);
@@ -76,7 +76,7 @@ describe("BlacksmithConnector", () => {
   it("#isAuthorized should return true if getAccount is defined", async () => {
     const account = "0x0000000000000000000000000000000000000001";
     const provider = new BlacksmithWalletProvider();
-    provider.getAccount = jest.fn().mockResolvedValue(account);
+    provider.getAccount = vi.fn().mockResolvedValue(account);
     const connector = new BlacksmithConnector({ provider });
     const authorized = await connector.isAuthorized();
     expect(authorized).toBe(true);
@@ -84,7 +84,7 @@ describe("BlacksmithConnector", () => {
 
   it("#isAuthorized should return false if getAccount is undefined", async () => {
     const provider = new BlacksmithWalletProvider();
-    provider.getAccount = jest.fn().mockResolvedValue(undefined);
+    provider.getAccount = vi.fn().mockResolvedValue(undefined);
     const connector = new BlacksmithConnector({ provider });
     const authorized = await connector.isAuthorized();
     expect(authorized).toBe(false);
@@ -92,7 +92,7 @@ describe("BlacksmithConnector", () => {
 
   it("#isAuthorized should return false if getAccount throws", async () => {
     const provider = new BlacksmithWalletProvider();
-    provider.listAccounts = jest.fn().mockRejectedValue(new Error("test"));
+    provider.listAccounts = vi.fn().mockRejectedValue(new Error("test"));
     const connector = new BlacksmithConnector({ provider });
     const authorized = await connector.isAuthorized();
     expect(authorized).toBe(false);
@@ -101,8 +101,8 @@ describe("BlacksmithConnector", () => {
   it("#connect should return the active account", async () => {
     const activeAccount = "0x0000000000000000000000000000000000000001";
     const provider = new BlacksmithWalletProvider();
-    provider.getAccount = jest.fn().mockResolvedValue(activeAccount);
-    provider.getNetwork = jest.fn().mockResolvedValue({ chainId: 1 });
+    provider.getAccount = vi.fn().mockResolvedValue(activeAccount);
+    provider.getNetwork = vi.fn().mockResolvedValue({ chainId: 1 });
     const connector = new BlacksmithConnector({ provider });
     const { account } = await connector.connect();
     expect(account).toBe(activeAccount);
@@ -110,8 +110,8 @@ describe("BlacksmithConnector", () => {
 
   it("#connect should return the chain", async () => {
     const provider = new BlacksmithWalletProvider();
-    provider.getAccount = jest.fn().mockResolvedValue(undefined);
-    provider.getNetwork = jest.fn().mockResolvedValue({ chainId: 1 });
+    provider.getAccount = vi.fn().mockResolvedValue(undefined);
+    provider.getNetwork = vi.fn().mockResolvedValue({ chainId: 1 });
     const connector = new BlacksmithConnector({ provider });
     const { chain } = await connector.connect();
     expect(chain).toEqual({ id: 1, unsupported: false });
@@ -119,9 +119,9 @@ describe("BlacksmithConnector", () => {
 
   it("#connect should return the provider", async () => {
     const injectedProvider = new BlacksmithWalletProvider();
-    injectedProvider.getAccount = jest.fn().mockResolvedValue(undefined);
-    injectedProvider.getNetwork = jest.fn().mockResolvedValue({ chainId: 1 });
-    injectedProvider.getSigner = jest.fn();
+    injectedProvider.getAccount = vi.fn().mockResolvedValue(undefined);
+    injectedProvider.getNetwork = vi.fn().mockResolvedValue({ chainId: 1 });
+    injectedProvider.getSigner = vi.fn();
     const connector = new BlacksmithConnector({ provider: injectedProvider });
     const { provider } = await connector.connect();
     expect(provider).toBe(injectedProvider);
@@ -131,10 +131,10 @@ describe("BlacksmithConnector", () => {
     "#connect should subscribe to %s",
     async (event) => {
       const provider = new BlacksmithWalletProvider();
-      provider.getAccount = jest.fn().mockResolvedValue(undefined);
-      provider.getNetwork = jest.fn().mockResolvedValue({ chainId: 1 });
-      provider.getSigner = jest.fn();
-      provider.on = jest.fn();
+      provider.getAccount = vi.fn().mockResolvedValue(undefined);
+      provider.getNetwork = vi.fn().mockResolvedValue({ chainId: 1 });
+      provider.getSigner = vi.fn();
+      provider.on = vi.fn();
       const connector = new BlacksmithConnector({ provider });
       await connector.connect();
       expect(provider.on).toHaveBeenCalledWith(event, expect.any(Function));
@@ -145,7 +145,7 @@ describe("BlacksmithConnector", () => {
     "#disconnect should unsubscribe from %s",
     async (event) => {
       const provider = new BlacksmithWalletProvider();
-      provider.removeListener = jest.fn();
+      provider.removeListener = vi.fn();
       const connector = new BlacksmithConnector({ provider });
       await connector.disconnect();
       expect(provider.removeListener).toHaveBeenCalledWith(
@@ -158,7 +158,7 @@ describe("BlacksmithConnector", () => {
   it("#listAccounts should return the accounts from the provider", async () => {
     const accounts = ["0x0000000000000000000000000000000000000001"];
     const provider = new BlacksmithWalletProvider();
-    provider.listAccounts = jest.fn().mockResolvedValue(accounts);
+    provider.listAccounts = vi.fn().mockResolvedValue(accounts);
     const connector = new BlacksmithConnector({ provider });
     const result = await connector.listAccounts();
     expect(result).toBe(accounts);
@@ -167,7 +167,7 @@ describe("BlacksmithConnector", () => {
   it("#changeAccount should call the provider changeAccount", async () => {
     const account = "0x0000000000000000000000000000000000000001";
     const provider = new BlacksmithWalletProvider();
-    provider.changeAccount = jest.fn();
+    provider.changeAccount = vi.fn();
     const connector = new BlacksmithConnector({ provider });
     await connector.changeAccount(account);
     expect(provider.changeAccount).toHaveBeenCalledWith(account);

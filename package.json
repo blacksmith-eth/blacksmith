@@ -10,7 +10,7 @@
     "format": "prettier --check .",
     "lint": "next lint",
     "prepare": "husky install",
-    "test": "jest",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

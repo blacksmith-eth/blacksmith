@@ -7,18 +7,19 @@ import {
   buildInput,
   buildInputList,
 } from "testing/factory";
+import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
 import View from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
-const useContractReadMock = useContractRead as jest.Mock<any>;
+const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
   isLoading: false,
   isError: false,
-  refetch: jest.fn(),
+  refetch: vi.fn(),
 });
 
 const renderView = (props: Partial<ComponentProps<typeof View>> = {}) => {
@@ -31,7 +32,9 @@ const renderView = (props: Partial<ComponentProps<typeof View>> = {}) => {
 };
 
 describe("View", () => {
-  beforeEach(jest.clearAllMocks);
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
@@ -53,7 +56,7 @@ describe("View", () => {
   });
 
   it("should refetch on read button click", () => {
-    const refetch = jest.fn();
+    const refetch = vi.fn();
     useContractReadMock.mockReturnValue({
       data: undefined,
       isLoading: false,
@@ -74,7 +77,7 @@ describe("View", () => {
       data,
       isLoading: false,
       isError: false,
-      refetch: jest.fn(),
+      refetch: vi.fn(),
     });
 
     renderView();
@@ -87,7 +90,7 @@ describe("View", () => {
       data: undefined,
       isLoading: true,
       isError: false,
-      refetch: jest.fn(),
+      refetch: vi.fn(),
     });
 
     renderView();
@@ -100,7 +103,7 @@ describe("View", () => {
       data: undefined,
       isLoading: false,
       isError: true,
-      refetch: jest.fn(),
+      refetch: vi.fn(),
     });
 
     renderView();

@@ -8,16 +8,17 @@ import {
   buildInputList,
   buildTransactionHash,
 } from "testing/factory";
+import type { Mock } from "vitest";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import Payable from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
-const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;
+const usePrepareContractWriteMock = usePrepareContractWrite as Mock;
 usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
-const useContractWriteMock = useContractWrite as jest.Mock<any>;
-useContractWriteMock.mockReturnValue({ write: jest.fn() });
+const useContractWriteMock = useContractWrite as Mock;
+useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
   return render(
@@ -29,7 +30,9 @@ const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
 };
 
 describe("Payable", () => {
-  beforeEach(jest.clearAllMocks);
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
@@ -51,7 +54,7 @@ describe("Payable", () => {
   });
 
   it("should call write function on send button click", () => {
-    const writeMock = jest.fn();
+    const writeMock = vi.fn();
     useContractWriteMock.mockReturnValue({ write: writeMock });
 
     renderPayable();
@@ -70,7 +73,7 @@ describe("Payable", () => {
   });
 
   it("should disable send button when loading", () => {
-    useContractWriteMock.mockReturnValue({ write: jest.fn(), isLoading: true });
+    useContractWriteMock.mockReturnValue({ write: vi.fn(), isLoading: true });
 
     renderPayable();
 

@@ -16,7 +16,7 @@ describe("BlacksmithWalletProvider", () => {
       "0x0000000000000000000000000000000000000002",
     ];
     const provider = new BlacksmithWalletProvider();
-    provider.listAccounts = jest.fn().mockResolvedValue(accounts);
+    provider.listAccounts = vi.fn().mockResolvedValue(accounts);
     provider.changeAccount(1);
     const account = await provider.getAccount();
     expect(account).toBe(accounts[1]);
@@ -28,7 +28,7 @@ describe("BlacksmithWalletProvider", () => {
       "0x0000000000000000000000000000000000000002",
     ];
     const provider = new BlacksmithWalletProvider();
-    provider.listAccounts = jest.fn().mockResolvedValue(accounts);
+    provider.listAccounts = vi.fn().mockResolvedValue(accounts);
     provider.changeAccount(accounts[2]);
     const account = await provider.getAccount();
     expect(account).toBe(accounts[2]);
@@ -40,8 +40,8 @@ describe("BlacksmithWalletProvider", () => {
       "0x0000000000000000000000000000000000000002",
     ];
     const provider = new BlacksmithWalletProvider();
-    provider.listAccounts = jest.fn().mockResolvedValue(accounts);
-    provider.emit = jest.fn();
+    provider.listAccounts = vi.fn().mockResolvedValue(accounts);
+    provider.emit = vi.fn();
     await provider.changeAccount(1);
     expect(provider.emit).toHaveBeenCalledWith("accountsChanged", [
       accounts[1],

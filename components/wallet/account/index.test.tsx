@@ -3,7 +3,7 @@ import { buildAddress } from "testing/factory";
 import { useAccount, useBalance } from "wagmi";
 import Account from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
 const useAccountMock = useAccount as jest.Mock<any>;
 

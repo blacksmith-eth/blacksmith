@@ -6,7 +6,7 @@ import Field from ".";
 const renderField = (props: Partial<ComponentProps<typeof Field>> = {}) => {
   return render(
     <Field
-      handleChange={props.handleChange || jest.fn()}
+      handleChange={props.handleChange || vi.fn()}
       id={props.id || "id"}
       inputName={props.inputName || "inputName"}
       type={props.type || "type"}
@@ -47,7 +47,7 @@ describe("Field", () => {
 
   it("should call the handleChange function when the input value changes", async () => {
     const inputName = faker.random.word();
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
 
     const { user } = renderField({ handleChange, inputName });
 

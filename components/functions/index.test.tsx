@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import Functions from ".";
 
-jest.mock("wagmi");
+vi.mock("wagmi");
 
 const useContractReadMock = useContractRead as jest.Mock<any>;
 
@@ -15,14 +15,14 @@ useContractReadMock.mockReturnValue({
   data: undefined,
   isLoading: false,
   isError: false,
-  refetch: jest.fn(),
+  refetch: vi.fn(),
 });
 
 const usePrepareContractWriteMock = usePrepareContractWrite as jest.Mock<any>;
 usePrepareContractWriteMock.mockReturnValue({ config: {} });
 
 const useContractWriteMock = useContractWrite as jest.Mock<any>;
-useContractWriteMock.mockReturnValue({ write: jest.fn() });
+useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 const renderFunctions = (
   props: Partial<React.ComponentProps<typeof Functions>> = {}
