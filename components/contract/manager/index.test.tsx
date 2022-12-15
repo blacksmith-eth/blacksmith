@@ -62,6 +62,25 @@ describe("Manager", () => {
     await screen.findByText("Removed successfully");
   });
 
+  it("should handle failed contract removals", async () => {
+    const address = buildAddress();
+    server.use(
+      rest.delete(`/api/contracts/${address}`, (_req, res, ctx) => {
+        return res(ctx.status(500));
+      })
+    );
+    const { user } = render(<Manager />);
+    const input = screen.getByLabelText("contract address");
+
+    await user.type(input, address);
+
+    const button = screen.getByRole("button", { name: "remove" });
+
+    await user.click(button);
+
+    await screen.findByText("Remove failed");
+  });
+
   it("should handle all contract removals", async () => {
     server.use(
       rest.delete(`/api/contracts`, (_req, res, ctx) => {
