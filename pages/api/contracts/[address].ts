@@ -1,5 +1,6 @@
 import contract from "core/contract";
 import type { Address } from "core/types";
+import { getAddress } from "core/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -14,9 +15,13 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     .then((response) => response.json())
     .then((data) => {
       const { ABI, ContractName, CompilerVersion } = data.result[0];
+      const address = getAddress(req.query.address as Address);
+      if (!address) {
+        return res.status(400).json({ error: "Invalid address" });
+      }
       contract.insert({
         abi: JSON.parse(ABI),
-        address: req.query.address as Address,
+        address,
         name: ContractName,
         version: CompilerVersion,
       });
@@ -26,7 +31,11 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const deleteHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  await contract.remove(req.query.address as Address);
+  const address = getAddress(req.query.address as Address);
+  if (!address) {
+    return res.status(400).json({ error: "Invalid address" });
+  }
+  await contract.remove(address);
   return res.status(200).json({});
 };
 

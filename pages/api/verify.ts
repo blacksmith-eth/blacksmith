@@ -1,4 +1,5 @@
 import contract from "core/contract";
+import { getAddress } from "core/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { compile } from "solc";
 
@@ -21,9 +22,17 @@ const verifyHandler = async (
     const [file, name] = req.body.contractname.split(":");
     const compiled = JSON.parse(compile(req.body.sourceCode));
     const { abi } = compiled.contracts[file][name];
+    const address = getAddress(req.body.contractaddress);
+    if (!address) {
+      return res.status(400).json({
+        status: "0",
+        message: "Error",
+        result: "Invalid address",
+      });
+    }
     contract.insert({
       abi,
-      address: req.body.contractaddress,
+      address,
       name,
       version: req.body.compilerversion,
     });
