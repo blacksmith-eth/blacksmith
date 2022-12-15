@@ -8,6 +8,7 @@
     "start": "next start",
     "commitlint": "commitlint --from=65377e2",
     "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "lint": "next lint",
     "prepare": "husky install",
     "test": "vitest run",
