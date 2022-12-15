@@ -27,10 +27,6 @@ const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
 };
 
 describe("Payable", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 
