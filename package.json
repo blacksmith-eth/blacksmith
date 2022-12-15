@@ -10,6 +10,7 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "prepare": "husky install",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
