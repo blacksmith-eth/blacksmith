@@ -23,7 +23,7 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
   const { data, write, isLoading, isError, error } = useContractWrite({
     mode: "recklesslyUnprepared",
     address,
-    abi: [func] as readonly any[],
+    abi: [func] as const,
     functionName: func.name,
     args: formattedArgs,
   });
