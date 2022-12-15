@@ -29,10 +29,6 @@ const renderNonpayable = (
 };
 
 describe("Nonpayable", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 

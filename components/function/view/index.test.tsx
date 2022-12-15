@@ -32,10 +32,6 @@ const renderView = (props: Partial<ComponentProps<typeof View>> = {}) => {
 };
 
 describe("View", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 
