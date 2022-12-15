@@ -32,10 +32,6 @@ const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
 };
 
 describe("Pure", () => {
-  beforeEach(() => {
-    vi.clearAllMocks;
-  });
-
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 
