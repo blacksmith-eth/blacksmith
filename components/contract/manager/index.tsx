@@ -46,8 +46,11 @@ const Manager = () => {
   const handleRemove = () => {
     fetch(`/api/contracts/${address}`, {
       method: "DELETE",
-    }).then(() => {
-      setResponse("Removed successfully");
+    }).then((response) => {
+      const responseMessage = response.ok
+        ? "Removed successfully"
+        : "Remove failed";
+      setResponse(responseMessage);
       mutate();
     });
   };
