@@ -1,6 +1,6 @@
 import Button from "components/button";
 import Field from "components/field";
-import Unit from "components/unit";
+import Listbox from "components/listbox";
 import { useEther } from "hooks";
 import { useState } from "react";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
@@ -44,7 +44,12 @@ const Transfer = () => {
             type="uint256"
             handleChange={handleValueChange}
           />
-          <Unit units={units} unit={unit} setUnit={setUnit} />
+          <Listbox
+            label="unit"
+            options={units}
+            selected={unit}
+            setSelected={setUnit}
+          />
         </div>
         <Button disabled={!sendTransaction} onClick={handleSendClick}>
           send
