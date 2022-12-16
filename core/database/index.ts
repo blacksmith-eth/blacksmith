@@ -1,4 +1,5 @@
-import { Low, JSONFile } from "lowdb";
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
 import type { Address, ContractDetails } from "core/types";
 
 type Data = {
