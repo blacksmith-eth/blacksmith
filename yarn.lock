@@ -4895,10 +4895,10 @@ loupe@^2.3.1:
   dependencies:
     get-func-name "^2.0.0"
 
-lowdb@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-4.0.0.tgz#177bc8ce5b0110248cc61a402faf9a51ce62bc11"
-  integrity sha512-wH4WPH2A+doyzd9mluhMQQsdrHNfOXJE5+C5N03QvH+8EoEMB1WWnjkfn1MkPtVdDrONRTojuNAWi6Es3rVtmA==
+lowdb@5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-5.0.5.tgz#30315e5a42432df188dcd17f1e5a288de68848e8"
+  integrity sha512-7EWKmIMhNKA8TXFhL8t0p6N2LC53l3ZqsWQGSksGhhjrcms9rbKlyrAh2PzSGK5v0KPJ2W5VItBnC3NDRzOnzQ==
   dependencies:
     steno "^3.0.0"
 
