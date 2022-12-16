@@ -1,6 +1,5 @@
 import { AbiParameterWithComponents, Arg } from "core/types";
 import { BigNumber } from "ethers";
-import { useDebounce } from "hooks";
 import { times } from "lodash";
 import { useCallback, useState } from "react";
 
@@ -103,7 +102,7 @@ const buildArg = (input: AbiParameterWithComponents): Arg => ({
   isTouched: false,
 });
 
-const calculateTouched = (args: Arg[]): boolean =>
+const calculateTouched = (args: readonly Arg[]): boolean =>
   args.reduce((acc, arg) => {
     if (typeof arg.value === "string") {
       return acc && arg.isTouched;
@@ -114,7 +113,6 @@ const calculateTouched = (args: Arg[]): boolean =>
 export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
   const initialArgs = inputs.map(buildArg);
   const [args, setArgs] = useState<readonly Arg[]>(initialArgs);
-  const debouncedArgs = useDebounce(args, 500);
 
   const updater = useCallback(
     (arg: Arg, value: string | Arg[], keys: number[]): Arg => {
@@ -147,9 +145,9 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
     [args, updater]
   );
 
-  const formattedArgs = debouncedArgs.map(formatArgsByType);
+  const formattedArgs = args.map(formatArgsByType);
 
-  const isTouched = calculateTouched(debouncedArgs);
+  const isTouched = calculateTouched(args);
 
   return { args, formattedArgs, updateValue, isTouched };
 };
