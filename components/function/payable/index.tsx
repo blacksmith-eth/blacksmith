@@ -1,7 +1,7 @@
 import Button from "components/button";
 import Field from "components/field";
 import Inputs from "components/inputs";
-import Unit from "components/unit";
+import Listbox from "components/listbox";
 import {
   AbiDefinedFunction,
   AbiParameterWithComponents,
@@ -51,7 +51,12 @@ const Payable = ({ address, func }: PayableProps) => {
             type="uint256"
             handleChange={handleValueChange}
           />
-          <Unit units={units} unit={unit} setUnit={setUnit} />
+          <Listbox
+            label="unit"
+            options={units}
+            selected={unit}
+            setSelected={setUnit}
+          />
         </div>
       </section>
       <Inputs name={func.name} args={args} updateValue={updateValue} />
