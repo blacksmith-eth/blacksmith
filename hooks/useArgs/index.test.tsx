@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { AbiParameterWithComponents } from "core/types";
 import { BigNumber } from "ethers";
 import { times } from "lodash";
-import { act, renderHook, waitFor } from "testing";
+import { act, renderHook } from "testing";
 import {
   buildAddress,
   buildArg,
@@ -277,7 +277,7 @@ describe("useArgs", () => {
     ]);
   });
 
-  it("should return formatted big number args", async () => {
+  it("should return formatted big number args", () => {
     const value = "1";
     const input = buildInput({ type: "uint256" });
     const { result } = renderHook(() =>
@@ -288,12 +288,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
-    });
+    expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
   });
 
-  it("should return provided value when big number conversion throws", async () => {
+  it("should return provided value when big number conversion throws", () => {
     const value = faker.random.word();
     const input = buildInput({ type: "uint256" });
     const { result } = renderHook(() =>
@@ -304,12 +302,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([value]);
-    });
+    expect(result.current.formattedArgs).toEqual([value]);
   });
 
-  it("should return formatted args for false boolean", async () => {
+  it("should return formatted args for false boolean", () => {
     const value = "false";
     const input = buildInput({ type: "bool" });
     const { result } = renderHook(() =>
@@ -320,12 +316,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([false]);
-    });
+    expect(result.current.formattedArgs).toEqual([false]);
   });
 
-  it("should return formatted args for true boolean", async () => {
+  it("should return formatted args for true boolean", () => {
     const value = "true";
     const input = buildInput({ type: "bool" });
     const { result } = renderHook(() =>
@@ -336,12 +330,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], value);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([true]);
-    });
+    expect(result.current.formattedArgs).toEqual([true]);
   });
 
-  it("should return formatted args for string array", async () => {
+  it("should return formatted args for string array", () => {
     const strings = ["foo", "bar", "baz"];
     const input = buildInput({ type: "string[]" });
     const values = [
@@ -357,12 +349,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([strings]);
-    });
+    expect(result.current.formattedArgs).toEqual([strings]);
   });
 
-  it("should return formatted args for address array", async () => {
+  it("should return formatted args for address array", () => {
     const addresses = times(3, () => buildAddress());
     const values = [
       buildArg({ type: "address", value: addresses[0] }),
@@ -378,12 +368,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([addresses]);
-    });
+    expect(result.current.formattedArgs).toEqual([addresses]);
   });
 
-  it("should return formatted args for uint256[]", async () => {
+  it("should return formatted args for uint256[]", () => {
     const values = [
       buildArg({ name: "uint256", type: "uint256", value: "1" }),
       buildArg({ name: "uint256", type: "uint256", value: "2" }),
@@ -398,14 +386,12 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([
-        [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
-      ]);
-    });
+    expect(result.current.formattedArgs).toEqual([
+      [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
+    ]);
   });
 
-  it("should return formatted args for tuple", async () => {
+  it("should return formatted args for tuple", () => {
     const value = "foo";
     const components = buildInputList(2) as AbiParameterWithComponents[];
     const input = buildInputWithComponents({ type: "tuple", components });
@@ -415,14 +401,12 @@ describe("useArgs", () => {
       result.current.updateValue([0, 1], value);
     });
 
-    await waitFor(() => {
-      expect(result.current.formattedArgs).toEqual([
-        {
-          [input.components![0].name!]: "",
-          [input.components![1].name!]: value,
-        },
-      ]);
-    });
+    expect(result.current.formattedArgs).toEqual([
+      {
+        [input.components![0].name!]: "",
+        [input.components![1].name!]: value,
+      },
+    ]);
   });
 
   it("should return fallback input name of input type ", () => {
@@ -443,7 +427,7 @@ describe("useArgs", () => {
     expect(result.current.isTouched).toEqual(false);
   });
 
-  it("should return isTouched of true when input is touched", async () => {
+  it("should return isTouched of true when input is touched", () => {
     const input = buildInput();
     const { result } = renderHook(() =>
       useArgs([input] as AbiParameterWithComponents[])
@@ -453,12 +437,10 @@ describe("useArgs", () => {
       result.current.updateValue([0], faker.random.word());
     });
 
-    await waitFor(() => {
-      expect(result.current.isTouched).toEqual(true);
-    });
+    expect(result.current.isTouched).toEqual(true);
   });
 
-  it("should return isTouched of false when at least one input is not touched", async () => {
+  it("should return isTouched of false when at least one input is not touched", () => {
     const inputs = buildInputList(2) as AbiParameterWithComponents[];
     const { result } = renderHook(() => useArgs(inputs));
 
@@ -466,8 +448,6 @@ describe("useArgs", () => {
       result.current.updateValue([0], faker.random.word());
     });
 
-    await waitFor(() => {
-      expect(result.current.isTouched).toEqual(false);
-    });
+    expect(result.current.isTouched).toEqual(false);
   });
 });
