@@ -44,11 +44,9 @@ const Home: NextPage = () => {
           />
           <Footer />
         </aside>
-        <section className="flex flex-col flex-grow">
-          <section className="bg-white dark:bg-black p-2 flex-grow overflow-y-auto md:overscroll-none">
-            <h2 className="font-bold">Contract</h2>
-            <Contract address={activeContract} />
-          </section>
+        <section className="flex flex-col flex-grow bg-white dark:bg-black p-2 overflow-y-auto md:overscroll-none">
+          <h2 className="font-bold">Contract</h2>
+          <Contract address={activeContract} />
         </section>
         <Wallet open={isWalletOpen} />
       </main>
