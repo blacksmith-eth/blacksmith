@@ -59,7 +59,7 @@ const Home: NextPage = () => {
             activeContract={activeContract}
             setActiveContract={setActiveContract}
           />
-          <section className="flex flex-col">
+          <footer className="flex flex-col">
             <Switch />
             <div className="text-sm px-1.5">
               <span>
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
                 report an issue
               </Anchor>
             </div>
-          </section>
+          </footer>
         </aside>
         <section className="flex flex-col flex-grow">
           <section className="bg-white dark:bg-black p-2 flex-grow overflow-y-auto md:overscroll-none">
