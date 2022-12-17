@@ -1,8 +1,7 @@
-import { WalletIcon } from "@heroicons/react/24/outline";
-import Connect from "components/connect";
 import Contract from "components/contract";
 import Contracts from "components/contracts";
 import Footer from "components/footer";
+import Header from "components/header";
 import Wallet from "components/wallet";
 import { Address } from "core/types";
 import { ethers } from "ethers";
@@ -31,26 +30,11 @@ const Home: NextPage = () => {
           content="Blacksmith is an adaptive user interface for smart contract interaction."
         />
       </Head>
-      <header className="bg-white dark:bg-black border-b border-black dark:border-white sticky top-0 p-2 flex items-center justify-between">
-        <h1 className="font-bold">
-          <button
-            onClick={resetActiveContract}
-            className="focus:underline focus:outline-none"
-          >
-            Blacksmith
-          </button>
-        </h1>
-        <section className="flex items-center gap-1">
-          <Connect />
-          <button
-            onClick={toggleWallet}
-            className="p-0.5 text-black dark:text-white rounded-sm focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
-          >
-            <WalletIcon className="w-6 h-6" />
-            <span className="sr-only">{walletButtonText}</span>
-          </button>
-        </section>
-      </header>
+      <Header
+        toggleWallet={toggleWallet}
+        resetActiveContract={resetActiveContract}
+        walletButtonText={walletButtonText}
+      />
       <main className="bg-white dark:bg-black flex flex-col md:flex-row flex-grow overflow-y-auto overscroll-none">
         <aside className="flex flex-col bg-white dark:bg-black border-b border-black dark:border-white md:border-b-0 md:border-r p-2 w-full md:static md:basis-1/5 md:overflow-y-auto md:overscroll-none min-w-fit">
           <h2 className="font-bold">Contracts</h2>
