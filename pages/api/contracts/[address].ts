@@ -4,6 +4,10 @@ import { getAddress } from "core/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const address = getAddress(req.query.address as Address);
+  if (!address) {
+    return res.status(400).json({ error: "Invalid address" });
+  }
   return fetch(
     `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${req.query.address}`,
     {
@@ -15,10 +19,6 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     .then((response) => response.json())
     .then((data) => {
       const { ABI, ContractName, CompilerVersion } = data.result[0];
-      const address = getAddress(req.query.address as Address);
-      if (!address) {
-        return res.status(400).json({ error: "Invalid address" });
-      }
       contract.insert({
         abi: JSON.parse(ABI),
         address,
