@@ -13,6 +13,7 @@
     "lint:fix": "next lint --fix",
     "prepare": "husky install",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
