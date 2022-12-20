@@ -47,4 +47,10 @@ describe("BlacksmithWalletProvider", () => {
       accounts[1],
     ]);
   });
+
+  it("#getSigner should return a signer", () => {
+    const provider = new BlacksmithWalletProvider();
+    const signer = provider.getSigner();
+    expect(signer).toBeDefined();
+  });
 });
