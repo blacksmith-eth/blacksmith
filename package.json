@@ -29,7 +29,7 @@
     "react-dom": "^18.1.0",
     "solc": "^0.8.17",
     "swr": "^2.0.0",
-    "wagmi": "^0.9.4",
+    "wagmi": "^0.9.5",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
