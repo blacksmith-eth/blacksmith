@@ -43,7 +43,7 @@
     "@types/node": "^18.11.17",
     "@types/react": "^18.0.26",
     "@vitejs/plugin-react": "^3.0.0",
-    "@vitest/coverage-c8": "^0.26.0",
+    "@vitest/coverage-c8": "^0.26.2",
     "abitype": "^0.2.5",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.30.0",
