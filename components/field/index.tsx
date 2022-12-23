@@ -1,8 +1,10 @@
-type FieldProps = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
+import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from "react";
+
+type FieldProps = DetailedHTMLProps<
+  InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
   id: string;
   inputName: string;
   type: string;
