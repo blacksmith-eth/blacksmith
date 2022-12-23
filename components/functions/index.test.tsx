@@ -1,3 +1,4 @@
+import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAbiDefinedFunctionList, buildAddress } from "testing/factory";
 import { useContractRead, useContractWrite } from "wagmi";
@@ -18,7 +19,7 @@ const useContractWriteMock = useContractWrite as jest.Mock<any>;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 const renderFunctions = (
-  props: Partial<React.ComponentProps<typeof Functions>> = {}
+  props: Partial<ComponentProps<typeof Functions>> = {}
 ) => {
   return render(
     <Functions
