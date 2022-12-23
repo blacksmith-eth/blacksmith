@@ -1,6 +1,7 @@
 import Button from "components/button";
 import Field from "components/field";
 import { Arg } from "core/types";
+import { ChangeEvent } from "react";
 
 type InputsProps = {
   args: readonly Arg[];
@@ -98,7 +99,7 @@ const Inputs = ({
           );
         }
 
-        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
           updateValue([...keys, index], event.target.value);
         };
 

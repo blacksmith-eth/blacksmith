@@ -2,7 +2,7 @@ import Button from "components/button";
 import Field from "components/field";
 import Listbox from "components/listbox";
 import { useEther } from "hooks";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
 
 const Transfer = () => {
@@ -15,9 +15,7 @@ const Transfer = () => {
   });
   const { sendTransaction } = useSendTransaction(config);
 
-  const handleRecipientChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleRecipientChange = (event: ChangeEvent<HTMLInputElement>) => {
     setRecipient(event.target.value);
   };
 

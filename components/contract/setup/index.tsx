@@ -1,7 +1,7 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
 import Anchor from "components/anchor";
 import Field from "components/field";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const Setup = () => {
   const [focusedInput, setFocusedInput] = useState("");
@@ -16,27 +16,23 @@ const Setup = () => {
   );
   const command = `forge create ${path}:${contractName} --verify --unlocked --from ${deployerAddress} --rpc-url ${rpcUrl} --verifier-url ${verifierUrl} --etherscan-api-key blacksmith`;
 
-  const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDeployerAddress(event.target.value);
   };
 
-  const handlePathChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePathChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPath(event.target.value);
   };
 
-  const handleContractNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleContractNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setContractName(event.target.value);
   };
 
-  const handleRpcUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRpcUrlChange = (event: ChangeEvent<HTMLInputElement>) => {
     setRpcUrl(event.target.value);
   };
 
-  const handleVerifierUrlChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleVerifierUrlChange = (event: ChangeEvent<HTMLInputElement>) => {
     setVerifierUrl(event.target.value);
   };
 

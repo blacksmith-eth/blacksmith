@@ -5,7 +5,12 @@ import {
 import Anchor from "components/anchor";
 import Field from "components/field";
 import { useContracts } from "hooks";
-import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from "react";
+import {
+  ButtonHTMLAttributes,
+  ChangeEvent,
+  DetailedHTMLProps,
+  useState,
+} from "react";
 
 type IconButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -27,7 +32,7 @@ const Manager = () => {
   const [address, setAddress] = useState("");
   const { mutate } = useContracts();
 
-  const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
   };
 
