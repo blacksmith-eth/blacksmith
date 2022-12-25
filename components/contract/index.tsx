@@ -1,5 +1,5 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
-import Balance from "components/balance";
+import { Balance } from "components/balance";
 import Functions from "components/functions";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
 import { ethers } from "ethers";
