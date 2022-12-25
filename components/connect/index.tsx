@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-const Connect = () => {
+export const Connect = () => {
   return (
     <ConnectButton.Custom>
       {({
@@ -77,5 +77,3 @@ const Connect = () => {
     </ConnectButton.Custom>
   );
 };
-
-export default Connect;
