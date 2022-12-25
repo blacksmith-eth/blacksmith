@@ -9,7 +9,7 @@ import {
 } from "core/types";
 import { useArgs, useEther } from "hooks";
 import { useContractWrite } from "wagmi";
-import Container from "../container";
+import { Container } from "../container";
 import Output from "../output";
 import Signature from "../signature";
 
