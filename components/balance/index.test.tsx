@@ -3,7 +3,7 @@ import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
 import type { Mock } from "vitest";
 import { useBalance } from "wagmi";
-import Balance from ".";
+import { Balance } from ".";
 
 vi.mock("wagmi");
 
