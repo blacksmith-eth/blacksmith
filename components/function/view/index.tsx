@@ -8,7 +8,7 @@ import {
 import { useArgs } from "hooks";
 import { useContractRead } from "wagmi";
 import { Container } from "../container";
-import Output from "../output";
+import { Output } from "../output";
 import Signature from "../signature";
 
 type ViewProps = {
