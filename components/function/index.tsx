@@ -1,6 +1,6 @@
 import { AbiDefinedFunction, Address } from "core/types";
 import { Nonpayable } from "./nonpayable";
-import Payable from "./payable";
+import { Payable } from "./payable";
 import Pure from "./pure";
 import View from "./view";
 
