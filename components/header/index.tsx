@@ -1,5 +1,5 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
-import Connect from "components/connect";
+import { Connect } from "components/connect";
 
 type HeaderProps = {
   resetActiveContract: () => void;
