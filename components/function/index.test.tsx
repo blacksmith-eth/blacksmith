@@ -3,7 +3,7 @@ import { render, screen } from "testing";
 import { buildAbiDefinedFunction, buildAddress } from "testing/factory";
 import type { Mock } from "vitest";
 import { useContractRead, useContractWrite } from "wagmi";
-import Function from ".";
+import { Function } from ".";
 
 vi.mock("wagmi");
 
