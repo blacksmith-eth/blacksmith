@@ -4,7 +4,7 @@ import { rest } from "msw";
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildContractDetailsList } from "testing/factory";
-import Contracts from ".";
+import { Contracts } from ".";
 
 const renderContracts = (
   props: Partial<ComponentProps<typeof Contracts>> = {}

@@ -1,5 +1,5 @@
 import { Contract } from "components/contract";
-import Contracts from "components/contracts";
+import { Contracts } from "components/contracts";
 import Footer from "components/footer";
 import Header from "components/header";
 import Wallet from "components/wallet";
