@@ -18,7 +18,7 @@ const Introduction = () => (
   </div>
 );
 
-const Contract = ({ address }: { address: Address }) => {
+export const Contract = ({ address }: { address: Address }) => {
   const { contracts, isLoading, isError } = useContracts();
 
   if (isLoading) return <div>loading...</div>;
@@ -67,5 +67,3 @@ const Contract = ({ address }: { address: Address }) => {
     </section>
   );
 };
-
-export default Contract;
