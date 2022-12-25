@@ -5,7 +5,7 @@ type AnchorProps = DetailedHTMLProps<
   HTMLAnchorElement
 >;
 
-const Anchor = (props: AnchorProps) => (
+export const Anchor = (props: AnchorProps) => (
   <a
     {...props}
     className="underline focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
@@ -13,5 +13,3 @@ const Anchor = (props: AnchorProps) => (
     {props.children}
   </a>
 );
-
-export default Anchor;

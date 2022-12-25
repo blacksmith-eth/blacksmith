@@ -1,4 +1,4 @@
-import Anchor from "components/anchor";
+import { Anchor } from "components/anchor";
 import Switch from "components/switch";
 
 const Footer = () => (
