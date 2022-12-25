@@ -16,7 +16,7 @@ type NonpayableProps = {
   func: AbiDefinedFunction;
 };
 
-const Nonpayable = ({ address, func }: NonpayableProps) => {
+export const Nonpayable = ({ address, func }: NonpayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -51,5 +51,3 @@ const Nonpayable = ({ address, func }: NonpayableProps) => {
     </li>
   );
 };
-
-export default Nonpayable;
