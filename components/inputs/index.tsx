@@ -1,4 +1,4 @@
-import Button from "components/button";
+import { Button } from "components/button";
 import Field from "components/field";
 import { Arg } from "core/types";
 import { ChangeEvent } from "react";
