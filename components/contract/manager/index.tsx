@@ -3,7 +3,7 @@ import {
   PlusSmallIcon,
 } from "@heroicons/react/24/outline";
 import { Anchor } from "components/anchor";
-import Field from "components/field";
+import { Field } from "components/field";
 import { useContracts } from "hooks";
 import {
   ButtonHTMLAttributes,

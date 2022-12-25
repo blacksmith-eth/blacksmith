@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
-import Field from ".";
+import { Field } from ".";
 
 const renderField = (props: Partial<ComponentProps<typeof Field>> = {}) => {
   return render(
