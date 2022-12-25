@@ -14,7 +14,7 @@ import {
 } from "testing/factory";
 import type { Mock } from "vitest";
 import { useBalance, useContractRead, useContractWrite } from "wagmi";
-import Contract from ".";
+import { Contract } from ".";
 
 vi.mock("wagmi");
 
