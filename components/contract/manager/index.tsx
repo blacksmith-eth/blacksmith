@@ -26,7 +26,7 @@ const IconButton = (props: IconButtonProps) => (
   </button>
 );
 
-const Manager = () => {
+export const Manager = () => {
   const [response, setResponse] = useState("");
   const [deleteAllResponse, setDeleteAllResponse] = useState("");
   const [address, setAddress] = useState("");
@@ -116,5 +116,3 @@ const Manager = () => {
     </div>
   );
 };
-
-export default Manager;

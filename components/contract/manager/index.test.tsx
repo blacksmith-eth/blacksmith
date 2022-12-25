@@ -2,7 +2,7 @@ import { server } from "mocks/server";
 import { rest } from "msw";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
-import Manager from ".";
+import { Manager } from ".";
 
 describe("Manager", () => {
   it("should handle contract imports", async () => {
