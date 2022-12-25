@@ -1,6 +1,6 @@
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
-import Setup from ".";
+import { Setup } from ".";
 
 describe("Setup", () => {
   it("renders the default command", () => {

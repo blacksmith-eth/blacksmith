@@ -3,7 +3,7 @@ import { Anchor } from "components/anchor";
 import Field from "components/field";
 import { ChangeEvent, useState } from "react";
 
-const Setup = () => {
+export const Setup = () => {
   const [focusedInput, setFocusedInput] = useState("");
   const [deployerAddress, setDeployerAddress] = useState<string>(
     "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
@@ -169,5 +169,3 @@ const Setup = () => {
     </div>
   );
 };
-
-export default Setup;
