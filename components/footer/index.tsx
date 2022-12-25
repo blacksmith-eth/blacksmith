@@ -1,7 +1,7 @@
 import { Anchor } from "components/anchor";
 import Switch from "components/switch";
 
-const Footer = () => (
+export const Footer = () => (
   <footer className="flex flex-col">
     <Switch />
     <div className="text-sm px-1.5">
@@ -20,5 +20,3 @@ const Footer = () => (
     </div>
   </footer>
 );
-
-export default Footer;
