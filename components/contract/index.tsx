@@ -4,7 +4,7 @@ import Functions from "components/functions";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
 import { ethers } from "ethers";
 import { useContracts } from "hooks";
-import Manager from "./manager";
+import { Manager } from "./manager";
 import Setup from "./setup";
 
 const filterDefinedFunctions = (abi: Abi): AbiDefinedFunction[] => {
