@@ -5,7 +5,7 @@ type BalanceProps = {
   address: Address;
 };
 
-const Balance = ({ address }: BalanceProps) => {
+export const Balance = ({ address }: BalanceProps) => {
   const { data, isError, isLoading } = useBalance({ address, watch: true });
 
   if (isLoading) return <div>loading...</div>;
@@ -16,5 +16,3 @@ const Balance = ({ address }: BalanceProps) => {
     </div>
   );
 };
-
-export default Balance;
