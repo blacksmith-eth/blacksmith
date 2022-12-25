@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { server } from "mocks/server";
 import { rest } from "msw";
+import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedFunction,
@@ -37,9 +38,15 @@ useBalanceMock.mockReturnValue({
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
+const renderContract = (
+  props: Partial<ComponentProps<typeof Contract>> = {}
+) => {
+  render(<Contract address={props.address || buildAddress()} />);
+};
+
 describe("Contract", () => {
   it("renders a loading message", () => {
-    render(<Contract address="0x123" />);
+    renderContract();
 
     expect(screen.getByText("loading...")).toBeInTheDocument();
   });
@@ -51,7 +58,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address="0x123" />);
+    renderContract();
 
     expect(await screen.findByText("error")).toBeInTheDocument();
   });
@@ -64,7 +71,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address={contracts[0].address} />);
+    renderContract({ address: contracts[0].address });
 
     expect(
       await screen.findByRole("heading", { level: 3, name: contracts[0].name })
@@ -80,7 +87,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address={address} />);
+    renderContract({ address });
 
     expect(
       await screen.findByText("Selected contract not found.")
@@ -100,7 +107,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address={address} />);
+    renderContract({ address });
 
     expect(
       await screen.findByRole("heading", { level: 3, name: "Getting Started" })
@@ -118,7 +125,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address={contract.address} />);
+    renderContract({ address: contract.address });
 
     expect(
       await screen.findByRole("heading", { level: 4, name: contract.address })
@@ -134,7 +141,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address={contract.address} />);
+    renderContract({ address: contract.address });
 
     expect(
       await screen.findByText(definedFunctions[0].name, { exact: false })
@@ -156,7 +163,7 @@ describe("Contract", () => {
       })
     );
 
-    render(<Contract address={contract.address} />);
+    renderContract({ address: contract.address });
 
     await waitFor(() => {
       expect(
