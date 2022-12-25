@@ -11,7 +11,7 @@ type FieldProps = DetailedHTMLProps<
   value: string;
 };
 
-const Field = ({
+export const Field = ({
   inputName,
   disabled,
   value,
@@ -48,5 +48,3 @@ const Field = ({
     </li>
   );
 };
-
-export default Field;
