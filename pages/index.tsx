@@ -1,4 +1,4 @@
-import Contract from "components/contract";
+import { Contract } from "components/contract";
 import Contracts from "components/contracts";
 import Footer from "components/footer";
 import Header from "components/header";
