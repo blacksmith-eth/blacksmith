@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildResult } from "testing/factory";
-import Output from ".";
+import { Output } from ".";
 
 const renderOutput = (props: Partial<ComponentProps<typeof Output>> = {}) =>
   render(

@@ -13,7 +13,7 @@ const formatData = (data: any | undefined): string => {
   return data.toString();
 };
 
-const Output = ({
+export const Output = ({
   data,
   isTouched,
   isLoading,
@@ -27,5 +27,3 @@ const Output = ({
     );
   return <span>{formatData(data)}</span>;
 };
-
-export default Output;
