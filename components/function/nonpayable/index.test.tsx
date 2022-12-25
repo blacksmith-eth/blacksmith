@@ -10,7 +10,7 @@ import {
 } from "testing/factory";
 import type { Mock } from "vitest";
 import { useContractWrite } from "wagmi";
-import Nonpayable from ".";
+import { Nonpayable } from ".";
 
 vi.mock("wagmi");
 
