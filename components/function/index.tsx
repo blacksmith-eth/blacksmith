@@ -9,7 +9,7 @@ type FunctionProps = {
   func: AbiDefinedFunction;
 };
 
-const Function = ({ address, func }: FunctionProps) => {
+export const Function = ({ address, func }: FunctionProps) => {
   switch (func.stateMutability) {
     case "pure":
       return <Pure address={address} func={func} />;
@@ -21,5 +21,3 @@ const Function = ({ address, func }: FunctionProps) => {
       return <Payable address={address} func={func} />;
   }
 };
-
-export default Function;
