@@ -6,7 +6,10 @@ type ContractsProps = {
   setActiveContract(address: Address): void;
 };
 
-const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
+export const Contracts = ({
+  activeContract,
+  setActiveContract,
+}: ContractsProps) => {
   const { contracts, isLoading, isError } = useContracts();
 
   if (isLoading) return <div className="flex-grow">loading...</div>;
@@ -30,5 +33,3 @@ const Contracts = ({ activeContract, setActiveContract }: ContractsProps) => {
     </ul>
   );
 };
-
-export default Contracts;
