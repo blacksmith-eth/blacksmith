@@ -1,5 +1,5 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
-import Anchor from "components/anchor";
+import { Anchor } from "components/anchor";
 import Field from "components/field";
 import { ChangeEvent, useState } from "react";
 
