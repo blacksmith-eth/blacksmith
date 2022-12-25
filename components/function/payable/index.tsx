@@ -18,7 +18,7 @@ type PayableProps = {
   func: AbiDefinedFunction;
 };
 
-const Payable = ({ address, func }: PayableProps) => {
+export const Payable = ({ address, func }: PayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -75,5 +75,3 @@ const Payable = ({ address, func }: PayableProps) => {
     </li>
   );
 };
-
-export default Payable;
