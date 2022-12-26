@@ -1,5 +1,5 @@
 import { Anchor } from "components/anchor";
-import Switch from "components/switch";
+import { Switch } from "components/switch";
 
 export const Footer = () => (
   <footer className="flex flex-col">

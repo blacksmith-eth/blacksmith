@@ -2,7 +2,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-const Switch = () => {
+export const Switch = () => {
   const [hasMounted, setHasMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
@@ -27,5 +27,3 @@ const Switch = () => {
     </button>
   );
 };
-
-export default Switch;
