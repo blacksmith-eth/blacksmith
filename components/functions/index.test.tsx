@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAbiDefinedFunctionList, buildAddress } from "testing/factory";
 import { useContractRead, useContractWrite } from "wagmi";
-import Functions from ".";
+import { Functions } from ".";
 
 vi.mock("wagmi");
 
