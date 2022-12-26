@@ -1,6 +1,6 @@
 import { Button } from "components/button";
 import { Field } from "components/field";
-import Inputs from "components/inputs";
+import { Inputs } from "components/inputs";
 import Listbox from "components/listbox";
 import {
   AbiDefinedFunction,
