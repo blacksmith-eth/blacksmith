@@ -7,7 +7,7 @@ type HeaderProps = {
   walletButtonText: string;
 };
 
-const Header = ({
+export const Header = ({
   resetActiveContract,
   toggleWallet,
   walletButtonText,
@@ -33,5 +33,3 @@ const Header = ({
     </section>
   </header>
 );
-
-export default Header;
