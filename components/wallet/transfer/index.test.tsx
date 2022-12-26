@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
-import Transfer from ".";
+import { Transfer } from ".";
 
 vi.mock("wagmi");
 
