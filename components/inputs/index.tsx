@@ -12,7 +12,7 @@ type InputsProps = {
   child?: boolean;
 };
 
-const Inputs = ({
+export const Inputs = ({
   name,
   args,
   updateValue,
@@ -134,5 +134,3 @@ const Inputs = ({
     </ul>
   );
 };
-
-export default Inputs;
