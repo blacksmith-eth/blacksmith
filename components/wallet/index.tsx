@@ -1,5 +1,5 @@
 import { Account } from "./account";
-import Transfer from "./transfer";
+import { Transfer } from "./transfer";
 
 type WalletProps = {
   open: boolean;
