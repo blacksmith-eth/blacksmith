@@ -1,4 +1,4 @@
-import contract from "core/contract";
+import { contract } from "core/contract";
 import { getAddress } from "core/utils";
 import { server } from "mocks/server";
 import { rest } from "msw";
