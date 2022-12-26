@@ -1,7 +1,7 @@
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
 import { useAccount, useBalance } from "wagmi";
-import Account from ".";
+import { Account } from ".";
 
 vi.mock("wagmi");
 
