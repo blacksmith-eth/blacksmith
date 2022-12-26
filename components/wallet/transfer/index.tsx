@@ -5,7 +5,7 @@ import { useEther } from "hooks";
 import { ChangeEvent, useState } from "react";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
 
-const Transfer = () => {
+export const Transfer = () => {
   const [recipient, setRecipient] = useState("");
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();
@@ -56,5 +56,3 @@ const Transfer = () => {
     </div>
   );
 };
-
-export default Transfer;
