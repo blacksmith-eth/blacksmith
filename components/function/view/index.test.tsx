@@ -9,7 +9,7 @@ import {
 } from "testing/factory";
 import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
-import View from ".";
+import { View } from ".";
 
 vi.mock("wagmi");
 
