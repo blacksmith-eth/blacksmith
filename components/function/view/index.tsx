@@ -16,7 +16,7 @@ type ViewProps = {
   func: AbiDefinedFunction;
 };
 
-const View = ({ address, func }: ViewProps) => {
+export const View = ({ address, func }: ViewProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -45,5 +45,3 @@ const View = ({ address, func }: ViewProps) => {
     </li>
   );
 };
-
-export default View;

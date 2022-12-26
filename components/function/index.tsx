@@ -2,7 +2,7 @@ import { AbiDefinedFunction, Address } from "core/types";
 import { Nonpayable } from "./nonpayable";
 import { Payable } from "./payable";
 import { Pure } from "./pure";
-import View from "./view";
+import { View } from "./view";
 
 type FunctionProps = {
   address: Address;
