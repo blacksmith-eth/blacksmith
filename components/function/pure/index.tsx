@@ -16,7 +16,7 @@ type PureProps = {
   func: AbiDefinedFunction;
 };
 
-const Pure = ({ address, func }: PureProps) => {
+export const Pure = ({ address, func }: PureProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -45,5 +45,3 @@ const Pure = ({ address, func }: PureProps) => {
     </li>
   );
 };
-
-export default Pure;
