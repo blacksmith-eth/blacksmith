@@ -1,5 +1,5 @@
 import { Button } from "components/button";
-import Inputs from "components/inputs";
+import { Inputs } from "components/inputs";
 import {
   AbiDefinedFunction,
   AbiParameterWithComponents,
