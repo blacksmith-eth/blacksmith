@@ -7,7 +7,7 @@ import {
   usePrepareSendTransaction,
   useSendTransaction,
 } from "wagmi";
-import Wallet from ".";
+import { Wallet } from ".";
 
 vi.mock("wagmi");
 
