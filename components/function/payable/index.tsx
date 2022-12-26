@@ -11,7 +11,7 @@ import { useArgs, useEther } from "hooks";
 import { useContractWrite } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";
-import Signature from "../signature";
+import { Signature } from "../signature";
 
 type PayableProps = {
   address: Address;
