@@ -6,7 +6,7 @@ type FunctionsProps = {
   functions: AbiDefinedFunction[];
 };
 
-const Functions = ({ address, functions }: FunctionsProps) => {
+export const Functions = ({ address, functions }: FunctionsProps) => {
   if (functions.length === 0) return <div>No defined functions.</div>;
   return (
     <ul className="flex flex-col gap-4">
@@ -20,5 +20,3 @@ const Functions = ({ address, functions }: FunctionsProps) => {
     </ul>
   );
 };
-
-export default Functions;
