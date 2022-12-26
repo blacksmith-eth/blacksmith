@@ -26,11 +26,9 @@ const removeAll = async () => {
   return db.write();
 };
 
-const contract = {
+export const contract = {
   insert,
   findAll,
   remove,
   removeAll,
 };
-
-export default contract;

@@ -1,4 +1,4 @@
-import contract from "core/contract";
+import { contract } from "core/contract";
 import { createMocks } from "node-mocks-http";
 import contractsHandler from "pages/api/contracts";
 
