@@ -21,7 +21,7 @@ const getReturnType = (
   return `[${outputs.map((output) => getType(output)).join(", ")}]`;
 };
 
-const Signature = ({ func }: SignatureProps) => {
+export const Signature = ({ func }: SignatureProps) => {
   const returnType = getReturnType(
     func.outputs as AbiParameterWithComponents[]
   );
@@ -37,5 +37,3 @@ const Signature = ({ func }: SignatureProps) => {
     </div>
   );
 };
-
-export default Signature;
