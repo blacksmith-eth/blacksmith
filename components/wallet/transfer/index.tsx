@@ -1,6 +1,6 @@
 import { Button } from "components/button";
 import { Field } from "components/field";
-import Listbox from "components/listbox";
+import { Listbox } from "components/listbox";
 import { useEther } from "hooks";
 import { ChangeEvent, useState } from "react";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";

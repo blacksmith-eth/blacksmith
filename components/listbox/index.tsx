@@ -8,7 +8,12 @@ type ListboxProps = {
   setSelected: Dispatch<SetStateAction<any>>;
 };
 
-const Listbox = ({ label, options, selected, setSelected }: ListboxProps) => (
+export const Listbox = ({
+  label,
+  options,
+  selected,
+  setSelected,
+}: ListboxProps) => (
   <HeadlessListbox value={selected} onChange={setSelected}>
     <HeadlessListbox.Label className="sr-only">{label}</HeadlessListbox.Label>
     <div className="relative text-right select-none">
@@ -35,5 +40,3 @@ const Listbox = ({ label, options, selected, setSelected }: ListboxProps) => (
     </div>
   </HeadlessListbox>
 );
-
-export default Listbox;
