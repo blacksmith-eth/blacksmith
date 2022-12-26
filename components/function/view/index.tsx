@@ -9,7 +9,7 @@ import { useArgs } from "hooks";
 import { useContractRead } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";
-import Signature from "../signature";
+import { Signature } from "../signature";
 
 type ViewProps = {
   address: Address;

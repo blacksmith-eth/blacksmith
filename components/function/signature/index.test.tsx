@@ -5,7 +5,7 @@ import {
   buildOutput,
   buildOutputList,
 } from "testing/factory";
-import Signature from ".";
+import { Signature } from ".";
 
 describe("Signature", () => {
   it("should render a signature with a void return type", () => {
