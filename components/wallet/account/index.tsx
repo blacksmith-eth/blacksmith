@@ -31,7 +31,7 @@ const Option = ({
   );
 };
 
-const Account = () => {
+export const Account = () => {
   const [accounts, setAccounts] = useState<Address[]>([]);
   const { address, connector } = useAccount();
   const { data: balance } = useBalance({ address });
@@ -73,5 +73,3 @@ const Account = () => {
     </div>
   );
 };
-
-export default Account;
