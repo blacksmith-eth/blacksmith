@@ -1,4 +1,4 @@
-import contract from "core/contract";
+import { contract } from "core/contract";
 import type { ContractDetails } from "core/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
