@@ -14,7 +14,7 @@ export const Footer = () => (
         star on github
       </Anchor>
       <span> | </span>
-      <Anchor href="https://github.com/blacksmith-eth/blacksmith/issues/new">
+      <Anchor href="https://github.com/blacksmith-eth/blacksmith/issues/new/choose">
         report an issue
       </Anchor>
     </div>
