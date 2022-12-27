@@ -3,19 +3,22 @@ import type { Address } from "core/types";
 import { getAddress } from "core/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+const BASE_URL = "https://api.etherscan.io";
+
+const buildGetSourceCodeUrl = (address: Address) => {
+  return `${BASE_URL}/api?module=contract&action=getsourcecode&address=${address}`;
+};
+
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const address = getAddress(req.query.address as Address);
   if (!address) {
     return res.status(400).json({ error: "Invalid address" });
   }
-  return fetch(
-    `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${req.query.address}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  )
+  return fetch(buildGetSourceCodeUrl(address), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then((response) => response.json())
     .then((data) => {
       const { ABI, ContractName, CompilerVersion } = data.result[0];
