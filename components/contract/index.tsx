@@ -18,7 +18,9 @@ const Introduction = () => (
   </div>
 );
 
-export const Contract = ({ address }: { address: Address }) => {
+type ContractProps = { address: Address };
+
+export const Contract = ({ address }: ContractProps) => {
   const { contracts, isLoading, isError } = useContracts();
 
   if (isLoading) return <div>loading...</div>;
