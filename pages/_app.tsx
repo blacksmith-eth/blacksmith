@@ -9,12 +9,12 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { ThemeProvider } from "next-themes";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { localhost } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "packages/wallets";
+import { forkedChains, foundry } from "core/chains";
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [localhost],
+  [foundry, ...forkedChains],
   [publicProvider()]
 );
 
