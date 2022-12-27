@@ -13,10 +13,9 @@ const formatValue = (value: string) => {
   return value.slice(0, value.indexOf(".") + 2);
 };
 
-const Option = ({
-  address,
-  children,
-}: PropsWithChildren<{ address: Address }>) => {
+type OptionProps = PropsWithChildren<{ address: Address }>;
+
+const Option = ({ address, children }: OptionProps) => {
   const { data } = useBalance({ address });
   return (
     <Listbox.Option
