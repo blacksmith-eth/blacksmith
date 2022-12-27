@@ -59,7 +59,7 @@ export const Connect = () => {
                     type="button"
                     className="bg-black dark:bg-white text-white dark:text-black rounded-l-sm px-2 py-0.5 focus:italic focus:outline-none"
                   >
-                    {chain.name === "Chain 31337" ? "Localhost" : chain.name}
+                    {chain.name}
                   </button>
                   <button
                     onClick={openAccountModal}
