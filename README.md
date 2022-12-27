@@ -67,6 +67,14 @@ Select the Dai contract in the contracts sidebar and begin interacting!
 
 Example: Try entering `0xad0135af20fa82e106607257143d0060a7eb5cbf` into the `balanceOf` function.
 
+## Advanced Usage
+
+Create a `.env.local` in the root directory of Blacksmith and include your API key to avoid rate limits.
+
+```bash
+echo "ETHERSCAN_API_KEY=XXX" >> .env.local
+```
+
 ## Hardhat
 
 If you're working with Hardhat check out [🏗 scaffold-eth](https://github.com/scaffold-eth/scaffold-eth)!
