@@ -76,13 +76,13 @@ export const Manager = () => {
         <p className="max-w-prose">
           You can remove any contract from Blacksmith that you have imported or
           verified. You can import verified contracts from Etherscan by
-          providing a contract address (rate limited to one import every 5
-          seconds). You can interact with imported contracts by starting an
-          instance of Anvil that{" "}
+          providing a contract address. You can interact with imported contracts
+          by starting an instance of Anvil that{" "}
           <Anchor href="https://book.getfoundry.sh/tutorials/forking-mainnet-with-cast-anvil">
             forks mainnet
           </Anchor>
-          .
+          . To avoid rate limits read the Advanced Usage section of the
+          Blacksmith README.
         </p>
         <ul>
           <Field
