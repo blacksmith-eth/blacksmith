@@ -6,7 +6,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const BASE_URL = "https://api.etherscan.io";
 
 const buildGetSourceCodeUrl = (address: Address) => {
-  return `${BASE_URL}/api?module=contract&action=getsourcecode&address=${address}`;
+  const apiKey = process.env.ETHERSCAN_API_KEY;
+  return `${BASE_URL}/api?module=contract&action=getsourcecode&address=${address}${
+    apiKey ? `&apikey=${apiKey}` : ""
+  }`;
 };
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
