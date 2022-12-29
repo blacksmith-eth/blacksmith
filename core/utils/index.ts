@@ -1,9 +1,9 @@
-import { ethers } from "ethers";
+import { utils } from "ethers";
 import { Address } from "core/types";
 
 const getAddress = (address: Address) => {
   try {
-    return ethers.utils.getAddress(address);
+    return utils.getAddress(address);
   } catch {
     return null;
   }

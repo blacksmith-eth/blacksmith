@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { utils } from "ethers";
 import { ChangeEvent, useCallback, useState } from "react";
 
 export enum Units {
@@ -11,7 +11,7 @@ export enum Units {
 export const useEther = () => {
   const [unit, setUnit] = useState(Units.wei);
   const [value, setValue] = useState("");
-  const formattedValue = ethers.utils.parseUnits(value || "0", unit);
+  const formattedValue = utils.parseUnits(value || "0", unit);
   const handleValueChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const updatedValue = event.target.value.replace(/\D/g, "");
