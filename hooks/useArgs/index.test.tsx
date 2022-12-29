@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { AbiParameterWithComponents } from "core/types";
 import { BigNumber } from "ethers";
-import { times } from "lodash";
+import times from "lodash/times";
 import { act, renderHook } from "testing";
 import {
   buildAddress,
