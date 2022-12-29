@@ -9,7 +9,8 @@ import {
   ContractDetails,
 } from "core/types";
 import { faker } from "@faker-js/faker";
-import { capitalize, times } from "lodash";
+import capitalize from "lodash/capitalize";
+import times from "lodash/times";
 import { Result } from "ethers/lib/utils";
 
 const RESERVED_WORDS = ["value"];
