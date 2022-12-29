@@ -11,7 +11,6 @@ import {
 import { faker } from "@faker-js/faker";
 import capitalize from "lodash/capitalize";
 import times from "lodash/times";
-import { Result } from "ethers/lib/utils";
 
 const RESERVED_WORDS = ["value"];
 
@@ -109,7 +108,7 @@ export const buildOutput = (
 export const buildOutputList = (n: number): AbiParameter[] =>
   times(n, () => buildOutput());
 
-export const buildResult = (value: any): Result => value as Result;
+export const buildResult = (value: any) => value;
 
 export const buildTransactionHash = () =>
   faker.datatype.hexadecimal({ length: 64, case: "lower" });
