@@ -3,22 +3,19 @@ import { Contracts } from "components/contracts";
 import { Footer } from "components/footer";
 import { Header } from "components/header";
 import { Wallet } from "components/wallet";
+import { AddressZero } from "core/constants";
 import { Address } from "core/types";
-import { ethers } from "ethers";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 
 const Home: NextPage = () => {
-  const [activeContract, setActiveContract] = useState<Address>(
-    ethers.constants.AddressZero
-  );
+  const [activeContract, setActiveContract] = useState<Address>(AddressZero);
   const { state: isWalletOpen, toggle: toggleWallet } = useToggle(false);
   const walletButtonText = isWalletOpen ? "close wallet" : "open wallet";
 
-  const resetActiveContract = () =>
-    setActiveContract(ethers.constants.AddressZero);
+  const resetActiveContract = () => setActiveContract(AddressZero);
 
   return (
     <section className="text-black dark:text-white dark:bg-black min-h-screen max-h-screen flex flex-col overflow-hidden selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">

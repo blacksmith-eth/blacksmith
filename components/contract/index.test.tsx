@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { AddressZero } from "core/constants";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { ComponentProps } from "react";
@@ -100,7 +100,7 @@ describe("Contract", () => {
 
   it("does not render the not found page if the address is zero", async () => {
     const contract = buildContractDetailsList(2);
-    const address = ethers.constants.AddressZero;
+    const address = AddressZero;
     server.use(
       rest.get("/api/contracts", (_req, res, ctx) => {
         return res(ctx.json([contract]));
