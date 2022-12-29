@@ -55,6 +55,7 @@ export const Contract = ({ address }: ContractProps) => {
         className="inline p-0.5 mx-0.5 rounded-sm text-black dark:text-white focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
         onClick={handleCopyAddress}
       >
+        <span className="sr-only">Copy Address</span>
         <Square2StackIcon className="h-4 w-4" />
       </button>
       <Balance address={contract.address} />
