@@ -41,7 +41,7 @@ useContractWriteMock.mockReturnValue({ write: vi.fn() });
 const renderContract = (
   props: Partial<ComponentProps<typeof Contract>> = {}
 ) => {
-  render(<Contract address={props.address || buildAddress()} />);
+  return render(<Contract address={props.address || buildAddress()} />);
 };
 
 describe("Contract", () => {
@@ -176,5 +176,25 @@ describe("Contract", () => {
         screen.queryByText(definedFunction.name, { exact: false })
       ).toBeInTheDocument();
     });
+  });
+
+  it("renders a button to copy the address", async () => {
+    const contract = buildContractDetails();
+    server.use(
+      rest.get("/api/contracts", (_req, res, ctx) => {
+        return res(ctx.json([contract]));
+      })
+    );
+
+    const { user } = renderContract({ address: contract.address });
+
+    const copyButton = await screen.findByRole("button", {
+      name: "Copy Address",
+    });
+
+    await user.click(copyButton);
+
+    const copiedText = await navigator.clipboard.readText();
+    expect(copiedText).toEqual(contract.address);
   });
 });
