@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { AddressZero } from "core/constants";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { ComponentProps } from "react";
@@ -9,7 +9,7 @@ import { Contracts } from ".";
 const renderContracts = (
   props: Partial<ComponentProps<typeof Contracts>> = {}
 ) => {
-  const activeContract = ethers.constants.AddressZero;
+  const activeContract = AddressZero;
   const setActiveContract = vi.fn();
   return render(
     <Contracts

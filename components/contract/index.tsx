@@ -1,8 +1,8 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
 import { Balance } from "components/balance";
 import { Functions } from "components/functions";
+import { AddressZero } from "core/constants";
 import { Abi, AbiDefinedFunction, Address } from "core/types";
-import { ethers } from "ethers";
 import { useContracts } from "hooks";
 import { Manager } from "./manager";
 import { Setup } from "./setup";
@@ -25,11 +25,7 @@ export const Contract = ({ address }: ContractProps) => {
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error</div>;
-  if (
-    !contracts ||
-    contracts.length === 0 ||
-    address === ethers.constants.AddressZero
-  )
+  if (!contracts || contracts.length === 0 || address === AddressZero)
     return <Introduction />;
 
   const contract = contracts.find((contract) => contract.address === address);
