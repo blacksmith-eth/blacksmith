@@ -161,7 +161,7 @@ export const Setup = () => {
             className="text-black focus:outline-none border border-black rounded p-2 focus:bg-black focus:text-white"
             onClick={handleCopyCommand}
           >
-            <span className="sr-only">Copy</span>
+            <span className="sr-only">Copy Command</span>
             <Square2StackIcon className="h-4 w-4" />
           </button>
         </div>
