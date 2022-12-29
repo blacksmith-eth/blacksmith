@@ -17,12 +17,12 @@ type IconButtonProps = DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-const IconButton = (props: IconButtonProps) => (
+const IconButton = ({ children, ...props }: IconButtonProps) => (
   <button
     {...props}
     className="self-start flex items-center gap-1 border border-black dark:border-white hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black focus:outline-none px-1.5 py-0.5 rounded"
   >
-    {props.children}
+    {children}
   </button>
 );
 
