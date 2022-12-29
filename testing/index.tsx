@@ -12,7 +12,7 @@ function customRender(ui: ReactElement, options?: RenderOptions) {
 
 function userRender(ui: ReactElement, options?: RenderOptions) {
   return {
-    user: userEvent.setup(),
+    user: userEvent.setup({ writeToClipboard: true }),
     ...customRender(ui, options),
   };
 }
