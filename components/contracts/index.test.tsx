@@ -82,4 +82,24 @@ describe("Contracts", () => {
 
     expect(setActiveContract).toHaveBeenCalledWith(contracts[0].address);
   });
+
+  it("renders the active contract in bold", async () => {
+    const contracts = buildContractDetailsList(2);
+    server.use(
+      rest.get("/api/contracts", (_req, res, ctx) => {
+        return res(ctx.json(contracts));
+      })
+    );
+    renderContracts({ activeContract: contracts[0].address });
+
+    expect(await screen.findByText(contracts[0].name)).toBeInTheDocument();
+    expect(await screen.findByText(contracts[1].name)).toBeInTheDocument();
+
+    expect(
+      await screen.findByRole("button", { name: contracts[0].name })
+    ).toHaveClass("font-semibold");
+    expect(
+      await screen.findByRole("button", { name: contracts[1].name })
+    ).not.toHaveClass("font-semibold");
+  });
 });
