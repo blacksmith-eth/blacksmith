@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 import { AbiParameterWithComponents } from "core/types";
 import { BigNumber } from "ethers";
 import times from "lodash/times";

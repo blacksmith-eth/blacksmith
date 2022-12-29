@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 import { act, renderHook } from "@testing-library/react";
 import { BigNumber } from "ethers";
 import { ChangeEvent } from "react";

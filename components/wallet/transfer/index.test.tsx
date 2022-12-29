@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
