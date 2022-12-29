@@ -8,7 +8,7 @@ import {
   Arg,
   ContractDetails,
 } from "core/types";
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 import capitalize from "lodash/capitalize";
 import times from "lodash/times";
 

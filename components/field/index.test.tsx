@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { Field } from ".";
