@@ -7,6 +7,7 @@ import {
   Address,
   Arg,
   ContractDetails,
+  Result,
 } from "core/types";
 import { faker } from "@faker-js/faker/locale/en";
 import capitalize from "lodash/capitalize";
@@ -108,7 +109,7 @@ export const buildOutput = (
 export const buildOutputList = (n: number): AbiParameter[] =>
   times(n, () => buildOutput());
 
-export const buildResult = (value: any) => value;
+export const buildResult = (value: Result) => value;
 
 export const buildTransactionHash = () =>
   faker.datatype.hexadecimal({ length: 64, case: "lower" });

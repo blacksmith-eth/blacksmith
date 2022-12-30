@@ -4,6 +4,7 @@ import {
   AbiDefinedFunction,
   AbiParameterWithComponents,
   Address,
+  Result,
 } from "core/types";
 import { useArgs } from "hooks";
 import { useContractRead } from "wagmi";
@@ -20,7 +21,11 @@ export const Pure = ({ address, func }: PureProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
-  const { data, isLoading, isError, error, refetch } = useContractRead({
+  const { data, isLoading, isError, error, refetch } = useContractRead<
+    [AbiDefinedFunction],
+    string,
+    Result
+  >({
     address,
     abi: [func],
     functionName: func.name,

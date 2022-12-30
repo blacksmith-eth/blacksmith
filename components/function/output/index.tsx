@@ -1,12 +1,14 @@
+import { Result } from "core/types";
+
 type OutputProps = {
-  data: any | undefined;
+  data: Result;
   isTouched: boolean;
   isLoading: boolean;
   isError: boolean;
   error: any | null;
 };
 
-const formatData = (data: any | undefined): string => {
+const formatData = (data: Result): string => {
   if (data === undefined || data === null) return "";
   if (typeof data === "string") return data;
   if (Array.isArray(data)) return `(${data.map(formatData).join(", ")})`;
