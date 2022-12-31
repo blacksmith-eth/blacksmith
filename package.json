@@ -48,7 +48,7 @@
     "@vitest/coverage-c8": "^0.26.2",
     "abitype": "^0.2.5",
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "eslint-config-next": "^13.1.1",
     "husky": "^8.0.2",
     "jsdom": "^20.0.3",
