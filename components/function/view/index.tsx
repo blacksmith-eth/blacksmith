@@ -1,6 +1,7 @@
 import { Button } from "components/button";
 import { Inputs } from "components/inputs";
 import {
+  Abi,
   AbiDefinedFunction,
   AbiParameterWithComponents,
   Address,
@@ -22,7 +23,7 @@ export const View = ({ address, func }: ViewProps) => {
     func.inputs as AbiParameterWithComponents[]
   );
   const { data, isLoading, isError, error, refetch } = useContractRead<
-    [AbiDefinedFunction],
+    Abi,
     string,
     Result
   >({
