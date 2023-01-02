@@ -1,6 +1,7 @@
 import { Button } from "components/button";
 import { Inputs } from "components/inputs";
 import {
+  Abi,
   AbiDefinedFunction,
   AbiParameterWithComponents,
   Address,
@@ -20,7 +21,11 @@ export const Nonpayable = ({ address, func }: NonpayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
-  const { data, write, isLoading, isError, error } = useContractWrite({
+  const { data, write, isLoading, isError, error } = useContractWrite<
+    "recklesslyUnprepared",
+    Abi,
+    string
+  >({
     mode: "recklesslyUnprepared",
     address,
     abi: [func] as const,
