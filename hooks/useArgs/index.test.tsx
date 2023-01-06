@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker/locale/en";
-import { AbiParameterWithComponents } from "core/types";
+import { AbiParameter, AbiParameterWithComponents } from "core/types";
 import { BigNumber } from "ethers";
 import times from "lodash/times";
 import { act, renderHook } from "testing";
@@ -12,17 +12,21 @@ import {
 } from "testing/factory";
 import { useArgs } from ".";
 
+const renderUseArgsHook = (
+  inputs: AbiParameter[] | AbiParameterWithComponents[]
+) => renderHook(() => useArgs(inputs as AbiParameterWithComponents[]));
+
 describe("useArgs", () => {
   it("should return args", () => {
-    const inputs = buildInputList(0) as AbiParameterWithComponents[];
-    const { result } = renderHook(() => useArgs(inputs));
+    const inputs = buildInputList(0);
+    const { result } = renderUseArgsHook(inputs);
 
     expect(result.current.args).toEqual([]);
   });
 
   it("should initialize each input with an empty string", () => {
-    const inputs = buildInputList(2) as AbiParameterWithComponents[];
-    const { result } = renderHook(() => useArgs(inputs));
+    const inputs = buildInputList(2);
+    const { result } = renderUseArgsHook(inputs);
 
     expect(result.current.args).toEqual([
       buildArg({ name: inputs[0].name, type: inputs[0].type, value: "" }),
@@ -34,7 +38,7 @@ describe("useArgs", () => {
     const input = buildInputWithComponents({
       components: buildInputList(2) as AbiParameterWithComponents[],
     });
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     expect(result.current.args).toEqual([
       buildArg({
@@ -60,7 +64,7 @@ describe("useArgs", () => {
     const input = buildInput({
       type: "uint256[]",
     }) as AbiParameterWithComponents;
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     expect(result.current.args).toEqual([
       buildArg({
@@ -83,7 +87,7 @@ describe("useArgs", () => {
       type: "tuple[]",
     });
 
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     expect(result.current.args).toEqual([
       buildArg({
@@ -115,7 +119,7 @@ describe("useArgs", () => {
     const input = buildInput({
       type: "uint256[2]",
     }) as AbiParameterWithComponents;
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     const childValue = buildArg({
       name: input.type.slice(0, -3),
@@ -137,7 +141,7 @@ describe("useArgs", () => {
       type: "uint256[1][2]",
     }) as AbiParameterWithComponents;
 
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     const firstDimensionType = input.type.slice(0, -3);
     const secondDimensionType = firstDimensionType.slice(0, -3);
@@ -167,7 +171,7 @@ describe("useArgs", () => {
       type: "uint256[2][]",
     }) as AbiParameterWithComponents;
 
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     const firstDimensionType = input.type.slice(0, -2);
     const secondDimensionType = firstDimensionType.slice(0, -3);
@@ -195,7 +199,7 @@ describe("useArgs", () => {
     const input = buildInput({
       type: "uint256[][2]",
     }) as AbiParameterWithComponents;
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     const firstDimensionType = input.type.slice(0, -3);
     const secondDimensionType = firstDimensionType.slice(0, -2);
@@ -225,8 +229,8 @@ describe("useArgs", () => {
     const value = "foo";
     const input1 = buildInput({ type: "string" });
     const input2 = buildInput({ type: "string" });
-    const inputs = [input1, input2] as AbiParameterWithComponents[];
-    const { result } = renderHook(() => useArgs(inputs));
+    const inputs = [input1, input2];
+    const { result } = renderUseArgsHook(inputs);
 
     act(() => {
       result.current.updateValue([1], value);
@@ -248,8 +252,8 @@ describe("useArgs", () => {
     const input = buildInputWithComponents({
       components: buildInputList(2) as AbiParameterWithComponents[],
     });
-    const inputs = [input] as AbiParameterWithComponents[];
-    const { result } = renderHook(() => useArgs(inputs));
+    const inputs = [input];
+    const { result } = renderUseArgsHook(inputs);
 
     act(() => {
       result.current.updateValue([0, 1], value);
@@ -280,9 +284,7 @@ describe("useArgs", () => {
   it("should return formatted big number args", () => {
     const value = "1";
     const input = buildInput({ type: "uint256" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], value);
@@ -294,9 +296,7 @@ describe("useArgs", () => {
   it("should return provided value when big number conversion throws", () => {
     const value = faker.random.word();
     const input = buildInput({ type: "uint256" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], value);
@@ -308,9 +308,7 @@ describe("useArgs", () => {
   it("should return formatted args for false boolean", () => {
     const value = "false";
     const input = buildInput({ type: "bool" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], value);
@@ -322,9 +320,7 @@ describe("useArgs", () => {
   it("should return formatted args for true boolean", () => {
     const value = "true";
     const input = buildInput({ type: "bool" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], value);
@@ -341,9 +337,7 @@ describe("useArgs", () => {
       buildArg({ type: "string", value: strings[1] }),
       buildArg({ type: "string", value: strings[2] }),
     ];
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], values);
@@ -360,9 +354,7 @@ describe("useArgs", () => {
       buildArg({ type: "address", value: addresses[2] }),
     ];
     const input = buildInput({ type: "address[]" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], values);
@@ -378,9 +370,7 @@ describe("useArgs", () => {
       buildArg({ name: "uint256", type: "uint256", value: "3" }),
     ];
     const input = buildInput({ type: "uint256[]" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], values);
@@ -395,7 +385,7 @@ describe("useArgs", () => {
     const value = "foo";
     const components = buildInputList(2) as AbiParameterWithComponents[];
     const input = buildInputWithComponents({ type: "tuple", components });
-    const { result } = renderHook(() => useArgs([input]));
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0, 1], value);
@@ -411,27 +401,21 @@ describe("useArgs", () => {
 
   it("should return fallback input name of input type ", () => {
     const input = buildInput({ name: "" });
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     expect(result.current.args[0].name).toEqual(input.type);
   });
 
   it("should return isTouched of false when input has not been touched", () => {
     const input = buildInput();
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     expect(result.current.isTouched).toEqual(false);
   });
 
   it("should return isTouched of true when input is touched", () => {
     const input = buildInput();
-    const { result } = renderHook(() =>
-      useArgs([input] as AbiParameterWithComponents[])
-    );
+    const { result } = renderUseArgsHook([input]);
 
     act(() => {
       result.current.updateValue([0], faker.random.word());
@@ -441,8 +425,8 @@ describe("useArgs", () => {
   });
 
   it("should return isTouched of false when at least one input is not touched", () => {
-    const inputs = buildInputList(2) as AbiParameterWithComponents[];
-    const { result } = renderHook(() => useArgs(inputs));
+    const inputs = buildInputList(2);
+    const { result } = renderUseArgsHook(inputs);
 
     act(() => {
       result.current.updateValue([0], faker.random.word());
