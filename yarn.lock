@@ -1969,15 +1969,15 @@
     c8 "^7.12.0"
     vitest "0.26.3"
 
-"@wagmi/chains@0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.1.8.tgz#0660bba3d7e43f31ecaf3dca06ecc3631df86132"
-  integrity sha512-AweJEbQB0uC230XuZm1vaEirE6WgraYvATPTKTjJltn/Ik6QxRlV3oFNiIc3+XCOsBZr0CuhyPCaMK4zoUJ99g==
+"@wagmi/chains@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.1.9.tgz#9c020bde7008556eb10af17d3d4232bbe8ec29bf"
+  integrity sha512-q3qAq1MIksHut95gCHefA037FPXJGNlkGc6POYlwhVd42bLq+WaVZTxKYMsdfRrJ00UfTYjMisxrXVHDl7tGKA==
 
-"@wagmi/connectors@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-0.1.5.tgz#e29cb820069260cf2ca8fffb200571aa6853062f"
-  integrity sha512-LWRh/dD/pF3Bs6s7VmNEmkrj+Q0FAp6P2gBVDA2Ke31FyuYB0dIRu+2CnPsDe/4y3DGft5QYgI11jL+n+8R8YA==
+"@wagmi/connectors@0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-0.1.6.tgz#cc3b200d357d5ee824ff83eb7c90d144be4a8a25"
+  integrity sha512-eMcbmPzubToffknYPnF7Eldu3kYUrIiyv1wVUSMcprU7eb3kOAqTG7J1N0dsB06oVI1PaphNIG2CWIysTeLZYg==
   dependencies:
     "@coinbase/wallet-sdk" "^3.5.4"
     "@ledgerhq/connect-kit-loader" "^1.0.1"
@@ -1987,13 +1987,13 @@
     abitype "^0.1.8"
     eventemitter3 "^4.0.7"
 
-"@wagmi/core@0.8.11":
-  version "0.8.11"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.8.11.tgz#c864a0dbdabfa5d1a016516a6853b6049d58b639"
-  integrity sha512-N7Hbmj2cPsl9CB4rJ4bAEIutLsZCHnwUa2SocmPCuPJFgYCmiImEP4d0recl2QEOogY4qkI81dYEZazigXczmg==
+"@wagmi/core@0.8.12":
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.8.12.tgz#c40edf345b3893a27f6082ac6fe59002bb371d02"
+  integrity sha512-S7lDajwW2wdgPBq7JX1tVC3C0oOg72EWsATMz4GjOcAPqlggVCT/yUcJh/obsRGgQQhQR9hFrodJFlkn7t0Jkg==
   dependencies:
-    "@wagmi/chains" "0.1.8"
-    "@wagmi/connectors" "0.1.5"
+    "@wagmi/chains" "0.1.9"
+    "@wagmi/connectors" "0.1.6"
     abitype "^0.2.5"
     eventemitter3 "^4.0.7"
     zustand "^4.1.4"
@@ -7660,16 +7660,16 @@ w3c-xmlserializer@^4.0.0:
   dependencies:
     xml-name-validator "^4.0.0"
 
-wagmi@^0.10.6:
-  version "0.10.6"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.10.6.tgz#905e90f4ef9af55c5803753b47ea049b4edc5a7f"
-  integrity sha512-wFBlnxRLgP58QUo56rDI1kLWyyPNiyUE3DRaIsuzV9nVRmZO8TTFHIJQD7Vlmct8MftZZiYfwSMzjU0my2lNHw==
+wagmi@^0.10.7:
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.10.7.tgz#20738bdbc2b6c56b8c4152d4c593b1e28fa8f44f"
+  integrity sha512-FPq+ntAPvHIt1DV0OmJN+JE6yyJ+i2JoV8OgAd6F5ufHb0xQ1HON8kS6oslYnHyLFbrDMIWXf4CGpBK7jvZ7+g==
   dependencies:
     "@coinbase/wallet-sdk" "^3.6.0"
     "@tanstack/query-sync-storage-persister" "^4.14.5"
     "@tanstack/react-query" "^4.14.5"
     "@tanstack/react-query-persist-client" "^4.14.5"
-    "@wagmi/core" "0.8.11"
+    "@wagmi/core" "0.8.12"
     "@walletconnect/ethereum-provider" "^1.8.0"
     abitype "^0.2.5"
     use-sync-external-store "^1.2.0"
