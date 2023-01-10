@@ -1975,10 +1975,10 @@
   resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.1.9.tgz#9c020bde7008556eb10af17d3d4232bbe8ec29bf"
   integrity sha512-q3qAq1MIksHut95gCHefA037FPXJGNlkGc6POYlwhVd42bLq+WaVZTxKYMsdfRrJ00UfTYjMisxrXVHDl7tGKA==
 
-"@wagmi/connectors@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-0.1.6.tgz#cc3b200d357d5ee824ff83eb7c90d144be4a8a25"
-  integrity sha512-eMcbmPzubToffknYPnF7Eldu3kYUrIiyv1wVUSMcprU7eb3kOAqTG7J1N0dsB06oVI1PaphNIG2CWIysTeLZYg==
+"@wagmi/connectors@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-0.1.7.tgz#7f26cb5285caacc74eb8bf59d46d91f4284d1da1"
+  integrity sha512-c9xmxxAQHqMhHNcClFcqJyaiDEHmFcdHlWHybzPpUFV5uzqb0PwUxWq7bLh+1suV4k6AaFNDcr6Z3cuuip8NHw==
   dependencies:
     "@coinbase/wallet-sdk" "^3.5.4"
     "@ledgerhq/connect-kit-loader" "^1.0.1"
@@ -1988,13 +1988,13 @@
     abitype "^0.1.8"
     eventemitter3 "^4.0.7"
 
-"@wagmi/core@0.8.12":
-  version "0.8.12"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.8.12.tgz#c40edf345b3893a27f6082ac6fe59002bb371d02"
-  integrity sha512-S7lDajwW2wdgPBq7JX1tVC3C0oOg72EWsATMz4GjOcAPqlggVCT/yUcJh/obsRGgQQhQR9hFrodJFlkn7t0Jkg==
+"@wagmi/core@0.8.13":
+  version "0.8.13"
+  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.8.13.tgz#5bc61053cf7dcf24c3b971ab976d6ef76d8b4539"
+  integrity sha512-9nbQvG34MwxCLki/wFg+5g4D2wQgHmdVsUHtdGlTYk1sjK87r1ygJ4nIBBq/upFmypGZQ5I83QvB9hNglAqICQ==
   dependencies:
     "@wagmi/chains" "0.1.9"
-    "@wagmi/connectors" "0.1.6"
+    "@wagmi/connectors" "0.1.7"
     abitype "^0.2.5"
     eventemitter3 "^4.0.7"
     zustand "^4.1.4"
@@ -7670,16 +7670,16 @@ w3c-xmlserializer@^4.0.0:
   dependencies:
     xml-name-validator "^4.0.0"
 
-wagmi@^0.10.7:
-  version "0.10.7"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.10.7.tgz#20738bdbc2b6c56b8c4152d4c593b1e28fa8f44f"
-  integrity sha512-FPq+ntAPvHIt1DV0OmJN+JE6yyJ+i2JoV8OgAd6F5ufHb0xQ1HON8kS6oslYnHyLFbrDMIWXf4CGpBK7jvZ7+g==
+wagmi@^0.10.8:
+  version "0.10.8"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.10.8.tgz#9e5b93b88e713f139424ad7c99b7cdd355b7fca2"
+  integrity sha512-q3iI6zIFkWdRy2wZeTyXodp2Kpkc8o5ajUW1/K6mru1SK8G6NKvMbk8Dimvn6Iattnsh3e9PnUlxAiO8gW8KzA==
   dependencies:
     "@coinbase/wallet-sdk" "^3.6.0"
     "@tanstack/query-sync-storage-persister" "^4.14.5"
     "@tanstack/react-query" "^4.14.5"
     "@tanstack/react-query-persist-client" "^4.14.5"
-    "@wagmi/core" "0.8.12"
+    "@wagmi/core" "0.8.13"
     "@walletconnect/ethereum-provider" "^1.8.0"
     abitype "^0.2.5"
     use-sync-external-store "^1.2.0"
