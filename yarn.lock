@@ -7670,10 +7670,10 @@ w3c-xmlserializer@^4.0.0:
   dependencies:
     xml-name-validator "^4.0.0"
 
-wagmi@^0.10.9:
-  version "0.10.9"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.10.9.tgz#b0bc513921f7041a0c9d9e14a143edb5f2c08cdc"
-  integrity sha512-nvcU4O3djkuFVLkkT2VvOyL0y6ufvsj3JWxiNlaCPn4BOnuTQqKJ62G3qK+Qe5vaWqTRWhHUph2/iqAl0ykN9A==
+wagmi@^0.10.10:
+  version "0.10.10"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.10.10.tgz#30e6eff3e1f045f97478a293e0cfdefda8cc35f9"
+  integrity sha512-YChCEVXA+AMYdP0p4ds05CBGpM/jEiecCknoGsubq80qjv8M/qg658xbtLOSSpmt190mmkAzut0s2jZ2Hp615w==
   dependencies:
     "@coinbase/wallet-sdk" "^3.6.0"
     "@tanstack/query-sync-storage-persister" "^4.14.5"
