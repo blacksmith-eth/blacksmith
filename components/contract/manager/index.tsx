@@ -75,9 +75,9 @@ export const Manager = () => {
       <div className="flex flex-col gap-2">
         <p className="max-w-prose">
           You can remove any contract from Blacksmith that you have imported or
-          verified. You can import verified contracts from Etherscan by
-          providing a contract address. You can interact with imported contracts
-          by starting an instance of Anvil that{" "}
+          verified. You can import verified contracts from Etherscan (currently
+          Ethereum mainnet only) by providing a contract address. You can
+          interact with imported contracts by starting an instance of Anvil that{" "}
           <Anchor href="https://book.getfoundry.sh/tutorials/forking-mainnet-with-cast-anvil">
             forks mainnet
           </Anchor>
@@ -104,6 +104,9 @@ export const Manager = () => {
           </IconButton>
           <span>{response}</span>
         </div>
+        <span className="italic">
+          The ability to import contracts from other chains is coming soon.
+        </span>
         <h4 className="font-bold">Danger Zone</h4>
         <div className="flex flex-row gap-2">
           <IconButton onClick={handleRemoveAll}>
