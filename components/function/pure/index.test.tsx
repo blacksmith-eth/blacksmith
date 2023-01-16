@@ -10,6 +10,7 @@ import {
 import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
 import { Pure } from ".";
+import { act } from "@testing-library/react";
 
 vi.mock("wagmi");
 
@@ -23,12 +24,15 @@ useContractReadMock.mockReturnValue({
 });
 
 const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
-  return render(
-    <Pure
-      address={props.address || buildAddress()}
-      func={props.func || buildAbiDefinedFunction()}
-    />
+  const func = props.func || buildAbiDefinedFunction();
+  const view = render(
+    <Pure address={props.address || buildAddress()} func={func} />
   );
+  // Expand all signatures for easier testing
+  act(() => {
+    screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
+  });
+  return view;
 };
 
 describe("Pure", () => {

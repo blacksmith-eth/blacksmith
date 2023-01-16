@@ -11,6 +11,7 @@ import {
 import type { Mock } from "vitest";
 import { useContractWrite } from "wagmi";
 import { Payable } from ".";
+import { act } from "@testing-library/react";
 
 vi.mock("wagmi");
 
@@ -18,12 +19,15 @@ const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
-  return render(
-    <Payable
-      address={props.address || buildAddress()}
-      func={props.func || buildAbiDefinedFunction()}
-    />
+  const func = props.func || buildAbiDefinedFunction();
+  const view = render(
+    <Payable address={props.address || buildAddress()} func={func} />
   );
+  // Expand all signatures for easier testing
+  act(() => {
+    screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
+  });
+  return view;
 };
 
 describe("Payable", () => {

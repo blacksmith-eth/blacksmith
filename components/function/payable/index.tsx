@@ -9,6 +9,7 @@ import {
   Address,
 } from "core/types";
 import { useArgs, useEther } from "hooks";
+import React from "react";
 import { useContractWrite } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";
@@ -43,40 +44,50 @@ export const Payable = ({ address, func }: PayableProps) => {
   const handleClick = () => {
     write?.();
   };
+  const [collapsed, setCollapsed] = React.useState(true);
 
   return (
     <li key={func.name} className="flex flex-col gap-2">
-      <Signature func={func} />
-      <section className="flex flex-col">
-        <div className="flex gap-1">
-          <Field
-            id={`${func.name}-value`}
-            inputName="value"
-            value={value}
-            type="uint256"
-            handleChange={handleValueChange}
-          />
-          <Listbox
-            label="unit"
-            options={units}
-            selected={unit}
-            setSelected={setUnit}
-          />
-        </div>
-      </section>
-      <Inputs name={func.name} args={args} updateValue={updateValue} />
-      <Container>
-        <Button type="button" disabled={isDisabled} onClick={handleClick}>
-          send
-        </Button>
-        <Output
-          data={data ? data.hash : undefined}
-          isTouched={isTouched}
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-        />
-      </Container>
+      <Signature
+        func={func}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
+
+      {!collapsed && (
+        <>
+          <section className="flex flex-col">
+            <div className="flex gap-1">
+              <Field
+                id={`${func.name}-value`}
+                inputName="value"
+                value={value}
+                type="uint256"
+                handleChange={handleValueChange}
+              />
+              <Listbox
+                label="unit"
+                options={units}
+                selected={unit}
+                setSelected={setUnit}
+              />
+            </div>
+          </section>
+          <Inputs name={func.name} args={args} updateValue={updateValue} />
+          <Container>
+            <Button type="button" disabled={isDisabled} onClick={handleClick}>
+              send
+            </Button>
+            <Output
+              data={data ? data.hash : undefined}
+              isTouched={isTouched}
+              isLoading={isLoading}
+              isError={isError}
+              error={error}
+            />
+          </Container>
+        </>
+      )}
     </li>
   );
 };
