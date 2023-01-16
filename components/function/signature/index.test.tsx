@@ -2,12 +2,36 @@ import { AbiParameterWithComponents } from "core/types";
 import { render, screen } from "testing";
 import {
   buildAbiDefinedFunction,
+  buildInputList,
   buildOutput,
   buildOutputList,
 } from "testing/factory";
 import { Signature } from ".";
+import { act } from "@testing-library/react";
 
 describe("Signature", () => {
+  it("should expand and collapse a function signature", () => {
+    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+    let collapsed = true;
+    let setCollapsed = () => {
+      collapsed = !collapsed;
+    };
+
+    render(
+      <Signature
+        func={func}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
+    );
+
+    expect(screen.findAllByText(func.inputs[0].name!)).resolves.toHaveLength(0);
+    act(() => {
+      screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
+    });
+    expect(screen.findAllByText(func.inputs[0].name!)).resolves.toHaveLength(1);
+  });
+
   it("should render a signature with a void return type", () => {
     const func = buildAbiDefinedFunction();
     let collapsed = false;
