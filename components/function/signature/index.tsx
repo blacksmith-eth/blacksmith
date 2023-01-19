@@ -33,6 +33,10 @@ export const Signature = ({
     func.outputs as AbiParameterWithComponents[]
   );
 
+  const [CollapseIcon, collapseText] = collapsed
+    ? [PlusIcon, "Expand"]
+    : [MinusIcon, "Collapse"];
+
   return (
     <div className="flex items-center gap-2">
       <h4 className="font-bold">
@@ -44,13 +48,9 @@ export const Signature = ({
       <button
         className="inline p-0.5 mx-0.5 rounded-sm text-black dark:text-white focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
         onClick={toggleCollapsed}
-        data-testid={`signature-toggle-collapse-${func.name}`}
       >
-        {collapsed ? (
-          <PlusIcon className="h-4 w-4" />
-        ) : (
-          <MinusIcon className="h-4 w-4" />
-        )}
+        <span className="sr-only">{collapseText}</span>
+        <CollapseIcon className="h-4 w-4" />
       </button>
     </div>
   );

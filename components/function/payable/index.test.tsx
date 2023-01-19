@@ -11,7 +11,6 @@ import {
 import type { Mock } from "vitest";
 import { useContractWrite } from "wagmi";
 import { Payable } from ".";
-import { act } from "@testing-library/react";
 
 vi.mock("wagmi");
 
@@ -19,18 +18,27 @@ const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
-  const func = props.func || buildAbiDefinedFunction();
-  const view = render(
-    <Payable address={props.address || buildAddress()} func={func} />
+  return render(
+    <Payable
+      address={props.address || buildAddress()}
+      func={props.func || buildAbiDefinedFunction()}
+      initialCollapsed={props.initialCollapsed || false}
+    />
   );
-  // Expand all signatures for easier testing
-  act(() => {
-    screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
-  });
-  return view;
 };
 
 describe("Payable", () => {
+  it("should not render inputs when initialCollapsed is true", () => {
+    const inputs = buildInputList(2);
+    const func = buildAbiDefinedFunction({ inputs });
+
+    renderPayable({ func, initialCollapsed: true });
+
+    func.inputs.forEach((input) => {
+      expect(screen.queryByLabelText(input.name!)).not.toBeInTheDocument();
+    });
+  });
+
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 

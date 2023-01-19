@@ -11,7 +11,6 @@ import {
 import type { Mock } from "vitest";
 import { useContractWrite } from "wagmi";
 import { Nonpayable } from ".";
-import { act } from "@testing-library/react";
 
 vi.mock("wagmi");
 
@@ -21,18 +20,27 @@ useContractWriteMock.mockReturnValue({ write: vi.fn() });
 const renderNonpayable = (
   props: Partial<ComponentProps<typeof Nonpayable>> = {}
 ) => {
-  const func = props.func || buildAbiDefinedFunction();
-  const view = render(
-    <Nonpayable address={props.address || buildAddress()} func={func} />
+  return render(
+    <Nonpayable
+      address={props.address || buildAddress()}
+      func={props.func || buildAbiDefinedFunction()}
+      initialCollapsed={props.initialCollapsed || false}
+    />
   );
-  // Expand all signatures for easier testing
-  act(() => {
-    screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
-  });
-  return view;
 };
 
 describe("Nonpayable", () => {
+  it("should not render inputs when initialCollapsed is true", () => {
+    const inputs = buildInputList(2);
+    const func = buildAbiDefinedFunction({ inputs });
+
+    renderNonpayable({ func, initialCollapsed: true });
+
+    func.inputs.forEach((input) => {
+      expect(screen.queryByLabelText(input.name!)).not.toBeInTheDocument();
+    });
+  });
+
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 

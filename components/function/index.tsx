@@ -12,12 +12,14 @@ type FunctionProps = {
 export const Function = ({ address, func }: FunctionProps) => {
   switch (func.stateMutability) {
     case "pure":
-      return <Pure address={address} func={func} />;
+      return <Pure address={address} func={func} initialCollapsed={true} />;
     case "view":
-      return <View address={address} func={func} />;
+      return <View address={address} func={func} initialCollapsed={true} />;
     case "nonpayable":
-      return <Nonpayable address={address} func={func} />;
+      return (
+        <Nonpayable address={address} func={func} initialCollapsed={true} />
+      );
     case "payable":
-      return <Payable address={address} func={func} />;
+      return <Payable address={address} func={func} initialCollapsed={true} />;
   }
 };
