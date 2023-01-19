@@ -7,8 +7,7 @@ import {
   Address,
   Result,
 } from "core/types";
-import { useArgs } from "hooks";
-import React from "react";
+import { useArgs, useToggle } from "hooks";
 import { useContractRead } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";
@@ -34,14 +33,14 @@ export const View = ({ address, func }: ViewProps) => {
     args: formattedArgs,
     watch: true,
   });
-  const [collapsed, setCollapsed] = React.useState(true);
+  const { state: collapsed, toggle: toggleCollapsed } = useToggle(true);
 
   return (
     <li key={func.name} className="flex flex-col gap-2">
       <Signature
         func={func}
         collapsed={collapsed}
-        setCollapsed={setCollapsed}
+        toggleCollapsed={toggleCollapsed}
       />
 
       {!collapsed && (

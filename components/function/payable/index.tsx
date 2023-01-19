@@ -8,8 +8,7 @@ import {
   AbiParameterWithComponents,
   Address,
 } from "core/types";
-import { useArgs, useEther } from "hooks";
-import React from "react";
+import { useArgs, useEther, useToggle } from "hooks";
 import { useContractWrite } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";
@@ -44,14 +43,14 @@ export const Payable = ({ address, func }: PayableProps) => {
   const handleClick = () => {
     write?.();
   };
-  const [collapsed, setCollapsed] = React.useState(true);
+  const { state: collapsed, toggle: toggleCollapsed } = useToggle(true);
 
   return (
     <li key={func.name} className="flex flex-col gap-2">
       <Signature
         func={func}
         collapsed={collapsed}
-        setCollapsed={setCollapsed}
+        toggleCollapsed={toggleCollapsed}
       />
 
       {!collapsed && (

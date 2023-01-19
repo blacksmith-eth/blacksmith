@@ -1,11 +1,10 @@
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { Dispatch, SetStateAction } from "react";
 import { AbiDefinedFunction, AbiParameterWithComponents } from "core/types";
 
 type SignatureProps = {
   func: AbiDefinedFunction;
   collapsed: boolean;
-  setCollapsed: Dispatch<SetStateAction<boolean>>;
+  toggleCollapsed: () => void;
 };
 
 const getType = (output: AbiParameterWithComponents): string => {
@@ -28,14 +27,11 @@ const getReturnType = (
 export const Signature = ({
   func,
   collapsed,
-  setCollapsed,
+  toggleCollapsed,
 }: SignatureProps) => {
   const returnType = getReturnType(
     func.outputs as AbiParameterWithComponents[]
   );
-  const handleCollapseToggle = () => {
-    setCollapsed((collapsed) => !collapsed);
-  };
 
   return (
     <div className="flex items-center gap-2">
@@ -47,7 +43,7 @@ export const Signature = ({
       </span>
       <button
         className="inline p-0.5 mx-0.5 rounded-sm text-black dark:text-white focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
-        onClick={handleCollapseToggle}
+        onClick={toggleCollapsed}
         data-testid={`signature-toggle-collapse-${func.name}`}
       >
         {collapsed ? (
