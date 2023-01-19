@@ -15,9 +15,14 @@ import { Signature } from "../signature";
 type NonpayableProps = {
   address: Address;
   func: AbiDefinedFunction;
+  initialCollapsed: boolean;
 };
 
-export const Nonpayable = ({ address, func }: NonpayableProps) => {
+export const Nonpayable = ({
+  address,
+  func,
+  initialCollapsed,
+}: NonpayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -36,7 +41,8 @@ export const Nonpayable = ({ address, func }: NonpayableProps) => {
   const handleClick = () => {
     write?.();
   };
-  const { state: collapsed, toggle: toggleCollapsed } = useToggle(true);
+  const { state: collapsed, toggle: toggleCollapsed } =
+    useToggle(initialCollapsed);
 
   return (
     <li key={func.name} className="flex flex-col gap-2">

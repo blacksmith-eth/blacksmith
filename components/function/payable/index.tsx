@@ -17,9 +17,10 @@ import { Signature } from "../signature";
 type PayableProps = {
   address: Address;
   func: AbiDefinedFunction;
+  initialCollapsed: boolean;
 };
 
-export const Payable = ({ address, func }: PayableProps) => {
+export const Payable = ({ address, func, initialCollapsed }: PayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -43,7 +44,8 @@ export const Payable = ({ address, func }: PayableProps) => {
   const handleClick = () => {
     write?.();
   };
-  const { state: collapsed, toggle: toggleCollapsed } = useToggle(true);
+  const { state: collapsed, toggle: toggleCollapsed } =
+    useToggle(initialCollapsed);
 
   return (
     <li key={func.name} className="flex flex-col gap-2">

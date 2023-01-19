@@ -16,9 +16,10 @@ import { Signature } from "../signature";
 type ViewProps = {
   address: Address;
   func: AbiDefinedFunction;
+  initialCollapsed: boolean;
 };
 
-export const View = ({ address, func }: ViewProps) => {
+export const View = ({ address, func, initialCollapsed }: ViewProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
     func.inputs as AbiParameterWithComponents[]
   );
@@ -33,7 +34,8 @@ export const View = ({ address, func }: ViewProps) => {
     args: formattedArgs,
     watch: true,
   });
-  const { state: collapsed, toggle: toggleCollapsed } = useToggle(true);
+  const { state: collapsed, toggle: toggleCollapsed } =
+    useToggle(initialCollapsed);
 
   return (
     <li key={func.name} className="flex flex-col gap-2">

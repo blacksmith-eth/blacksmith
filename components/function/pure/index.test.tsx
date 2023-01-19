@@ -10,7 +10,6 @@ import {
 import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
 import { Pure } from ".";
-import { act } from "@testing-library/react";
 
 vi.mock("wagmi");
 
@@ -24,18 +23,27 @@ useContractReadMock.mockReturnValue({
 });
 
 const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
-  const func = props.func || buildAbiDefinedFunction();
-  const view = render(
-    <Pure address={props.address || buildAddress()} func={func} />
+  return render(
+    <Pure
+      address={props.address || buildAddress()}
+      func={props.func || buildAbiDefinedFunction()}
+      initialCollapsed={props.initialCollapsed || false}
+    />
   );
-  // Expand all signatures for easier testing
-  act(() => {
-    screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
-  });
-  return view;
 };
 
 describe("Pure", () => {
+  it("should not render inputs when initialCollapsed is true", () => {
+    const inputs = buildInputList(2);
+    const func = buildAbiDefinedFunction({ inputs });
+
+    renderPure({ func, initialCollapsed: true });
+
+    func.inputs.forEach((input) => {
+      expect(screen.queryByLabelText(input.name!)).not.toBeInTheDocument();
+    });
+  });
+
   it("should render function name", () => {
     const func = buildAbiDefinedFunction();
 

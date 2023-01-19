@@ -7,7 +7,6 @@ import {
   buildOutputList,
 } from "testing/factory";
 import { Signature } from ".";
-import { act } from "@testing-library/react";
 import { ComponentProps } from "react";
 
 const renderSignature = (props: Partial<ComponentProps<typeof Signature>>) => {
@@ -21,16 +20,36 @@ const renderSignature = (props: Partial<ComponentProps<typeof Signature>>) => {
 };
 
 describe("Signature", () => {
-  it("should expand and collapse a function signature", () => {
-    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+  it("should render collapse icon when expanded", () => {
+    const func = buildAbiDefinedFunction({ inputs: buildInputList(1) });
 
-    renderSignature({ func });
+    renderSignature({ func, collapsed: false });
 
-    expect(screen.findAllByText(func.inputs[0].name!)).resolves.toHaveLength(0);
-    act(() => {
-      screen.getByTestId(`signature-toggle-collapse-${func.name}`).click();
-    });
-    expect(screen.findAllByText(func.inputs[0].name!)).resolves.toHaveLength(1);
+    const collapseButton = screen.getByRole("button", { name: "Collapse" });
+
+    expect(collapseButton).toBeInTheDocument();
+  });
+
+  it("should render expand icon when collapsed", () => {
+    const func = buildAbiDefinedFunction({ inputs: buildInputList(1) });
+
+    renderSignature({ func, collapsed: true });
+
+    const expandButton = screen.getByRole("button", { name: "Expand" });
+
+    expect(expandButton).toBeInTheDocument();
+  });
+
+  it("should call toggleCollapsed function when the toggle is clicked", async () => {
+    const func = buildAbiDefinedFunction();
+    const toggleCollapsed = vi.fn();
+
+    const { user } = renderSignature({ func, toggleCollapsed });
+
+    const collapseButton = screen.getByRole("button", { name: "Collapse" });
+    await user.click(collapseButton);
+
+    expect(toggleCollapsed).toHaveBeenCalledOnce();
   });
 
   it("should render a signature with a void return type", () => {
