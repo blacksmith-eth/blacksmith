@@ -8,22 +8,23 @@ import {
 } from "testing/factory";
 import { Signature } from ".";
 import { act } from "@testing-library/react";
+import { ComponentProps } from "react";
+
+const renderSignature = (props: Partial<ComponentProps<typeof Signature>>) => {
+  return render(
+    <Signature
+      func={props.func || buildAbiDefinedFunction()}
+      collapsed={props.collapsed || false}
+      toggleCollapsed={props.toggleCollapsed || vi.fn()}
+    />
+  );
+};
 
 describe("Signature", () => {
   it("should expand and collapse a function signature", () => {
     const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
-    let collapsed = true;
-    let setCollapsed = () => {
-      collapsed = !collapsed;
-    };
 
-    render(
-      <Signature
-        func={func}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
-    );
+    renderSignature({ func });
 
     expect(screen.findAllByText(func.inputs[0].name!)).resolves.toHaveLength(0);
     act(() => {
@@ -34,18 +35,8 @@ describe("Signature", () => {
 
   it("should render a signature with a void return type", () => {
     const func = buildAbiDefinedFunction();
-    let collapsed = false;
-    let setCollapsed = () => {
-      collapsed = !collapsed;
-    };
 
-    render(
-      <Signature
-        func={func}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
-    );
+    renderSignature({ func });
 
     expect(
       screen.getByRole("heading", { level: 4, name: `${func.name} → void` })
@@ -55,18 +46,8 @@ describe("Signature", () => {
   it("should render a signature with a single return type", () => {
     const outputs = buildOutputList(1);
     const func = buildAbiDefinedFunction({ outputs });
-    let collapsed = false;
-    let setCollapsed = () => {
-      collapsed = !collapsed;
-    };
 
-    render(
-      <Signature
-        func={func}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
-    );
+    renderSignature({ func });
 
     expect(
       screen.getByRole("heading", {
@@ -79,18 +60,8 @@ describe("Signature", () => {
   it("should render a signature with multiple return types", () => {
     const outputs = buildOutputList(2);
     const func = buildAbiDefinedFunction({ outputs });
-    let collapsed = false;
-    let setCollapsed = () => {
-      collapsed = !collapsed;
-    };
 
-    render(
-      <Signature
-        func={func}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
-    );
+    renderSignature({ func });
 
     expect(
       screen.getByRole("heading", {
@@ -104,18 +75,8 @@ describe("Signature", () => {
     const components = buildOutputList(2) as AbiParameterWithComponents[];
     const output = buildOutput({ type: "tuple", components });
     const func = buildAbiDefinedFunction({ outputs: [output] });
-    let collapsed = false;
-    let setCollapsed = () => {
-      collapsed = !collapsed;
-    };
 
-    render(
-      <Signature
-        func={func}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
-    );
+    renderSignature({ func });
 
     expect(
       screen.getByRole("heading", {
@@ -130,18 +91,8 @@ describe("Signature", () => {
     const output = buildOutput({ type: "tuple", components });
     const outputs = [output, ...buildOutputList(2)];
     const func = buildAbiDefinedFunction({ outputs });
-    let collapsed = false;
-    let setCollapsed = () => {
-      collapsed = !collapsed;
-    };
 
-    render(
-      <Signature
-        func={func}
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-      />
-    );
+    renderSignature({ func });
 
     expect(
       screen.getByRole("heading", {
