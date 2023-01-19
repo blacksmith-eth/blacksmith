@@ -10,7 +10,6 @@ import {
 import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
 import { View } from ".";
-import { AbiDefinedFunction } from "../../../core/types";
 import { act } from "@testing-library/react";
 
 vi.mock("wagmi");
