@@ -46,7 +46,7 @@
     "@types/react": "^18.0.27",
     "@vitejs/plugin-react": "^3.0.0",
     "@vitest/coverage-c8": "^0.27.1",
-    "abitype": "^0.2.5",
+    "abitype": "^0.3.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.32.0",
     "eslint-config-next": "^13.1.3",
