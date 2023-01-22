@@ -1,3 +1,5 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,6 +16,10 @@ module.exports = {
           100: "#f2dfce",
           200: "#ebddd1",
         },
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", ...fontFamily.sans],
+        mono: ["var(--font-source-code-pro)", ...fontFamily.mono],
       },
     },
   },
