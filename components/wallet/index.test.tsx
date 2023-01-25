@@ -1,6 +1,7 @@
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
+import { Mock } from "vitest";
 import {
   useAccount,
   useBalance,
@@ -11,26 +12,25 @@ import { Wallet } from ".";
 
 vi.mock("wagmi");
 
-const usePrepareSendTransactionMock =
-  usePrepareSendTransaction as jest.Mock<any>;
+const usePrepareSendTransactionMock = usePrepareSendTransaction as Mock;
 
 usePrepareSendTransactionMock.mockReturnValue({
   config: {},
 });
 
-const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
+const useSendTransactionMock = useSendTransaction as Mock;
 
 useSendTransactionMock.mockReturnValue({
   sendTransaction: vi.fn(),
 });
 
-const useAccountMock = useAccount as jest.Mock<any>;
+const useAccountMock = useAccount as Mock;
 
 useAccountMock.mockReturnValue({
   address: buildAddress(),
 });
 
-const useBalanceMock = useBalance as jest.Mock<any>;
+const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({
   data: undefined,

@@ -1,17 +1,18 @@
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
+import { Mock } from "vitest";
 import { useAccount, useBalance } from "wagmi";
 import { Account } from ".";
 
 vi.mock("wagmi");
 
-const useAccountMock = useAccount as jest.Mock<any>;
+const useAccountMock = useAccount as Mock;
 
 useAccountMock.mockReturnValue({
   address: buildAddress(),
 });
 
-const useBalanceMock = useBalance as jest.Mock<any>;
+const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({ data: undefined });
 
