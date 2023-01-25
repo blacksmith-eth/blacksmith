@@ -1,12 +1,13 @@
 import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAbiDefinedFunctionList, buildAddress } from "testing/factory";
+import { Mock } from "vitest";
 import { useContractRead, useContractWrite } from "wagmi";
 import { Functions } from ".";
 
 vi.mock("wagmi");
 
-const useContractReadMock = useContractRead as jest.Mock<any>;
+const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
@@ -15,7 +16,7 @@ useContractReadMock.mockReturnValue({
   refetch: vi.fn(),
 });
 
-const useContractWriteMock = useContractWrite as jest.Mock<any>;
+const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
 const renderFunctions = (

@@ -1,19 +1,19 @@
 import { faker } from "@faker-js/faker/locale/en";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
+import { Mock } from "vitest";
 import { usePrepareSendTransaction, useSendTransaction } from "wagmi";
 import { Transfer } from ".";
 
 vi.mock("wagmi");
 
-const usePrepareSendTransactionMock =
-  usePrepareSendTransaction as jest.Mock<any>;
+const usePrepareSendTransactionMock = usePrepareSendTransaction as Mock;
 
 usePrepareSendTransactionMock.mockReturnValue({
   config: {},
 });
 
-const useSendTransactionMock = useSendTransaction as jest.Mock<any>;
+const useSendTransactionMock = useSendTransaction as Mock;
 
 useSendTransactionMock.mockReturnValue({
   sendTransaction: vi.fn(),
