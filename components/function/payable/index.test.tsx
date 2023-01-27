@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
-  buildAbiDefinedFunction,
+  buildAbiDefinedPayableFunction,
   buildAddress,
   buildInput,
   buildInputList,
@@ -21,7 +21,7 @@ const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
   return render(
     <Payable
       address={props.address || buildAddress()}
-      func={props.func || buildAbiDefinedFunction()}
+      func={props.func || buildAbiDefinedPayableFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
@@ -30,7 +30,7 @@ const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
 describe("Payable", () => {
   it("should not render inputs when initialCollapsed is true", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedPayableFunction({ inputs });
 
     renderPayable({ func, initialCollapsed: true });
 
@@ -40,7 +40,7 @@ describe("Payable", () => {
   });
 
   it("should render function name", () => {
-    const func = buildAbiDefinedFunction();
+    const func = buildAbiDefinedPayableFunction();
 
     renderPayable({ func });
 
@@ -49,7 +49,7 @@ describe("Payable", () => {
 
   it("should render function inputs", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedPayableFunction({ inputs });
 
     renderPayable({ func });
 
@@ -87,7 +87,7 @@ describe("Payable", () => {
 
   it("should prepare contract write with provided arguments", async () => {
     const address = buildAddress();
-    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+    const func = buildAbiDefinedPayableFunction({ inputs: buildInputList(2) });
 
     const { user } = renderPayable({ address, func });
 
@@ -115,7 +115,7 @@ describe("Payable", () => {
     const address = buildAddress();
     const input1 = buildInput({ type: "uint256" });
     const input2 = buildInput({ type: "uint256" });
-    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
+    const func = buildAbiDefinedPayableFunction({ inputs: [input1, input2] });
 
     const { user } = renderPayable({ address, func });
 
@@ -144,7 +144,7 @@ describe("Payable", () => {
 
   it("should prepare contract with formatted value based on the selected unit", async () => {
     const address = buildAddress();
-    const func = buildAbiDefinedFunction();
+    const func = buildAbiDefinedPayableFunction();
 
     const { user } = renderPayable({ address, func });
 

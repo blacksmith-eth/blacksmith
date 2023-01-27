@@ -80,6 +80,13 @@ export const buildAbiDefinedNonpayableFunction = (
   stateMutability: "nonpayable",
 });
 
+export const buildAbiDefinedPayableFunction = (
+  overrides: Partial<AbiDefinedFunction> = {}
+): AbiDefinedFunction => ({
+  ...buildAbiDefinedFunction(overrides),
+  stateMutability: "payable",
+});
+
 export const buildAbiDefinedPureFunction = (
   overrides: Partial<AbiDefinedFunction> = {}
 ): AbiDefinedFunction => ({
