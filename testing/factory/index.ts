@@ -94,6 +94,13 @@ export const buildAbiDefinedPureFunction = (
   stateMutability: "pure",
 });
 
+export const buildAbiDefinedViewFunction = (
+  overrides: Partial<AbiDefinedFunction> = {}
+): AbiDefinedFunction => ({
+  ...buildAbiDefinedFunction(overrides),
+  stateMutability: "view",
+});
+
 export const buildAbiDefinedFunctionList = (n: number): AbiDefinedFunction[] =>
   times(n, () => buildAbiDefinedFunction());
 

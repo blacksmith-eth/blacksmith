@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
-  buildAbiDefinedFunction,
+  buildAbiDefinedViewFunction,
   buildAddress,
   buildInput,
   buildInputList,
@@ -26,7 +26,7 @@ const renderView = (props: Partial<ComponentProps<typeof View>> = {}) => {
   return render(
     <View
       address={props.address || buildAddress()}
-      func={props.func || buildAbiDefinedFunction()}
+      func={props.func || buildAbiDefinedViewFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
@@ -35,7 +35,7 @@ const renderView = (props: Partial<ComponentProps<typeof View>> = {}) => {
 describe("View", () => {
   it("should not render inputs when initialCollapsed is true", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedViewFunction({ inputs });
 
     renderView({ func, initialCollapsed: true });
 
@@ -45,7 +45,7 @@ describe("View", () => {
   });
 
   it("should render function name", () => {
-    const func = buildAbiDefinedFunction();
+    const func = buildAbiDefinedViewFunction();
 
     renderView({ func });
 
@@ -54,7 +54,7 @@ describe("View", () => {
 
   it("should render function inputs", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedViewFunction({ inputs });
 
     renderView({ func });
 
@@ -121,7 +121,7 @@ describe("View", () => {
 
   it("should call contract read with provided arguments", async () => {
     const address = buildAddress();
-    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+    const func = buildAbiDefinedViewFunction({ inputs: buildInputList(2) });
 
     const { user } = renderView({ address, func });
 
@@ -146,7 +146,7 @@ describe("View", () => {
     const address = buildAddress();
     const input1 = buildInput({ type: "uint256" });
     const input2 = buildInput({ type: "uint256" });
-    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
+    const func = buildAbiDefinedViewFunction({ inputs: [input1, input2] });
 
     const { user } = renderView({ address, func });
 
