@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
-  buildAbiDefinedFunction,
+  buildAbiDefinedPureFunction,
   buildAddress,
   buildInput,
   buildInputList,
@@ -26,7 +26,7 @@ const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
   return render(
     <Pure
       address={props.address || buildAddress()}
-      func={props.func || buildAbiDefinedFunction()}
+      func={props.func || buildAbiDefinedPureFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
@@ -35,7 +35,7 @@ const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
 describe("Pure", () => {
   it("should not render inputs when initialCollapsed is true", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedPureFunction({ inputs });
 
     renderPure({ func, initialCollapsed: true });
 
@@ -45,7 +45,7 @@ describe("Pure", () => {
   });
 
   it("should render function name", () => {
-    const func = buildAbiDefinedFunction();
+    const func = buildAbiDefinedPureFunction();
 
     renderPure({ func });
 
@@ -54,7 +54,7 @@ describe("Pure", () => {
 
   it("should render function inputs", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedPureFunction({ inputs });
 
     renderPure({ func });
 
@@ -121,7 +121,7 @@ describe("Pure", () => {
 
   it("should call contract read with provided arguments", async () => {
     const address = buildAddress();
-    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+    const func = buildAbiDefinedPureFunction({ inputs: buildInputList(2) });
 
     const { user } = renderPure({ address, func });
 
@@ -146,7 +146,7 @@ describe("Pure", () => {
     const address = buildAddress();
     const input1 = buildInput({ type: "uint256" });
     const input2 = buildInput({ type: "uint256" });
-    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
+    const func = buildAbiDefinedPureFunction({ inputs: [input1, input2] });
 
     const { user } = renderPure({ address, func });
 
