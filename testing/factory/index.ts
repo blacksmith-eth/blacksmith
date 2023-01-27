@@ -1,5 +1,9 @@
 import {
-  AbiDefinedFunction,
+  AbiDefinedNonpayableFunction,
+  AbiDefinedPayableFunction,
+  AbiDefinedPureFunction,
+  AbiDefinedStateFunction,
+  AbiDefinedViewFunction,
   AbiError,
   AbiEvent,
   AbiParameter,
@@ -58,8 +62,8 @@ export const buildContractDetailsList = (n: number): ContractDetails[] =>
   times(n, () => buildContractDetails());
 
 export const buildAbiDefinedFunction = (
-  overrides: Partial<AbiDefinedFunction> = {}
-): AbiDefinedFunction => ({
+  overrides: Partial<AbiDefinedStateFunction> = {}
+): AbiDefinedStateFunction => ({
   name:
     overrides.name ||
     faker.helpers.unique(faker.word.noun, undefined, {
@@ -74,35 +78,36 @@ export const buildAbiDefinedFunction = (
 });
 
 export const buildAbiDefinedNonpayableFunction = (
-  overrides: Partial<AbiDefinedFunction> = {}
-): AbiDefinedFunction => ({
+  overrides: Partial<AbiDefinedNonpayableFunction> = {}
+): AbiDefinedNonpayableFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "nonpayable",
 });
 
 export const buildAbiDefinedPayableFunction = (
-  overrides: Partial<AbiDefinedFunction> = {}
-): AbiDefinedFunction => ({
+  overrides: Partial<AbiDefinedPayableFunction> = {}
+): AbiDefinedPayableFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "payable",
 });
 
 export const buildAbiDefinedPureFunction = (
-  overrides: Partial<AbiDefinedFunction> = {}
-): AbiDefinedFunction => ({
+  overrides: Partial<AbiDefinedPureFunction> = {}
+): AbiDefinedPureFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "pure",
 });
 
 export const buildAbiDefinedViewFunction = (
-  overrides: Partial<AbiDefinedFunction> = {}
-): AbiDefinedFunction => ({
+  overrides: Partial<AbiDefinedViewFunction> = {}
+): AbiDefinedViewFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "view",
 });
 
-export const buildAbiDefinedFunctionList = (n: number): AbiDefinedFunction[] =>
-  times(n, () => buildAbiDefinedFunction());
+export const buildAbiDefinedFunctionList = (
+  n: number
+): AbiDefinedStateFunction[] => times(n, () => buildAbiDefinedFunction());
 
 export const buildInput = (
   overrides: Partial<AbiParameter> = {}

@@ -2,7 +2,7 @@ import { Button } from "components/button";
 import { Inputs } from "components/inputs";
 import {
   Abi,
-  AbiDefinedFunction,
+  AbiDefinedViewFunction,
   AbiParameterWithComponents,
   Address,
   Result,
@@ -15,7 +15,7 @@ import { Signature } from "../signature";
 
 type ViewProps = {
   address: Address;
-  func: AbiDefinedFunction;
+  func: AbiDefinedViewFunction;
   initialCollapsed: boolean;
 };
 

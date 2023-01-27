@@ -2,13 +2,15 @@ import { Square2StackIcon } from "@heroicons/react/24/outline";
 import { Balance } from "components/balance";
 import { Functions } from "components/functions";
 import { AddressZero } from "core/constants";
-import { Abi, AbiDefinedFunction, Address } from "core/types";
+import { Abi, AbiDefinedStateFunction, Address } from "core/types";
 import { useContracts } from "hooks";
 import { Manager } from "./manager";
 import { Setup } from "./setup";
 
-const filterDefinedFunctions = (abi: Abi): AbiDefinedFunction[] => {
-  return abi.filter(({ type }) => type === "function") as AbiDefinedFunction[];
+const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] => {
+  return abi.filter(
+    ({ type }) => type === "function"
+  ) as AbiDefinedStateFunction[];
 };
 
 const Introduction = () => (

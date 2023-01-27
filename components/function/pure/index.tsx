@@ -2,7 +2,7 @@ import { Button } from "components/button";
 import { Inputs } from "components/inputs";
 import {
   Abi,
-  AbiDefinedFunction,
+  AbiDefinedPureFunction,
   AbiParameterWithComponents,
   Address,
   Result,
@@ -15,7 +15,7 @@ import { Signature } from "../signature";
 
 type PureProps = {
   address: Address;
-  func: AbiDefinedFunction;
+  func: AbiDefinedPureFunction;
   initialCollapsed: boolean;
 };
 
