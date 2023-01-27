@@ -4,7 +4,7 @@ import { Inputs } from "components/inputs";
 import { Listbox } from "components/listbox";
 import {
   Abi,
-  AbiDefinedFunction,
+  AbiDefinedPayableFunction,
   AbiParameterWithComponents,
   Address,
 } from "core/types";
@@ -16,7 +16,7 @@ import { Signature } from "../signature";
 
 type PayableProps = {
   address: Address;
-  func: AbiDefinedFunction;
+  func: AbiDefinedPayableFunction;
   initialCollapsed: boolean;
 };
 

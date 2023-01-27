@@ -1,9 +1,9 @@
-import { AbiDefinedFunction, Address } from "core/types";
+import { AbiDefinedStateFunction, Address } from "core/types";
 import { Function } from "components/function";
 
 type FunctionsProps = {
   address: Address;
-  functions: AbiDefinedFunction[];
+  functions: AbiDefinedStateFunction[];
 };
 
 export const Functions = ({ address, functions }: FunctionsProps) => {

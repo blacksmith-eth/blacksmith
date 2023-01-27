@@ -10,13 +10,35 @@ export type Arg = {
   isTouched: boolean;
 };
 
-export type AbiDefinedFunction = {
+type AbiDefinedFunction = {
   inputs: readonly AbiParameter[];
   name: string;
   outputs: readonly AbiParameter[];
   stateMutability: AbiStateMutability;
   type: "function";
 };
+
+export type AbiDefinedNonpayableFunction = AbiDefinedFunction & {
+  stateMutability: "nonpayable";
+};
+
+export type AbiDefinedPayableFunction = AbiDefinedFunction & {
+  stateMutability: "payable";
+};
+
+export type AbiDefinedPureFunction = AbiDefinedFunction & {
+  stateMutability: "pure";
+};
+
+export type AbiDefinedViewFunction = AbiDefinedFunction & {
+  stateMutability: "view";
+};
+
+export type AbiDefinedStateFunction =
+  | AbiDefinedNonpayableFunction
+  | AbiDefinedPayableFunction
+  | AbiDefinedPureFunction
+  | AbiDefinedViewFunction;
 
 export type AbiParameterWithComponents = AbiParameter & {
   components?: AbiParameterWithComponents[];

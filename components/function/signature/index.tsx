@@ -1,8 +1,11 @@
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { AbiDefinedFunction, AbiParameterWithComponents } from "core/types";
+import {
+  AbiDefinedStateFunction,
+  AbiParameterWithComponents,
+} from "core/types";
 
 type SignatureProps = {
-  func: AbiDefinedFunction;
+  func: AbiDefinedStateFunction;
   collapsed: boolean;
   toggleCollapsed: () => void;
 };

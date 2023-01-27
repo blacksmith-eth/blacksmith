@@ -2,7 +2,7 @@ import { Button } from "components/button";
 import { Inputs } from "components/inputs";
 import {
   Abi,
-  AbiDefinedFunction,
+  AbiDefinedNonpayableFunction,
   AbiParameterWithComponents,
   Address,
 } from "core/types";
@@ -14,7 +14,7 @@ import { Signature } from "../signature";
 
 type NonpayableProps = {
   address: Address;
-  func: AbiDefinedFunction;
+  func: AbiDefinedNonpayableFunction;
   initialCollapsed: boolean;
 };
 

@@ -1,4 +1,4 @@
-import { AbiDefinedFunction, Address } from "core/types";
+import { AbiDefinedStateFunction, Address } from "core/types";
 import { Nonpayable } from "./nonpayable";
 import { Payable } from "./payable";
 import { Pure } from "./pure";
@@ -6,7 +6,7 @@ import { View } from "./view";
 
 type FunctionProps = {
   address: Address;
-  func: AbiDefinedFunction;
+  func: AbiDefinedStateFunction;
 };
 
 export const Function = ({ address, func }: FunctionProps) => {
