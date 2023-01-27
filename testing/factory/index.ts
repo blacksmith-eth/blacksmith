@@ -73,6 +73,13 @@ export const buildAbiDefinedFunction = (
     faker.helpers.arrayElement(["view", "pure", "nonpayable", "payable"]),
 });
 
+export const buildAbiDefinedNonpayableFunction = (
+  overrides: Partial<AbiDefinedFunction> = {}
+): AbiDefinedFunction => ({
+  ...buildAbiDefinedFunction(overrides),
+  stateMutability: "nonpayable",
+});
+
 export const buildAbiDefinedPureFunction = (
   overrides: Partial<AbiDefinedFunction> = {}
 ): AbiDefinedFunction => ({

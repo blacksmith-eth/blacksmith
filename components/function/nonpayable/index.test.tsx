@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
-  buildAbiDefinedFunction,
+  buildAbiDefinedNonpayableFunction,
   buildAddress,
   buildInput,
   buildInputList,
@@ -23,7 +23,7 @@ const renderNonpayable = (
   return render(
     <Nonpayable
       address={props.address || buildAddress()}
-      func={props.func || buildAbiDefinedFunction()}
+      func={props.func || buildAbiDefinedNonpayableFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
@@ -32,7 +32,7 @@ const renderNonpayable = (
 describe("Nonpayable", () => {
   it("should not render inputs when initialCollapsed is true", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedNonpayableFunction({ inputs });
 
     renderNonpayable({ func, initialCollapsed: true });
 
@@ -42,7 +42,7 @@ describe("Nonpayable", () => {
   });
 
   it("should render function name", () => {
-    const func = buildAbiDefinedFunction();
+    const func = buildAbiDefinedNonpayableFunction();
 
     renderNonpayable({ func });
 
@@ -51,7 +51,7 @@ describe("Nonpayable", () => {
 
   it("should render function inputs", () => {
     const inputs = buildInputList(2);
-    const func = buildAbiDefinedFunction({ inputs });
+    const func = buildAbiDefinedNonpayableFunction({ inputs });
 
     renderNonpayable({ func });
 
@@ -89,7 +89,9 @@ describe("Nonpayable", () => {
 
   it("should prepare contract write with provided arguments", async () => {
     const address = buildAddress();
-    const func = buildAbiDefinedFunction({ inputs: buildInputList(2) });
+    const func = buildAbiDefinedNonpayableFunction({
+      inputs: buildInputList(2),
+    });
 
     const { user } = renderNonpayable({ address, func });
 
@@ -114,7 +116,9 @@ describe("Nonpayable", () => {
     const address = buildAddress();
     const input1 = buildInput({ type: "uint256" });
     const input2 = buildInput({ type: "uint256" });
-    const func = buildAbiDefinedFunction({ inputs: [input1, input2] });
+    const func = buildAbiDefinedNonpayableFunction({
+      inputs: [input1, input2],
+    });
 
     const { user } = renderNonpayable({ address, func });
 
