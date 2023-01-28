@@ -1,6 +1,6 @@
-import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
+import { PartialProps } from "testing/types";
 import type { Mock } from "vitest";
 import { useBalance } from "wagmi";
 import { Balance } from ".";
@@ -15,7 +15,7 @@ useBalanceMock.mockReturnValue({
   isError: false,
 });
 
-const renderBalance = (props: Partial<ComponentProps<typeof Balance>> = {}) => {
+const renderBalance = (props: PartialProps<typeof Balance> = {}) => {
   return render(<Balance address={props.address || buildAddress()} />);
 };
 

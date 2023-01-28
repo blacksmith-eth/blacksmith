@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedViewFunction,
@@ -7,6 +6,7 @@ import {
   buildInput,
   buildInputList,
 } from "testing/factory";
+import { PartialProps } from "testing/types";
 import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
 import { View } from ".";
@@ -22,7 +22,7 @@ useContractReadMock.mockReturnValue({
   refetch: vi.fn(),
 });
 
-const renderView = (props: Partial<ComponentProps<typeof View>> = {}) => {
+const renderView = (props: PartialProps<typeof View> = {}) => {
   return render(
     <View
       address={props.address || buildAddress()}

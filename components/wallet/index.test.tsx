@@ -1,6 +1,6 @@
-import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAddress } from "testing/factory";
+import { PartialProps } from "testing/types";
 import { Mock } from "vitest";
 import {
   useAccount,
@@ -36,7 +36,7 @@ useBalanceMock.mockReturnValue({
   data: undefined,
 });
 
-const renderWallet = (props: Partial<ComponentProps<typeof Wallet>> = {}) => {
+const renderWallet = (props: PartialProps<typeof Wallet> = {}) => {
   return render(<Wallet open={props.open || false} />);
 };
 

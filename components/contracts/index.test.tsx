@@ -1,14 +1,12 @@
 import { AddressZero } from "core/constants";
 import { server } from "mocks/server";
 import { rest } from "msw";
-import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildContractDetailsList } from "testing/factory";
+import { PartialProps } from "testing/types";
 import { Contracts } from ".";
 
-const renderContracts = (
-  props: Partial<ComponentProps<typeof Contracts>> = {}
-) => {
+const renderContracts = (props: PartialProps<typeof Contracts> = {}) => {
   const activeContract = AddressZero;
   const setActiveContract = vi.fn();
   return render(

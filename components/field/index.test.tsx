@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker/locale/en";
-import { ComponentProps } from "react";
 import { render, screen } from "testing";
+import { PartialProps } from "testing/types";
 import { Field } from ".";
 
-const renderField = (props: Partial<ComponentProps<typeof Field>> = {}) => {
+const renderField = (props: PartialProps<typeof Field> = {}) => {
   return render(
     <Field
       handleChange={props.handleChange || vi.fn()}

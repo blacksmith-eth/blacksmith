@@ -1,7 +1,6 @@
 import { AddressZero } from "core/constants";
 import { server } from "mocks/server";
 import { rest } from "msw";
-import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedFunction,
@@ -12,6 +11,7 @@ import {
   buildContractDetails,
   buildContractDetailsList,
 } from "testing/factory";
+import { PartialProps } from "testing/types";
 import type { Mock } from "vitest";
 import { useBalance, useContractRead, useContractWrite } from "wagmi";
 import { Contract } from ".";
@@ -38,9 +38,7 @@ useBalanceMock.mockReturnValue({
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderContract = (
-  props: Partial<ComponentProps<typeof Contract>> = {}
-) => {
+const renderContract = (props: PartialProps<typeof Contract> = {}) => {
   return render(<Contract address={props.address || buildAddress()} />);
 };
 

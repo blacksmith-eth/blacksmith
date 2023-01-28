@@ -1,10 +1,10 @@
 import { BigNumber } from "ethers";
-import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildResult } from "testing/factory";
+import { PartialProps } from "testing/types";
 import { Output } from ".";
 
-const renderOutput = (props: Partial<ComponentProps<typeof Output>> = {}) =>
+const renderOutput = (props: PartialProps<typeof Output> = {}) =>
   render(
     <Output
       data={props.data || undefined}
