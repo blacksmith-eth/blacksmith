@@ -1,9 +1,9 @@
-import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import { buildArg, buildArgList } from "testing/factory";
+import { PartialProps } from "testing/types";
 import { Inputs } from ".";
 
-const renderInputs = (props: Partial<ComponentProps<typeof Inputs>>) => {
+const renderInputs = (props: PartialProps<typeof Inputs>) => {
   return render(
     <Inputs
       name={props.name || ""}

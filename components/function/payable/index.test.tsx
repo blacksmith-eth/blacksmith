@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedPayableFunction,
@@ -8,6 +7,7 @@ import {
   buildInputList,
   buildTransactionHash,
 } from "testing/factory";
+import { PartialProps } from "testing/types";
 import type { Mock } from "vitest";
 import { useContractWrite } from "wagmi";
 import { Payable } from ".";
@@ -17,7 +17,7 @@ vi.mock("wagmi");
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderPayable = (props: Partial<ComponentProps<typeof Payable>> = {}) => {
+const renderPayable = (props: PartialProps<typeof Payable> = {}) => {
   return render(
     <Payable
       address={props.address || buildAddress()}

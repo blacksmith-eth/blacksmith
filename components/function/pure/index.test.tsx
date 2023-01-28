@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedPureFunction,
@@ -7,6 +6,7 @@ import {
   buildInput,
   buildInputList,
 } from "testing/factory";
+import { PartialProps } from "testing/types";
 import type { Mock } from "vitest";
 import { useContractRead } from "wagmi";
 import { Pure } from ".";
@@ -22,7 +22,7 @@ useContractReadMock.mockReturnValue({
   refetch: vi.fn(),
 });
 
-const renderPure = (props: Partial<ComponentProps<typeof Pure>> = {}) => {
+const renderPure = (props: PartialProps<typeof Pure> = {}) => {
   return render(
     <Pure
       address={props.address || buildAddress()}

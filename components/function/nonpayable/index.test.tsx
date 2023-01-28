@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { ComponentProps } from "react";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedNonpayableFunction,
@@ -8,6 +7,7 @@ import {
   buildInputList,
   buildTransactionHash,
 } from "testing/factory";
+import { PartialProps } from "testing/types";
 import type { Mock } from "vitest";
 import { useContractWrite } from "wagmi";
 import { Nonpayable } from ".";
@@ -17,9 +17,7 @@ vi.mock("wagmi");
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderNonpayable = (
-  props: Partial<ComponentProps<typeof Nonpayable>> = {}
-) => {
+const renderNonpayable = (props: PartialProps<typeof Nonpayable> = {}) => {
   return render(
     <Nonpayable
       address={props.address || buildAddress()}

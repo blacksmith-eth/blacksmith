@@ -6,10 +6,10 @@ import {
   buildOutput,
   buildOutputList,
 } from "testing/factory";
+import { PartialProps } from "testing/types";
 import { Signature } from ".";
-import { ComponentProps } from "react";
 
-const renderSignature = (props: Partial<ComponentProps<typeof Signature>>) => {
+const renderSignature = (props: PartialProps<typeof Signature>) => {
   return render(
     <Signature
       func={props.func || buildAbiDefinedFunction()}

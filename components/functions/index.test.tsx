@@ -1,6 +1,6 @@
-import { ComponentProps } from "react";
 import { render, screen } from "testing";
 import { buildAbiDefinedFunctionList, buildAddress } from "testing/factory";
+import { PartialProps } from "testing/types";
 import { Mock } from "vitest";
 import { useContractRead, useContractWrite } from "wagmi";
 import { Functions } from ".";
@@ -19,9 +19,7 @@ useContractReadMock.mockReturnValue({
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderFunctions = (
-  props: Partial<ComponentProps<typeof Functions>> = {}
-) => {
+const renderFunctions = (props: PartialProps<typeof Functions> = {}) => {
   return render(
     <Functions
       address={props.address || buildAddress()}
