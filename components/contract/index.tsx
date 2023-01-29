@@ -1,24 +1,16 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
 import { Balance } from "components/balance";
 import { Functions } from "components/functions";
+import { Introduction } from "components/introduction";
 import { AddressZero } from "core/constants";
 import { Abi, AbiDefinedStateFunction, Address } from "core/types";
 import { useContracts } from "hooks";
-import { Manager } from "./manager";
-import { Setup } from "./setup";
 
 const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] => {
   return abi.filter(
     ({ type }) => type === "function"
   ) as AbiDefinedStateFunction[];
 };
-
-const Introduction = () => (
-  <div className="flex flex-col gap-4">
-    <Setup />
-    <Manager />
-  </div>
-);
 
 type ContractProps = { address: Address };
 
