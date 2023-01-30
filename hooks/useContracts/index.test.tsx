@@ -15,7 +15,7 @@ describe("useContracts", () => {
     const { result } = renderHook(() => useContracts(), { wrapper });
 
     await waitFor(() => {
-      expect(result.current.contracts).toEqual(undefined);
+      expect(result.current.contracts).toEqual([]);
       expect(result.current.isLoading).toEqual(true);
       expect(result.current.isError).toEqual(false);
     });
@@ -46,7 +46,7 @@ describe("useContracts", () => {
     const { result } = renderHook(() => useContracts(), { wrapper });
 
     await waitFor(() => {
-      expect(result.current.contracts).toEqual(undefined);
+      expect(result.current.contracts).toEqual([]);
       expect(result.current.isLoading).toEqual(false);
       expect(result.current.isError).toEqual(true);
     });

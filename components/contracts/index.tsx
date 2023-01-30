@@ -10,7 +10,7 @@ export const Contracts = () => {
 
   if (isLoading) return <div className="flex-grow">loading...</div>;
   if (isError) return <div className="flex-grow">error</div>;
-  if (!contracts || contracts.length === 0)
+  if (contracts.length === 0)
     return <div className="flex-grow">No contracts</div>;
   return (
     <ul className="flex-grow">
