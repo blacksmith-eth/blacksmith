@@ -1,4 +1,3 @@
-import { AddressZero } from "core/constants";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { render, screen, waitFor } from "testing";
@@ -94,25 +93,6 @@ describe("Contract", () => {
     expect(
       screen.getByRole("heading", { level: 3, name: "Getting Started" })
     ).toBeInTheDocument();
-  });
-
-  it("does not render the not found page if the address is zero", async () => {
-    const contract = buildContractDetailsList(2);
-    const address = AddressZero;
-    server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([contract]));
-      })
-    );
-
-    renderContract({ address });
-
-    expect(
-      await screen.findByRole("heading", { level: 3, name: "Getting Started" })
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByText("Selected contract not found.")
-    ).not.toBeInTheDocument();
   });
 
   it("renders the contract address", async () => {

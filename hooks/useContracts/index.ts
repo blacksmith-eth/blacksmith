@@ -16,7 +16,7 @@ export const useContracts = () => {
   return {
     isLoading,
     mutate,
-    contracts: data,
+    contracts: data || [],
     isError: !!error,
   };
 };
