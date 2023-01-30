@@ -1,13 +1,17 @@
+import { Contract } from "components/contract";
 import { Contracts } from "components/contracts";
 import { Footer } from "components/footer";
 import { Header } from "components/header";
-import { Introduction } from "components/introduction";
 import { Wallet } from "components/wallet";
+import { Address } from "core/types";
 import { useToggle } from "hooks";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
-const Home: NextPage = () => {
+const ContractPage: NextPage = () => {
+  const router = useRouter();
+  const { address } = router.query;
   const { state: isWalletOpen, toggle: toggleWallet } = useToggle(false);
   const walletButtonText = isWalletOpen ? "close wallet" : "open wallet";
 
@@ -30,7 +34,7 @@ const Home: NextPage = () => {
         </aside>
         <section className="flex flex-col flex-grow bg-white dark:bg-black p-2 overflow-y-auto md:overscroll-none">
           <h2 className="font-bold">Contract</h2>
-          <Introduction />
+          <Contract address={address as Address} />
         </section>
         <Wallet open={isWalletOpen} />
       </main>
@@ -38,4 +42,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default ContractPage;

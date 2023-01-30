@@ -1,15 +1,11 @@
-import { Address, ContractDetails } from "core/types";
+import { ContractDetails } from "core/types";
 import { useContracts } from "hooks";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-type ContractsProps = {
-  activeContract: Address;
-  setActiveContract(address: Address): void;
-};
-
-export const Contracts = ({
-  activeContract,
-  setActiveContract,
-}: ContractsProps) => {
+export const Contracts = () => {
+  const router = useRouter();
+  const { address } = router.query;
   const { contracts, isLoading, isError } = useContracts();
 
   if (isLoading) return <div className="flex-grow">loading...</div>;
@@ -20,14 +16,14 @@ export const Contracts = ({
     <ul className="flex-grow">
       {contracts.map((contract: ContractDetails) => (
         <li key={contract.address}>
-          <button
-            onClick={() => setActiveContract(contract.address)}
+          <Link
+            href={`/contracts/${contract.address}`}
             className={`focus:underline focus:outline-none hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black ${
-              contract.address === activeContract ? "font-semibold" : ""
+              contract.address === address ? "font-semibold" : ""
             }`}
           >
             {contract.name}
-          </button>
+          </Link>
         </li>
       ))}
     </ul>

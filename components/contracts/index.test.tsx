@@ -1,24 +1,19 @@
-import { AddressZero } from "core/constants";
 import { server } from "mocks/server";
 import { rest } from "msw";
+import mockRouter from "next-router-mock";
+import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import { render, screen } from "testing";
 import { buildContractDetailsList } from "testing/factory";
-import { PartialProps } from "testing/types";
 import { Contracts } from ".";
 
-const renderContracts = (props: PartialProps<typeof Contracts> = {}) => {
-  const activeContract = AddressZero;
-  const setActiveContract = vi.fn();
-  return render(
-    <Contracts
-      activeContract={activeContract}
-      setActiveContract={setActiveContract}
-      {...props}
-    />
-  );
-};
+const renderContracts = () => render(<Contracts />);
 
 describe("Contracts", () => {
+  beforeEach(() => {
+    vi.mock("next/router", () => require("next-router-mock"));
+    mockRouter.useParser(createDynamicRouteParser(["/contracts/[address]"]));
+  });
+
   it("renders a loading message", () => {
     renderContracts();
     expect(screen.getByText("loading...")).toBeInTheDocument();
@@ -53,51 +48,28 @@ describe("Contracts", () => {
     );
     renderContracts();
     expect(
-      await screen.findByRole("button", { name: contracts[0].name })
+      await screen.findByRole("link", { name: contracts[0].name })
     ).toBeInTheDocument();
     expect(
-      await screen.findByRole("button", { name: contracts[1].name })
+      await screen.findByRole("link", { name: contracts[1].name })
     ).toBeInTheDocument();
-  });
-
-  it("calls setActiveContract when a contract is clicked", async () => {
-    const setActiveContract = vi.fn();
-    const contracts = buildContractDetailsList(2);
-    server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json(contracts));
-      })
-    );
-    const { user } = renderContracts({ setActiveContract });
-
-    expect(await screen.findByText(contracts[0].name)).toBeInTheDocument();
-    expect(await screen.findByText(contracts[1].name)).toBeInTheDocument();
-    expect(setActiveContract).not.toHaveBeenCalled();
-
-    await user.click(
-      await screen.findByRole("button", { name: contracts[0].name })
-    );
-
-    expect(setActiveContract).toHaveBeenCalledWith(contracts[0].address);
   });
 
   it("renders the active contract in bold", async () => {
     const contracts = buildContractDetailsList(2);
+    mockRouter.push(`/contracts/${contracts[0].address}`);
     server.use(
       rest.get("/api/contracts", (_req, res, ctx) => {
         return res(ctx.json(contracts));
       })
     );
-    renderContracts({ activeContract: contracts[0].address });
-
-    expect(await screen.findByText(contracts[0].name)).toBeInTheDocument();
-    expect(await screen.findByText(contracts[1].name)).toBeInTheDocument();
+    renderContracts();
 
     expect(
-      await screen.findByRole("button", { name: contracts[0].name })
+      await screen.findByRole("link", { name: contracts[0].name })
     ).toHaveClass("font-semibold");
     expect(
-      await screen.findByRole("button", { name: contracts[1].name })
+      await screen.findByRole("link", { name: contracts[1].name })
     ).not.toHaveClass("font-semibold");
   });
 });
