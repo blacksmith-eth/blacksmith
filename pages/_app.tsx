@@ -13,6 +13,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "packages/wallets";
 import { forkedChains, foundry } from "core/chains";
+import { Layout } from "components/layout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -67,7 +68,9 @@ function MyApp({ Component, pageProps }: AppProps) {
               }),
             }}
           >
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </RainbowKitProvider>
         </WagmiConfig>
       </ThemeProvider>
