@@ -44,7 +44,7 @@ describe("Payable", () => {
 
     renderPayable({ func });
 
-    expect(screen.getByText(func.name, { exact: false })).toBeInTheDocument();
+    expect(screen.getByText(`${func.name} → void`)).toBeInTheDocument();
   });
 
   it("should render function inputs", () => {
