@@ -75,6 +75,18 @@ Create a `.env.local` in the root directory of Blacksmith and include your API k
 echo "ETHERSCAN_API_KEY=XXX" >> .env.local
 ```
 
+## Script Imports
+
+An example of the CLI arguments needed to import contracts via `forge script` can be found below.
+
+```bash
+forge script script/Counter.s.sol:CounterScript --broadcast --verify --unlocked \
+--sender 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 \
+--fork-url http://localhost:8545 \
+--verifier-url http://localhost:3000/api/verify \
+--etherscan-api-key blacksmith
+```
+
 ## Hardhat
 
 If you're working with Hardhat check out [🏗 scaffold-eth](https://github.com/scaffold-eth/scaffold-eth)!
