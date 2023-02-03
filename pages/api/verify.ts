@@ -2,8 +2,10 @@ import { contract } from "core/contract";
 import { getAddress } from "core/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { compile } from "solc";
-import { z } from "zod";
+import { SafeParseReturnType, z } from "zod";
 import { fromZodError } from "zod-validation-error";
+import { pipe } from "fp-ts/function";
+import * as E from "fp-ts/Either";
 
 export enum Action {
   Verify = "verifysourcecode",
@@ -22,6 +24,9 @@ const checkVerifyStatusRequestSchema = z.object({
   action: z.literal(Action.Check),
   guid: z.string(),
 });
+
+const safeParseReturnToEither = <I, O>(result: SafeParseReturnType<I, O>) =>
+  result.success ? E.right(result.data) : E.left(result.error);
 
 const verifyHandler = async (
   req: NextApiRequest,
@@ -64,19 +69,27 @@ const checkHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) => {
-  const result = checkVerifyStatusRequestSchema.safeParse(req.body);
-  if (!result.success) {
-    return res.status(400).json({
-      status: "0",
-      message: "Error",
-      result: fromZodError(result.error).toString(),
-    });
-  }
-  return res.status(200).json({
-    status: "1",
-    message: "OK",
-    result: `Contract verified! ID: ${result.data.guid}`,
-  });
+  return pipe(
+    req.body,
+    checkVerifyStatusRequestSchema.safeParse,
+    safeParseReturnToEither,
+    E.mapLeft(fromZodError),
+    E.mapLeft((e) => e.toString()),
+    E.match(
+      (left) =>
+        res.status(400).json({
+          status: "0",
+          message: "Error",
+          result: left,
+        }),
+      (right) =>
+        res.status(200).json({
+          status: "1",
+          message: "OK",
+          result: `Contract verified! ID: ${right.guid}`,
+        })
+    )
+  );
 };
 
 const invalidActionHandler = async (
