@@ -2,6 +2,8 @@ import { contract } from "core/contract";
 import { getAddress } from "core/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { compile } from "solc";
+import { z } from "zod";
+import { fromZodError } from "zod-validation-error";
 
 export enum Action {
   Verify = "verifysourcecode",
@@ -13,6 +15,13 @@ type ResponseData = {
   message: string;
   result: string;
 };
+
+const checkVerifyStatusRequestSchema = z.object({
+  apikey: z.optional(z.string()),
+  module: z.optional(z.string()),
+  action: z.literal(Action.Check),
+  guid: z.string(),
+});
 
 const verifyHandler = async (
   req: NextApiRequest,
@@ -55,10 +64,18 @@ const checkHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) => {
+  const result = checkVerifyStatusRequestSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({
+      status: "0",
+      message: "Error",
+      result: fromZodError(result.error).toString(),
+    });
+  }
   return res.status(200).json({
     status: "1",
     message: "OK",
-    result: `Contract verified! ID: ${req.body.guid}`,
+    result: `Contract verified! ID: ${result.data.guid}`,
   });
 };
 
