@@ -2,6 +2,18 @@ import { createMocks } from "node-mocks-http";
 import verifyHandler, { Action } from "pages/api/verify";
 import { buildAddress } from "testing/factory";
 
+const buildOKJSONResponse = ({ result }: { result?: string }) => ({
+  status: "1",
+  message: "OK",
+  result: result || "",
+});
+
+const buildErrorJSONResponse = ({ result }: { result?: string }) => ({
+  status: "0",
+  message: "Error",
+  result: result || "",
+});
+
 describe("handler", () => {
   it("#check should return an error when guid is not specified", async () => {
     const { req, res } = createMocks({
@@ -12,11 +24,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Required at "guid"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Required at "guid"`,
+      })
+    );
   });
 
   it("#check should return an error when guid is not a string", async () => {
@@ -28,11 +40,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string, received number at "guid"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string, received number at "guid"`,
+      })
+    );
   });
 
   it("#check should return a success response when guid is valid", async () => {
@@ -44,11 +56,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(200);
-    expect(res._getJSONData()).toEqual({
-      status: "1",
-      message: "OK",
-      result: "Contract verified! ID: 123",
-    });
+    expect(res._getJSONData()).toEqual(
+      buildOKJSONResponse({
+        result: "Contract verified! ID: 123",
+      })
+    );
   });
 
   it("#verify should return an error when contractaddress is not specified", async () => {
@@ -65,11 +77,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Required at "contractaddress"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Required at "contractaddress"`,
+      })
+    );
   });
 
   it("#verify should return an error when contractname is not specified", async () => {
@@ -86,11 +98,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Required at "contractname"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Required at "contractname"`,
+      })
+    );
   });
 
   it("#verify should return an error when compilerversion is not specified", async () => {
@@ -107,11 +119,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Required at "compilerversion"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Required at "compilerversion"`,
+      })
+    );
   });
 
   it("#verify should return an error when contractaddress is not a string", async () => {
@@ -129,11 +141,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string, received number at "contractaddress"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string, received number at "contractaddress"`,
+      })
+    );
   });
 
   it("#verify should return an error when contractaddress is not a valid address", async () => {
@@ -151,11 +163,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string to start with "0x" at "contractaddress"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string to start with "0x" at "contractaddress"`,
+      })
+    );
   });
 
   it("#verify should return an error when contractname is not a string", async () => {
@@ -173,11 +185,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string, received number at "contractname"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string, received number at "contractname"`,
+      })
+    );
   });
 
   it("#verify should return an error when compilerversion is not a string", async () => {
@@ -195,11 +207,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string, received number at "compilerversion"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string, received number at "compilerversion"`,
+      })
+    );
   });
 
   it("#verify should return an error when sourceCode is not specified", async () => {
@@ -216,11 +228,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Required at "sourceCode"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Required at "sourceCode"`,
+      })
+    );
   });
 
   it("#verify should return an error when sourceCode is not a string", async () => {
@@ -238,11 +250,11 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string, received number at "sourceCode"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string, received number at "sourceCode"`,
+      })
+    );
   });
 
   it("#verify should return an error when contractname is not correctly formatted", async () => {
@@ -260,10 +272,10 @@ describe("handler", () => {
     await verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual({
-      status: "0",
-      message: "Error",
-      result: `Error: Validation error: Expected string to match format "path:contractname" at "contractname"`,
-    });
+    expect(res._getJSONData()).toEqual(
+      buildErrorJSONResponse({
+        result: `Error: Validation error: Expected string to match format "path:contractname" at "contractname"`,
+      })
+    );
   });
 });
