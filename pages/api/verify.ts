@@ -6,6 +6,8 @@ import { SafeParseReturnType, z } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { pipe } from "fp-ts/function";
 import * as E from "fp-ts/Either";
+import isNull from "lodash/isNull";
+import { Address } from "core/types";
 
 export enum Action {
   Verify = "verifysourcecode",
@@ -25,6 +27,40 @@ const checkVerifyStatusRequestSchema = z.object({
   guid: z.string(),
 });
 
+const verifyRequestSchema = z.object({
+  apikey: z.optional(z.string()),
+  module: z.optional(z.string()),
+  action: z.literal(Action.Verify),
+  contractaddress: z.string().superRefine((value, context) => {
+    if (!value.startsWith("0x")) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `Expected string to start with "0x"`,
+      });
+
+      return z.NEVER;
+    }
+    const address = getAddress(value as Address);
+    if (isNull(address)) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Invalid address",
+      });
+
+      return z.NEVER;
+    }
+    return address;
+  }),
+  contractname: z
+    .string()
+    .refine(
+      (value) => value.includes(":"),
+      `Expected string to match format "path:contractname"`
+    ),
+  compilerversion: z.string(),
+  sourceCode: z.string(),
+});
+
 const safeParseReturnToEither = <I, O>(result: SafeParseReturnType<I, O>) =>
   result.success ? E.right(result.data) : E.left(result.error);
 
@@ -32,23 +68,23 @@ const verifyHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) => {
+  const result = verifyRequestSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({
+      status: "0",
+      message: "Error",
+      result: fromZodError(result.error).toString(),
+    });
+  }
   try {
-    const [file, name] = req.body.contractname.split(":");
-    const compiled = JSON.parse(compile(req.body.sourceCode));
+    const [file, name] = result.data.contractname.split(":");
+    const compiled = JSON.parse(compile(result.data.sourceCode));
     const { abi } = compiled.contracts[file][name];
-    const address = getAddress(req.body.contractaddress);
-    if (!address) {
-      return res.status(400).json({
-        status: "0",
-        message: "Error",
-        result: "Invalid address",
-      });
-    }
     contract.insert({
       abi,
-      address,
+      address: result.data.contractaddress as Address,
       name,
-      version: req.body.compilerversion,
+      version: result.data.compilerversion,
     });
   } catch (error) {
     return res.status(500).json({
