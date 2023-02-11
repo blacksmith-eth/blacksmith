@@ -54,6 +54,7 @@
     "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
     "eslint-config-next": "^13.1.6",
+    "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
     "jsdom": "^21.1.0",
     "msw": "^1.0.1",
