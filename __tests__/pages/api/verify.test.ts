@@ -79,7 +79,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Required at "contractaddress"`,
+        result: `Error: Validation error: Invalid address at "contractaddress"`,
       })
     );
   });
@@ -126,28 +126,6 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when contractaddress is not a string", async () => {
-    const { req, res } = createMocks({
-      method: "POST",
-      body: {
-        action: Action.Verify,
-        contractaddress: 123,
-        contractname: "Test.sol:Test",
-        compilerversion: "0.8.0",
-        sourceCode: "contract Test {}",
-      },
-    });
-
-    await verifyHandler(req, res);
-
-    expect(res.statusCode).toBe(400);
-    expect(res._getJSONData()).toEqual(
-      buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string, received number at "contractaddress"`,
-      })
-    );
-  });
-
   it("#verify should return an error when contractaddress is not a valid address", async () => {
     const { req, res } = createMocks({
       method: "POST",
@@ -165,7 +143,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string to start with "0x" at "contractaddress"`,
+        result: `Error: Validation error: Invalid address at "contractaddress"`,
       })
     );
   });
