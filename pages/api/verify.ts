@@ -31,16 +31,8 @@ const verifyRequestSchema = z.object({
   apikey: z.optional(z.string()),
   module: z.optional(z.string()),
   action: z.literal(Action.Verify),
-  contractaddress: z.string().superRefine((value, context) => {
-    if (!value.startsWith("0x")) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: `Expected string to start with "0x"`,
-      });
-
-      return z.NEVER;
-    }
-    const address = getAddress(value as Address);
+  contractaddress: z.custom<Address>().transform((value, context) => {
+    const address = getAddress(value);
     if (isNull(address)) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
