@@ -27,6 +27,9 @@ const adjective = () => unique(faker.word.adjective, undefined, uniqueOptions);
 const noun = () => unique(faker.word.noun, undefined, uniqueOptions);
 const verb = () => unique(faker.word.verb, undefined, uniqueOptions);
 
+const hasProperty = (obj: any, property: string) =>
+  Object.prototype.hasOwnProperty.call(obj, property);
+
 export const buildAbiEvent = (): AbiEvent => ({
   type: "event",
   inputs: [],
@@ -52,14 +55,14 @@ export const buildContractDetails = (
 });
 
 export const buildArg = (overrides: Partial<Arg> = {}): Arg => ({
-  name: overrides.hasOwnProperty("name") ? overrides.name! : noun(),
+  name:
+    hasProperty(overrides, "name") && overrides.name ? overrides.name : noun(),
   type: overrides.type || faker.helpers.arrayElement(["string", "address"]),
-  value: overrides.hasOwnProperty("value") ? overrides.value! : "",
+  value:
+    hasProperty(overrides, "value") && overrides.value ? overrides.value : "",
   isInfinite: overrides.isInfinite || false,
   isTouched: overrides.isTouched || false,
-  childArg: overrides.hasOwnProperty("childArg")
-    ? overrides.childArg
-    : undefined,
+  childArg: hasProperty(overrides, "childArg") ? overrides.childArg : undefined,
 });
 
 export const buildArgList = (n: number): Arg[] => times(n, () => buildArg());
@@ -114,7 +117,7 @@ export const buildAbiDefinedFunctionList = (
 export const buildInput = (
   overrides: Partial<AbiParameter> = {}
 ): AbiParameter => ({
-  name: overrides.hasOwnProperty("name") ? overrides.name! : noun(),
+  name: hasProperty(overrides, "name") ? overrides.name : noun(),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
 });
 
