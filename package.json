@@ -20,7 +20,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.11",
     "@heroicons/react": "^2.0.16",
-    "@next/font": "^13.1.6",
+    "@next/font": "^13.2.1",
     "@rainbow-me/rainbowkit": "^0.11.0",
     "ethers": "^5.7.2",
     "fp-ts": "^2.13.1",
