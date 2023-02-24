@@ -1,5 +1,5 @@
 import "styles/globals.css";
-import { Inter, Source_Code_Pro } from "@next/font/google";
+import { Inter, Source_Code_Pro } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
 import {
