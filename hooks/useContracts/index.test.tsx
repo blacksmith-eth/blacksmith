@@ -6,7 +6,7 @@ import { SWRConfig } from "swr";
 import { PropsWithChildren } from "react";
 import { buildContractDetailsList } from "testing/factory";
 
-const wrapper = ({ children }: PropsWithChildren<{}>) => (
+const wrapper = ({ children }: PropsWithChildren<Record<string, any>>) => (
   <SWRConfig value={{ provider: () => new Map() }}>{children}</SWRConfig>
 );
 
