@@ -36,7 +36,8 @@ useBalanceMock.mockReturnValue({
   data: undefined,
 });
 
-const renderWallet = (props: PartialProps<typeof Wallet> = {}) => render(<Wallet open={props.open || false} />);
+const renderWallet = (props: PartialProps<typeof Wallet> = {}) =>
+  render(<Wallet open={props.open || false} />);
 
 describe("Wallet", () => {
   it("should render nothing if open is false", () => {

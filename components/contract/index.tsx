@@ -5,9 +5,8 @@ import { Introduction } from "components/introduction";
 import { Abi, AbiDefinedStateFunction, Address } from "core/types";
 import { useContracts } from "hooks";
 
-const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] => abi.filter(
-    ({ type }) => type === "function"
-  ) as AbiDefinedStateFunction[];
+const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] =>
+  abi.filter(({ type }) => type === "function") as AbiDefinedStateFunction[];
 
 type ContractProps = { address: Address };
 
