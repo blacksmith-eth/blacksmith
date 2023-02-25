@@ -5,11 +5,11 @@ import type { AppProps } from "next/app";
 import {
   RainbowKitProvider,
   connectorsForWallets,
-  lightTheme,
   darkTheme,
+  lightTheme,
 } from "@rainbow-me/rainbowkit";
 import { ThemeProvider } from "next-themes";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "packages/wallets";
 import { forkedChains, foundry } from "core/chains";

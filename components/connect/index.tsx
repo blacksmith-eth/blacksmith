@@ -83,53 +83,53 @@ const ConnectedButton = ({
 );
 
 export const Connect = () => (
-    <ConnectButton.Custom>
-      {({
-        account,
-        chain,
-        openAccountModal,
-        openChainModal,
-        openConnectModal,
-        authenticationStatus,
-        mounted,
-      }) => {
-        const ready = mounted && authenticationStatus !== "loading";
-        const connected =
-          ready &&
-          account &&
-          chain &&
-          (!authenticationStatus || authenticationStatus === "authenticated");
-        return (
-          <div
-            {...(!ready && {
-              "aria-hidden": true,
-              style: {
-                opacity: 0,
-                pointerEvents: "none",
-                userSelect: "none",
-              },
-            })}
-          >
-            {(() => {
-              if (!connected) {
-                return (
-                  <ConnectWalletButton openConnectModal={openConnectModal} />
-                );
-              }
-              if (chain.unsupported) {
-                return <WrongNetworkButton openChainModal={openChainModal} />;
-              }
+  <ConnectButton.Custom>
+    {({
+      account,
+      chain,
+      openAccountModal,
+      openChainModal,
+      openConnectModal,
+      authenticationStatus,
+      mounted,
+    }) => {
+      const ready = mounted && authenticationStatus !== "loading";
+      const connected =
+        ready &&
+        account &&
+        chain &&
+        (!authenticationStatus || authenticationStatus === "authenticated");
+      return (
+        <div
+          {...(!ready && {
+            "aria-hidden": true,
+            style: {
+              opacity: 0,
+              pointerEvents: "none",
+              userSelect: "none",
+            },
+          })}
+        >
+          {(() => {
+            if (!connected) {
               return (
-                <ConnectedButton
-                  account={account}
-                  chain={chain}
-                  openAccountModal={openAccountModal}
-                  openChainModal={openChainModal}
-                />
+                <ConnectWalletButton openConnectModal={openConnectModal} />
               );
-            })()}
-          </div>
-        );
-      }}
-    </ConnectButton.Custom>
-  );
+            }
+            if (chain.unsupported) {
+              return <WrongNetworkButton openChainModal={openChainModal} />;
+            }
+            return (
+              <ConnectedButton
+                account={account}
+                chain={chain}
+                openAccountModal={openAccountModal}
+                openChainModal={openChainModal}
+              />
+            );
+          })()}
+        </div>
+      );
+    }}
+  </ConnectButton.Custom>
+);
