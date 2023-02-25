@@ -137,7 +137,7 @@ describe("Inputs", () => {
     expect(updateValue).toHaveBeenCalledWith([0], []);
   });
 
-  it("should render childArg preview for infinite list", async () => {
+  it("should render childArg preview for infinite list", () => {
     const childArg = buildArg();
     const arg = buildArg({ isInfinite: true, childArg });
 
