@@ -15,9 +15,7 @@ useBalanceMock.mockReturnValue({
   isError: false,
 });
 
-const renderBalance = (props: PartialProps<typeof Balance> = {}) => {
-  return render(<Balance address={props.address || buildAddress()} />);
-};
+const renderBalance = (props: PartialProps<typeof Balance> = {}) => render(<Balance address={props.address || buildAddress()} />);
 
 describe("Balance", () => {
   it("should render loading", () => {

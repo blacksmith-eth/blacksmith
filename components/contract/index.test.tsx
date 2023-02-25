@@ -37,9 +37,7 @@ useBalanceMock.mockReturnValue({
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderContract = (props: PartialProps<typeof Contract> = {}) => {
-  return render(<Contract address={props.address || buildAddress()} />);
-};
+const renderContract = (props: PartialProps<typeof Contract> = {}) => render(<Contract address={props.address || buildAddress()} />);
 
 describe("Contract", () => {
   it("renders a loading message", () => {
@@ -50,9 +48,7 @@ describe("Contract", () => {
 
   it("renders an error message", async () => {
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.status(500));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.status(500)))
     );
 
     renderContract();
@@ -63,9 +59,7 @@ describe("Contract", () => {
   it("renders a selected contract", async () => {
     const contracts = buildContractDetailsList(2);
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json(contracts));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts)))
     );
 
     renderContract({ address: contracts[0].address });
@@ -79,9 +73,7 @@ describe("Contract", () => {
     const contract = buildContractDetailsList(2);
     const address = buildAddress();
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([contract]));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
     );
 
     renderContract({ address });
@@ -98,9 +90,7 @@ describe("Contract", () => {
   it("renders the contract address", async () => {
     const contract = buildContractDetails();
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([contract]));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
     );
 
     renderContract({ address: contract.address });
@@ -114,9 +104,7 @@ describe("Contract", () => {
     const definedFunctions = buildAbiDefinedFunctionList(2);
     const contract = buildContractDetails({ abi: [...definedFunctions] });
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([contract]));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
     );
 
     renderContract({ address: contract.address });
@@ -136,9 +124,7 @@ describe("Contract", () => {
     const abi = [event, error, definedFunction];
     const contract = buildContractDetails({ abi });
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([contract]));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
     );
 
     renderContract({ address: contract.address });
@@ -159,9 +145,7 @@ describe("Contract", () => {
   it("renders a button to copy the address", async () => {
     const contract = buildContractDetails();
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([contract]));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
     );
 
     const { user } = renderContract({ address: contract.address });

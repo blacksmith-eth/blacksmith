@@ -19,14 +19,12 @@ useContractReadMock.mockReturnValue({
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderFunctions = (props: PartialProps<typeof Functions> = {}) => {
-  return render(
+const renderFunctions = (props: PartialProps<typeof Functions> = {}) => render(
     <Functions
       address={props.address || buildAddress()}
       functions={props.functions || []}
     />
   );
-};
 
 describe("Functions", () => {
   it("should render no functions message when no functions are provided", () => {

@@ -8,9 +8,9 @@ describe("Manager", () => {
   it("should handle contract imports", async () => {
     const address = buildAddress();
     server.use(
-      rest.post(`/api/contracts/${address}`, (_req, res, ctx) => {
-        return res(ctx.json({}));
-      })
+      rest.post(`/api/contracts/${address}`, (_req, res, ctx) =>
+        res(ctx.json({}))
+      )
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -27,9 +27,9 @@ describe("Manager", () => {
   it("should handle failed contract imports", async () => {
     const address = buildAddress();
     server.use(
-      rest.post(`/api/contracts/${address}`, (_req, res, ctx) => {
-        return res(ctx.status(500));
-      })
+      rest.post(`/api/contracts/${address}`, (_req, res, ctx) =>
+        res(ctx.status(500))
+      )
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -46,9 +46,9 @@ describe("Manager", () => {
   it("should handle contract removals", async () => {
     const address = buildAddress();
     server.use(
-      rest.delete(`/api/contracts/${address}`, (_req, res, ctx) => {
-        return res(ctx.json({}));
-      })
+      rest.delete(`/api/contracts/${address}`, (_req, res, ctx) =>
+        res(ctx.json({}))
+      )
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -65,9 +65,9 @@ describe("Manager", () => {
   it("should handle failed contract removals", async () => {
     const address = buildAddress();
     server.use(
-      rest.delete(`/api/contracts/${address}`, (_req, res, ctx) => {
-        return res(ctx.status(500));
-      })
+      rest.delete(`/api/contracts/${address}`, (_req, res, ctx) =>
+        res(ctx.status(500))
+      )
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -83,9 +83,7 @@ describe("Manager", () => {
 
   it("should handle all contract removals", async () => {
     server.use(
-      rest.delete(`/api/contracts`, (_req, res, ctx) => {
-        return res(ctx.json({}));
-      })
+      rest.delete(`/api/contracts`, (_req, res, ctx) => res(ctx.json({})))
     );
     const { user } = render(<Manager />);
     const button = screen.getByRole("button", { name: "remove all" });

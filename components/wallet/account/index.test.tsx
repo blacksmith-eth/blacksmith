@@ -16,9 +16,7 @@ const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({ data: undefined });
 
-const renderAccount = () => {
-  return render(<Account />);
-};
+const renderAccount = () => render(<Account />);
 
 describe("Account", () => {
   it("should render the truncated account address", () => {

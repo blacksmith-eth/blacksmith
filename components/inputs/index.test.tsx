@@ -3,8 +3,7 @@ import { buildArg, buildArgList } from "testing/factory";
 import { PartialProps } from "testing/types";
 import { Inputs } from ".";
 
-const renderInputs = (props: PartialProps<typeof Inputs>) => {
-  return render(
+const renderInputs = (props: PartialProps<typeof Inputs>) => render(
     <Inputs
       name={props.name || ""}
       args={props.args || []}
@@ -14,7 +13,6 @@ const renderInputs = (props: PartialProps<typeof Inputs>) => {
       keys={props.keys}
     />
   );
-};
 
 describe("Inputs", () => {
   it("should render inputs", () => {

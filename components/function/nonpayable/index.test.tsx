@@ -17,15 +17,13 @@ vi.mock("wagmi");
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderNonpayable = (props: PartialProps<typeof Nonpayable> = {}) => {
-  return render(
+const renderNonpayable = (props: PartialProps<typeof Nonpayable> = {}) => render(
     <Nonpayable
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedNonpayableFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
-};
 
 describe("Nonpayable", () => {
   it("should not render inputs when initialCollapsed is true", () => {

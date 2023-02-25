@@ -3,8 +3,7 @@ import { render, screen } from "testing";
 import { PartialProps } from "testing/types";
 import { Field } from ".";
 
-const renderField = (props: PartialProps<typeof Field> = {}) => {
-  return render(
+const renderField = (props: PartialProps<typeof Field> = {}) => render(
     <Field
       handleChange={props.handleChange || vi.fn()}
       id={props.id || "id"}
@@ -14,7 +13,6 @@ const renderField = (props: PartialProps<typeof Field> = {}) => {
       disabled={props.disabled || false}
     />
   );
-};
 
 describe("Field", () => {
   it("should render the input name as the label", () => {
