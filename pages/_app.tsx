@@ -44,38 +44,36 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <div className={`${inter.variable} ${sourceCodePro.variable} font-sans`}>
-      <ThemeProvider attribute="class" disableTransitionOnChange={true}>
-        <WagmiConfig client={wagmiClient}>
-          <RainbowKitProvider
-            appInfo={{
-              appName: "Blacksmith",
-              learnMoreUrl: "https://github.com/blacksmith-eth/blacksmith",
-            }}
-            chains={chains}
-            theme={{
-              darkMode: darkTheme({
-                accentColor: "#ebddd1",
-                accentColorForeground: "#262a33",
-                borderRadius: "small",
-              }),
-              lightMode: lightTheme({
-                accentColor: "#262a33",
-                accentColorForeground: "#ebddd1",
-                borderRadius: "small",
-              }),
-            }}
-          >
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </RainbowKitProvider>
-        </WagmiConfig>
-      </ThemeProvider>
-    </div>
-  );
-}
+const MyApp = ({ Component, pageProps }: AppProps) => (
+  <div className={`${inter.variable} ${sourceCodePro.variable} font-sans`}>
+    <ThemeProvider attribute="class" disableTransitionOnChange={true}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider
+          appInfo={{
+            appName: "Blacksmith",
+            learnMoreUrl: "https://github.com/blacksmith-eth/blacksmith",
+          }}
+          chains={chains}
+          theme={{
+            darkMode: darkTheme({
+              accentColor: "#ebddd1",
+              accentColorForeground: "#262a33",
+              borderRadius: "small",
+            }),
+            lightMode: lightTheme({
+              accentColor: "#262a33",
+              accentColorForeground: "#ebddd1",
+              borderRadius: "small",
+            }),
+          }}
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ThemeProvider>
+  </div>
+);
 
 export default MyApp;
