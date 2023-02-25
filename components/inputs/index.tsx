@@ -40,7 +40,7 @@ export const Inputs = ({
                   args={arg.value as Arg[]}
                   updateValue={updateValue}
                   keys={[...keys, index]}
-                  child={!!arg.childArg}
+                  child={Boolean(arg.childArg)}
                 />
                 <div className="flex gap-1">
                   <Button
