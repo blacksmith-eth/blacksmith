@@ -21,5 +21,7 @@ export const Function = ({ address, func }: FunctionProps) => {
       );
     case "payable":
       return <Payable address={address} func={func} initialCollapsed={true} />;
+    default:
+      return <></>;
   }
 };
