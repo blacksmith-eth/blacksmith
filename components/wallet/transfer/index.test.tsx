@@ -61,7 +61,7 @@ describe("Transfer", () => {
     expect(valueInput).toHaveValue(value);
   });
 
-  it("should render a disabled transfer button if sendTransaction is undefined", async () => {
+  it("should render a disabled transfer button if sendTransaction is undefined", () => {
     useSendTransactionMock.mockReturnValue({
       sendTransaction: undefined,
     });

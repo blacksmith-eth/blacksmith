@@ -56,7 +56,7 @@ const verifyRequestSchema = z.object({
 const safeParseReturnToEither = <I, O>(result: SafeParseReturnType<I, O>) =>
   result.success ? E.right(result.data) : E.left(result.error);
 
-const verifyHandler = async (
+const verifyHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) => {
@@ -93,7 +93,7 @@ const verifyHandler = async (
   });
 };
 
-const checkHandler = async (
+const checkHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) => {
@@ -120,7 +120,7 @@ const checkHandler = async (
   );
 };
 
-const invalidActionHandler = async (
+const invalidActionHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) => {
@@ -131,7 +131,7 @@ const invalidActionHandler = async (
   });
 };
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {

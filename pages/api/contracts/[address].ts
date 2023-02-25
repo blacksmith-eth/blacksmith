@@ -29,7 +29,7 @@ const requestSchema = z.object({
   }),
 });
 
-const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const postHandler = (req: NextApiRequest, res: NextApiResponse) => {
   const result = requestSchema.safeParse(req.query);
   if (!result.success) {
     return res.status(400).json({ error: result.error.message });
@@ -62,10 +62,7 @@ const deleteHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(200).json({});
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "POST":
       return postHandler(req, res);
