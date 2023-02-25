@@ -82,8 +82,7 @@ const ConnectedButton = ({
   </div>
 );
 
-export const Connect = () => {
-  return (
+export const Connect = () => (
     <ConnectButton.Custom>
       {({
         account,
@@ -134,4 +133,3 @@ export const Connect = () => {
       }}
     </ConnectButton.Custom>
   );
-};

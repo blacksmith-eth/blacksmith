@@ -9,9 +9,7 @@ const formatAddress = (address?: Address) => {
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
 
-const formatValue = (value: string) => {
-  return value.slice(0, value.indexOf(".") + 2);
-};
+const formatValue = (value: string) => value.slice(0, value.indexOf(".") + 2);
 
 type OptionProps = PropsWithChildren<{ address: Address }>;
 

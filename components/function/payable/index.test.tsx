@@ -17,15 +17,13 @@ vi.mock("wagmi");
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderPayable = (props: PartialProps<typeof Payable> = {}) => {
-  return render(
+const renderPayable = (props: PartialProps<typeof Payable> = {}) => render(
     <Payable
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedPayableFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
-};
 
 describe("Payable", () => {
   it("should not render inputs when initialCollapsed is true", () => {

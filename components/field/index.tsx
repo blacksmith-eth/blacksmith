@@ -19,8 +19,7 @@ export const Field = ({
   id,
   handleChange,
   ...rest
-}: FieldProps) => {
-  return (
+}: FieldProps) => (
     <li
       className={`flex flex-grow items-center ${disabled ? "opacity-50" : ""}`}
     >
@@ -47,4 +46,3 @@ export const Field = ({
       </div>
     </li>
   );
-};

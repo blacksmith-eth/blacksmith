@@ -21,9 +21,7 @@ describe("Contracts", () => {
 
   it("renders an error message", async () => {
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.status(500));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.status(500)))
     );
     renderContracts();
     expect(await screen.findByText("error")).toBeInTheDocument();
@@ -31,9 +29,7 @@ describe("Contracts", () => {
 
   it("renders a no contracts message", async () => {
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json([]));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([])))
     );
     renderContracts();
     expect(await screen.findByText("No contracts")).toBeInTheDocument();
@@ -42,9 +38,7 @@ describe("Contracts", () => {
   it("renders a list of contracts", async () => {
     const contracts = buildContractDetailsList(2);
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json(contracts));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts)))
     );
     renderContracts();
     expect(
@@ -59,9 +53,7 @@ describe("Contracts", () => {
     const contracts = buildContractDetailsList(2);
     mockRouter.push(`/contracts/${contracts[0].address}`);
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => {
-        return res(ctx.json(contracts));
-      })
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts)))
     );
     renderContracts();
 

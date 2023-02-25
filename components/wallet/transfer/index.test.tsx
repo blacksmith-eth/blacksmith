@@ -19,9 +19,7 @@ useSendTransactionMock.mockReturnValue({
   sendTransaction: vi.fn(),
 });
 
-const renderTransfer = () => {
-  return render(<Transfer />);
-};
+const renderTransfer = () => render(<Transfer />);
 
 describe("Transfer", () => {
   it("should allow user to transfer", async () => {

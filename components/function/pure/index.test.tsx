@@ -22,15 +22,13 @@ useContractReadMock.mockReturnValue({
   refetch: vi.fn(),
 });
 
-const renderPure = (props: PartialProps<typeof Pure> = {}) => {
-  return render(
+const renderPure = (props: PartialProps<typeof Pure> = {}) => render(
     <Pure
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedPureFunction()}
       initialCollapsed={props.initialCollapsed || false}
     />
   );
-};
 
 describe("Pure", () => {
   it("should not render inputs when initialCollapsed is true", () => {

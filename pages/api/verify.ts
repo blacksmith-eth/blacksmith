@@ -96,8 +96,7 @@ const verifyHandler = (
 const checkHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
-) => {
-  return pipe(
+) => pipe(
     req.body,
     checkVerifyStatusRequestSchema.safeParse,
     safeParseReturnToEither,
@@ -118,18 +117,15 @@ const checkHandler = (
         })
     )
   );
-};
 
 const invalidActionHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
-) => {
-  return res.status(400).json({
+) => res.status(400).json({
     status: "0",
     message: "Error",
     result: `Invalid action "${req.body.action}"`,
   });
-};
 
 export default function handler(
   req: NextApiRequest,

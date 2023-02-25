@@ -9,15 +9,13 @@ import {
 import { PartialProps } from "testing/types";
 import { Signature } from ".";
 
-const renderSignature = (props: PartialProps<typeof Signature>) => {
-  return render(
+const renderSignature = (props: PartialProps<typeof Signature>) => render(
     <Signature
       func={props.func || buildAbiDefinedFunction()}
       collapsed={props.collapsed || false}
       toggleCollapsed={props.toggleCollapsed || vi.fn()}
     />
   );
-};
 
 describe("Signature", () => {
   it("should render collapse icon when expanded", () => {
