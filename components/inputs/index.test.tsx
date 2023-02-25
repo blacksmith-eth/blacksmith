@@ -3,7 +3,8 @@ import { buildArg, buildArgList } from "testing/factory";
 import { PartialProps } from "testing/types";
 import { Inputs } from ".";
 
-const renderInputs = (props: PartialProps<typeof Inputs>) => render(
+const renderInputs = (props: PartialProps<typeof Inputs>) =>
+  render(
     <Inputs
       name={props.name || ""}
       args={props.args || []}
@@ -63,7 +64,7 @@ describe("Inputs", () => {
     const value = "a";
     const component1 = buildArg({ name: "foo" });
     const component2 = buildArg({ name: "bar" });
-    const arg = buildArg({ value: [component1, component2], type: "tuple" });
+    const arg = buildArg({ type: "tuple", value: [component1, component2] });
     const updateValue = vi.fn();
 
     const { user } = renderInputs({ args: [arg], updateValue });
@@ -103,9 +104,9 @@ describe("Inputs", () => {
 
     const { user } = renderInputs({
       args: [arg],
-      preview: false,
       child: true,
       keys: [0],
+      preview: false,
       updateValue,
     });
 
@@ -122,9 +123,9 @@ describe("Inputs", () => {
 
     const { user } = renderInputs({
       args: [arg],
-      preview: false,
       child: true,
       keys: [0],
+      preview: false,
       updateValue,
     });
 
@@ -137,7 +138,7 @@ describe("Inputs", () => {
 
   it("should render childArg preview for infinite list", () => {
     const childArg = buildArg();
-    const arg = buildArg({ isInfinite: true, childArg });
+    const arg = buildArg({ childArg, isInfinite: true });
 
     renderInputs({ args: [arg] });
 

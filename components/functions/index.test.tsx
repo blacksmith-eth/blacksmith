@@ -11,15 +11,16 @@ const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
   refetch: vi.fn(),
 });
 
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderFunctions = (props: PartialProps<typeof Functions> = {}) => render(
+const renderFunctions = (props: PartialProps<typeof Functions> = {}) =>
+  render(
     <Functions
       address={props.address || buildAddress()}
       functions={props.functions || []}

@@ -28,10 +28,10 @@ export const Pure = ({ address, func, initialCollapsed }: PureProps) => {
     string,
     Result
   >({
-    address,
     abi: [func],
-    functionName: func.name,
+    address,
     args: formattedArgs,
+    functionName: func.name,
     watch: true,
   });
   const { state: collapsed, toggle: toggleCollapsed } =

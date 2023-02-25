@@ -58,25 +58,25 @@ describe("Output", () => {
   });
 
   it("should not render error when not touched ", () => {
-    renderOutput({ isTouched: false, isError: true });
+    renderOutput({ isError: true, isTouched: false });
 
     expect(screen.queryByText("Error")).not.toBeInTheDocument();
   });
 
   it("should render error when touched ", () => {
-    renderOutput({ isTouched: true, isError: true });
+    renderOutput({ isError: true, isTouched: true });
 
     expect(screen.getByText("Error")).toBeInTheDocument();
   });
 
   it("should render error without reason", () => {
-    renderOutput({ isTouched: true, isError: true, error: {} });
+    renderOutput({ error: {}, isError: true, isTouched: true });
 
     expect(screen.getByText("Error")).toBeInTheDocument();
   });
 
   it("should render error message", () => {
-    renderOutput({ isTouched: true, isError: true, error: { reason: "foo" } });
+    renderOutput({ error: { reason: "foo" }, isError: true, isTouched: true });
 
     expect(screen.getByText("Error: foo")).toBeInTheDocument();
   });

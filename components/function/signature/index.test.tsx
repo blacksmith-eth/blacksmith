@@ -9,7 +9,8 @@ import {
 import { PartialProps } from "testing/types";
 import { Signature } from ".";
 
-const renderSignature = (props: PartialProps<typeof Signature>) => render(
+const renderSignature = (props: PartialProps<typeof Signature>) =>
+  render(
     <Signature
       func={props.func || buildAbiDefinedFunction()}
       collapsed={props.collapsed || false}
@@ -21,7 +22,7 @@ describe("Signature", () => {
   it("should render collapse icon when expanded", () => {
     const func = buildAbiDefinedFunction({ inputs: buildInputList(1) });
 
-    renderSignature({ func, collapsed: false });
+    renderSignature({ collapsed: false, func });
 
     const collapseButton = screen.getByRole("button", { name: "Collapse" });
 
@@ -31,7 +32,7 @@ describe("Signature", () => {
   it("should render expand icon when collapsed", () => {
     const func = buildAbiDefinedFunction({ inputs: buildInputList(1) });
 
-    renderSignature({ func, collapsed: true });
+    renderSignature({ collapsed: true, func });
 
     const expandButton = screen.getByRole("button", { name: "Expand" });
 
@@ -90,7 +91,7 @@ describe("Signature", () => {
 
   it("should render a signature for tuple types", () => {
     const components = buildOutputList(2) as AbiParameterWithComponents[];
-    const output = buildOutput({ type: "tuple", components });
+    const output = buildOutput({ components, type: "tuple" });
     const func = buildAbiDefinedFunction({ outputs: [output] });
 
     renderSignature({ func });
@@ -105,7 +106,7 @@ describe("Signature", () => {
 
   it("should render a signature with multiple return types (including tuple types)", () => {
     const components = buildOutputList(2) as AbiParameterWithComponents[];
-    const output = buildOutput({ type: "tuple", components });
+    const output = buildOutput({ components, type: "tuple" });
     const outputs = [output, ...buildOutputList(2)];
     const func = buildAbiDefinedFunction({ outputs });
 

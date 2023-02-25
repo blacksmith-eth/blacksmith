@@ -3,7 +3,8 @@ import { render, screen } from "testing";
 import { PartialProps } from "testing/types";
 import { Field } from ".";
 
-const renderField = (props: PartialProps<typeof Field> = {}) => render(
+const renderField = (props: PartialProps<typeof Field> = {}) =>
+  render(
     <Field
       handleChange={props.handleChange || vi.fn()}
       id={props.id || "id"}
@@ -38,7 +39,7 @@ describe("Field", () => {
 
   it("should render a disabled input", () => {
     const inputName = faker.random.word();
-    renderField({ inputName, disabled: true });
+    renderField({ disabled: true, inputName });
 
     expect(screen.getByLabelText(inputName)).toBeDisabled();
   });

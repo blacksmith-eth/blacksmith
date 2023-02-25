@@ -11,7 +11,7 @@ export const Transfer = () => {
     useEther();
 
   const { config } = usePrepareSendTransaction({
-    request: { to: recipient, value: formattedValue, gasLimit: 10000000 },
+    request: { gasLimit: 10000000, to: recipient, value: formattedValue },
   });
   const { sendTransaction } = useSendTransaction(config);
 

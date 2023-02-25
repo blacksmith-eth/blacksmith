@@ -17,7 +17,8 @@ vi.mock("wagmi");
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderNonpayable = (props: PartialProps<typeof Nonpayable> = {}) => render(
+const renderNonpayable = (props: PartialProps<typeof Nonpayable> = {}) =>
+  render(
     <Nonpayable
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedNonpayableFunction()}
@@ -99,11 +100,11 @@ describe("Nonpayable", () => {
 
     await waitFor(() => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
-        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: ["first", "second"],
         functionName: func.name,
+        mode: "recklesslyUnprepared",
       });
     });
   });
@@ -126,11 +127,11 @@ describe("Nonpayable", () => {
 
     await waitFor(() => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
-        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: [BigNumber.from("1"), BigNumber.from("2")],
         functionName: func.name,
+        mode: "recklesslyUnprepared",
       });
     });
   });

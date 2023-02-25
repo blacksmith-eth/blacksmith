@@ -21,8 +21,8 @@ const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
   refetch: vi.fn(),
 });
 
@@ -30,14 +30,15 @@ const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
 });
 
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderContract = (props: PartialProps<typeof Contract> = {}) => render(<Contract address={props.address || buildAddress()} />);
+const renderContract = (props: PartialProps<typeof Contract> = {}) =>
+  render(<Contract address={props.address || buildAddress()} />);
 
 describe("Contract", () => {
   it("renders a loading message", () => {
