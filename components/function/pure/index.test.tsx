@@ -17,12 +17,13 @@ const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
   refetch: vi.fn(),
 });
 
-const renderPure = (props: PartialProps<typeof Pure> = {}) => render(
+const renderPure = (props: PartialProps<typeof Pure> = {}) =>
+  render(
     <Pure
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedPureFunction()}
@@ -65,8 +66,8 @@ describe("Pure", () => {
     const refetch = vi.fn();
     useContractReadMock.mockReturnValue({
       data: undefined,
-      isLoading: false,
       isError: false,
+      isLoading: false,
       refetch,
     });
 
@@ -81,8 +82,8 @@ describe("Pure", () => {
     const data = "foo";
     useContractReadMock.mockReturnValue({
       data,
-      isLoading: false,
       isError: false,
+      isLoading: false,
       refetch: vi.fn(),
     });
 
@@ -94,8 +95,8 @@ describe("Pure", () => {
   it("should render loading when isLoading is true", () => {
     useContractReadMock.mockReturnValue({
       data: undefined,
-      isLoading: true,
       isError: false,
+      isLoading: true,
       refetch: vi.fn(),
     });
 
@@ -107,8 +108,8 @@ describe("Pure", () => {
   it("should render error when isError is true", () => {
     useContractReadMock.mockReturnValue({
       data: undefined,
-      isLoading: false,
       isError: true,
+      isLoading: false,
       refetch: vi.fn(),
     });
 

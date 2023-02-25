@@ -28,10 +28,10 @@ export const View = ({ address, func, initialCollapsed }: ViewProps) => {
     string,
     Result
   >({
-    address,
     abi: [func],
-    functionName: func.name,
+    address,
     args: formattedArgs,
+    functionName: func.name,
     watch: true,
   });
   const { state: collapsed, toggle: toggleCollapsed } =

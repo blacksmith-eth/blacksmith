@@ -31,11 +31,11 @@ export const Nonpayable = ({
     Abi,
     string
   >({
-    mode: "recklesslyUnprepared",
-    address,
     abi: [func] as const,
-    functionName: func.name,
+    address,
     args: formattedArgs,
+    functionName: func.name,
+    mode: "recklesslyUnprepared",
   });
   const isDisabled = isLoading || !write;
   const handleClick = () => {

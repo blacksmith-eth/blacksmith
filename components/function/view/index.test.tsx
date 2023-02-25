@@ -17,12 +17,13 @@ const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
   refetch: vi.fn(),
 });
 
-const renderView = (props: PartialProps<typeof View> = {}) => render(
+const renderView = (props: PartialProps<typeof View> = {}) =>
+  render(
     <View
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedViewFunction()}
@@ -65,8 +66,8 @@ describe("View", () => {
     const refetch = vi.fn();
     useContractReadMock.mockReturnValue({
       data: undefined,
-      isLoading: false,
       isError: false,
+      isLoading: false,
       refetch,
     });
 
@@ -81,8 +82,8 @@ describe("View", () => {
     const data = "foo";
     useContractReadMock.mockReturnValue({
       data,
-      isLoading: false,
       isError: false,
+      isLoading: false,
       refetch: vi.fn(),
     });
 
@@ -94,8 +95,8 @@ describe("View", () => {
   it("should render loading when isLoading is true", () => {
     useContractReadMock.mockReturnValue({
       data: undefined,
-      isLoading: true,
       isError: false,
+      isLoading: true,
       refetch: vi.fn(),
     });
 
@@ -107,8 +108,8 @@ describe("View", () => {
   it("should render error when isError is true", () => {
     useContractReadMock.mockReturnValue({
       data: undefined,
-      isLoading: false,
       isError: true,
+      isLoading: false,
       refetch: vi.fn(),
     });
 

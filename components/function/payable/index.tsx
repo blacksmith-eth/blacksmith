@@ -31,11 +31,11 @@ export const Payable = ({ address, func, initialCollapsed }: PayableProps) => {
     Abi,
     string
   >({
-    mode: "recklesslyUnprepared",
-    address,
     abi: [func] as const,
-    functionName: func.name,
+    address,
     args: formattedArgs,
+    functionName: func.name,
+    mode: "recklesslyUnprepared",
     overrides: {
       value: formattedValue,
     },

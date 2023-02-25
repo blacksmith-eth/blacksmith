@@ -21,16 +21,16 @@ type ResponseData = {
 };
 
 const checkVerifyStatusRequestSchema = z.object({
-  apikey: z.optional(z.string()),
-  module: z.optional(z.string()),
   action: z.literal(Action.Check),
+  apikey: z.optional(z.string()),
   guid: z.string(),
+  module: z.optional(z.string()),
 });
 
 const verifyRequestSchema = z.object({
-  apikey: z.optional(z.string()),
-  module: z.optional(z.string()),
   action: z.literal(Action.Verify),
+  apikey: z.optional(z.string()),
+  compilerversion: z.string(),
   contractaddress: z.custom<Address>().transform((value, context) => {
     const address = getAddress(value);
     if (isNull(address)) {
@@ -49,7 +49,7 @@ const verifyRequestSchema = z.object({
       (value) => value.includes(":"),
       `Expected string to match format "path:contractname"`
     ),
-  compilerversion: z.string(),
+  module: z.optional(z.string()),
   sourceCode: z.string(),
 });
 
@@ -63,9 +63,9 @@ const verifyHandler = (
   const result = verifyRequestSchema.safeParse(req.body);
   if (!result.success) {
     return res.status(400).json({
-      status: "0",
       message: "Error",
       result: fromZodError(result.error).toString(),
+      status: "0",
     });
   }
   try {
@@ -80,23 +80,24 @@ const verifyHandler = (
     });
   } catch (error) {
     return res.status(500).json({
-      status: "0",
       message: "Error",
       result: "Failed to compile and save contract",
+      status: "0",
     });
   }
 
   return res.status(200).json({
-    status: "1",
     message: `Verifying contract "${req.body.contractname}"`,
     result: req.body.contractaddress,
+    status: "1",
   });
 };
 
 const checkHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
-) => pipe(
+) =>
+  pipe(
     req.body,
     checkVerifyStatusRequestSchema.safeParse,
     safeParseReturnToEither,
@@ -105,15 +106,15 @@ const checkHandler = (
     E.match(
       (left) =>
         res.status(400).json({
-          status: "0",
           message: "Error",
           result: left,
+          status: "0",
         }),
       (right) =>
         res.status(200).json({
-          status: "1",
           message: "OK",
           result: `Contract verified! ID: ${right.guid}`,
+          status: "1",
         })
     )
   );
@@ -121,10 +122,11 @@ const checkHandler = (
 const invalidActionHandler = (
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
-) => res.status(400).json({
-    status: "0",
+) =>
+  res.status(400).json({
     message: "Error",
     result: `Invalid action "${req.body.action}"`,
+    status: "0",
   });
 
 export default function handler(

@@ -11,8 +11,8 @@ const useContractReadMock = useContractRead as Mock;
 
 useContractReadMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
   refetch: vi.fn(),
 });
 

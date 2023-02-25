@@ -11,11 +11,12 @@ const useBalanceMock = useBalance as Mock;
 
 useBalanceMock.mockReturnValue({
   data: undefined,
-  isLoading: false,
   isError: false,
+  isLoading: false,
 });
 
-const renderBalance = (props: PartialProps<typeof Balance> = {}) => render(<Balance address={props.address || buildAddress()} />);
+const renderBalance = (props: PartialProps<typeof Balance> = {}) =>
+  render(<Balance address={props.address || buildAddress()} />);
 
 describe("Balance", () => {
   it("should render loading", () => {

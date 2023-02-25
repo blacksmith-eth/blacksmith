@@ -17,7 +17,8 @@ vi.mock("wagmi");
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-const renderPayable = (props: PartialProps<typeof Payable> = {}) => render(
+const renderPayable = (props: PartialProps<typeof Payable> = {}) =>
+  render(
     <Payable
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedPayableFunction()}
@@ -76,7 +77,7 @@ describe("Payable", () => {
   });
 
   it("should disable send button when loading", () => {
-    useContractWriteMock.mockReturnValue({ write: vi.fn(), isLoading: true });
+    useContractWriteMock.mockReturnValue({ isLoading: true, write: vi.fn() });
 
     renderPayable();
 
@@ -97,11 +98,11 @@ describe("Payable", () => {
 
     await waitFor(() => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
-        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: ["first", "second"],
         functionName: func.name,
+        mode: "recklesslyUnprepared",
         overrides: {
           value: BigNumber.from(0),
         },
@@ -128,11 +129,11 @@ describe("Payable", () => {
 
     await waitFor(() => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
-        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: [BigNumber.from("1"), BigNumber.from("2")],
         functionName: func.name,
+        mode: "recklesslyUnprepared",
         overrides: {
           value: BigNumber.from("1"),
         },
@@ -157,11 +158,11 @@ describe("Payable", () => {
 
     await waitFor(() => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
-        mode: "recklesslyUnprepared",
         abi: [func],
         address,
         args: [],
         functionName: func.name,
+        mode: "recklesslyUnprepared",
         overrides: {
           value: BigNumber.from("1000000000000000000"),
         },
