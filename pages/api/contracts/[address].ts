@@ -41,7 +41,7 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      const { ABI, ContractName, CompilerVersion } = data.result[0];
+      const [{ ABI, ContractName, CompilerVersion }] = data.result;
       contract.insert({
         abi: JSON.parse(ABI),
         address: result.data.address,
