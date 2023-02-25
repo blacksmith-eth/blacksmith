@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { compile } from "solc";
 import { SafeParseReturnType, z } from "zod";
 import { fromZodError } from "zod-validation-error";
-import { pipe } from "fp-ts/function";
+import { flow, pipe } from "fp-ts/function";
 import * as E from "fp-ts/Either";
 import isNull from "lodash/isNull";
 import { Address } from "core/types";
@@ -101,8 +101,7 @@ const checkHandler = (
     req.body,
     checkVerifyStatusRequestSchema.safeParse,
     safeParseReturnToEither,
-    E.mapLeft(fromZodError),
-    E.mapLeft((e) => e.toString()),
+    E.mapLeft(flow(fromZodError, (error) => error.toString())),
     E.match(
       (left) =>
         res.status(400).json({
