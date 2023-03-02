@@ -2621,10 +2621,10 @@ abitype@^0.3.0:
   resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.3.0.tgz#75150e337d88cc0b2423ed0d3fc36935f139d04c"
   integrity sha512-0YokyAV4hKMcy97Pl+6QgZBlBdZJN2llslOs7kiFY+cu7kMlVXDBpxMExfv0krzBCQt2t7hNovpQ3y/zvEm18A==
 
-abitype@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.6.1.tgz#56a6297c57400c08cb73c516391f35ad6d5aee44"
-  integrity sha512-NabfDRWo6HnbQt7yfg08c6kG7LhIDsqIjITRG/4ZTcvRVraZmXPA+mJDvuFk/gYLRTLume18n7S+DFu66X24jA==
+abitype@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.6.2.tgz#7b4031252e714aadc59bbd14f4ace3c7f78dd38d"
+  integrity sha512-ODDAFy/yXmRAdNpDOd6oTqVCG/P4c875E8NaUX/9s+7ewrykq0F7lTtsKrE0Rt8M6SNv+jDhOzyOh4lAucYztg==
 
 accepts@^1.3.7:
   version "1.3.8"
