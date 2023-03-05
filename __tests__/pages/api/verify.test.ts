@@ -26,7 +26,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Required at "guid"`,
+        result: `Validation error: Required at "guid"`,
       })
     );
   });
@@ -42,7 +42,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string, received number at "guid"`,
+        result: `Validation error: Expected string, received number at "guid"`,
       })
     );
   });
@@ -79,7 +79,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Invalid address at "contractaddress"`,
+        result: `Validation error: Invalid address at "contractaddress"`,
       })
     );
   });
@@ -100,7 +100,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Required at "contractname"`,
+        result: `Validation error: Required at "contractname"`,
       })
     );
   });
@@ -121,7 +121,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Required at "compilerversion"`,
+        result: `Validation error: Required at "compilerversion"`,
       })
     );
   });
@@ -143,7 +143,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Invalid address at "contractaddress"`,
+        result: `Validation error: Invalid address at "contractaddress"`,
       })
     );
   });
@@ -165,7 +165,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string, received number at "contractname"`,
+        result: `Validation error: Expected string, received number at "contractname"`,
       })
     );
   });
@@ -187,7 +187,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string, received number at "compilerversion"`,
+        result: `Validation error: Expected string, received number at "compilerversion"`,
       })
     );
   });
@@ -208,7 +208,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Required at "sourceCode"`,
+        result: `Validation error: Required at "sourceCode"`,
       })
     );
   });
@@ -230,7 +230,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string, received number at "sourceCode"`,
+        result: `Validation error: Expected string, received number at "sourceCode"`,
       })
     );
   });
@@ -252,7 +252,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
       buildErrorJSONResponse({
-        result: `Error: Validation error: Expected string to match format "path:contractname" at "contractname"`,
+        result: `Validation error: Expected string to match format "path:contractname" at "contractname"`,
       })
     );
   });
