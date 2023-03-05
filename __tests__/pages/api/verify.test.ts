@@ -15,13 +15,13 @@ const buildErrorJSONResponse = ({ result }: { result?: string }) => ({
 });
 
 describe("handler", () => {
-  it("#check should return an error when guid is not specified", async () => {
+  it("#check should return an error when guid is not specified", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: { action: Action.Check },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -31,13 +31,13 @@ describe("handler", () => {
     );
   });
 
-  it("#check should return an error when guid is not a string", async () => {
+  it("#check should return an error when guid is not a string", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: { action: Action.Check, guid: 123 },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -47,13 +47,13 @@ describe("handler", () => {
     );
   });
 
-  it("#check should return a success response when guid is valid", async () => {
+  it("#check should return a success response when guid is valid", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: { action: Action.Check, guid: "123" },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(200);
     expect(res._getJSONData()).toEqual(
@@ -63,7 +63,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when contractaddress is not specified", async () => {
+  it("#verify should return an error when contractaddress is not specified", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -74,7 +74,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -84,7 +84,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when contractname is not specified", async () => {
+  it("#verify should return an error when contractname is not specified", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -95,7 +95,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -105,7 +105,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when compilerversion is not specified", async () => {
+  it("#verify should return an error when compilerversion is not specified", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -116,7 +116,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -126,7 +126,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when contractaddress is not a valid address", async () => {
+  it("#verify should return an error when contractaddress is not a valid address", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -138,7 +138,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -148,7 +148,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when contractname is not a string", async () => {
+  it("#verify should return an error when contractname is not a string", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -160,7 +160,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -170,7 +170,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when compilerversion is not a string", async () => {
+  it("#verify should return an error when compilerversion is not a string", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -182,7 +182,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -192,7 +192,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when sourceCode is not specified", async () => {
+  it("#verify should return an error when sourceCode is not specified", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -203,7 +203,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -213,7 +213,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when sourceCode is not a string", async () => {
+  it("#verify should return an error when sourceCode is not a string", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -225,7 +225,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
@@ -235,7 +235,7 @@ describe("handler", () => {
     );
   });
 
-  it("#verify should return an error when contractname is not correctly formatted", async () => {
+  it("#verify should return an error when contractname is not correctly formatted", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -247,7 +247,7 @@ describe("handler", () => {
       },
     });
 
-    await verifyHandler(req, res);
+    verifyHandler(req, res);
 
     expect(res.statusCode).toBe(400);
     expect(res._getJSONData()).toEqual(
