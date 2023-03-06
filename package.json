@@ -33,7 +33,7 @@
     "swr": "^2.0.4",
     "wagmi": "^0.11.7",
     "whatwg-fetch": "^3.6.2",
-    "zod": "^3.21.0",
+    "zod": "^3.21.2",
     "zod-validation-error": "^1.0.1"
   },
   "devDependencies": {
