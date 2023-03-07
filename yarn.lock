@@ -2151,7 +2151,7 @@
     picocolors "^1.0.0"
     pretty-format "^27.5.1"
 
-"@wagmi/chains@0.2.10":
+"@wagmi/chains@0.2.10", "@wagmi/chains@~0.2.8":
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.2.10.tgz#02d84a8c83cea904656b6151cd9fbd2930d630e6"
   integrity sha512-MoMyQaR5cb1CmhuRu2C9Xyoddas8AZU7RwVQHIX7IHAL2LKbURjMnt0YQu2vr575yCO4llwVMmt2OyGFnq6P9w==
@@ -2579,7 +2579,7 @@ abitype@^0.3.0:
   resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.3.0.tgz#75150e337d88cc0b2423ed0d3fc36935f139d04c"
   integrity sha512-0YokyAV4hKMcy97Pl+6QgZBlBdZJN2llslOs7kiFY+cu7kMlVXDBpxMExfv0krzBCQt2t7hNovpQ3y/zvEm18A==
 
-abitype@^0.6.7:
+abitype@^0.6.7, abitype@~0.6.7:
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/abitype/-/abitype-0.6.7.tgz#4f1c14483bfeb33f6034782658d486ac5ce63bc8"
   integrity sha512-PFiyVoR09ZYqOG8/LJg9T1CTsYzfBRcyp5sNQYq7PRZ4oZ+c3yp22GFIeP99pTrMEQxuoA3pq4f0kEjWyVqOSQ==
@@ -5037,6 +5037,13 @@ iconv-lite@^0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+idna-uts46-hx@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/idna-uts46-hx/-/idna-uts46-hx-4.1.2.tgz#b7ecf6b603abf1d81972d0a9a1335d7bc1eda553"
+  integrity sha512-EAB3egrcalcTQHcjA7yzXXkE4E09TIFerR//4yUYGYCeCfXmkU0LgsGJgYSIQA1lQunfsn4ZCWJhbelgl3cdiQ==
+  dependencies:
+    punycode "^2.1.1"
+
 ieee754@^1.1.13, ieee754@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
@@ -5387,6 +5394,11 @@ isomorphic-ws@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-4.0.1.tgz#55fd4cd6c5e6491e76dc125938dd863f5cd4f2dc"
   integrity sha512-BhBvN2MBpWTaSHdWRb/bwdZJ1WaehQ2L1KngkCkfLUGF0mAWAT1sQUQacEmQ0jXkFw/czDXPNQSL5u2/Krsz1w==
+
+isomorphic-ws@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz#e5529148912ecb9b451b46ed44d53dae1ce04bbf"
+  integrity sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==
 
 istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
   version "3.2.0"
@@ -7974,6 +7986,18 @@ valtio@1.9.0:
     proxy-compare "2.4.0"
     use-sync-external-store "1.2.0"
 
+viem@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.2.tgz#63c07bdb71930833546d2b686d2b43110296a19e"
+  integrity sha512-UUw8HWDBvCRv4uHRcRE2RsLjQnjBCA6qPMGmZzCoq1YCSeG9llpK4Rue/ETeHHmxWKpjxss2GRXzdo84pYQUYw==
+  dependencies:
+    "@noble/hashes" "^1.1.2"
+    "@wagmi/chains" "~0.2.8"
+    abitype "~0.6.7"
+    idna-uts46-hx "^4.1.2"
+    isomorphic-ws "^5.0.0"
+    ws "^8.12.0"
+
 vite-node@0.28.3:
   version "0.28.3"
   resolved "https://registry.yarnpkg.com/vite-node/-/vite-node-0.28.3.tgz#5d693c237d5467f167f81d158a56d3408fea899c"
@@ -8208,6 +8232,11 @@ ws@^8.11.0, ws@^8.5.0:
   version "8.12.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.0.tgz#485074cc392689da78e1828a9ff23585e06cddd8"
   integrity sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==
+
+ws@^8.12.0:
+  version "8.12.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.1.tgz#c51e583d79140b5e42e39be48c934131942d4a8f"
+  integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
 
 xml-name-validator@^4.0.0:
   version "4.0.0"
