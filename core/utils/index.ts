@@ -1,9 +1,9 @@
-import { utils } from "ethers";
+import { getAddress as _getAddress } from "viem";
 import { Address } from "core/types";
 
 const getAddress = (address: Address) => {
   try {
-    return utils.getAddress(address);
+    return _getAddress(address);
   } catch {
     return null;
   }
