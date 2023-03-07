@@ -2151,10 +2151,15 @@
     picocolors "^1.0.0"
     pretty-format "^27.5.1"
 
-"@wagmi/chains@0.2.10", "@wagmi/chains@~0.2.8":
+"@wagmi/chains@0.2.10":
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.2.10.tgz#02d84a8c83cea904656b6151cd9fbd2930d630e6"
   integrity sha512-MoMyQaR5cb1CmhuRu2C9Xyoddas8AZU7RwVQHIX7IHAL2LKbURjMnt0YQu2vr575yCO4llwVMmt2OyGFnq6P9w==
+
+"@wagmi/chains@~0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.2.11.tgz#3f5bed54524f2d3399944946b88b1e7207aa5a8d"
+  integrity sha512-aMrI1zKKXdeAaiTxBiv+3Zfgd3IajCDpxBtPPvpjXuWVRe4ikwzbyZ1HARKj3V1+wNMPng8EJiWpN966PcvROg==
 
 "@wagmi/connectors@0.3.2":
   version "0.3.2"
@@ -7986,13 +7991,13 @@ valtio@1.9.0:
     proxy-compare "2.4.0"
     use-sync-external-store "1.2.0"
 
-viem@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.2.tgz#63c07bdb71930833546d2b686d2b43110296a19e"
-  integrity sha512-UUw8HWDBvCRv4uHRcRE2RsLjQnjBCA6qPMGmZzCoq1YCSeG9llpK4Rue/ETeHHmxWKpjxss2GRXzdo84pYQUYw==
+viem@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.5.tgz#6a59558186bf6fd70e3e0c9e0fd4e114704f6cdc"
+  integrity sha512-0HbdggQT0Hh19AQK270C/2NHrfBAjnSVKCzqQo5iDUXIAliF+u9mYKFkFoxj64oyw45JZD+9scPqVhebUfqgDg==
   dependencies:
     "@noble/hashes" "^1.1.2"
-    "@wagmi/chains" "~0.2.8"
+    "@wagmi/chains" "~0.2.11"
     abitype "~0.6.7"
     idna-uts46-hx "^4.1.2"
     isomorphic-ws "^5.0.0"
