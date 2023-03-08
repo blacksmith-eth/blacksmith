@@ -7991,10 +7991,10 @@ valtio@1.9.0:
     proxy-compare "2.4.0"
     use-sync-external-store "1.2.0"
 
-viem@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.5.tgz#6a59558186bf6fd70e3e0c9e0fd4e114704f6cdc"
-  integrity sha512-0HbdggQT0Hh19AQK270C/2NHrfBAjnSVKCzqQo5iDUXIAliF+u9mYKFkFoxj64oyw45JZD+9scPqVhebUfqgDg==
+viem@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.7.tgz#94ef266045aaf2783ab03b7fd837e238f2e4e05d"
+  integrity sha512-QklDeYwVyAug3pSrR7YzRgt07kP4tft3jsFiG/+6sQ4ntdIdCKVQ1y7ooXgYQX3PwBIvrIb+rIVMZXnMPJHRTA==
   dependencies:
     "@noble/hashes" "^1.1.2"
     "@wagmi/chains" "~0.2.11"
