@@ -45,6 +45,8 @@ forge create src/Counter.sol:Counter --verify --unlocked \
 --etherscan-api-key blacksmith
 ```
 
+_Note: If this command fails see the Foundry Configuration section at the bottom of the README._
+
 Navigate to [http://localhost:3000](http://localhost:3000), click the connect wallet button, and choose Blacksmith.
 
 _Note: Refresh the page if the wallet modal fails to dismiss._
@@ -90,3 +92,16 @@ forge script script/Counter.s.sol:CounterScript --broadcast --verify --unlocked 
 ## Hardhat
 
 If you're working with Hardhat check out [🏗 scaffold-eth](https://github.com/scaffold-eth/scaffold-eth)!
+
+## Foundry Configuration
+
+Historically `forge` has encountered issues reading the `ETHERSCAN_API_KEY` from the command line arguments.
+
+If you are seeing an error when deploying your contract such as `ETHERSCAN_API_KEY must be set`, then consider adding the following to your `foundry.toml` file.
+
+```toml
+[etherscan]
+anvil = { key = "blacksmith", url = "http://localhost:3000/api/verify" }
+```
+
+Unfortunately, this workaround requires the localhost port to be hardcoded to 3000. Be mindful of this if running Blacksmith on a different port.
