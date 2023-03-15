@@ -58,7 +58,7 @@
     "eslint-config-next": "^13.2.4",
     "eslint-config-prettier": "^8.7.0",
     "husky": "^8.0.3",
-    "jsdom": "^21.1.0",
+    "jsdom": "^21.1.1",
     "msw": "^1.1.0",
     "next-router-mock": "^0.9.2",
     "node-mocks-http": "^1.12.1",
