@@ -6226,10 +6226,10 @@ node-gyp-build@^4.2.0, node-gyp-build@^4.3.0:
   resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.6.0.tgz#0c52e4cbf54bbd28b709820ef7b6a3c2d6209055"
   integrity sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ==
 
-node-mocks-http@^1.12.1:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/node-mocks-http/-/node-mocks-http-1.12.1.tgz#838e176019daf177caff6bb8534e3a32646e7531"
-  integrity sha512-jrA7Sn3qI6GsHgWtUW3gMj0vO6Yz0nJjzg3jRZYjcfj4tzi8oWPauDK1qHVJoAxTbwuDHF1JiM9GISZ/ocI/ig==
+node-mocks-http@^1.12.2:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/node-mocks-http/-/node-mocks-http-1.12.2.tgz#382b1824f625c2d41da82efedde936b9404e7fdd"
+  integrity sha512-xhWwC0dh35R9rf0j3bRZXuISXdHxxtMx0ywZQBwjrg3yl7KpRETzogfeCamUIjltpn0Fxvs/ZhGJul1vPLrdJQ==
   dependencies:
     accepts "^1.3.7"
     content-disposition "^0.5.3"
