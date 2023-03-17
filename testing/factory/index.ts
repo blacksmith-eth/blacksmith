@@ -17,7 +17,7 @@ import { faker } from "@faker-js/faker/locale/en";
 import capitalize from "lodash/capitalize";
 import times from "lodash/times";
 
-const RESERVED_WORDS = ["value", "unit"];
+const RESERVED_WORDS = ["value", "void", "unit"];
 
 const { unique } = faker.helpers;
 
