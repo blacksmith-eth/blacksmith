@@ -4,12 +4,12 @@ import { Payable } from "./payable";
 import { Pure } from "./pure";
 import { View } from "./view";
 
-type FunctionProps = {
+type FuncProps = {
   address: Address;
   func: AbiDefinedStateFunction;
 };
 
-export const Function = ({ address, func }: FunctionProps) => {
+export const Func = ({ address, func }: FuncProps) => {
   switch (func.stateMutability) {
     case "pure":
       return <Pure address={address} func={func} initialCollapsed={true} />;
