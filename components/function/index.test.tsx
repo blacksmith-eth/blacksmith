@@ -3,7 +3,7 @@ import { render, screen } from "testing";
 import { buildAbiDefinedFunction, buildAddress } from "testing/factory";
 import type { Mock } from "vitest";
 import { useContractRead, useContractWrite } from "wagmi";
-import { Function } from ".";
+import { Func } from ".";
 
 vi.mock("wagmi");
 
@@ -19,7 +19,7 @@ useContractReadMock.mockReturnValue({
 const useContractWriteMock = useContractWrite as Mock;
 useContractWriteMock.mockReturnValue({ write: vi.fn() });
 
-describe("Function", () => {
+describe("Func", () => {
   it.each(["pure", "view", "nonpayable", "payable"] as AbiStateMutability[])(
     "should render a %s function",
     (stateMutability) => {
@@ -27,7 +27,7 @@ describe("Function", () => {
         stateMutability,
       });
 
-      render(<Function address={buildAddress()} func={func} />);
+      render(<Func address={buildAddress()} func={func} />);
 
       expect(screen.getByText(stateMutability)).toBeInTheDocument();
     }
