@@ -61,7 +61,7 @@ export const Manager = () => {
   };
 
   const handleRemoveAll = () => {
-    fetch(`/api/contracts`, {
+    fetch("/api/contracts", {
       method: "DELETE",
     }).then(() => {
       setDeleteAllResponse("Removed all contracts");

@@ -83,7 +83,7 @@ describe("Manager", () => {
 
   it("should handle all contract removals", async () => {
     server.use(
-      rest.delete(`/api/contracts`, (_req, res, ctx) => res(ctx.json({})))
+      rest.delete("/api/contracts", (_req, res, ctx) => res(ctx.json({})))
     );
     const { user } = render(<Manager />);
     const button = screen.getByRole("button", { name: "remove all" });

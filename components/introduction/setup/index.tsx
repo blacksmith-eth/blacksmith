@@ -108,7 +108,7 @@ export const Setup = () => {
         <div className="flex items-start justify-between font-mono text-sm p-4 text-black dark:text-black bg-slate-100 dark:bg-slate-100 rounded border border-slate-200 dark:border-slate-200">
           <div>
             <div>
-              {`forge create `}
+              {"forge create "}
               <span
                 className={`${focusedInput === "path" ? focusedClasses : ""}`}
               >
@@ -122,10 +122,10 @@ export const Setup = () => {
               >
                 {contractName}
               </span>
-              {` --verify --unlocked \\`}
+              {" --verify --unlocked \\"}
             </div>
             <div>
-              {`--from `}
+              {"--from "}
               <span
                 className={`${
                   focusedInput === "deployerAddress" ? focusedClasses : ""
@@ -133,19 +133,19 @@ export const Setup = () => {
               >
                 {deployerAddress}
               </span>
-              {` \\`}
+              {" \\"}
             </div>
             <div>
-              {`--rpc-url `}
+              {"--rpc-url "}
               <span
                 className={`${focusedInput === "rpcUrl" ? focusedClasses : ""}`}
               >
                 {rpcUrl}
               </span>
-              {` \\`}
+              {" \\"}
             </div>
             <div>
-              {`--verifier-url `}
+              {"--verifier-url "}
               <span
                 className={`${
                   focusedInput === "verifierUrl" ? focusedClasses : ""
@@ -153,9 +153,9 @@ export const Setup = () => {
               >
                 {verifierUrl}
               </span>
-              {` \\`}
+              {" \\"}
             </div>
-            <div>{`--etherscan-api-key blacksmith`}</div>
+            <div>{"--etherscan-api-key blacksmith"}</div>
           </div>
           <button
             className="text-black focus:outline-none border border-black rounded p-2 focus:bg-black focus:text-white"
