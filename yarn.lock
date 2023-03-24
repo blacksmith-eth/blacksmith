@@ -8387,10 +8387,10 @@ yocto-queue@^1.0.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.0.0.tgz#7f816433fb2cbc511ec8bf7d263c3b58a1a3c251"
   integrity sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==
 
-zod-validation-error@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-1.0.1.tgz#fc8758b667ecdb8121439458c7ab05d0be469b19"
-  integrity sha512-QRk2AtHLJg8sCZAbEjXSs7E0n4/mSdX5caoh6eOUvDSdcIQz03i0xoNN1Qx6UZT+ADVHRK6+ZXRtldzW6nnltA==
+zod-validation-error@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-1.1.0.tgz#d6dff11b596feb05f24a0ef22adc194ca6817edf"
+  integrity sha512-CI0zGWQjyDN0sLcmFiD+wnvkkJaLo6hNB4JBUDltkl6+CeHfnnQKU4Ff6ktMc+VmO/j2+vtLlx4S5xaw8YQN6A==
 
 zod@^3.21.4:
   version "3.21.4"
