@@ -38,7 +38,7 @@
     "zod-validation-error": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.3",
+    "@babel/core": "^7.21.4",
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@faker-js/faker": "^7.6.0",
