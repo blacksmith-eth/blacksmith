@@ -32,7 +32,7 @@
     "solc": "^0.8.19",
     "swr": "^2.1.1",
     "viem": "^0.1.22",
-    "wagmi": "^0.12.6",
+    "wagmi": "^0.12.8",
     "whatwg-fetch": "^3.6.2",
     "zod": "^3.21.4",
     "zod-validation-error": "^1.1.0"
