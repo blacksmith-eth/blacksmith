@@ -8116,10 +8116,10 @@ valtio@1.10.3:
     proxy-compare "2.5.0"
     use-sync-external-store "1.2.0"
 
-viem@^0.1.25:
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.25.tgz#ac06520f6e327a856f3b700e0b5f8d75347d750f"
-  integrity sha512-osRxFsoICgu6jE/377UXxUJ84XHqv+Cn8To+q1uw29C4ar2KQhMJmvwEfJwaYLIh47ee2KMT2hwALoucd5Qq8w==
+viem@^0.1.26:
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-0.1.26.tgz#2ce12547c7137025795e3bcaeb99f33eafebe1bf"
+  integrity sha512-6oSGhDtgb64hjhBxOu5TPy9WT5rMww2iFuDASIOAB6kHJQ2NIVJabrnA/BQoBXbv3SJyyX/622enh5YX8MYTYg==
   dependencies:
     "@noble/hashes" "^1.1.2"
     "@noble/secp256k1" "^1.7.1"
