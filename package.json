@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "ci": "yarn commitlint && yarn format && yarn lint && yarn typecheck && yarn test",
     "commitlint": "commitlint --from=65377e2",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
