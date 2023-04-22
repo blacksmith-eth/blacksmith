@@ -5607,10 +5607,10 @@ loupe@^2.3.1, loupe@^2.3.6:
   dependencies:
     get-func-name "^2.0.0"
 
-lowdb@5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-5.1.0.tgz#3d9f13522ea92e445348a7d455a69ce570c2f51d"
-  integrity sha512-OEysJ2S3j05RqehEypEv3h6EgdV4Y7LTq7LngRNqe1IxsInOm66/sa3fzoI6mmqs2CC+zIJW3vfncGNv2IGi3A==
+lowdb@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/lowdb/-/lowdb-6.0.0.tgz#4c5e339c12da232e75911981968d02ec106ade69"
+  integrity sha512-0gzvRjT5Nv3nYbjy0I3FcYjuTNFWLEb0nvRYyb56XodR+7lasgWdxQ6FhIziJu6xHIiJb9xxKLrB1OPJjFZkmQ==
   dependencies:
     steno "^3.0.0"
 
