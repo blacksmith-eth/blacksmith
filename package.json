@@ -23,7 +23,7 @@
     "@heroicons/react": "^2.0.18",
     "@rainbow-me/rainbowkit": "^0.12.13",
     "ethers": "^5.7.2",
-    "fp-ts": "^2.14.0",
+    "fp-ts": "^2.15.0",
     "lodash": "^4.17.21",
     "lowdb": "6.0.1",
     "next": "^13.3.1",
