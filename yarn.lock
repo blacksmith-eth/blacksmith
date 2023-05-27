@@ -4379,10 +4379,10 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-fp-ts@^2.15.0:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.15.0.tgz#ed1ff6fc9a072176ec2310e20e814077bb391545"
-  integrity sha512-3o6EllAvGuCsDgjM+frscLKDRPR9pqbrg13tJ13z86F4eni913kBV8h85rM6zpu2fEvJ8RWA0ouYlUWwHEmxTg==
+fp-ts@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.16.0.tgz#64e03314dfc1c7ce5e975d3496ac14bc3eb7f92e"
+  integrity sha512-bLq+KgbiXdTEoT1zcARrWEpa5z6A/8b7PcDW7Gef3NSisQ+VS7ll2Xbf1E+xsgik0rWub/8u0qP/iTTjj+PhxQ==
 
 fraction.js@^4.2.0:
   version "4.2.0"
