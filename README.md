@@ -69,6 +69,8 @@ Select the Dai contract in the contracts sidebar and begin interacting!
 
 Example: Try entering `0xad0135af20fa82e106607257143d0060a7eb5cbf` into the `balanceOf` function.
 
+_Note: In order for the contract import to succeed, the contract must be verified on Etherscan._
+
 ## Advanced Usage
 
 Create a `.env.local` in the root directory of Blacksmith and include your API key to avoid rate limits.
