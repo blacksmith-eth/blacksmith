@@ -1362,7 +1362,7 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
-"@rainbow-me/rainbowkit@^0.12.13":
+"@rainbow-me/rainbowkit@^0.12.14":
   version "0.12.14"
   resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.12.14.tgz#7fd737e480fde08749e9e0e0b25c5de92f879ead"
   integrity sha512-G7/uYl6TrDS7eiQauc5GEWQ09wCV91hs7xZqj3Af1wsLmbnJM2paUEMs0NI4rbvw0yiMkfoNYMZ2Wfl7NQLKaA==
