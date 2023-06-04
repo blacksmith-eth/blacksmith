@@ -18,8 +18,8 @@ Start the Blacksmith application.
 
 ```bash
 cd blacksmith
-yarn
-yarn dev
+pnpm
+pnpm dev
 ```
 
 In a second terminal window start a local testnet node.

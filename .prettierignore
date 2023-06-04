@@ -1,3 +1,4 @@
 /.next
 /coverage
 .database.json
+pnpm-lock.yaml
