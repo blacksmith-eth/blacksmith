@@ -17,20 +17,30 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.6.0
       - name: "Setup Node"
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: "pnpm"
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
       - name: "Install"
-        run: yarn install --ignore-scripts
+        run: pnpm install --ignore-scripts
       - name: "Commitlint"
-        run: yarn commitlint
+        run: pnpm commitlint
       - name: "Format"
-        run: yarn format
+        run: pnpm format
       - name: "Lint"
-        run: yarn lint
+        run: pnpm lint
       - name: "Typecheck"
-        run: yarn typecheck
+        run: pnpm typecheck
       - name: "Test"
-        run: yarn test
+        run: pnpm test

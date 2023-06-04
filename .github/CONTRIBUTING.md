@@ -16,11 +16,11 @@ When implementing a new feature or resolving a bug please include comprehensive 
 
 Code Quality is enforced through GitHub Action, which runs the checks listed below.
 
-- Commitlint (`yarn commitlint`)
-- Format (`yarn format`)
-- Lint (`yarn lint`)
-- Typecheck (`yarn typecheck`)
-- Test (`yarn test`)
+- Commitlint (`pnpm commitlint`)
+- Format (`pnpm format`)
+- Lint (`pnpm lint`)
+- Typecheck (`pnpm typecheck`)
+- Test (`pnpm test`)
 
 ### Commit Messages
 
