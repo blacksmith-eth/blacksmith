@@ -4,6 +4,12 @@ Blacksmith generates a simple frontend for interacting with smart contracts.
 
 This tool is specifically intended to be used with [Foundry](https://getfoundry.sh/).
 
+_Note: Recent changes to Foundry break Blacksmith contract verification/import. Until this is addressed please roll back to the previous version of Foundry noted below._
+
+```bash
+foundryup --version nightly-94777647f6ea5d34572a1b15c9b57e35b8c77b41
+```
+
 ## Installation
 
 Clone the repo.
