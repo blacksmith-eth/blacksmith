@@ -24,7 +24,7 @@ Start the Blacksmith application.
 
 ```bash
 cd blacksmith
-pnpm
+pnpm install
 pnpm dev
 ```
 
