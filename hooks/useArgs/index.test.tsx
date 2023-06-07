@@ -294,7 +294,7 @@ describe("useArgs", () => {
   });
 
   it("should return provided value when big number conversion throws", () => {
-    const value = faker.random.word();
+    const value = faker.lorem.word();
     const input = buildInput({ type: "uint256" });
     const { result } = renderUseArgsHook([input]);
 
@@ -418,7 +418,7 @@ describe("useArgs", () => {
     const { result } = renderUseArgsHook([input]);
 
     act(() => {
-      result.current.updateValue([0], faker.random.word());
+      result.current.updateValue([0], faker.lorem.word());
     });
 
     expect(result.current.isTouched).toEqual(true);
@@ -429,7 +429,7 @@ describe("useArgs", () => {
     const { result } = renderUseArgsHook(inputs);
 
     act(() => {
-      result.current.updateValue([0], faker.random.word());
+      result.current.updateValue([0], faker.lorem.word());
     });
 
     expect(result.current.isTouched).toEqual(false);
