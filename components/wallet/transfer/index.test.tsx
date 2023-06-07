@@ -50,7 +50,7 @@ describe("Transfer", () => {
   });
 
   it("should allow user to change value", async () => {
-    const value = faker.random.numeric(3);
+    const value = faker.string.numeric(3);
     const { user } = renderTransfer();
 
     const valueInput = screen.getByLabelText("value");
