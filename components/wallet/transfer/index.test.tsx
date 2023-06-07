@@ -43,7 +43,8 @@ describe("Transfer", () => {
 
     const recipientInput = screen.getByLabelText("recipient");
 
-    await user.type(recipientInput, address);
+    await user.click(recipientInput);
+    await user.paste(address);
 
     expect(recipientInput).toHaveValue(address);
   });

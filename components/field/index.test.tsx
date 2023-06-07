@@ -53,7 +53,8 @@ describe("Field", () => {
     const input = screen.getByLabelText(inputName);
     const value = faker.lorem.word();
 
-    await user.type(input, value);
+    await user.click(input);
+    await user.paste(value);
 
     expect(handleChange).toHaveBeenCalled();
   });

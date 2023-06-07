@@ -15,7 +15,8 @@ describe("Setup", () => {
     const path = "path/to/contract";
     const { user } = render(<Setup />);
 
-    await user.type(screen.getByLabelText("path"), path);
+    await user.click(screen.getByLabelText("path"));
+    await user.paste(path);
 
     expect(screen.getByText(path, { exact: false })).toBeInTheDocument();
   });
@@ -24,7 +25,8 @@ describe("Setup", () => {
     const contractName = "ContractName";
     const { user } = render(<Setup />);
 
-    await user.type(screen.getByLabelText("contract name"), contractName);
+    await user.click(screen.getByLabelText("contract name"));
+    await user.paste(contractName);
 
     expect(
       screen.getByText(contractName, { exact: false })
@@ -35,7 +37,8 @@ describe("Setup", () => {
     const address = buildAddress();
     const { user } = render(<Setup />);
 
-    await user.type(screen.getByLabelText("deployer address"), address);
+    await user.click(screen.getByLabelText("deployer address"));
+    await user.paste(address);
 
     expect(screen.getByText(address, { exact: false })).toBeInTheDocument();
   });
@@ -44,7 +47,8 @@ describe("Setup", () => {
     const rpcUrl = "http://rpc.url";
     const { user } = render(<Setup />);
 
-    await user.type(screen.getByLabelText("rpc url"), rpcUrl);
+    await user.click(screen.getByLabelText("rpc url"));
+    await user.paste(rpcUrl);
 
     expect(screen.getByText(rpcUrl, { exact: false })).toBeInTheDocument();
   });
@@ -53,7 +57,8 @@ describe("Setup", () => {
     const verifierUrl = "http://verifier.url";
     const { user } = render(<Setup />);
 
-    await user.type(screen.getByLabelText("verifier url"), verifierUrl);
+    await user.click(screen.getByLabelText("verifier url"));
+    await user.paste(verifierUrl);
 
     expect(screen.getByText(verifierUrl, { exact: false })).toBeInTheDocument();
   });
