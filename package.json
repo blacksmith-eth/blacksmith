@@ -14,9 +14,9 @@
     "lint:fix": "next lint --fix",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest",
+    "test": "NODE_OPTIONS='--no-experimental-fetch' vitest run",
+    "test:coverage": "pnpm test -- --coverage",
+    "test:watch": "NODE_OPTIONS='--no-experimental-fetch' vitest",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
