@@ -15,7 +15,8 @@ describe("Manager", () => {
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
 
-    await user.type(input, address);
+    await user.click(input);
+    await user.paste(address);
 
     const button = screen.getByRole("button", { name: "import" });
 
@@ -34,7 +35,8 @@ describe("Manager", () => {
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
 
-    await user.type(input, address);
+    await user.click(input);
+    await user.paste(address);
 
     const button = screen.getByRole("button", { name: "import" });
 
@@ -53,7 +55,8 @@ describe("Manager", () => {
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
 
-    await user.type(input, address);
+    await user.click(input);
+    await user.paste(address);
 
     const button = screen.getByRole("button", { name: "remove" });
 
@@ -72,7 +75,8 @@ describe("Manager", () => {
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
 
-    await user.type(input, address);
+    await user.click(input);
+    await user.paste(address);
 
     const button = screen.getByRole("button", { name: "remove" });
 

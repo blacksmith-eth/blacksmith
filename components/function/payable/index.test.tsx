@@ -91,10 +91,12 @@ describe("Payable", () => {
     const { user } = renderPayable({ address, func });
 
     const firstInput = screen.getByLabelText(func.inputs[0].name!);
-    await user.type(firstInput, "first");
+    await user.click(firstInput);
+    await user.paste("first");
 
     const secondInput = screen.getByLabelText(func.inputs[1].name!);
-    await user.type(secondInput, "second");
+    await user.click(secondInput);
+    await user.paste("second");
 
     await waitFor(() => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
