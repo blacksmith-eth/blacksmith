@@ -9,6 +9,7 @@ import {
   ButtonHTMLAttributes,
   ChangeEvent,
   DetailedHTMLProps,
+  useCallback,
   useState,
 } from "react";
 
@@ -32,11 +33,14 @@ export const Manager = () => {
   const [address, setAddress] = useState("");
   const { mutate } = useContracts();
 
-  const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAddress(event.target.value);
-  };
+  const handleAddressChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setAddress(event.target.value);
+    },
+    []
+  );
 
-  const handleImport = () => {
+  const handleImport = useCallback(() => {
     fetch(`/api/contracts/${address}`, {
       method: "POST",
     }).then((response) => {
@@ -46,9 +50,9 @@ export const Manager = () => {
       setResponse(responseMessage);
       mutate();
     });
-  };
+  }, [address, mutate]);
 
-  const handleRemove = () => {
+  const handleRemove = useCallback(() => {
     fetch(`/api/contracts/${address}`, {
       method: "DELETE",
     }).then((response) => {
@@ -58,16 +62,16 @@ export const Manager = () => {
       setResponse(responseMessage);
       mutate();
     });
-  };
+  }, [address, mutate]);
 
-  const handleRemoveAll = () => {
+  const handleRemoveAll = useCallback(() => {
     fetch("/api/contracts", {
       method: "DELETE",
     }).then(() => {
       setDeleteAllResponse("Removed all contracts");
       mutate();
     });
-  };
+  }, [mutate]);
 
   return (
     <div className="flex flex-col">
