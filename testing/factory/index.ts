@@ -17,15 +17,9 @@ import { faker } from "@faker-js/faker/locale/en";
 import capitalize from "lodash/capitalize";
 import times from "lodash/times";
 
-const RESERVED_WORDS = ["value", "void", "unit"];
-
-const { unique } = faker.helpers;
-
-const uniqueOptions = { exclude: RESERVED_WORDS };
-
-const adjective = () => unique(faker.word.adjective, undefined, uniqueOptions);
-const noun = () => unique(faker.word.noun, undefined, uniqueOptions);
-const verb = () => unique(faker.word.verb, undefined, uniqueOptions);
+const adjective = () => faker.word.adjective();
+const noun = () => faker.word.noun();
+const verb = () => faker.word.verb();
 
 const hasProperty = (obj: any, property: string) =>
   Object.prototype.hasOwnProperty.call(obj, property);
@@ -43,7 +37,7 @@ export const buildAbiError = (): AbiError => ({
 });
 
 export const buildAddress = () =>
-  faker.datatype.hexadecimal({ length: 40, case: "lower" }) as Address;
+  faker.string.hexadecimal({ length: 40, casing: "lower" }) as Address;
 
 export const buildContractDetails = (
   overrides: Partial<ContractDetails> = {}
@@ -148,4 +142,4 @@ export const buildOutputList = (n: number): AbiParameter[] =>
 export const buildResult = (value: Result) => value;
 
 export const buildTransactionHash = () =>
-  faker.datatype.hexadecimal({ length: 64, case: "lower" });
+  faker.string.hexadecimal({ length: 64, casing: "lower" });
