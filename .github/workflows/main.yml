@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16]
+        node-version: [20]
     steps:
       - name: "Clone Repository"
         uses: actions/checkout@v3
