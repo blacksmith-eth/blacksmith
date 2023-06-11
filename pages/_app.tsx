@@ -9,7 +9,7 @@ import {
   lightTheme,
 } from "@rainbow-me/rainbowkit";
 import { ThemeProvider } from "next-themes";
-import { WagmiConfig, configureChains, createClient } from "wagmi";
+import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "packages/wallets";
 import { forkedChains, foundry } from "core/chains";
@@ -25,7 +25,7 @@ const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
 });
 
-const { chains, provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [foundry, ...forkedChains],
   [publicProvider()]
 );
@@ -37,17 +37,17 @@ const connectors = connectorsForWallets([
   },
 ]);
 
-const wagmiClient = createClient({
+const wagmiClient = createConfig({
   autoConnect: true,
   connectors,
-  provider,
-  webSocketProvider,
+  publicClient,
+  webSocketPublicClient,
 });
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <div className={`${inter.variable} ${sourceCodePro.variable} font-sans`}>
     <ThemeProvider attribute="class" disableTransitionOnChange={true}>
-      <WagmiConfig client={wagmiClient}>
+      <WagmiConfig config={wagmiClient}>
         <RainbowKitProvider
           appInfo={{
             appName: "Blacksmith",

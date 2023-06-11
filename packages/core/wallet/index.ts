@@ -5,13 +5,15 @@ export type BlacksmithWalletOptions =
   | ConstructorParameters<typeof providers.JsonRpcProvider>
   | undefined;
 
-export type BlacksmithSigner = providers.JsonRpcSigner;
-
 export class BlacksmithWalletProvider extends providers.JsonRpcProvider {
   #accountIndex = 0;
 
   constructor(options: BlacksmithWalletOptions = []) {
     super(options[0], options[1]);
+  }
+
+  request(): Promise<any> {
+    return Promise.resolve();
   }
 
   async getAccount(): Promise<Address> {

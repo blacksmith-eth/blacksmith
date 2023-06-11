@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker/locale/en";
 import { act, renderHook } from "@testing-library/react";
-import { BigNumber } from "ethers";
 import { ChangeEvent } from "react";
 import { Units, useEther } from ".";
 
@@ -10,7 +9,7 @@ describe("useEther", () => {
 
     expect(result.current.value).toBe("");
     expect(result.current.unit).toBe("wei");
-    expect(result.current.formattedValue).toEqual(BigNumber.from("0"));
+    expect(result.current.formattedValue).toEqual(0n);
   });
 
   it("should update value and formattedValue on handleValueChange", () => {
@@ -23,7 +22,7 @@ describe("useEther", () => {
     });
 
     expect(result.current.value).toBe("1");
-    expect(result.current.formattedValue).toEqual(BigNumber.from("1"));
+    expect(result.current.formattedValue).toEqual(1n);
   });
 
   it("should not set non-numeric values on handleValueChange", () => {
@@ -36,7 +35,7 @@ describe("useEther", () => {
     });
 
     expect(result.current.value).toBe("");
-    expect(result.current.formattedValue).toEqual(BigNumber.from("0"));
+    expect(result.current.formattedValue).toEqual(0n);
   });
 
   it("should update unit on setUnit", () => {
@@ -63,8 +62,6 @@ describe("useEther", () => {
     });
 
     expect(result.current.value).toBe("1");
-    expect(result.current.formattedValue).toEqual(
-      BigNumber.from("1000000000000000000")
-    );
+    expect(result.current.formattedValue).toEqual(1000000000000000000n);
   });
 });

@@ -27,7 +27,6 @@ export const Nonpayable = ({
     func.inputs as AbiParameterWithComponents[]
   );
   const { data, write, isLoading, isError, error } = useContractWrite<
-    "recklesslyUnprepared",
     Abi,
     string
   >({
@@ -35,7 +34,6 @@ export const Nonpayable = ({
     address,
     args: formattedArgs,
     functionName: func.name,
-    mode: "recklesslyUnprepared",
   });
   const isDisabled = isLoading || !write;
   const handleClick = () => {

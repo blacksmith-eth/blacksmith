@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedNonpayableFunction,
@@ -106,7 +105,6 @@ describe("Nonpayable", () => {
         address,
         args: ["first", "second"],
         functionName: func.name,
-        mode: "recklesslyUnprepared",
       });
     });
   });
@@ -131,9 +129,8 @@ describe("Nonpayable", () => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
         abi: [func],
         address,
-        args: [BigNumber.from("1"), BigNumber.from("2")],
+        args: [1n, 2n],
         functionName: func.name,
-        mode: "recklesslyUnprepared",
       });
     });
   });

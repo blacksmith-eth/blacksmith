@@ -1,5 +1,5 @@
-import { utils } from "ethers";
 import { ChangeEvent, useCallback, useState } from "react";
+import { parseUnits } from "viem";
 
 export enum Units {
   wei = "wei",
@@ -8,13 +8,24 @@ export enum Units {
   ether = "ether",
 }
 
+type UnitNameToExponent = {
+  [key in Units]: number;
+};
+
+const unitNameToExponent: UnitNameToExponent = {
+  wei: 0,
+  gwei: 9,
+  finney: 15,
+  ether: 18,
+};
+
 export const useEther = () => {
   const [unit, setUnit] = useState(Units.wei);
-  const [value, setValue] = useState("");
-  const formattedValue = utils.parseUnits(value || "0", unit);
+  const [value, setValue] = useState<`${number}` | "">("");
+  const formattedValue = parseUnits(value || "0", unitNameToExponent[unit]);
   const handleValueChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      const updatedValue = event.target.value.replace(/\D/g, "");
+      const updatedValue = event.target.value.replace(/\D/g, "") as `${number}`;
       setValue(updatedValue);
     },
     []

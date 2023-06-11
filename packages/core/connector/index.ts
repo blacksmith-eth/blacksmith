@@ -2,13 +2,12 @@ import { Connector, Chain, Address } from "wagmi";
 import {
   BlacksmithWalletOptions,
   BlacksmithWalletProvider,
-  BlacksmithSigner,
 } from "packages/core/wallet";
+import { createWalletClient, http } from "viem";
 
 export class BlacksmithConnector extends Connector<
   BlacksmithWalletProvider,
-  BlacksmithWalletOptions,
-  BlacksmithSigner
+  BlacksmithWalletOptions
 > {
   readonly id = "blacksmith";
   readonly name = "Blacksmith";
@@ -71,9 +70,15 @@ export class BlacksmithConnector extends Connector<
     return this.#provider;
   }
 
-  async getSigner() {
-    const provider = await this.getProvider();
-    return provider.getSigner();
+  async getWalletClient({ chainId }: { chainId?: number } = {}) {
+    const account = await this.getAccount();
+    const chain = this.chains.find((x) => x.id === chainId) || this.chains[0];
+
+    return createWalletClient({
+      account,
+      chain,
+      transport: http(),
+    });
   }
 
   async isAuthorized() {
@@ -99,7 +104,9 @@ export class BlacksmithConnector extends Connector<
     this.emit("change", { account: accounts[0] });
   };
 
-  protected onChainChanged = () => {};
+  protected onChainChanged = () => {
+    return;
+  };
 
   protected onDisconnect = () => {
     this.emit("disconnect");

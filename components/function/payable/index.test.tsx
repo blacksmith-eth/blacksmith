@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedPayableFunction,
@@ -104,10 +103,7 @@ describe("Payable", () => {
         address,
         args: ["first", "second"],
         functionName: func.name,
-        mode: "recklesslyUnprepared",
-        overrides: {
-          value: BigNumber.from(0),
-        },
+        value: 0n,
       });
     });
   });
@@ -133,12 +129,9 @@ describe("Payable", () => {
       expect(useContractWriteMock).toHaveBeenCalledWith({
         abi: [func],
         address,
-        args: [BigNumber.from("1"), BigNumber.from("2")],
+        args: [1n, 2n],
         functionName: func.name,
-        mode: "recklesslyUnprepared",
-        overrides: {
-          value: BigNumber.from("1"),
-        },
+        value: 1n,
       });
     });
   });
@@ -164,10 +157,7 @@ describe("Payable", () => {
         address,
         args: [],
         functionName: func.name,
-        mode: "recklesslyUnprepared",
-        overrides: {
-          value: BigNumber.from("1000000000000000000"),
-        },
+        value: 1000000000000000000n,
       });
     });
   });

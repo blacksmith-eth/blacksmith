@@ -1,7 +1,6 @@
 import { Wallet } from "@rainbow-me/rainbowkit";
 import { Chain, Connector } from "wagmi";
 import {
-  BlacksmithSigner,
   BlacksmithWalletOptions,
   BlacksmithWalletProvider,
 } from "packages/core/wallet";
@@ -11,11 +10,7 @@ const connector = ({
   chains,
 }: {
   chains: Chain[];
-}): Connector<
-  BlacksmithWalletProvider,
-  BlacksmithWalletOptions,
-  BlacksmithSigner
-> => {
+}): Connector<BlacksmithWalletProvider, BlacksmithWalletOptions> => {
   return new BlacksmithConnector({ chains });
 };
 
@@ -23,9 +18,7 @@ export const blacksmithWallet = ({
   chains,
 }: {
   chains: Chain[];
-}): Wallet<
-  Connector<BlacksmithWalletProvider, BlacksmithWalletOptions, BlacksmithSigner>
-> => ({
+}): Wallet<Connector<BlacksmithWalletProvider, BlacksmithWalletOptions>> => ({
   id: "blacksmith",
   name: "Blacksmith",
   iconUrl: "/icon.png",

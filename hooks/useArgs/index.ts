@@ -1,11 +1,10 @@
 import { AbiParameterWithComponents, Arg } from "core/types";
-import { BigNumber } from "ethers";
 import times from "lodash/times";
 import { useCallback, useState } from "react";
 
-const tryBigNumberConversion = (value: string): BigNumber | string => {
+const tryBigNumberConversion = (value: string): bigint | string => {
   try {
-    return BigNumber.from(value);
+    return BigInt(value);
   } catch {
     return value;
   }

@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { render, screen } from "testing";
 import { buildResult } from "testing/factory";
 import { PartialProps } from "testing/types";
@@ -38,7 +37,7 @@ describe("Output", () => {
   });
 
   it("should render an array of big numbers", () => {
-    const data = buildResult([BigNumber.from(0), BigNumber.from(1)]);
+    const data = buildResult([0n, 1n]);
     renderOutput({ data });
 
     expect(screen.getByText("(0, 1)")).toBeInTheDocument();

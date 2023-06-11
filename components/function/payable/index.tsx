@@ -3,7 +3,6 @@ import { Field } from "components/field";
 import { Inputs } from "components/inputs";
 import { Listbox } from "components/listbox";
 import {
-  Abi,
   AbiDefinedPayableFunction,
   AbiParameterWithComponents,
   Address,
@@ -26,19 +25,12 @@ export const Payable = ({ address, func, initialCollapsed }: PayableProps) => {
   );
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();
-  const { data, write, isLoading, isError, error } = useContractWrite<
-    "recklesslyUnprepared",
-    Abi,
-    string
-  >({
+  const { data, write, isLoading, isError, error } = useContractWrite({
     abi: [func] as const,
     address,
     args: formattedArgs,
     functionName: func.name,
-    mode: "recklesslyUnprepared",
-    overrides: {
-      value: formattedValue,
-    },
+    value: formattedValue,
   });
   const isDisabled = isLoading || !write;
   const handleClick = () => {
