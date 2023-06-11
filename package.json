@@ -62,7 +62,7 @@
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "msw": "^1.2.1",
-    "next-router-mock": "^0.9.3",
+    "next-router-mock": "^0.9.6",
     "node-mocks-http": "^1.12.2",
     "postcss": "^8.4.24",
     "prettier": "2.8.8",
