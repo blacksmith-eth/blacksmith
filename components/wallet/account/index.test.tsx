@@ -53,7 +53,7 @@ describe("Account", () => {
       screen.getByRole("button", {
         name: `account ${address.slice(0, 6)}...${address.slice(
           -4
-        )} | 100.9 ETH`,
+        )} | 100.99 ETH`,
       })
     ).toBeInTheDocument();
   });

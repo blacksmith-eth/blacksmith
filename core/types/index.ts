@@ -1,5 +1,4 @@
 import type { Abi, AbiParameter, AbiStateMutability, Address } from "abitype";
-import { BigNumber } from "ethers";
 
 export type Arg = {
   name: string;
@@ -51,6 +50,6 @@ export type ContractDetails = {
   version: string;
 };
 
-export type Result = string | BigNumber | undefined | null | Result[];
+export type Result = string | bigint | undefined | null | Result[];
 
 export * from "abitype";

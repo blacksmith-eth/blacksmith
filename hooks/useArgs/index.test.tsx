@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker/locale/en";
 import { AbiParameter, AbiParameterWithComponents } from "core/types";
-import { BigNumber } from "ethers";
 import times from "lodash/times";
 import { act, renderHook } from "testing";
 import {
@@ -282,15 +281,15 @@ describe("useArgs", () => {
   });
 
   it("should return formatted big number args", () => {
-    const value = "1";
+    const value = 1n;
     const input = buildInput({ type: "uint256" });
     const { result } = renderUseArgsHook([input]);
 
     act(() => {
-      result.current.updateValue([0], value);
+      result.current.updateValue([0], value.toString());
     });
 
-    expect(result.current.formattedArgs).toEqual([BigNumber.from(value)]);
+    expect(result.current.formattedArgs).toEqual([value]);
   });
 
   it("should return provided value when big number conversion throws", () => {
@@ -376,9 +375,7 @@ describe("useArgs", () => {
       result.current.updateValue([0], values);
     });
 
-    expect(result.current.formattedArgs).toEqual([
-      [BigNumber.from(1), BigNumber.from(2), BigNumber.from(3)],
-    ]);
+    expect(result.current.formattedArgs).toEqual([[1n, 2n, 3n]]);
   });
 
   it("should return formatted args for tuple", () => {

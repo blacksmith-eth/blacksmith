@@ -64,15 +64,6 @@ describe("BlacksmithConnector", () => {
     expect(chainId).toBe(id);
   });
 
-  it("#getSigner should return the signer of the active account", async () => {
-    const account = "0x0000000000000000000000000000000000000001";
-    const provider = new BlacksmithWalletProvider();
-    provider.getSigner = vi.fn().mockResolvedValue(account);
-    const connector = new BlacksmithConnector({ provider });
-    const signer = await connector.getSigner();
-    expect(signer).toBe(account);
-  });
-
   it("#isAuthorized should return true if getAccount is defined", async () => {
     const account = "0x0000000000000000000000000000000000000001";
     const provider = new BlacksmithWalletProvider();

@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { render, screen, waitFor } from "testing";
 import {
   buildAbiDefinedViewFunction,
@@ -161,7 +160,7 @@ describe("View", () => {
       expect(useContractReadMock).toHaveBeenCalledWith({
         abi: [func],
         address,
-        args: [BigNumber.from("1"), BigNumber.from("2")],
+        args: [1n, 2n],
         functionName: func.name,
         watch: true,
       });
