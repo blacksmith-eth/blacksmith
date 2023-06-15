@@ -104,8 +104,8 @@ devDependencies:
     specifier: ^0.32.0
     version: 0.32.0(vitest@0.32.0)
   abitype:
-    specifier: ^0.8.8
-    version: 0.8.8(typescript@5.1.3)(zod@3.21.4)
+    specifier: ^0.8.9
+    version: 0.8.9(typescript@5.1.3)(zod@3.21.4)
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.24)
@@ -2919,8 +2919,8 @@ packages:
       zod: 3.21.4
     dev: false
 
-  /abitype@0.8.8(typescript@5.1.3)(zod@3.21.4):
-    resolution: {integrity: sha512-X8Hqt5r3sCfMVUrrmfY0FKZSrc1CKJ5hEYjw+yAawnWohz1135hqYXiNYJcQVY7Trht+IEuy+TLYnE17QFnH5w==}
+  /abitype@0.8.9(typescript@5.1.3)(zod@3.21.4):
+    resolution: {integrity: sha512-AMABuXCmUSLThOrk4Tj5dFUdsdEMam9LUsklEFRC9Np7jaj5h3zzd3hUqcP54kA/g3z9AMa6MgXZRH00asqJ+g==}
     peerDependencies:
       typescript: '>=5.0.4'
       zod: ^3 >=3.19.1
