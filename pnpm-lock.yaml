@@ -12,8 +12,8 @@ dependencies:
     specifier: ^2.0.18
     version: 2.0.18(react@18.2.0)
   '@rainbow-me/rainbowkit':
-    specifier: ^1.0.1
-    version: 1.0.1(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)(viem@1.0.7)(wagmi@1.1.1)
+    specifier: ^1.0.2
+    version: 1.0.2(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)(viem@1.0.7)(wagmi@1.1.1)
   ethers:
     specifier: ^5.7.2
     version: 5.7.2
@@ -1573,14 +1573,14 @@ packages:
       tslib: 2.5.3
     dev: true
 
-  /@rainbow-me/rainbowkit@1.0.1(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)(viem@1.0.7)(wagmi@1.1.1):
-    resolution: {integrity: sha512-P+2lgHaN5X84K1e+MARUydyhYRS+nStN4H470QloBBWP5UsidHZpSJGd4qi0WFtfR6zBff96N6kmsfJo7PjFhQ==}
+  /@rainbow-me/rainbowkit@1.0.2(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)(viem@1.0.7)(wagmi@1.1.1):
+    resolution: {integrity: sha512-CIcEekBBlYiqg2oNS7LZqqN882OfJ0T1ORe4c46dscSuMCaX9sdbviQR1m8LoA4KocSCzSxOPAnfoVN8eC/HNA==}
     engines: {node: '>=12.4'}
     peerDependencies:
       react: '>=17'
       react-dom: '>=17'
-      viem: ~0.3.19
-      wagmi: ~1.0.1
+      viem: ~0.3.19 || ^1.0.0
+      wagmi: ~1.0.1 || ~1.1.0 || ~1.2.0
     dependencies:
       '@vanilla-extract/css': 1.9.1
       '@vanilla-extract/dynamic': 2.0.2
