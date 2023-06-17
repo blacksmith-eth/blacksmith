@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^3.3.2
     version: 3.3.2(vite@4.3.9)
   '@vitest/coverage-c8':
-    specifier: ^0.32.0
-    version: 0.32.0(vitest@0.32.2)
+    specifier: ^0.32.2
+    version: 0.32.2(vitest@0.32.2)
   abitype:
     specifier: ^0.8.10
     version: 0.8.10(typescript@5.1.3)(zod@3.21.4)
@@ -2364,8 +2364,8 @@ packages:
       - '@swc/helpers'
     dev: true
 
-  /@vitest/coverage-c8@0.32.0(vitest@0.32.2):
-    resolution: {integrity: sha512-FeTzRN5VCL7B6YTRK5ZPQO2iwJzl2x7/mTQ/2uEeKZatAYBtvczeAYnzSUhCPev7p99+5skxMQZwqVcFTrVCdg==}
+  /@vitest/coverage-c8@0.32.2(vitest@0.32.2):
+    resolution: {integrity: sha512-z07kMTN6e4t1jDY4XXU6W1LxCb3V5Rw7KAZId4VM6BCIGLGz1QqwH9UWYWv7LemqQVnARl5CwaDDwVrkcYgwPg==}
     peerDependencies:
       vitest: '>=0.30.0 <1'
     dependencies:
@@ -8016,7 +8016,7 @@ packages:
     resolution: {integrity: sha512-6z3GW9x8G1gd+JIIgQQQxXuiJtCXeAjp6RaPEPLv62mH3iPHPxV6W3robxtCzNErRo6ZwTmzWhsbNvjyEBKzKA==}
     engines: {node: '>=10.12.0'}
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.17
+      '@jridgewell/trace-mapping': 0.3.18
       '@types/istanbul-lib-coverage': 2.0.4
       convert-source-map: 1.9.0
     dev: true
