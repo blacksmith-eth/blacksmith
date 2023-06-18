@@ -14,7 +14,7 @@ export const Setup = () => {
   const [verifierUrl, setVerifierUrl] = useState(
     "http://localhost:3000/api/verify"
   );
-  const command = `forge create ${path}:${contractName} --verify --unlocked --from ${deployerAddress} --rpc-url ${rpcUrl} --verifier-url ${verifierUrl} --etherscan-api-key blacksmith`;
+  const command = `forge create ${path}:${contractName} --verify --unlocked --from ${deployerAddress} --rpc-url ${rpcUrl} --verifier-url ${verifierUrl} --verifier sourcify`;
 
   const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
     setDeployerAddress(event.target.value);
@@ -155,7 +155,7 @@ export const Setup = () => {
               </span>
               {" \\"}
             </div>
-            <div>{"--etherscan-api-key blacksmith"}</div>
+            <div>{"--verifier sourcify"}</div>
           </div>
           <button
             className="text-black focus:outline-none border border-black rounded p-2 focus:bg-black focus:text-white"

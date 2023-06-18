@@ -1,5 +1,4 @@
 import { contract } from "core/contract";
-import { getAddress } from "core/utils";
 import { server } from "mocks/server";
 import { rest } from "msw";
 import { createMocks } from "node-mocks-http";
@@ -44,7 +43,7 @@ describe("handler", () => {
     await contractsAddressHandler(req, res);
 
     expect(res.statusCode).toBe(200);
-    expect(spy).toHaveBeenCalledWith(getAddress(address));
+    expect(spy).toHaveBeenCalledWith(address);
   });
 
   it("should return 400 when address is invalid (POST)", async () => {
@@ -89,7 +88,7 @@ describe("handler", () => {
     expect(res.statusCode).toBe(200);
     expect(spy).toHaveBeenCalledWith({
       abi: [],
-      address: getAddress(address),
+      address,
       name: contractResponse.ContractName,
       version: contractResponse.CompilerVersion,
     });

@@ -72,7 +72,7 @@ describe("Setup", () => {
 
     const copiedText = await navigator.clipboard.readText();
     expect(copiedText).toEqual(
-      "forge create src/Counter.sol:Counter --verify --unlocked --from 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 --rpc-url http://localhost:8545 --verifier-url http://localhost:3000/api/verify --etherscan-api-key blacksmith"
+      "forge create src/Counter.sol:Counter --verify --unlocked --from 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 --rpc-url http://localhost:8545 --verifier-url http://localhost:3000/api/verify --verifier sourcify"
     );
   });
 });
