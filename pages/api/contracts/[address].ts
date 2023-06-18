@@ -1,7 +1,6 @@
+import { Address as AddressSchema } from "abitype/zod";
 import { contract } from "core/contract";
 import type { Address } from "core/types";
-import { getAddress } from "core/utils";
-import isNull from "lodash/isNull";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
@@ -15,18 +14,7 @@ const buildGetSourceCodeUrl = (address: Address) => {
 };
 
 const requestSchema = z.object({
-  address: z.custom<Address>().transform((value, context) => {
-    const address = getAddress(value);
-    if (isNull(address)) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Invalid address",
-      });
-
-      return z.NEVER;
-    }
-    return address;
-  }),
+  address: AddressSchema,
 });
 
 const postHandler = (req: NextApiRequest, res: NextApiResponse) => {

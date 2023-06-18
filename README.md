@@ -4,12 +4,6 @@ Blacksmith generates a simple frontend for interacting with smart contracts.
 
 This tool is specifically intended to be used with [Foundry](https://getfoundry.sh/).
 
-_Note: Recent changes to Foundry break Blacksmith contract verification/import. Until this is addressed please roll back to the previous version of Foundry noted below._
-
-```bash
-foundryup --version nightly-94777647f6ea5d34572a1b15c9b57e35b8c77b41
-```
-
 ## Installation
 
 Clone the repo.
@@ -48,7 +42,7 @@ forge create src/Counter.sol:Counter --verify --unlocked \
 --from 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 \
 --rpc-url http://localhost:8545 \
 --verifier-url http://localhost:3000/api/verify \
---etherscan-api-key blacksmith
+--verifier sourcify
 ```
 
 _Note: If this command fails see the Foundry Configuration section at the bottom of the README._
@@ -94,22 +88,9 @@ forge script script/Counter.s.sol:CounterScript --broadcast --verify --unlocked 
 --sender 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 \
 --fork-url http://localhost:8545 \
 --verifier-url http://localhost:3000/api/verify \
---etherscan-api-key blacksmith
+--verifier sourcify
 ```
 
 ## Hardhat
 
 If you're working with Hardhat check out [🏗 scaffold-eth](https://github.com/scaffold-eth/scaffold-eth)!
-
-## Foundry Configuration
-
-Historically `forge` has encountered issues reading the `ETHERSCAN_API_KEY` from the command line arguments.
-
-If you are seeing an error when deploying your contract such as `ETHERSCAN_API_KEY must be set`, then consider adding the following to your `foundry.toml` file.
-
-```toml
-[etherscan]
-anvil = { key = "blacksmith", url = "http://localhost:3000/api/verify" }
-```
-
-Unfortunately, this workaround requires the localhost port to be hardcoded to 3000. Be mindful of this if running Blacksmith on a different port.
