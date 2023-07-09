@@ -12,7 +12,7 @@ const renderField = (props: PartialProps<typeof Field> = {}) =>
       type={props.type || "type"}
       value={props.value || ""}
       disabled={props.disabled || false}
-    />
+    />,
   );
 
 describe("Field", () => {

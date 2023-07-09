@@ -27,7 +27,7 @@ const renderView = (props: PartialProps<typeof View> = {}) =>
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedViewFunction()}
       initialCollapsed={props.initialCollapsed || false}
-    />
+    />,
   );
 
 describe("View", () => {

@@ -49,7 +49,7 @@ describe("Contract", () => {
 
   it("renders an error message", async () => {
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.status(500)))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.status(500))),
     );
 
     renderContract();
@@ -60,13 +60,13 @@ describe("Contract", () => {
   it("renders a selected contract", async () => {
     const contracts = buildContractDetailsList(2);
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts)))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts))),
     );
 
     renderContract({ address: contracts[0].address });
 
     expect(
-      await screen.findByRole("heading", { level: 3, name: contracts[0].name })
+      await screen.findByRole("heading", { level: 3, name: contracts[0].name }),
     ).toBeInTheDocument();
   });
 
@@ -74,30 +74,30 @@ describe("Contract", () => {
     const contract = buildContractDetailsList(2);
     const address = buildAddress();
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract]))),
     );
 
     renderContract({ address });
 
     expect(
-      await screen.findByText("Selected contract not found.")
+      await screen.findByText("Selected contract not found."),
     ).toBeInTheDocument();
     expect(await screen.findByText(address)).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { level: 3, name: "Getting Started" })
+      screen.getByRole("heading", { level: 3, name: "Getting Started" }),
     ).toBeInTheDocument();
   });
 
   it("renders the contract address", async () => {
     const contract = buildContractDetails();
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract]))),
     );
 
     renderContract({ address: contract.address });
 
     expect(
-      await screen.findByRole("heading", { level: 4, name: contract.address })
+      await screen.findByRole("heading", { level: 4, name: contract.address }),
     ).toBeInTheDocument();
   });
 
@@ -105,16 +105,16 @@ describe("Contract", () => {
     const definedFunctions = buildAbiDefinedFunctionList(2);
     const contract = buildContractDetails({ abi: [...definedFunctions] });
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract]))),
     );
 
     renderContract({ address: contract.address });
 
     expect(
-      await screen.findByText(definedFunctions[0].name, { exact: false })
+      await screen.findByText(definedFunctions[0].name, { exact: false }),
     ).toBeInTheDocument();
     expect(
-      await screen.findByText(definedFunctions[1].name, { exact: false })
+      await screen.findByText(definedFunctions[1].name, { exact: false }),
     ).toBeInTheDocument();
   });
 
@@ -125,20 +125,20 @@ describe("Contract", () => {
     const abi = [event, error, definedFunction];
     const contract = buildContractDetails({ abi });
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract]))),
     );
 
     renderContract({ address: contract.address });
 
     await waitFor(() => {
       expect(
-        screen.queryByText(event.name, { exact: false })
+        screen.queryByText(event.name, { exact: false }),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByText(error.name, { exact: false })
+        screen.queryByText(error.name, { exact: false }),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByText(definedFunction.name, { exact: false })
+        screen.queryByText(definedFunction.name, { exact: false }),
       ).toBeInTheDocument();
     });
   });
@@ -146,7 +146,7 @@ describe("Contract", () => {
   it("renders a button to copy the address", async () => {
     const contract = buildContractDetails();
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract])))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([contract]))),
     );
 
     const { user } = renderContract({ address: contract.address });

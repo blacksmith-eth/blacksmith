@@ -16,7 +16,7 @@ const formatArgs = (args: Arg[]): any => {
       ...acc,
       [arg.name]: formatArgsByType(arg),
     }),
-    {}
+    {},
   );
 };
 
@@ -37,7 +37,7 @@ const formatArgsByType = (arg: Arg): any => {
 };
 
 const extractType = (
-  type: string
+  type: string,
 ): { baseType: string; arrayType: number | "none" | "infinite" } => {
   const arrayType = type.match(/\[([0-9]*)\]$/);
   if (arrayType) {
@@ -126,22 +126,22 @@ export const useArgs = (inputs: readonly AbiParameterWithComponents[]) => {
         ...arg,
         isTouched: true,
         value: arg.value.map((arg, index) =>
-          index === key ? updater(arg, value, rest) : arg
+          index === key ? updater(arg, value, rest) : arg,
         ),
       };
     },
-    []
+    [],
   );
 
   const updateValue = useCallback(
     (keys: number[], value: string | Arg[]) => {
       const [key, ...rest] = keys;
       const updatedValues = args.map((arg, i) =>
-        i === key ? updater(arg, value, rest) : arg
+        i === key ? updater(arg, value, rest) : arg,
       );
       setArgs(updatedValues);
     },
-    [args, updater]
+    [args, updater],
   );
 
   const formattedArgs = args.map(formatArgsByType);

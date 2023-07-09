@@ -6,7 +6,7 @@ import { SWRConfig } from "swr";
 function customRender(ui: ReactElement, options?: RenderOptions) {
   return render(
     <SWRConfig value={{ provider: () => new Map() }}>{ui}</SWRConfig>,
-    options
+    options,
   );
 }
 

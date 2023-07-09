@@ -21,7 +21,7 @@ describe("Contracts", () => {
 
   it("renders an error message", async () => {
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.status(500)))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.status(500))),
     );
     renderContracts();
     expect(await screen.findByText("error")).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe("Contracts", () => {
 
   it("renders a no contracts message", async () => {
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([])))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json([]))),
     );
     renderContracts();
     expect(await screen.findByText("No contracts")).toBeInTheDocument();
@@ -38,14 +38,14 @@ describe("Contracts", () => {
   it("renders a list of contracts", async () => {
     const contracts = buildContractDetailsList(2);
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts)))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts))),
     );
     renderContracts();
     expect(
-      await screen.findByRole("link", { name: contracts[0].name })
+      await screen.findByRole("link", { name: contracts[0].name }),
     ).toBeInTheDocument();
     expect(
-      await screen.findByRole("link", { name: contracts[1].name })
+      await screen.findByRole("link", { name: contracts[1].name }),
     ).toBeInTheDocument();
   });
 
@@ -53,15 +53,15 @@ describe("Contracts", () => {
     const contracts = buildContractDetailsList(2);
     mockRouter.push(`/contracts/${contracts[0].address}`);
     server.use(
-      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts)))
+      rest.get("/api/contracts", (_req, res, ctx) => res(ctx.json(contracts))),
     );
     renderContracts();
 
     expect(
-      await screen.findByRole("link", { name: contracts[0].name })
+      await screen.findByRole("link", { name: contracts[0].name }),
     ).toHaveClass("font-semibold");
     expect(
-      await screen.findByRole("link", { name: contracts[1].name })
+      await screen.findByRole("link", { name: contracts[1].name }),
     ).not.toHaveClass("font-semibold");
   });
 });

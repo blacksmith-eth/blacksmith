@@ -26,7 +26,7 @@ const metadataSchema = z.object({
       z.any().transform((value) => ({
         outputs: [],
         ...value,
-      }))
+      })),
     ),
   }),
 });
@@ -48,7 +48,7 @@ const verifyRequestSchema = z.object({
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   const metadata = JSON.parse(req.body.files["metadata.json"]);
   const result = verifyRequestSchema.safeParse(req.body);

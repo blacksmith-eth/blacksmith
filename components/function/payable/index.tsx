@@ -21,7 +21,7 @@ type PayableProps = {
 
 export const Payable = ({ address, func, initialCollapsed }: PayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
-    func.inputs as AbiParameterWithComponents[]
+    func.inputs as AbiParameterWithComponents[],
   );
   const { value, formattedValue, handleValueChange, unit, units, setUnit } =
     useEther();

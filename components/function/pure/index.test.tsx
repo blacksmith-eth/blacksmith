@@ -27,7 +27,7 @@ const renderPure = (props: PartialProps<typeof Pure> = {}) =>
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedPureFunction()}
       initialCollapsed={props.initialCollapsed || false}
-    />
+    />,
   );
 
 describe("Pure", () => {

@@ -24,7 +24,7 @@ export const Nonpayable = ({
   initialCollapsed,
 }: NonpayableProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
-    func.inputs as AbiParameterWithComponents[]
+    func.inputs as AbiParameterWithComponents[],
   );
   const { data, write, isLoading, isError, error } = useContractWrite<
     Abi,

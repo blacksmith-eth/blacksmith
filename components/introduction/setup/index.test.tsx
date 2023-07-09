@@ -7,7 +7,7 @@ describe("Setup", () => {
     render(<Setup />);
 
     expect(
-      screen.getByText("forge create", { exact: false })
+      screen.getByText("forge create", { exact: false }),
     ).toBeInTheDocument();
   });
 
@@ -29,7 +29,7 @@ describe("Setup", () => {
     await user.paste(contractName);
 
     expect(
-      screen.getByText(contractName, { exact: false })
+      screen.getByText(contractName, { exact: false }),
     ).toBeInTheDocument();
   });
 
@@ -72,7 +72,7 @@ describe("Setup", () => {
 
     const copiedText = await navigator.clipboard.readText();
     expect(copiedText).toEqual(
-      "forge create src/Counter.sol:Counter --verify --unlocked --from 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 --rpc-url http://localhost:8545 --verifier-url http://localhost:3000/api/verify --verifier sourcify"
+      "forge create src/Counter.sol:Counter --verify --unlocked --from 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 --rpc-url http://localhost:8545 --verifier-url http://localhost:3000/api/verify --verifier sourcify",
     );
   });
 });

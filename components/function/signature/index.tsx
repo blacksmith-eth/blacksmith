@@ -20,7 +20,7 @@ const getType = (output: AbiParameterWithComponents): string => {
 };
 
 const getReturnType = (
-  outputs: readonly AbiParameterWithComponents[]
+  outputs: readonly AbiParameterWithComponents[],
 ): string => {
   if (outputs.length === 0) return "void";
   if (outputs.length === 1) return getType(outputs[0]);
@@ -33,7 +33,7 @@ export const Signature = ({
   toggleCollapsed,
 }: SignatureProps) => {
   const returnType = getReturnType(
-    func.outputs as AbiParameterWithComponents[]
+    func.outputs as AbiParameterWithComponents[],
   );
 
   const [CollapseIcon, collapseText] = collapsed

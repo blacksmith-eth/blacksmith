@@ -21,7 +21,7 @@ type PureProps = {
 
 export const Pure = ({ address, func, initialCollapsed }: PureProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
-    func.inputs as AbiParameterWithComponents[]
+    func.inputs as AbiParameterWithComponents[],
   );
   const { data, isLoading, isError, error, refetch } = useContractRead<
     Abi,

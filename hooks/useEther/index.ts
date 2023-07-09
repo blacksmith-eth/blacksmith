@@ -28,7 +28,7 @@ export const useEther = () => {
       const updatedValue = event.target.value.replace(/\D/g, "") as `${number}`;
       setValue(updatedValue);
     },
-    []
+    [],
   );
   const units = Object.values(Units);
 

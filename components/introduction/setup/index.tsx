@@ -6,13 +6,13 @@ import { ChangeEvent, useState } from "react";
 export const Setup = () => {
   const [focusedInput, setFocusedInput] = useState("");
   const [deployerAddress, setDeployerAddress] = useState<string>(
-    "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
   );
   const [path, setPath] = useState("src/Counter.sol");
   const [contractName, setContractName] = useState("Counter");
   const [rpcUrl, setRpcUrl] = useState("http://localhost:8545");
   const [verifierUrl, setVerifierUrl] = useState(
-    "http://localhost:3000/api/verify"
+    "http://localhost:3000/api/verify",
   );
   const command = `forge create ${path}:${contractName} --verify --unlocked --from ${deployerAddress} --rpc-url ${rpcUrl} --verifier-url ${verifierUrl} --verifier sourcify`;
 

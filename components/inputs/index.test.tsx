@@ -12,7 +12,7 @@ const renderInputs = (props: PartialProps<typeof Inputs>) =>
       preview={props.preview}
       child={props.child}
       keys={props.keys}
-    />
+    />,
   );
 
 describe("Inputs", () => {

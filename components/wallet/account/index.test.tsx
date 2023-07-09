@@ -30,7 +30,7 @@ describe("Account", () => {
     expect(
       screen.getByRole("button", {
         name: `account ${address.slice(0, 6)}...${address.slice(-4)}`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -52,9 +52,9 @@ describe("Account", () => {
     expect(
       screen.getByRole("button", {
         name: `account ${address.slice(0, 6)}...${address.slice(
-          -4
+          -4,
         )} | 100.99 ETH`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 });

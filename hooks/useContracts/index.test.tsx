@@ -26,7 +26,7 @@ describe("useContracts", () => {
     server.use(
       rest.get("/api/contracts", (_req, res, ctx) => {
         return res(ctx.json(contracts));
-      })
+      }),
     );
     const { result } = renderHook(() => useContracts(), { wrapper });
 
@@ -41,7 +41,7 @@ describe("useContracts", () => {
     server.use(
       rest.get("/api/contracts", (_req, res, ctx) => {
         return res(ctx.status(500));
-      })
+      }),
     );
     const { result } = renderHook(() => useContracts(), { wrapper });
 

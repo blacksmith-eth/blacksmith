@@ -30,6 +30,6 @@ describe("Func", () => {
       render(<Func address={buildAddress()} func={func} />);
 
       expect(screen.getByText(stateMutability)).toBeInTheDocument();
-    }
+    },
   );
 });

@@ -6,7 +6,7 @@ type ResponseData = ContractDetails[];
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   if (req.method === "GET") {
     const contracts = await contract.findAll();

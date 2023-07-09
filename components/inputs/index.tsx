@@ -75,7 +75,7 @@ export const Inputs = ({
                   onClick={() => {
                     updateValue(
                       keys,
-                      args.filter((_, i) => i !== index)
+                      args.filter((_, i) => i !== index),
                     );
                   }}
                 >
@@ -110,7 +110,7 @@ export const Inputs = ({
                 onClick={() => {
                   updateValue(
                     keys,
-                    args.filter((_, i) => i !== index)
+                    args.filter((_, i) => i !== index),
                   );
                 }}
               >

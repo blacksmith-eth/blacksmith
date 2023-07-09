@@ -9,8 +9,8 @@ describe("Manager", () => {
     const address = buildAddress();
     server.use(
       rest.post(`/api/contracts/${address}`, (_req, res, ctx) =>
-        res(ctx.json({}))
-      )
+        res(ctx.json({})),
+      ),
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -29,8 +29,8 @@ describe("Manager", () => {
     const address = buildAddress();
     server.use(
       rest.post(`/api/contracts/${address}`, (_req, res, ctx) =>
-        res(ctx.status(500))
-      )
+        res(ctx.status(500)),
+      ),
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -49,8 +49,8 @@ describe("Manager", () => {
     const address = buildAddress();
     server.use(
       rest.delete(`/api/contracts/${address}`, (_req, res, ctx) =>
-        res(ctx.json({}))
-      )
+        res(ctx.json({})),
+      ),
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -69,8 +69,8 @@ describe("Manager", () => {
     const address = buildAddress();
     server.use(
       rest.delete(`/api/contracts/${address}`, (_req, res, ctx) =>
-        res(ctx.status(500))
-      )
+        res(ctx.status(500)),
+      ),
     );
     const { user } = render(<Manager />);
     const input = screen.getByLabelText("contract address");
@@ -87,7 +87,7 @@ describe("Manager", () => {
 
   it("should handle all contract removals", async () => {
     server.use(
-      rest.delete("/api/contracts", (_req, res, ctx) => res(ctx.json({})))
+      rest.delete("/api/contracts", (_req, res, ctx) => res(ctx.json({}))),
     );
     const { user } = render(<Manager />);
     const button = screen.getByRole("button", { name: "remove all" });
