@@ -15,7 +15,7 @@ const renderSignature = (props: PartialProps<typeof Signature>) =>
       func={props.func || buildAbiDefinedFunction()}
       collapsed={props.collapsed || false}
       toggleCollapsed={props.toggleCollapsed || vi.fn()}
-    />
+    />,
   );
 
 describe("Signature", () => {
@@ -57,7 +57,7 @@ describe("Signature", () => {
     renderSignature({ func });
 
     expect(
-      screen.getByRole("heading", { level: 4, name: `${func.name} → void` })
+      screen.getByRole("heading", { level: 4, name: `${func.name} → void` }),
     ).toBeInTheDocument();
   });
 
@@ -71,7 +71,7 @@ describe("Signature", () => {
       screen.getByRole("heading", {
         level: 4,
         name: `${func.name} → ${outputs[0].type}`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -85,7 +85,7 @@ describe("Signature", () => {
       screen.getByRole("heading", {
         level: 4,
         name: `${func.name} → [${outputs[0].type}, ${outputs[1].type}]`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -100,7 +100,7 @@ describe("Signature", () => {
       screen.getByRole("heading", {
         level: 4,
         name: `${func.name} → (${components[0].type}, ${components[1].type})`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -116,7 +116,7 @@ describe("Signature", () => {
       screen.getByRole("heading", {
         level: 4,
         name: `${func.name} → [(${components[0].type}, ${components[1].type}), ${outputs[1].type}, ${outputs[2].type}]`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 });

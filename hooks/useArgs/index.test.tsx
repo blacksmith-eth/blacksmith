@@ -12,7 +12,7 @@ import {
 import { useArgs } from ".";
 
 const renderUseArgsHook = (
-  inputs: AbiParameter[] | AbiParameterWithComponents[]
+  inputs: AbiParameter[] | AbiParameterWithComponents[],
 ) => renderHook(() => useArgs(inputs as AbiParameterWithComponents[]));
 
 describe("useArgs", () => {

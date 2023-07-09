@@ -22,7 +22,7 @@ const renderNonpayable = (props: PartialProps<typeof Nonpayable> = {}) =>
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedNonpayableFunction()}
       initialCollapsed={props.initialCollapsed || false}
-    />
+    />,
   );
 
 describe("Nonpayable", () => {

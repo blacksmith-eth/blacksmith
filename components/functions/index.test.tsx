@@ -24,7 +24,7 @@ const renderFunctions = (props: PartialProps<typeof Functions> = {}) =>
     <Functions
       address={props.address || buildAddress()}
       functions={props.functions || []}
-    />
+    />,
   );
 
 describe("Functions", () => {
@@ -40,10 +40,10 @@ describe("Functions", () => {
     renderFunctions({ functions });
 
     expect(
-      screen.getByText(functions[0].name, { exact: false })
+      screen.getByText(functions[0].name, { exact: false }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(functions[1].name, { exact: false })
+      screen.getByText(functions[1].name, { exact: false }),
     ).toBeInTheDocument();
   });
 });

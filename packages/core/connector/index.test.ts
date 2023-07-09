@@ -53,7 +53,7 @@ describe("BlacksmithConnector", () => {
       const connector = new BlacksmithConnector({ provider });
       const account = await connector.getAccount();
       expect(account).toBe(address);
-    }
+    },
   );
 
   it.each([1, 2])("#getChainId should return the chainId (%i)", async (id) => {
@@ -129,7 +129,7 @@ describe("BlacksmithConnector", () => {
       const connector = new BlacksmithConnector({ provider });
       await connector.connect();
       expect(provider.on).toHaveBeenCalledWith(event, expect.any(Function));
-    }
+    },
   );
 
   it.each(["accountsChanged", "chainChanged", "disconnect"])(
@@ -141,9 +141,9 @@ describe("BlacksmithConnector", () => {
       await connector.disconnect();
       expect(provider.removeListener).toHaveBeenCalledWith(
         event,
-        expect.any(Function)
+        expect.any(Function),
       );
-    }
+    },
   );
 
   it("#listAccounts should return the accounts from the provider", async () => {

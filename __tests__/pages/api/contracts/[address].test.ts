@@ -74,9 +74,9 @@ describe("handler", () => {
         return res(
           ctx.json({
             result: [contractResponse],
-          })
+          }),
         );
-      })
+      }),
     );
     const { req, res } = createMocks({
       method: "POST",
@@ -99,7 +99,7 @@ describe("handler", () => {
     server.use(
       rest.get("https://api.etherscan.io/api", (_req, res, ctx) => {
         return res(ctx.status(500));
-      })
+      }),
     );
     const { req, res } = createMocks({
       method: "POST",

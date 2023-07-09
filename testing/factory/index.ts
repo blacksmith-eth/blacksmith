@@ -40,7 +40,7 @@ export const buildAddress = () =>
   faker.string.hexadecimal({ length: 40, casing: "lower" }) as Address;
 
 export const buildContractDetails = (
-  overrides: Partial<ContractDetails> = {}
+  overrides: Partial<ContractDetails> = {},
 ): ContractDetails => ({
   address: overrides.address || buildAddress(),
   abi: overrides.abi || [],
@@ -65,7 +65,7 @@ export const buildContractDetailsList = (n: number): ContractDetails[] =>
   times(n, () => buildContractDetails());
 
 export const buildAbiDefinedFunction = (
-  overrides: Partial<AbiDefinedStateFunction> = {}
+  overrides: Partial<AbiDefinedStateFunction> = {},
 ): AbiDefinedStateFunction => ({
   name: overrides.name || noun(),
   type: "function",
@@ -77,39 +77,39 @@ export const buildAbiDefinedFunction = (
 });
 
 export const buildAbiDefinedNonpayableFunction = (
-  overrides: Partial<AbiDefinedNonpayableFunction> = {}
+  overrides: Partial<AbiDefinedNonpayableFunction> = {},
 ): AbiDefinedNonpayableFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "nonpayable",
 });
 
 export const buildAbiDefinedPayableFunction = (
-  overrides: Partial<AbiDefinedPayableFunction> = {}
+  overrides: Partial<AbiDefinedPayableFunction> = {},
 ): AbiDefinedPayableFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "payable",
 });
 
 export const buildAbiDefinedPureFunction = (
-  overrides: Partial<AbiDefinedPureFunction> = {}
+  overrides: Partial<AbiDefinedPureFunction> = {},
 ): AbiDefinedPureFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "pure",
 });
 
 export const buildAbiDefinedViewFunction = (
-  overrides: Partial<AbiDefinedViewFunction> = {}
+  overrides: Partial<AbiDefinedViewFunction> = {},
 ): AbiDefinedViewFunction => ({
   ...buildAbiDefinedFunction(overrides),
   stateMutability: "view",
 });
 
 export const buildAbiDefinedFunctionList = (
-  n: number
+  n: number,
 ): AbiDefinedStateFunction[] => times(n, () => buildAbiDefinedFunction());
 
 export const buildInput = (
-  overrides: Partial<AbiParameter> = {}
+  overrides: Partial<AbiParameter> = {},
 ): AbiParameter => ({
   name: hasProperty(overrides, "name") ? overrides.name : noun(),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
@@ -119,7 +119,7 @@ export const buildInputList = (n: number): AbiParameter[] =>
   times(n, () => buildInput());
 
 export const buildInputWithComponents = (
-  overrides: Partial<AbiParameterWithComponents>
+  overrides: Partial<AbiParameterWithComponents>,
 ): AbiParameterWithComponents => ({
   name: noun(),
   type: overrides.type || faker.helpers.arrayElement(["address", "string"]),
@@ -127,7 +127,7 @@ export const buildInputWithComponents = (
 });
 
 export const buildOutput = (
-  overrides: Partial<AbiParameterWithComponents> = {}
+  overrides: Partial<AbiParameterWithComponents> = {},
 ): AbiParameter => ({
   name: overrides.name || noun(),
   type:

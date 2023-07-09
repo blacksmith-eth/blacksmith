@@ -9,7 +9,7 @@ describe("chains", () => {
     "should append 'Fork' to the name of the chain",
     (forkedChain) => {
       expect(forkedChain.name.endsWith(" Fork")).toBe(true);
-    }
+    },
   );
 
   it.each(forkedChains)("should use foundry rpcUrls", (forkedChain) => {

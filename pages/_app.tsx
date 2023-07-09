@@ -27,7 +27,7 @@ const sourceCodePro = Source_Code_Pro({
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [foundry, ...forkedChains],
-  [publicProvider()]
+  [publicProvider()],
 );
 
 const connectors = connectorsForWallets([

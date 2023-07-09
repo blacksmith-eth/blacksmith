@@ -21,7 +21,7 @@ type ViewProps = {
 
 export const View = ({ address, func, initialCollapsed }: ViewProps) => {
   const { args, formattedArgs, updateValue, isTouched } = useArgs(
-    func.inputs as AbiParameterWithComponents[]
+    func.inputs as AbiParameterWithComponents[],
   );
   const { data, isLoading, isError, error, refetch } = useContractRead<
     Abi,

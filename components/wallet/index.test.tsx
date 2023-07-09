@@ -50,7 +50,7 @@ describe("Wallet", () => {
     renderWallet({ open: true });
 
     expect(
-      screen.getByRole("heading", { level: 2, name: "Transfer" })
+      screen.getByRole("heading", { level: 2, name: "Transfer" }),
     ).toBeInTheDocument();
   });
 
@@ -58,7 +58,7 @@ describe("Wallet", () => {
     renderWallet({ open: true });
 
     expect(
-      screen.getByRole("heading", { level: 2, name: "Change Account" })
+      screen.getByRole("heading", { level: 2, name: "Change Account" }),
     ).toBeInTheDocument();
   });
 });

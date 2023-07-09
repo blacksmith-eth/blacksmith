@@ -22,7 +22,7 @@ const renderPayable = (props: PartialProps<typeof Payable> = {}) =>
       address={props.address || buildAddress()}
       func={props.func || buildAbiDefinedPayableFunction()}
       initialCollapsed={props.initialCollapsed || false}
-    />
+    />,
   );
 
 describe("Payable", () => {

@@ -37,7 +37,7 @@ export const Manager = () => {
     (event: ChangeEvent<HTMLInputElement>) => {
       setAddress(event.target.value);
     },
-    []
+    [],
   );
 
   const handleImport = useCallback(() => {

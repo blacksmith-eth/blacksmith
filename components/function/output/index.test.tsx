@@ -11,7 +11,7 @@ const renderOutput = (props: PartialProps<typeof Output> = {}) =>
       isLoading={props.isLoading || false}
       isError={props.isError || false}
       error={props.error || null}
-    />
+    />,
   );
 
 describe("Output", () => {
