@@ -18,8 +18,8 @@ dependencies:
     specifier: 5.7.2
     version: 5.7.2
   fp-ts:
-    specifier: ^2.16.0
-    version: 2.16.0
+    specifier: ^2.16.1
+    version: 2.16.1
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -4620,8 +4620,8 @@ packages:
       mime-types: 2.1.35
     dev: true
 
-  /fp-ts@2.16.0:
-    resolution: {integrity: sha512-bLq+KgbiXdTEoT1zcARrWEpa5z6A/8b7PcDW7Gef3NSisQ+VS7ll2Xbf1E+xsgik0rWub/8u0qP/iTTjj+PhxQ==}
+  /fp-ts@2.16.1:
+    resolution: {integrity: sha512-by7U5W8dkIzcvDofUcO42yl9JbnHTEDBrzu3pt5fKT+Z4Oy85I21K80EYJYdjQGC2qum4Vo55Ag57iiIK4FYuA==}
     dev: false
 
   /fraction.js@4.2.0:
