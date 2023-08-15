@@ -128,8 +128,8 @@ devDependencies:
     specifier: ^0.9.7
     version: 0.9.7(next@13.4.13)(react@18.2.0)
   node-mocks-http:
-    specifier: ^1.12.2
-    version: 1.12.2
+    specifier: ^1.13.0
+    version: 1.13.0
   postcss:
     specifier: ^8.4.27
     version: 8.4.27
@@ -5960,9 +5960,9 @@ packages:
     resolution: {integrity: sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ==}
     hasBin: true
 
-  /node-mocks-http@1.12.2:
-    resolution: {integrity: sha512-xhWwC0dh35R9rf0j3bRZXuISXdHxxtMx0ywZQBwjrg3yl7KpRETzogfeCamUIjltpn0Fxvs/ZhGJul1vPLrdJQ==}
-    engines: {node: '>=0.6'}
+  /node-mocks-http@1.13.0:
+    resolution: {integrity: sha512-lArD6sJMPJ53WF50GX0nJ89B1nkV1TdMvNwq8WXXFrUXF80ujSyye1T30mgiHh4h2It0/svpF3C4kZ2OAONVlg==}
+    engines: {node: '>=14'}
     dependencies:
       accepts: 1.3.8
       content-disposition: 0.5.4
