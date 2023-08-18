@@ -20,7 +20,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.16",
+    "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@rainbow-me/rainbowkit": "^1.0.8",
     "ethers": "5.7.2",
