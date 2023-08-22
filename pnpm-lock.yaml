@@ -125,8 +125,8 @@ devDependencies:
     specifier: ^1.2.3
     version: 1.2.3(typescript@5.1.6)
   next-router-mock:
-    specifier: ^0.9.7
-    version: 0.9.7(next@13.4.13)(react@18.2.0)
+    specifier: ^0.9.9
+    version: 0.9.9(next@13.4.13)(react@18.2.0)
   node-mocks-http:
     specifier: ^1.13.0
     version: 1.13.0
@@ -5869,8 +5869,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /next-router-mock@0.9.7(next@13.4.13)(react@18.2.0):
-    resolution: {integrity: sha512-y5ioLCIsdkJKwcoPnrUyocNEJT22RK4wKSg6LO0Q2XkBBvkYprEWy5FiCZt+CA8+qpfxpBlNca76F+glEohbRA==}
+  /next-router-mock@0.9.9(next@13.4.13)(react@18.2.0):
+    resolution: {integrity: sha512-2o50zr+5pWj0zzcvBEWNHDlmWmlDExPdX5OuXKW2aCxV85XUA6MlELr0n0f0wtXj5dUVZ8qspHj6YwF7KZHrbA==}
     peerDependencies:
       next: '>=10.0.0'
       react: '>=17.0.0'
