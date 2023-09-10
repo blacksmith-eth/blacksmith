@@ -52,7 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "@vitest/coverage-v8": "^0.34.1",
+    "@vitest/coverage-v8": "^0.34.4",
     "abitype": "^0.9.8",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.49.0",
