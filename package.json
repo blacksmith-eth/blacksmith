@@ -45,7 +45,7 @@
     "@faker-js/faker": "^8.0.2",
     "@testing-library/jest-dom": "^6.1.3",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^14.5.1",
     "@types/lodash": "^4.14.199",
     "@types/node": "^20.8.3",
     "@types/react": "^18.2.25",
