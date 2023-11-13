@@ -24,8 +24,8 @@ dependencies:
     specifier: ^4.17.21
     version: 4.17.21
   lowdb:
-    specifier: 6.0.1
-    version: 6.0.1
+    specifier: 6.1.1
+    version: 6.1.1
   next:
     specifier: ^13.5.4
     version: 13.5.4(@babel/core@7.23.3)(react-dom@18.2.0)(react@18.2.0)
@@ -5628,11 +5628,11 @@ packages:
       get-func-name: 2.0.2
     dev: true
 
-  /lowdb@6.0.1:
-    resolution: {integrity: sha512-1ktuKYLlQzAWwl4/PQkIr8JzNXgcTM6rAhpXaQ6BR+VwI98Q8ZwMFhBOn9u0ldcW3K/WWzhYpS3xyGTshgVGzA==}
+  /lowdb@6.1.1:
+    resolution: {integrity: sha512-HO13FCxI8SCwfj2JRXOKgXggxnmfSc+l0aJsZ5I34X3pwzG/DPBSKyKu3Zkgg/pNmx854SVgE2la0oUeh6wzNw==}
     engines: {node: '>=16'}
     dependencies:
-      steno: 3.0.0
+      steno: 3.1.1
     dev: false
 
   /lru-cache@5.1.1:
@@ -7020,9 +7020,9 @@ packages:
     resolution: {integrity: sha512-f9aPhy8fYBuMN+sNfakZV18U39PbalgjXG3lLB9WkaYTxijru61wb57V9wxxNthXM5Sd88ETBWi29qLAsHO52Q==}
     dev: true
 
-  /steno@3.0.0:
-    resolution: {integrity: sha512-uZtn7Ht9yXLiYgOsmo8btj4+f7VxyYheMt8g6F1ANjyqByQXEE2Gygjgenp3otHH1TlHsS4JAaRGv5wJ1wvMNw==}
-    engines: {node: '>=14.16'}
+  /steno@3.1.1:
+    resolution: {integrity: sha512-B7c6EVH7oEiaMRW36SjUnktkDwp/qd4pQiduylyiqvcZEZDeX0IIFZRBZdwO/RaVo60M0wkDwC0e8yeKaR4VGg==}
+    engines: {node: '>=16'}
     dev: false
 
   /stop-iteration-iterator@1.0.0:
