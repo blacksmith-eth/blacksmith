@@ -22,7 +22,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
-    "@rainbow-me/rainbowkit": "^1.1.1",
+    "@rainbow-me/rainbowkit": "^1.2.0",
     "ethers": "5.7.2",
     "fp-ts": "^2.16.1",
     "lodash": "^4.17.21",
