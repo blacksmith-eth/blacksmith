@@ -48,7 +48,7 @@
     "@testing-library/user-event": "^14.5.1",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.4",
-    "@types/react": "^18.2.40",
+    "@types/react": "^18.2.42",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react-swc": "^3.4.1",
