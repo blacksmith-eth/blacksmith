@@ -33,7 +33,7 @@
     "react-dom": "^18.2.0",
     "swr": "^2.2.4",
     "viem": "^1.19.11",
-    "wagmi": "^1.4.6",
+    "wagmi": "^1.4.10",
     "whatwg-fetch": "^3.6.19",
     "zod": "^3.22.4",
     "zod-validation-error": "^2.1.0"
