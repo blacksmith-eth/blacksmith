@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",
-    "@commitlint/cli": "^18.4.1",
+    "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.0",
     "@faker-js/faker": "^8.2.0",
     "@testing-library/jest-dom": "^6.1.4",
