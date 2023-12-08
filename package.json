@@ -50,7 +50,7 @@
     "@types/node": "^20.10.4",
     "@types/react": "^18.2.42",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/parser": "^6.13.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitest/coverage-v8": "^1.0.2",
     "abitype": "^0.10.3",
